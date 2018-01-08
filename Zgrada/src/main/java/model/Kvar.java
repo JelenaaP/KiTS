@@ -21,7 +21,7 @@ public class Kvar {
 	private long id_kvar;
 	
 	private String ime;
-	private String opis;
+	//private String opis;
 	private Date dat_kreiranja;
 	private Date dat_zakazivanja;
 	private Date dat_popravke;
@@ -34,8 +34,8 @@ public class Kvar {
 	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
 	
 	
-	@OneToMany(mappedBy = "kvar", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Komentar> komentar = new HashSet<Komentar>();
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Komentar opis;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;
@@ -56,13 +56,7 @@ public class Kvar {
 		this.ime = ime;
 	}
 
-	public String getOpis() {
-		return opis;
-	}
-
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
+	
 
 	public Date getDat_kreiranja() {
 		return dat_kreiranja;
@@ -104,12 +98,14 @@ public class Kvar {
 		this.radnik = radnik;
 	}
 
-	public Set<Komentar> getKomentar() {
-		return komentar;
+	
+
+	public Komentar getOpis() {
+		return opis;
 	}
 
-	public void setKomentar(Set<Komentar> komentar) {
-		this.komentar = komentar;
+	public void setOpis(Komentar opis) {
+		this.opis = opis;
 	}
 
 	public Zgrada getZgrada() {

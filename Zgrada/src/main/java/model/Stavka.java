@@ -11,11 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 
-public class Stavke {
+public class Stavka {
 
 	@Id
 	@GeneratedValue
@@ -24,11 +26,37 @@ public class Stavke {
 	private String ime;
 	private String opis;
 	private Date datum_kreiranja;
-	private String kreator;
-	private int sedmica;
 	
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Korisnik_servisa kreator;//kreator koji je kreirao zapisnik
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Sednica sednica;//sednica na kojoj je kreiran zapisnik
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Zgrada zgrada;
+	
+	public Zgrada getZgrada() {
+		return zgrada;
+	}
+	public void setZgrada(Zgrada zgrada) {
+		this.zgrada = zgrada;
+	}
 	public Long getId_stavke() {
 		return id_stavke;
+	}
+	public Korisnik_servisa getKreator() {
+		return kreator;
+	}
+	public void setKreator(Korisnik_servisa kreator) {
+		this.kreator = kreator;
+	}
+	public Sednica getSednica() {
+		return sednica;
+	}
+	public void setSednica(Sednica sednica) {
+		this.sednica = sednica;
 	}
 	public void setId_stavke(Long id_stavke) {
 		this.id_stavke = id_stavke;
@@ -51,17 +79,8 @@ public class Stavke {
 	public void setDatum_kreiranja(Date datum_kreiranja) {
 		this.datum_kreiranja = datum_kreiranja;
 	}
-	public String getKreator() {
-		return kreator;
-	}
-	public void setKreator(String kreator) {
-		this.kreator = kreator;
-	}
-	public int getSedmica() {
-		return sedmica;
-	}
-	public void setSedmica(int sedmica) {
-		this.sedmica = sedmica;
-	}
+	
+	
+	
 	
 }

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,11 +22,22 @@ public class Komentar {
 	private Long id_komentar;
 	
 	private String tekst;
-	private String kreator;
+	//private String kreator;
 	private Date datum;
 	
-	@OneToMany(mappedBy = "komentar", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Kvar> kvar = new HashSet<Kvar>();
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Korisnik_servisa kreator;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Kvar kvar;
+
+	public Kvar getKvar() {
+		return kvar;
+	}
+
+	public void setKvar(Kvar kvar) {
+		this.kvar = kvar;
+	}
 
 	public Long getId_komentar() {
 		return id_komentar;
@@ -43,13 +55,7 @@ public class Komentar {
 		this.tekst = tekst;
 	}
 
-	public String getKreator() {
-		return kreator;
-	}
-
-	public void setKreator(String kreator) {
-		this.kreator = kreator;
-	}
+	
 
 	public Date getDatum() {
 		return datum;
@@ -59,19 +65,17 @@ public class Komentar {
 		this.datum = datum;
 	}
 
-	public Set<Kvar> getKvar() {
-		return kvar;
+	
+
+	public Korisnik_servisa getKreator() {
+		return kreator;
 	}
 
-	public void setKvar(Set<Kvar> kvar) {
-		this.kvar = kvar;
+	public void setKreator(Korisnik_servisa kreator) {
+		this.kreator = kreator;
 	}
 
-	@Override
-	public String toString() {
-		return "Komentar [id_komentar=" + id_komentar + ", tekst=" + tekst + ", kreator=" + kreator + ", datum=" + datum
-				+ ", kvar=" + kvar + "]";
-	}
+	
 	
 	
 	
