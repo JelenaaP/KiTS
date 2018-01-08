@@ -3,6 +3,9 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.FetchType;
@@ -24,8 +27,12 @@ public class Kvar {
 	private Date dat_popravke;
 	private boolean popravljen;
 	
-	@OneToMany(mappedBy = "kvar", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@ManyToMany
+    @JoinTable(name = "popravlja",
+               joinColumns = @JoinColumn(name="id_kvar", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="id_korisnik_servisa", referencedColumnName="id"))
 	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
+	
 	
 	@OneToMany(mappedBy = "kvar", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Komentar> komentar = new HashSet<Komentar>();

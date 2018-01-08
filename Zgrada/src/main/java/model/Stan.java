@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 public class Stan {
@@ -19,23 +20,31 @@ public class Stan {
 	private String  adresa;
 	private int br_stanovnika;
 	
-	@OneToMany(mappedBy = "stanovi", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Zgrada> zgrada = new HashSet<Zgrada>();
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Zgrada zgrada;
 	
 	@OneToMany(mappedBy = "stanovi", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Korisnik_servisa> stanovnici = new HashSet<Korisnik_servisa>();
 	
-	@OneToMany(mappedBy = "stanovi", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Korisnik_servisa> vlasnik = new HashSet<Korisnik_servisa>();
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Korisnik_servisa vlasnik;
 	
 	
-
-	public Set<Zgrada> getZgrada() {
+	
+	public Zgrada getZgrada() {
 		return zgrada;
 	}
 
-	public void setZgrada(Set<Zgrada> zgrada) {
+	public void setZgrada(Zgrada zgrada) {
 		this.zgrada = zgrada;
+	}
+
+	public Korisnik_servisa getVlasnik() {
+		return vlasnik;
+	}
+
+	public void setVlasnik(Korisnik_servisa vlasnik) {
+		this.vlasnik = vlasnik;
 	}
 
 	public Set<Korisnik_servisa> getStanovnici() {
@@ -44,10 +53,6 @@ public class Stan {
 
 	public void setStanovnici(Set<Korisnik_servisa> stanovnici) {
 		this.stanovnici = stanovnici;
-	}
-
-	public void setVlasnik(Set<Korisnik_servisa> vlasnik) {
-		this.vlasnik = vlasnik;
 	}
 
 	public Long getId_stanovi() {

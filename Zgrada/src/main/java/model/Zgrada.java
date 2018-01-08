@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -23,10 +24,12 @@ public class Zgrada {
 
 	private String ime;
 	private String  adresa;
-	private String vlasnik;
 	private int br_stanova;
 	private int br_naseljenih;
 	private boolean predsednik;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Korisnik_servisa vlasnik;
 	
 	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Obavestenje> obavestenje = new HashSet<Obavestenje>();
@@ -67,11 +70,11 @@ public class Zgrada {
 		this.adresa = adresa;
 	}
 
-	public String getVlasnik() {
+	public Korisnik_servisa getVlasnik() {
 		return vlasnik;
 	}
 
-	public void setVlasnik(String vlasnik) {
+	public void setVlasnik(Korisnik_servisa vlasnik) {
 		this.vlasnik = vlasnik;
 	}
 
