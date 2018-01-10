@@ -3,15 +3,19 @@ package dto;
 import model.Korisnik_servisa;
 import model.Zgrada;
 import model.Obavestenje;
+import model.Stan;
 
 import java.util.List;
 
 import model.Firma;
 
+/*klasa sadrzi korisnika, stan u kom zivi i zgradu gde se stan nalazi
+ */
+
 public class TenatProfileDto {
 	
 	private Korisnik_servisa radnik;
-	private Firma firma;
+	private Stan stan;
 	private Zgrada zgrada;
 	public List<Obavestenje> obavestenje;
 	
@@ -25,12 +29,13 @@ public class TenatProfileDto {
 		this.radnik = radnik;
 	}
 
-	public Firma getFirma() {
-		return firma;
+
+	public Stan getStan() {
+		return stan;
 	}
 
-	public void setFirma(Firma firma) {
-		this.firma = firma;
+	public void setStan(Stan stan) {
+		this.stan = stan;
 	}
 
 	public Zgrada getZgrada() {
