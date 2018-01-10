@@ -3,16 +3,21 @@ package repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import model.Korisnik_servisa;
+import model.Sednica;
 import model.Zapisnik;
+import model.Zgrada;
 
-public interface ZapisnikRepository {
+public interface ZapisnikRepository extends JpaRepository<Zapisnik, Long>{
 
-	List<Zapisnik> findBySednica(Zapisnik zapisnik);
-
-	Zapisnik save(Zapisnik zapisnik);
-
-	void delete(Zapisnik zapisnik);
+	List<Zapisnik> findBySednica(Sednica sednica);
 
 	Zapisnik findOneByDat_kreiranja(Date dat_kreiranja);
+
+	List<Zapisnik> findByOwner(Korisnik_servisa kreator);
+
+	List<Zapisnik> findByBuilding(Zgrada zgrada);
 
 }

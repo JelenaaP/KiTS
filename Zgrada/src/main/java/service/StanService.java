@@ -8,15 +8,22 @@ import org.springframework.stereotype.Service;
 import model.Stan;
 import repository.StanRepository;
 
-public class StanService {
 
 @Service
-public class ZgradaService {
+public class StanService {
 	@Autowired
 	private StanRepository stanRepository;
 		
 	public Stan findOneByName(String ime) {
 		return stanRepository.findOneByName(ime);
+	}
+	
+	public Stan findOneByOwner(String vlasnik) {
+		return stanRepository.findOneByOwner(vlasnik);
+	}
+	
+	public Stan findOneByAdress(String adresa) {
+		return stanRepository.findOneByAdress(adresa);
 	}
 	
 	public List<Stan> findAll(){
@@ -26,6 +33,12 @@ public class ZgradaService {
 	public Stan findOneById(Long id_stanovi) {
 		return stanRepository.findOne(id_stanovi);
 	}
-// ************DOPUNITI SA METODAMA ZA BRISANJE I CUVANJE************
-}
+	
+	public Stan  save(Stan stan){
+		return stanRepository.save(stan);
+	}
+	
+	public void delete(Stan stan){
+		 stanRepository.delete(stan);
+	}
 }

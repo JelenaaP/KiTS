@@ -15,10 +15,7 @@ import repository.ObavestenjeRepository;
 public class ObavestenjeService {
 	@Autowired
 	private ObavestenjeRepository obavestenjeRepository;
-		
-	public Obavestenje findOneByName(String ime) {
-		return obavestenjeRepository.findOneByName(ime);
-	}
+	
 	public List<Obavestenje> findByZgrada(Zgrada zgrada){
 		return obavestenjeRepository.findByZgrada(zgrada);
 	}

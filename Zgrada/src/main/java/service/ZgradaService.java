@@ -24,6 +24,14 @@ public class ZgradaService {
 	public Zgrada findOneById(Long id_zgrada) {
 		return zgradaRepository.findOne(id_zgrada);
 	}
+
+	public Zgrada findAllByOwner(String vlasnik) {
+		return zgradaRepository.findAllByOwner(vlasnik);
+	}
+
+	public Zgrada findAllByAdress(String adresa) {
+		return zgradaRepository.findOneByAdress(adresa);
+	}
 	
 	public void delete(Zgrada zgrada) {
 		zgradaRepository.delete(zgrada);
@@ -31,13 +39,5 @@ public class ZgradaService {
 		
 	public Zgrada save(Zgrada zgrada) {
 		return zgradaRepository.save(zgrada);
-	}
-	
-	public Zgrada findAllByAdress(String adresa) {
-		return zgradaRepository.findOneByAdress(adresa);
-	}
-	
-	public Zgrada findAllByOwner(String vlasnik) {
-		return zgradaRepository.findAllByOwner(vlasnik);
 	}
 }

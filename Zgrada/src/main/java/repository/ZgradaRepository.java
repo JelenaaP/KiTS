@@ -6,7 +6,7 @@ import model.Zgrada;
 
 public interface ZgradaRepository extends JpaRepository<Zgrada, Long>{
 
-	Zgrada findOneByName(String name);
+	Zgrada findOneByName(String ime);
 
 	Zgrada findOneByAdress(String adresa);
 

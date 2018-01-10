@@ -11,8 +11,6 @@ import model.Zgrada;
 
 public interface ObavestenjeRepository extends JpaRepository<Obavestenje,Long> {
 
-	Obavestenje findOneByName(String ime);
-
 	Obavestenje findOneByDat_kreiranja(Date dat_kreiranja);
 
 	Obavestenje findAllByOwner(Korisnik_servisa kreator);
