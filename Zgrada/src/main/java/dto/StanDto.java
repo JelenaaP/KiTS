@@ -8,9 +8,6 @@ public class StanDto {
 	private String ime;
 	private String adresa;
 	private Korisnik_servisa vlasnik;
-	private int br_stanovnika;
-	private Korisnik_servisa stanovnici;
-	private Zgrada zgrada;
 	
 	private StanDto(){}
 	
@@ -22,9 +19,6 @@ public class StanDto {
 		this.ime = ime;
 		this.adresa = adresa;
 		this.vlasnik = vlasnik;
-		this.br_stanovnika = br_stanovnika;
-		this.stanovnici = stanovnici;
-		this.zgrada = zgrada;
 	}
 
 	public int getId() {
@@ -58,29 +52,4 @@ public class StanDto {
 	public void setVlasnik(Korisnik_servisa vlasnik) {
 		this.vlasnik = vlasnik;
 	}
-
-	public int getBr_stanovnika() {
-		return br_stanovnika;
-	}
-
-	public void setBr_stanovnika(int br_stanovnika) {
-		this.br_stanovnika = br_stanovnika;
-	}
-
-	public Korisnik_servisa getStanovnici() {
-		return stanovnici;
-	}
-
-	public void setStanovnici(Korisnik_servisa stanovnici) {
-		this.stanovnici = stanovnici;
-	}
-
-	public Zgrada getZgrada() {
-		return zgrada;
-	}
-
-	public void setZgrada(Zgrada zgrada) {
-		this.zgrada = zgrada;
-	}
-
 }

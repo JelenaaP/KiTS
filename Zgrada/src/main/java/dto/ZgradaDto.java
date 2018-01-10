@@ -84,7 +84,5 @@ public class ZgradaDto {
 		br_stanova = zgrada.getBr_stanova();
 		br_naseljenih = zgrada.getBr_naseljenih();
 		predsednik = zgrada.isPredsednik();
-	};
-	
-	
+	};	
 }
