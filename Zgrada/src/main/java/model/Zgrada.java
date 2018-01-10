@@ -36,9 +36,6 @@ public class Zgrada {
 	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Stan> stan = new HashSet<Stan>();
 	
-	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Firma> firma = new HashSet<Firma>();
-	
 	public Long getId_zgrada() {
 		return id_zgrada;
 	}
@@ -109,14 +106,6 @@ public class Zgrada {
 
 	public void setStan(Set<Stan> stan) {
 		this.stan = stan;
-	}
-	
-	public Set<Firma> getFirma() {
-		return firma;
-	}
-
-	public void setFirma(Set<Firma> firma) {
-		this.firma = firma;
 	}
 
 	@Override
