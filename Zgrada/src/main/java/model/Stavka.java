@@ -1,19 +1,14 @@
 package model;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 
@@ -25,7 +20,7 @@ public class Stavka {
 	private Long id_stavke;
 	private String ime;
 	private String opis;
-	private Date datum_kreiranja;
+	private Date dat_kreiranja;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
@@ -73,14 +68,10 @@ public class Stavka {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public Date getDatum_kreiranja() {
-		return datum_kreiranja;
+	public Date getDat_kreiranja() {
+		return dat_kreiranja;
 	}
-	public void setDatum_kreiranja(Date datum_kreiranja) {
-		this.datum_kreiranja = datum_kreiranja;
+	public void setDat_kreiranja(Date dat_kreiranja) {
+		this.dat_kreiranja = dat_kreiranja;
 	}
-	
-	
-	
-	
 }

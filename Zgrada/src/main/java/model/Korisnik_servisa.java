@@ -14,10 +14,10 @@ public class Korisnik_servisa {
 	private String koris_ime;
 	private String lozinka;
 	private String uloga;
-	private String vlasnik_firme;
-	private String vlasnik_zgrade;
-	private String vlasnik_stana;
-	private String predsednik_skupstine;
+	private boolean vlasnik_firme;
+	private boolean vlasnik_zgrade;
+	private boolean vlasnik_stana;
+	private boolean predsednik_skupstine;
 	
 	
 	public long getId_korisnik_servisa() {
@@ -50,29 +50,28 @@ public class Korisnik_servisa {
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
 	}
-	public String getVlasnik_firme() {
+	public boolean isVlasnik_firme() {
 		return vlasnik_firme;
 	}
-	public void setVlasnik_firme(String vlasnik_firme) {
+	public void setVlasnik_firme(boolean vlasnik_firme) {
 		this.vlasnik_firme = vlasnik_firme;
 	}
-	public String getVlasnik_zgrade() {
+	public boolean isVlasnik_zgrade() {
 		return vlasnik_zgrade;
 	}
-	public void setVlasnik_zgrade(String vlasnik_zgrade) {
+	public void setVlasnik_zgrade(boolean vlasnik_zgrade) {
 		this.vlasnik_zgrade = vlasnik_zgrade;
 	}
-	public String getVlasnik_stana() {
+	public boolean isVlasnik_stana() {
 		return vlasnik_stana;
 	}
-	public void setVlasnik_stana(String vlasnik_stana) {
+	public void setVlasnik_stana(boolean vlasnik_stana) {
 		this.vlasnik_stana = vlasnik_stana;
 	}
-	public String getPredsednik_skupstine() {
+	public boolean isPredsednik_skupstine() {
 		return predsednik_skupstine;
 	}
-	public void setPredsednik_skupstine(String predsednik_skupstine) {
+	public void setPredsednik_skupstine(boolean predsednik_skupstine) {
 		this.predsednik_skupstine = predsednik_skupstine;
 	}
-
 }

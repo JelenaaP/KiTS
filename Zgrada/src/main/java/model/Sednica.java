@@ -22,8 +22,10 @@ public class Sednica {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;//kreator koji je kreirao sednicu
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada; //zgrada kojoj pripadaju sednice
+	
 	@OneToMany(mappedBy = "sednica", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Zapisnik> zapisnik = new HashSet<Zapisnik>(); //zapisnici koji su kreirani
 	

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,15 +19,19 @@ public class Firma {
 	private long id_firme;
 	private String ime;
 	private String adresa;
-	private String vlasnik;
 	private long telefon;
 	private String email;
 	private String web_site;
-	private String radnik;
 	
 	@OneToMany(mappedBy = "firma", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Kvar> kvar = new HashSet<Kvar>();
-
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Korisnik_servisa vlasnik;
+	
+	@OneToMany(mappedBy = "firma", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
+	
 	public long getId_firme() {
 		return id_firme;
 	}
@@ -50,13 +55,17 @@ public class Firma {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-
-	public String getVlasnik() {
+	
+	public Korisnik_servisa getVlasnik() {
 		return vlasnik;
 	}
 
-	public void setVlasnik(String vlasnik) {
+	public void setVlasnik(Korisnik_servisa vlasnik) {
 		this.vlasnik = vlasnik;
+	}
+
+	public void setRadnik(Set<Korisnik_servisa> radnik) {
+		this.radnik = radnik;
 	}
 
 	public long getTelefon() {
@@ -82,15 +91,7 @@ public class Firma {
 	public void setWeb_site(String web_site) {
 		this.web_site = web_site;
 	}
-
-	public String getRadnik() {
-		return radnik;
-	}
-
-	public void setRadnik(String radnik) {
-		this.radnik = radnik;
-	}
-
+	
 	public Set<Kvar> getKvar() {
 		return kvar;
 	}
@@ -98,6 +99,4 @@ public class Firma {
 	public void setKvar(Set<Kvar> kvar) {
 		this.kvar = kvar;
 	}
-	
-
 }

@@ -7,7 +7,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 import java.util.Date;
@@ -21,7 +20,7 @@ public class Kvar {
 	private long id_kvar;
 	
 	private String ime;
-	//private String opis;
+	private String opis;
 	private Date dat_kreiranja;
 	private Date dat_zakazivanja;
 	private Date dat_popravke;
@@ -32,10 +31,6 @@ public class Kvar {
                joinColumns = @JoinColumn(name="id_kvar", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="id_korisnik_servisa", referencedColumnName="id"))
 	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	private Komentar opis;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;
@@ -55,8 +50,6 @@ public class Kvar {
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-
-	
 
 	public Date getDat_kreiranja() {
 		return dat_kreiranja;
@@ -97,14 +90,12 @@ public class Kvar {
 	public void setRadnik(Set<Korisnik_servisa> radnik) {
 		this.radnik = radnik;
 	}
-
 	
-
-	public Komentar getOpis() {
+	public String getOpis() {
 		return opis;
 	}
 
-	public void setOpis(Komentar opis) {
+	public void setOpis(String opis) {
 		this.opis = opis;
 	}
 

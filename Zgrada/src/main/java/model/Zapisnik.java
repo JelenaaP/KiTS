@@ -20,8 +20,10 @@ public class Zapisnik {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;//kreator koji je kreirao zapisnik
+	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Sednica sednica;//sednica na kojoj je kreiran zapisnik
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;//zgrada u kojoj je kreiran zapisnik
 	

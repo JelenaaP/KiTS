@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,14 +37,8 @@ public class Zgrada {
 	private Set<Stan> stan = new HashSet<Stan>();
 	
 	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Kvar> kvar = new HashSet<Kvar>();
-	
-	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Firma> firma = new HashSet<Firma>();
 	
-	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Sednica> sednica = new HashSet<Sednica>();
-
 	public Long getId_zgrada() {
 		return id_zgrada;
 	}
@@ -117,15 +110,7 @@ public class Zgrada {
 	public void setStan(Set<Stan> stan) {
 		this.stan = stan;
 	}
-
-	public Set<Kvar> getKvar() {
-		return kvar;
-	}
-
-	public void setKvar(Set<Kvar> kvar) {
-		this.kvar = kvar;
-	}
-
+	
 	public Set<Firma> getFirma() {
 		return firma;
 	}
@@ -133,15 +118,6 @@ public class Zgrada {
 	public void setFirma(Set<Firma> firma) {
 		this.firma = firma;
 	}
-
-	public Set<Sednica> getSednica() {
-		return sednica;
-	}
-
-	public void setSednica(Set<Sednica> sednica) {
-		this.sednica = sednica;
-	}
-	
 
 	@Override
 	public boolean equals(Object o) {
