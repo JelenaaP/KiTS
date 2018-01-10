@@ -6,7 +6,7 @@ import model.Stan;
 
 public class ZgradaDto {
 	
-	private Long id;
+	private Long id_zgrada;
 	private String ime;
 	private String adresa;
 	private Korisnik_servisa vlasnik;
@@ -18,13 +18,16 @@ public class ZgradaDto {
 	
 	private ZgradaDto(){}
 
-	public Long getId() {
-		return id;
+	
+	public Long getId_zgrada() {
+		return id_zgrada;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+	public void setId_zgrada(Long id_zgrada) {
+		this.id_zgrada = id_zgrada;
 	}
+
 
 	public String getIme() {
 		return ime;
@@ -90,10 +93,10 @@ public class ZgradaDto {
 		this.stan = stan;
 	}
 
-	public ZgradaDto(Long id, String ime, String adresa, Korisnik_servisa vlasnik, int br_stanova, int br_naseljenih,
+	public ZgradaDto(Long id_zgrada, String ime, String adresa, Korisnik_servisa vlasnik, int br_stanova, int br_naseljenih,
 			boolean predsednik, Obavestenje obavestenje, Stan stan) {
 		super();
-		this.id = id;
+		this.id_zgrada = id_zgrada;
 		this.ime = ime;
 		this.adresa = adresa;
 		this.vlasnik = vlasnik;
