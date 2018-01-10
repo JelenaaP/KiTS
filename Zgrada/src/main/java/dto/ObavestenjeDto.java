@@ -2,8 +2,7 @@ package dto;
 
 import java.util.Date;
 
-import model.Korisnik_servisa;
-import model.Zgrada;
+import model.Obavestenje;
 
 public class ObavestenjeDto {
 	
@@ -11,8 +10,10 @@ public class ObavestenjeDto {
 	private String ime;
 	private String opis;
 	private Date dat_kreiranja;
-	private Korisnik_servisa kreator;
-	private Zgrada zgrada;
+	private Korisnik_servisaDto kreator;
+	private ZgradaDto zgrada;
+	
+	
 	public Long getId_obavestenje() {
 		return id_obavestenje;
 	}
@@ -37,21 +38,23 @@ public class ObavestenjeDto {
 	public void setDat_kreiranja(Date dat_kreiranja) {
 		this.dat_kreiranja = dat_kreiranja;
 	}
-	public Korisnik_servisa getKreator() {
+	public Korisnik_servisaDto getKreator() {
 		return kreator;
 	}
-	public void setKreator(Korisnik_servisa kreator) {
+	public void setKreator(Korisnik_servisaDto kreator) {
 		this.kreator = kreator;
 	}
-	public Zgrada getZgrada() {
+	public ZgradaDto getZgrada() {
 		return zgrada;
 	}
-	public void setZgrada(Zgrada zgrada) {
+	public void setZgrada(ZgradaDto zgrada) {
 		this.zgrada = zgrada;
 	}
 	
-	public ObavestenjeDto(Long id_obavestenje, String ime, String opis, Date dat_kreiranja, Korisnik_servisa kreator,
-			Zgrada zgrada) {
+	public ObavestenjeDto(){};
+	
+	public ObavestenjeDto(Long id_obavestenje, String ime, String opis, Date dat_kreiranja, Korisnik_servisaDto kreator,
+			ZgradaDto zgrada) {
 		super();
 		this.id_obavestenje = id_obavestenje;
 		this.ime = ime;
@@ -60,6 +63,4 @@ public class ObavestenjeDto {
 		this.kreator = kreator;
 		this.zgrada = zgrada;
 	}
-	
-	private ObavestenjeDto(){};
 }

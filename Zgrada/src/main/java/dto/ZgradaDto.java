@@ -1,20 +1,18 @@
 package dto;
 
-import model.Korisnik_servisa;
-import model.Obavestenje;
-import model.Stan;
+
+import dto.Korisnik_servisaDto;
+import model.Zgrada;
 
 public class ZgradaDto {
 	
 	private Long id_zgrada;
 	private String ime;
 	private String adresa;
-	private Korisnik_servisa vlasnik;
+	private Korisnik_servisaDto vlasnik;
 	private int br_stanova;
 	private int br_naseljenih;
 	private boolean predsednik;
-	private Obavestenje obavestenje;
-	private Stan stan;
 	
 	private ZgradaDto(){}
 
@@ -45,14 +43,6 @@ public class ZgradaDto {
 		this.adresa = adresa;
 	}
 
-	public Korisnik_servisa getVlasnik() {
-		return vlasnik;
-	}
-
-	public void setVlasnik(Korisnik_servisa vlasnik) {
-		this.vlasnik = vlasnik;
-	}
-
 	public int getBr_stanova() {
 		return br_stanova;
 	}
@@ -76,35 +66,24 @@ public class ZgradaDto {
 	public void setPredsednik(boolean predsednik) {
 		this.predsednik = predsednik;
 	}
-
-	public Obavestenje getObavestenje() {
-		return obavestenje;
+	
+	public Korisnik_servisaDto getVlasnik() {
+		return vlasnik;
 	}
 
-	public void setObavestenje(Obavestenje obavestenje) {
-		this.obavestenje = obavestenje;
-	}
-
-	public Stan getStan() {
-		return stan;
-	}
-
-	public void setStan(Stan stan) {
-		this.stan = stan;
-	}
-
-	public ZgradaDto(Long id_zgrada, String ime, String adresa, Korisnik_servisa vlasnik, int br_stanova, int br_naseljenih,
-			boolean predsednik, Obavestenje obavestenje, Stan stan) {
-		super();
-		this.id_zgrada = id_zgrada;
-		this.ime = ime;
-		this.adresa = adresa;
+	public void setVlasnik(Korisnik_servisaDto vlasnik) {
 		this.vlasnik = vlasnik;
-		this.br_stanova = br_stanova;
-		this.br_naseljenih = br_naseljenih;
-		this.predsednik = predsednik;
-		this.obavestenje = obavestenje;
-		this.stan = stan;
+	}
+	
+	public ZgradaDto(Zgrada zgrada) {
+		super();
+		id_zgrada = zgrada.getId_zgrada();
+		ime = zgrada.getIme();
+		adresa = zgrada.getAdresa();
+		//vlasnik = new Korisnik_servisaDto(zgrada.getVlasnik());
+		br_stanova = zgrada.getBr_stanova();
+		br_naseljenih = zgrada.getBr_naseljenih();
+		predsednik = zgrada.isPredsednik();
 	};
 	
 	
