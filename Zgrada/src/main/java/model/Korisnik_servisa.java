@@ -1,8 +1,11 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 
 @Entity
 public class Korisnik_servisa {
@@ -18,8 +21,14 @@ public class Korisnik_servisa {
 	private boolean vlasnik_zgrade;
 	private boolean vlasnik_stana;
 	private boolean predsednik_skupstine;
+	private List<Komentar> komentari;
 	
-	
+	public List<Komentar> getKomentari() {
+		return komentari;
+	}
+	public void setKomentari(List<Komentar> komentari) {
+		this.komentari = komentari;
+	}
 	public long getId_korisnik_servisa() {
 		return id_korisnik_servisa;
 	}
@@ -74,4 +83,5 @@ public class Korisnik_servisa {
 	public void setPredsednik_skupstine(boolean predsednik_skupstine) {
 		this.predsednik_skupstine = predsednik_skupstine;
 	}
+
 }

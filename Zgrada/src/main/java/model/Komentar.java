@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -71,4 +71,6 @@ public class Komentar {
 				+ ", kreator=" + kreator + ","
 						+ " dat_kreiranja=" + dat_kreiranja +"]";
 	}
+
+	
 }
