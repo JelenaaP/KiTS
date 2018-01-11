@@ -2,7 +2,7 @@ package dto;
 
 import java.util.Date;
 
-import model.Korisnik_servisa;
+import model.Obavestenje;
 
 public class ObavestenjeDto {
 	
@@ -49,6 +49,7 @@ public class ObavestenjeDto {
 	public void setZgrada(ZgradaDto zgrada) {
 		this.zgrada = zgrada;
 	}
+	
 	public ObavestenjeDto(){};
 	
 	public ObavestenjeDto(Long id_obavestenje, String ime, String opis, Date dat_kreiranja,
@@ -60,5 +61,12 @@ public class ObavestenjeDto {
 		this.dat_kreiranja = dat_kreiranja;
 		this.kreator = kreator;
 		this.zgrada = zgrada;
+	}
+	public ObavestenjeDto(Obavestenje obavestenje) {
+		id_obavestenje = obavestenje.getId_obavestenje();
+		ime = obavestenje.getIme();
+		dat_kreiranja = obavestenje.getDat_kreiranja();
+		kreator = new Korisnik_servisaDto(obavestenje.getKreator());
+		zgrada = new ZgradaDto(obavestenje.getZgrada());		
 	}
 }

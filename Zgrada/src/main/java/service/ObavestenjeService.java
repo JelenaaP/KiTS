@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.Korisnik_servisa;
 import model.Obavestenje;
 import model.Zgrada;
 import repository.ObavestenjeRepository;
@@ -27,7 +26,7 @@ public class ObavestenjeService {
 		return obavestenjeRepository.findOneByDat_kreiranja(dat_kreiranja);
 	}
 	
-	public Obavestenje findAllByOwner(Korisnik_servisa kreator) {
+	public List<Obavestenje> findAllByOwner(String kreator) {
 		return obavestenjeRepository.findAllByOwner(kreator);
 	}
 	public void delete(Obavestenje obavestenje) {
@@ -37,5 +36,10 @@ public class ObavestenjeService {
 	public Obavestenje save(Obavestenje obavestenje) {
 		return obavestenjeRepository.save(obavestenje);
 	}
+	public Obavestenje findOneById(Long id_obavestenje) {
+		return obavestenjeRepository.findOneById(id_obavestenje);
+	}
+	public List<Obavestenje> findAllByBuilding(String zgrada) {
+		return obavestenjeRepository.findOneById(zgrada);	}
 }
 

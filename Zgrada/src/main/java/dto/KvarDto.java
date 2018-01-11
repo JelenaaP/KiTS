@@ -64,7 +64,7 @@ public class KvarDto {
 		this.zgrada = zgrada;
 	}
 	
-	private KvarDto(){};
+	public KvarDto(){};
 	
 	public KvarDto(Long id_kvar, String ime, String opis, Date dat_kreiranja, Date dat_zakazivanja, Date dat_popravke, boolean popravljen,
 			ZgradaDto zgrada, Korisnik_servisa radnik) {

@@ -4,7 +4,7 @@ import model.Korisnik_servisa;
 
 public class Korisnik_servisaDto {
 	
-	private long id_korisnika_servisa;
+	private long id_korisnik_servisa;
 	private String ime;
 	private String koris_ime;
 	private String lozinka;
@@ -17,11 +17,11 @@ public class Korisnik_servisaDto {
 	private FirmaDto firma;
 	private ZgradaDto zgrada;
 	
-	public Korisnik_servisaDto(long id_korisnika_servisa, String ime, String koris_ime, String lozinka, String uloga,
+	public Korisnik_servisaDto(long id_korisnik_servisa, String ime, String koris_ime, String lozinka, String uloga,
 			boolean vlasnik_firme, boolean vlasnik_zgrade, boolean vlasnik_stana, boolean predsednik_skupstine,
 			StanDto stan, FirmaDto firma, ZgradaDto zgrada) {
 		super();
-		this.id_korisnika_servisa = id_korisnika_servisa;
+		this.id_korisnik_servisa = id_korisnik_servisa;
 		this.ime = ime;
 		this.koris_ime = koris_ime;
 		this.lozinka = lozinka;
@@ -36,12 +36,19 @@ public class Korisnik_servisaDto {
 	}
 
 
-	public long getId_korisnika_servisa() {
-		return id_korisnika_servisa;
+	public Korisnik_servisaDto(Korisnik_servisa korisnik) {
+		id_korisnik_servisa = korisnik.getId_korisnik_servisa();
+		ime = korisnik.getKoris_ime();	
+		
 	}
 
-	public void setId_korisnika_servisa(long id_korisnika_servisa) {
-		this.id_korisnika_servisa = id_korisnika_servisa;
+
+	public long getId_korisnik_servisa() {
+		return id_korisnik_servisa;
+	}
+
+	public void setId_korisnika_servisa(long id_korisnik_servisa) {
+		this.id_korisnik_servisa = id_korisnik_servisa;
 	}
 
 	public String getIme() {

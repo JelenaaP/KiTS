@@ -12,10 +12,6 @@ import repository.ZgradaRepository;
 public class ZgradaService {
 	@Autowired
 	private ZgradaRepository zgradaRepository;
-		
-	public Zgrada findOneByName(String ime) {
-		return zgradaRepository.findOneByName(ime);
-	}
 	
 	public List<Zgrada> findAll(){
 		return zgradaRepository.findAll();
@@ -25,14 +21,16 @@ public class ZgradaService {
 		return zgradaRepository.findOne(id_zgrada);
 	}
 
-	public Zgrada findAllByOwner(String vlasnik) {
+	public List<Zgrada> findAllByOwner(String vlasnik) {
 		return zgradaRepository.findAllByOwner(vlasnik);
 	}
 
-	public Zgrada findAllByAdress(String adresa) {
-		return zgradaRepository.findOneByAdress(adresa);
+	public List<Zgrada> findAllByAddress(String adresa) {
+		return zgradaRepository.findAllByAddress(adresa);
 	}
-	
+	public Zgrada findOneByAddress(String adresa) {
+		return zgradaRepository.findOneByAddress(adresa);
+	}
 	public void delete(Zgrada zgrada) {
 		zgradaRepository.delete(zgrada);
 	}
