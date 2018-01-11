@@ -1,5 +1,7 @@
 package dto;
 
+import model.Korisnik_servisa;
+
 public class Korisnik_servisaDto {
 	
 	private long id_korisnika_servisa;
@@ -33,7 +35,6 @@ public class Korisnik_servisaDto {
 		this.setZgrada(zgrada);
 	}
 
-	public Korisnik_servisaDto(){}
 
 	public long getId_korisnika_servisa() {
 		return id_korisnika_servisa;

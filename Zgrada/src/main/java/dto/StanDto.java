@@ -1,35 +1,51 @@
 package dto;
 
-import model.Korisnik_servisa;
-import model.Zgrada;
+
+import java.util.List;
+
+import model.Stan;
 
 public class StanDto {
-	private int id;
+	private Long id_stanovi;
 	private String ime;
 	private String adresa;
 	private Korisnik_servisaDto vlasnik;
 	private ZgradaDto zgrada;
+	private StanDto stan;
 	
-	private StanDto(){}
+	public StanDto(){}
 	
 	
-	public StanDto(int id, String ime, String adresa, Korisnik_servisaDto vlasnik,
+	public StanDto(Long id_stanovi, String ime, String adresa, Korisnik_servisaDto vlasnik,
 			int br_stanovnika, ZgradaDto zgrada) {
 		super();
-		this.id = id;
+		this.id_stanovi = id_stanovi;
 		this.ime = ime;
 		this.adresa = adresa;
 		this.vlasnik = vlasnik;
 		this.zgrada = zgrada;
 	}
 
-	public int getId() {
-		return id;
+	public StanDto(Stan stan) {
+		id_stanovi = stan.getId_stanovi();
+		ime=stan.getIme();
+		adresa =stan.getAdresa();
+		//vlasnik = new Korisnik_servisaDto(stan.getVlasnik());
+		zgrada = new ZgradaDto(stan.getZgrada());
+	
 	}
 
-	public void setId(int id) {
-		this.id = id;
+
+
+	public Long getId_stanovi() {
+		return id_stanovi;
 	}
+
+
+	public void setId_stanovi(Long id_stanovi) {
+		this.id_stanovi = id_stanovi;
+	}
+
 
 	public String getIme() {
 		return ime;
@@ -61,5 +77,30 @@ public class StanDto {
 
 	public void setZgrada(ZgradaDto zgrada) {
 		this.zgrada = zgrada;
-	}	
+	}
+
+
+
+	public StanDto getStan() {
+		return stan;
+	}
+
+
+	public void setStan(StanDto stan) {
+		this.stan = stan;
+	}
+
+
+	public void setStan(List<Stan> findAll) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+	
+
+	
 }

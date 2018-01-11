@@ -11,7 +11,7 @@ public class ZapisnikDto {
 	private SednicaDto sednica;
 	private ZgradaDto zgrada;
 	
-	private ZapisnikDto(){}
+	public ZapisnikDto(){}
 
 	public ZapisnikDto(int id_zapisnik, String opis, Korisnik_servisaDto kreator, SednicaDto sednica,
 			Date dat_kreiranja,	ZgradaDto zgrada) {

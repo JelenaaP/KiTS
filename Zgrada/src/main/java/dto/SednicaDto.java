@@ -11,7 +11,7 @@ public class SednicaDto {
 	private Korisnik_servisaDto kreator;
 	private ZgradaDto zgrada;
 	
-	private SednicaDto(){}
+	public SednicaDto(){}
 	
 	public SednicaDto(int id_sednice, Date dat_kreiranja, Date dat_zakazivanja, boolean aktivna,
 			Korisnik_servisaDto kreator, ZgradaDto zgrada) {
