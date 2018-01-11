@@ -7,4 +7,5 @@ import model.Firma;
 public interface FirmaRepository extends JpaRepository<Firma,Long> {
 	
 	public Firma findOneByName(String ime);
+	public Firma findOneByAdress(String adresa);
 }

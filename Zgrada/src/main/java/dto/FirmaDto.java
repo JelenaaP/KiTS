@@ -1,7 +1,11 @@
 package dto;
 
+import java.util.List;
+
+import model.Firma;
 import model.Korisnik_servisa;
 import model.Kvar;
+import model.Zgrada;
 
 
 public class FirmaDto {
@@ -14,6 +18,7 @@ public class FirmaDto {
 	private String web_site;
 	private Kvar kvar;
 	private Korisnik_servisa radnik;
+	private List<Firma> firma;
 	
 	public FirmaDto(){}
 	
@@ -80,5 +85,23 @@ public class FirmaDto {
 		this.radnik = radnik;
 	}
 	
+	public List<Firma> getFirma() {
+		return firma;
+	}
+
+
+	public void setFirma(List<Firma> firma) {
+		this.firma = firma;
+	}
+
+	
+	public FirmaDto(Firma firma) {
+		id_firme = firma.getId_firme();
+		ime = firma.getIme();
+		adresa = firma.getAdresa();
+		telefon = firma.getTelefon();
+		email = firma.getEmail();
+		web_site = firma.getWeb_site();
+	}
 	
 }
