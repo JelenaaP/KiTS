@@ -2,7 +2,7 @@ package dto;
 
 import java.util.Date;
 
-import model.Korisnik_servisa;
+import model.Kvar;
 
 public class KvarDto {
 	private Long id_kvar;
@@ -67,7 +67,7 @@ public class KvarDto {
 	public KvarDto(){};
 	
 	public KvarDto(Long id_kvar, String ime, String opis, Date dat_kreiranja, Date dat_zakazivanja, Date dat_popravke, boolean popravljen,
-			ZgradaDto zgrada, Korisnik_servisa radnik) {
+			ZgradaDto zgrada) {
 		super();
 		this.id_kvar = id_kvar;
 		this.ime = ime;
@@ -77,5 +77,16 @@ public class KvarDto {
 		this.dat_zakazivanja = dat_zakazivanja;
 		this.dat_popravke = dat_popravke;
 		this.zgrada = zgrada;
+	}
+	public KvarDto(Kvar kvar) {
+		id_kvar = kvar.getId_kvar();
+		ime = kvar.getIme();
+		opis = kvar.getOpis();
+		dat_kreiranja = kvar.getDat_kreiranja();
+		dat_zakazivanja = kvar.getDat_zakazivanja();
+		dat_popravke = kvar.getDat_popravke();
+		popravljen = kvar.isPopravljen();
+		zgrada = new ZgradaDto(kvar.getZgrada());
+		
 	}
 }
