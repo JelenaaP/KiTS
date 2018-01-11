@@ -15,6 +15,8 @@ public class FirmaDto {
 	private Kvar kvar;
 	private Korisnik_servisa radnik;
 	
+	public FirmaDto(){}
+	
 	public FirmaDto(Long id_firme, String ime, String adresa, Long telefon, String email, String web_site, Kvar kvar,
 			Korisnik_servisa radnik) {
 		super();
