@@ -1,15 +1,13 @@
 package model;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 public class Sednica {
 	@Id
@@ -26,8 +24,8 @@ public class Sednica {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada; //zgrada kojoj pripadaju sednice
 	
-	@OneToMany(mappedBy = "sednica", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Zapisnik> zapisnik = new HashSet<Zapisnik>(); //zapisnici koji su kreirani
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Zapisnik zapisnik;
 	
 	public Long getId_sednice() {
 		return id_sednice;
@@ -66,13 +64,12 @@ public class Sednica {
 	public void setZgrada(Zgrada zgrada) {
 		this.zgrada = zgrada;
 	}
-	public Set<Zapisnik> getZapisnik() {
+	public Zapisnik getZapisnik() {
 		return zapisnik;
 	}
-	public void setZapisnik(Set<Zapisnik> zapisnik) {
+	public void setZapisnik(Zapisnik zapisnik) {
 		this.zapisnik = zapisnik;
 	}
-
 	@Override
 	public String toString() {
 		return "Sednica [id_sednice=" + id_sednice + ", dat_kreiranja=" + dat_kreiranja + ", dat_zakazivanja=" + dat_zakazivanja + ", kreator="+kreator+"]";

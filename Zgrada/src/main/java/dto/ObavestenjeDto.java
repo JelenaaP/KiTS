@@ -11,6 +11,7 @@ public class ObavestenjeDto {
 	private String opis;
 	private Date dat_kreiranja;
 	private Korisnik_servisaDto kreator;
+	private ZgradaDto zgrada;
 	
 	public Long getId_obavestenje() {
 		return id_obavestenje;
@@ -42,16 +43,22 @@ public class ObavestenjeDto {
 	public void setKreator(Korisnik_servisaDto kreator) {
 		this.kreator = kreator;
 	}
-	
+	public ZgradaDto getZgrada() {
+		return zgrada;
+	}
+	public void setZgrada(ZgradaDto zgrada) {
+		this.zgrada = zgrada;
+	}
 	public ObavestenjeDto(){};
 	
 	public ObavestenjeDto(Long id_obavestenje, String ime, String opis, Date dat_kreiranja,
-			Korisnik_servisaDto kreator) {
+			Korisnik_servisaDto kreator, ZgradaDto zgrada) {
 		super();
 		this.id_obavestenje = id_obavestenje;
 		this.ime = ime;
 		this.opis = opis;
 		this.dat_kreiranja = dat_kreiranja;
 		this.kreator = kreator;
+		this.zgrada = zgrada;
 	}
 }

@@ -26,6 +26,14 @@ public class ZgradaController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public ZgradaDto zgrade(){
+		ZgradaDto zgrada = new ZgradaDto();
+		zgrada.setZgrada(zgradaService.findAll());
+		return zgrada;
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<ZgradaDto> createExam(@RequestBody ZgradaDto zgradaDto) {
 		if(zgradaDto.getAdresa()==null||zgradaDto.getVlasnik()==null)
 		{

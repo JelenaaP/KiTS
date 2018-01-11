@@ -63,8 +63,6 @@ public class Zapisnik {
 	public void setZgrada(Zgrada zgrada) {
 		this.zgrada = zgrada;
 	}
-	
-
 	@Override
 	public String toString() {
 		return "Zapisnik [id_zapisnik=" + id_zapisnik + ",, opis=" + opis + ", dat_kreiranja=" + dat_kreiranja + " kreator="+kreator+", zgrada=" + zgrada + "]";

@@ -7,6 +7,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 import java.util.Date;
@@ -35,6 +36,9 @@ public class Kvar {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;
 
+	@OneToMany(mappedBy = "kvar", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Komentar komentar;
+	
 	public long getId_kvar() {
 		return id_kvar;
 	}
@@ -107,6 +111,14 @@ public class Kvar {
 		this.zgrada = zgrada;
 	}
 	
+	public Komentar getKomentar() {
+		return komentar;
+	}
+
+	public void setKomentar(Komentar komentar) {
+		this.komentar = komentar;
+	}
+
 	@Override
 	public String toString(){
 		return "Kvar[id_kvar = "+id_kvar+", ime = "+ime+", opis = "+opis+","

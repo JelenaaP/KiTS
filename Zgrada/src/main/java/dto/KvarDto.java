@@ -1,15 +1,18 @@
 package dto;
 
-import model.Komentar;
+import java.util.Date;
+
 import model.Korisnik_servisa;
-import model.Zgrada;
 
 public class KvarDto {
 	private Long id_kvar;
 	private String ime;
 	private String opis;
-	private int dat_kreiranja;
+	private Date dat_kreiranja;
+	private Date dat_zakazivanja;
+	private Date dat_popravke;
 	private boolean popravljen;
+	private ZgradaDto zgrada;
 	
 	public Long getId_kvar() {
 		return id_kvar;
@@ -29,10 +32,10 @@ public class KvarDto {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public int getDat_kreiranja() {
+	public Date getDat_kreiranja() {
 		return dat_kreiranja;
 	}
-	public void setDat_kreiranja(int dat_kreiranja) {
+	public void setDat_kreiranja(Date dat_kreiranja) {
 		this.dat_kreiranja = dat_kreiranja;
 	}
 	
@@ -41,17 +44,38 @@ public class KvarDto {
 	}
 	public void setPopravljen(boolean popravljen) {
 		this.popravljen = popravljen;
+	}	
+	public Date getDat_zakazivanja() {
+		return dat_zakazivanja;
+	}
+	public void setDat_zakazivanja(Date dat_zakazivanja) {
+		this.dat_zakazivanja = dat_zakazivanja;
+	}
+	public Date getDat_popravke() {
+		return dat_popravke;
+	}
+	public void setDat_popravke(Date dat_popravke) {
+		this.dat_popravke = dat_popravke;
+	}
+	public ZgradaDto getZgrada() {
+		return zgrada;
+	}
+	public void setZgrada(ZgradaDto zgrada) {
+		this.zgrada = zgrada;
 	}
 	
 	private KvarDto(){};
 	
-	public KvarDto(Long id_kvar, String ime, String opis, int dat_kreiranja, int dat_zakazivanja, int dat_popravke,
-			boolean popravljen, Zgrada zgrada, Korisnik_servisa radnik, Komentar komentar) {
+	public KvarDto(Long id_kvar, String ime, String opis, Date dat_kreiranja, Date dat_zakazivanja, Date dat_popravke, boolean popravljen,
+			ZgradaDto zgrada, Korisnik_servisa radnik) {
 		super();
 		this.id_kvar = id_kvar;
 		this.ime = ime;
 		this.opis = opis;
 		this.dat_kreiranja = dat_kreiranja;
 		this.popravljen = popravljen;
+		this.dat_zakazivanja = dat_zakazivanja;
+		this.dat_popravke = dat_popravke;
+		this.zgrada = zgrada;
 	}
 }

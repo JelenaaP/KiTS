@@ -1,6 +1,8 @@
 package dto;
 
 
+import java.util.List;
+
 import dto.Korisnik_servisaDto;
 import model.Zgrada;
 
@@ -13,8 +15,9 @@ public class ZgradaDto {
 	private int br_stanova;
 	private int br_naseljenih;
 	private boolean predsednik;
+	private List<Zgrada> zgrada;
 	
-	private ZgradaDto(){}
+	public ZgradaDto(){}
 
 	
 	public Long getId_zgrada() {
@@ -75,8 +78,17 @@ public class ZgradaDto {
 		this.vlasnik = vlasnik;
 	}
 	
+	public List<Zgrada> getZgrada() {
+		return zgrada;
+	}
+
+
+	public void setZgrada(List<Zgrada> zgrada) {
+		this.zgrada = zgrada;
+	}
+
+
 	public ZgradaDto(Zgrada zgrada) {
-		super();
 		id_zgrada = zgrada.getId_zgrada();
 		ime = zgrada.getIme();
 		adresa = zgrada.getAdresa();
@@ -84,5 +96,19 @@ public class ZgradaDto {
 		br_stanova = zgrada.getBr_stanova();
 		br_naseljenih = zgrada.getBr_naseljenih();
 		predsednik = zgrada.isPredsednik();
-	};	
+	}
+
+
+	public ZgradaDto(Long id_zgrada, String ime, String adresa, Korisnik_servisaDto vlasnik, int br_stanova,
+			int br_naseljenih, boolean predsednik) {
+		super();
+		this.id_zgrada = id_zgrada;
+		this.ime = ime;
+		this.adresa = adresa;
+		this.vlasnik = vlasnik;
+		this.br_stanova = br_stanova;
+		this.br_naseljenih = br_naseljenih;
+		this.predsednik = predsednik;
+	}
+	
 }
