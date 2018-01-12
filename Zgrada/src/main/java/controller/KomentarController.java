@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
-import dto.KomentarKvarDto;
+import dto.KomentarDto;
+import dto.ObavestenjeDto;
 import dto.ZgradaDto;
 import model.Komentar;
 import model.Korisnik_servisa;
 import model.Kvar;
+import model.Obavestenje;
 import model.Zgrada;
 import repository.KorisnikServisaRepository;
 import service.KomentarService;
@@ -40,55 +42,91 @@ public class KomentarController {
 	KvarService kvarService;
 	
 	@Autowired
-	KorisnikServisaRepository korisnikServisaRepository;
+	KorisnikServisaRepository korisnik_servisaService;
 	
-	@PreAuthorize("hasRole('ROLE_WORKER') || hasRole('ROLE_STANAR')")
-	@RequestMapping(value = "/komentar/{ime}", method = RequestMethod.GET)
-	public ResponseEntity<List<Komentar>> comments(@PathVariable String ime) {
-		Kvar k = kvarService.findOneByName(ime);
-		
-		if(k == null){
-			return new ResponseEntity<List<Komentar>>(HttpStatus.NO_CONTENT);
+	@RequestMapping(value="/all", method = RequestMethod.GET)
+	public ResponseEntity<List<KomentarDto>> getAllNotifications() {
+		List<Komentar> komentar = komentarService.findAll();
+		//convert notifications to DTOs
+		List<KomentarDto> komentarDto = new ArrayList<>();
+		for (Komentar k : komentar) {
+			komentarDto.add(new KomentarDto(k));
 		}
-		
-		return new ResponseEntity<List<Komentar>>(komentarService.findByKvar(k), HttpStatus.OK);
+		return new ResponseEntity<>(komentarDto, HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_WORKER') || hasRole('ROLE_STANAR')")
-	@RequestMapping(value = "/komentar", method = RequestMethod.POST)
-	public ResponseEntity<List<Komentar>> dodajKomentar(@RequestBody KomentarKvarDto kkv) {
-		if(kkv == null || kkv.getKomentar() == null || kkv.getKvar() == null || kkv.getKreator() == null){
-			return new ResponseEntity<List<Komentar>>(HttpStatus.NO_CONTENT);
+	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
+	public ResponseEntity<List<KomentarDto>> notificatiosByOwner(@RequestParam Korisnik_servisa kreator) {
+		List<Komentar> komentar = komentarService.findByOwner(kreator);
+		List<KomentarDto> komentarDto = new ArrayList<>();
+		for (Komentar k : komentar) {
+			komentarDto.add(new KomentarDto(k));
 		}
-		
-		Komentar komentar = kkv.getKomentar();
-		Korisnik_servisa kreator = kkv.getKreator();
-		Kvar kvar = kkv.getKvar();
-		
-		// Ukoliko su liste komentara null inicijalizujemo nove liste
-		if(kreator.getKomentari() == null){
-			kreator.setKomentari(new ArrayList<>());
+		return new ResponseEntity<>(komentarDto, HttpStatus.OK);
 		}
-		if(kvar.getKomentari() == null){
-			kvar.setKomentari(new ArrayList<>());
+	
+	@RequestMapping(value = "/findKvar", method = RequestMethod.GET)
+	public ResponseEntity<List<KomentarDto>> notificatiosByFailure(@RequestParam Kvar kvar) {
+		List<Komentar> komentar = komentarService.findByKvar(kvar);
+		List<KomentarDto> komentarDto = new ArrayList<>();
+		for (Komentar k : komentar) {
+			komentarDto.add(new KomentarDto(k));
 		}
+		return new ResponseEntity<>(komentarDto, HttpStatus.OK);
+		}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<KomentarDto> createComment(@RequestBody KomentarDto komentarDto) {
+		if(komentarDto.getKvar()==null)
+		{
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		Kvar kvar = kvarService.findOneById(komentarDto.getKvar().getId_kvar());
+		if (kvar == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(komentarDto.getKreator().getKoris_ime());
 		
-		
-		// Set data to the comment
+		Komentar komentar = new Komentar();
+		komentar.setText(komentarDto.getText());
+		komentar.setDat_kreiranja(komentarDto.getDat_kreiranja());
 		komentar.setKreator(kreator);
 		komentar.setKvar(kvar);
-		komentar.setDat_kreiranja(new Date());
-		komentarService.save(komentar);
 		
-		// Set data to author of the comment
-		kreator.getKomentari().add(komentar);
-		korisnikServisaRepository.save(kreator);
-		
-		// Set data to the failure
-		kvar.getKomentari().add(komentar);
-		kvarService.save(kvar);
-		
-		return new ResponseEntity<List<Komentar>>(komentarService.findByKvar(kvar), HttpStatus.OK);
+		komentar = komentarService.save(komentar);
+		return new ResponseEntity<>(new KomentarDto(komentar), HttpStatus.CREATED);
 	}
-
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+	public ResponseEntity<KomentarDto> updateComment(@RequestBody KomentarDto komentarDto) {
+		Komentar komentar = komentarService.findOneById(komentarDto.getId_komentar());
+		if (komentar == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		// we allow changing date and points for an building on
+		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(komentarDto.getKreator().getKoris_ime());
+		Kvar kvar = kvarService.findOneById(komentarDto.getKvar().getId_kvar());
+		
+		komentar.setDat_kreiranja(komentarDto.getDat_kreiranja());
+		komentar.setText(komentarDto.getText());
+		komentar.setKreator(kreator);
+		komentar.setKvar(kvar);
+		
+		komentar = komentarService.save(komentar);
+		return new ResponseEntity<>(new KomentarDto(komentar), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteComment(@PathVariable Long id_komentar) {
+		Komentar komentar = komentarService.findOneById(id_komentar);
+		if (komentar != null) {
+			komentarService.delete(komentar);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }
