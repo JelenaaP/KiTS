@@ -112,7 +112,7 @@ public class ObavestenjeController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id_obavestenje}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteNotification(@PathVariable Long id_obavestenje) {
 		Obavestenje obavestenje = obavestenjeService.findOneById(id_obavestenje);
 		if (obavestenje != null) {

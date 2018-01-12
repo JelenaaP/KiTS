@@ -37,7 +37,7 @@ public class Kvar {
 	private Zgrada zgrada;
 
 	@OneToMany(mappedBy = "kvar", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	private Komentar komentar;
+	private Set<Komentar> komentar = new HashSet<Komentar>();
 	
 	public long getId_kvar() {
 		return id_kvar;
@@ -111,11 +111,11 @@ public class Kvar {
 		this.zgrada = zgrada;
 	}
 	
-	public Komentar getKomentar() {
+	public Set<Komentar> getKomentar() {
 		return komentar;
 	}
 
-	public void setKomentar(Komentar komentar) {
+	public void setKomentar(Set<Komentar> komentar) {
 		this.komentar = komentar;
 	}
 

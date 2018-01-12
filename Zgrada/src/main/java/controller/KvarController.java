@@ -1,6 +1,8 @@
 package controller;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dto.KomentarDto;
+import dto.Korisnik_servisaDto;
 import dto.KvarDto;
+import model.Komentar;
 import model.Kvar;
 import model.Zgrada;
 import service.Korisnik_servisaService;
@@ -102,7 +107,7 @@ public class KvarController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id_kvar}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteFailures(@PathVariable Long id_kvar) {
 		Kvar kvar = kvarService.findOneById(id_kvar);
 		if (kvar != null) {
@@ -111,5 +116,24 @@ public class KvarController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(value = "/{kvarId_kvar}/komentar", method = RequestMethod.GET)
+	public ResponseEntity<List<KomentarDto>> getKvarKomentar(
+			@PathVariable Long kvarId_kvar) {
+		Kvar kvar = kvarService.findOneById(kvarId_kvar);
+		Set<Komentar> komentari = kvar.getKomentar();
+		List<KomentarDto> komentariDto = new ArrayList<>();
+		for (Komentar k : komentari) {
+			KomentarDto komentarDto = new KomentarDto();
+			
+			komentarDto.setId_komentar(k.getId_komentar());
+			komentarDto.setDat_kreiranja(k.getDat_kreiranja());
+			komentarDto.setText(k.getText());
+			komentarDto.setKreator(new Korisnik_servisaDto(k.getKreator()));
+			
+			komentariDto.add(komentarDto);
+		}
+		return new ResponseEntity<>(komentariDto, HttpStatus.OK);
 	}
 }
