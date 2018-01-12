@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
@@ -42,8 +42,8 @@ public class Zapisnik {
 	public Date getDat_kreiranja() {
 		return dat_kreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDat_kreiranja(Date date) {
+		this.dat_kreiranja = date;
 	}
 	public Korisnik_servisa getKreator() {
 		return kreator;

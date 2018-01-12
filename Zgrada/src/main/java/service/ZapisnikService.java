@@ -41,4 +41,19 @@ public class ZapisnikService {
 	public void delete(Zapisnik zapisnik){
 		zapisnikRepository.delete(zapisnik);
 	}
-}
+
+	public List<Zapisnik> findAll() {
+		return zapisnikRepository.findAll();
+	}
+
+	public List<Zapisnik> findAllByCreator(String kreator) {
+		return zapisnikRepository.findAllByCreator(kreator);
+	}
+
+	public List<Zapisnik> findAllByBuilding(String zgrada) {
+		// TODO Auto-generated method stub
+		return zapisnikRepository.finAllByBuilding(zgrada);}
+
+	public Zapisnik findOneById(Long id_zapisnik) {
+		// TODO Auto-generated method stub
+		return zapisnikRepository.findOneById(id_zapisnik);}}

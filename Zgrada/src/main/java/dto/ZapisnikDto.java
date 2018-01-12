@@ -2,9 +2,11 @@ package dto;
 
 import java.util.Date;
 
+import model.Zapisnik;
+
 public class ZapisnikDto {
 
-	private int id_zapisnik;
+	private Long id_zapisnik;
 	private String opis;
 	private Date dat_kreiranja;
 	private Korisnik_servisaDto kreator;
@@ -13,7 +15,7 @@ public class ZapisnikDto {
 	
 	public ZapisnikDto(){}
 
-	public ZapisnikDto(int id_zapisnik, String opis, Korisnik_servisaDto kreator, SednicaDto sednica,
+	public ZapisnikDto(Long id_zapisnik, String opis, Korisnik_servisaDto kreator, SednicaDto sednica,
 			Date dat_kreiranja,	ZgradaDto zgrada) {
 		super();
 		this.id_zapisnik = id_zapisnik;
@@ -23,12 +25,21 @@ public class ZapisnikDto {
 		this.setSednica(sednica);
 		this.setZgrada(zgrada);
 	}
+	public ZapisnikDto(Zapisnik zapisnik) {
+		id_zapisnik = zapisnik.getId_zapisnik();
+		opis = zapisnik.getOpis();
+		dat_kreiranja = zapisnik.getDat_kreiranja();
+		sednica = new SednicaDto(zapisnik.getSednica());
+		zgrada = new ZgradaDto(zapisnik.getZgrada());
+		kreator = new Korisnik_servisaDto(zapisnik.getKreator());
+	
+	}
 
-	public int getId_zapisnik() {
+	public Long getId_zapisnik() {
 		return id_zapisnik;
 	}
 
-	public void setId_zapisnik(int id_zapisnik) {
+	public void setId_zapisnik(Long id_zapisnik) {
 		this.id_zapisnik = id_zapisnik;
 	}
 

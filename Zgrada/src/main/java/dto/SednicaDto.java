@@ -2,9 +2,11 @@ package dto;
 
 import java.util.Date;
 
+import model.Sednica;
+
 
 public class SednicaDto {
-	private int id_sednice;
+	private Long id_sednice;
 	private Date dat_kreiranja;
 	private Date dat_zakazivanja;
 	private boolean aktivna;
@@ -13,7 +15,7 @@ public class SednicaDto {
 	
 	public SednicaDto(){}
 	
-	public SednicaDto(int id_sednice, Date dat_kreiranja, Date dat_zakazivanja, boolean aktivna,
+	public SednicaDto(Long id_sednice, Date dat_kreiranja, Date dat_zakazivanja, boolean aktivna,
 			Korisnik_servisaDto kreator, ZgradaDto zgrada) {
 		super();
 		this.id_sednice = id_sednice;
@@ -24,11 +26,15 @@ public class SednicaDto {
 		this.zgrada = zgrada;
 		}
 
-	public int getId_sednice() {
+	public SednicaDto(Sednica sednica) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Long getId_sednice() {
 		return id_sednice;
 	}
 
-	public void setId_sednice(int id_sednice) {
+	public void setId_sednice(Long id_sednice) {
 		this.id_sednice = id_sednice;
 	}
 

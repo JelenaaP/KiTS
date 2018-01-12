@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import model.Sednica;
-import model.Zgrada;
 import repository.SednicaRepository;
 
 @Service
@@ -32,10 +31,6 @@ public class SednicaService {
 		return sednicaRepository.findOne(id_sednice);
 	}
 	
-	public List<Sednica> findByBuilding(Zgrada zgrada){
-		return sednicaRepository.findByBuilding(zgrada);
-	}
-	
 	public Sednica findAllByDat_kreiranja(Date dat_kreiranja) {
 		return sednicaRepository.findOneByDat_kreiranja(dat_kreiranja);
 	}
@@ -46,5 +41,18 @@ public class SednicaService {
 	
 	public Sednica findByAktivna(boolean aktivna){
 		return sednicaRepository.findByAktivna(aktivna);
+	}
+
+	public Sednica findOneById(Long id_zapisnik) {
+		// TODO Auto-generated method stub
+		return sednicaRepository.findOneById(id_zapisnik);
+	}
+
+	public List<Sednica> findAllByCreator(String kreator) {
+		return sednicaRepository.findByCreator(kreator);
+	}
+
+	public List<Sednica> findAllByBuilding(String zgrada) {
+		return sednicaRepository.findByBuilding(zgrada);
 	}
 }

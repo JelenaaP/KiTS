@@ -41,4 +41,16 @@ public class StanService {
 	public void delete(Stan stan){
 		 stanRepository.delete(stan);
 	}
+
+	public List<Stan> findAllByAddress(String adresa) {
+		return stanRepository.findAllByAddress(adresa);
+	}
+
+	public List<Stan> findAllByOwner(String vlasnik) {
+		return stanRepository.findAllByOwner(vlasnik);
+	}
+
+	public Stan findOneByAddress(String adresa) {
+		return stanRepository.findOneByAddress (adresa);
+}
 }

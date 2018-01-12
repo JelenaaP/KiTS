@@ -1,8 +1,6 @@
 package dto;
 
 
-import java.util.List;
-
 import model.Stan;
 
 public class StanDto {
@@ -11,7 +9,8 @@ public class StanDto {
 	private String adresa;
 	private Korisnik_servisaDto vlasnik;
 	private ZgradaDto zgrada;
-	private StanDto stan;
+	private int br_stanovnika;
+	
 	
 	public StanDto(){}
 	
@@ -24,17 +23,28 @@ public class StanDto {
 		this.adresa = adresa;
 		this.vlasnik = vlasnik;
 		this.zgrada = zgrada;
+		this.br_stanovnika = br_stanovnika;
 	}
 
 	public StanDto(Stan stan) {
 		id_stanovi = stan.getId_stanovi();
 		ime=stan.getIme();
 		adresa =stan.getAdresa();
-		//vlasnik = new Korisnik_servisaDto(stan.getVlasnik());
+		vlasnik = new Korisnik_servisaDto(stan.getVlasnik());
 		zgrada = new ZgradaDto(stan.getZgrada());
-	
+		br_stanovnika =stan.getBr_stanovnika();
 	}
 
+
+
+	public int getBr_stanovnika() {
+		return br_stanovnika;
+	}
+
+
+	public void setBr_stanovnika(int br_stanovnika) {
+		this.br_stanovnika = br_stanovnika;
+	}
 
 
 	public Long getId_stanovi() {
@@ -78,29 +88,5 @@ public class StanDto {
 	public void setZgrada(ZgradaDto zgrada) {
 		this.zgrada = zgrada;
 	}
-
-
-
-	public StanDto getStan() {
-		return stan;
-	}
-
-
-	public void setStan(StanDto stan) {
-		this.stan = stan;
-	}
-
-
-	public void setStan(List<Stan> findAll) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-
-	
-
 	
 }

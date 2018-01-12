@@ -20,4 +20,10 @@ public interface ZapisnikRepository extends JpaRepository<Zapisnik, Long>{
 
 	List<Zapisnik> findByBuilding(Zgrada zgrada);
 
+	List<Zapisnik> findAllByCreator(String kreator);
+
+	List<Zapisnik> finAllByBuilding(String zgrada);
+
+	Zapisnik findOneById(Long id_zapisnik);
+
 }
