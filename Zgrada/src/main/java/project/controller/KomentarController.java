@@ -32,7 +32,7 @@ import project.service.KvarService;
 import project.service.ZgradaService;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/komentar")
 public class KomentarController {
 	
 	@Autowired
