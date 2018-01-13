@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,7 @@ import project.service.KvarService;
 import project.service.ZgradaService;
 
 @RestController
-@RequestMapping(value = "api/zgrada")
+@RequestMapping(value = "api/kvar")
 public class KvarController {
 	
 	@Autowired
@@ -56,6 +55,16 @@ public class KvarController {
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar k : kvarovi) {
 			kvaroviDto.add(new KvarDto(k));
+		}
+		return new ResponseEntity<>(kvaroviDto, HttpStatus.OK);
+		}
+	
+	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
+	public ResponseEntity<List<KvarDto>> buildingsByOwner(@RequestParam String vlasnik) {
+		List<Kvar> kvarovi = kvarService.findAllByOwner(vlasnik);
+		List<KvarDto> kvaroviDto = new ArrayList<>();
+		for (Kvar z : kvarovi) {
+			kvaroviDto.add(new KvarDto(z));
 		}
 		return new ResponseEntity<>(kvaroviDto, HttpStatus.OK);
 		}
@@ -94,14 +103,12 @@ public class KvarController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
-		Zgrada zgrada = zgradaService.findOneById(kvarDto.getZgrada().getId_zgrada());
 		
 		kvar.setIme(kvarDto.getIme());
 		kvar.setOpis(kvarDto.getOpis());
 		kvar.setDat_kreiranja(kvarDto.getDat_kreiranja());
 		kvar.setDat_zakazivanja(kvarDto.getDat_zakazivanja());
 		kvar.setDat_popravke(kvarDto.getDat_popravke());
-		kvar.setZgrada(zgrada);
 		
 		kvar = kvarService.save(kvar);
 		return new ResponseEntity<>(new KvarDto(kvar), HttpStatus.OK);

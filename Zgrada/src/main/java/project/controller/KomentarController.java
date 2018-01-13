@@ -1,8 +1,6 @@
 package project.controller;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,21 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 import project.dto.KomentarDto;
-import project.dto.ObavestenjeDto;
-import project.dto.ZgradaDto;
 import project.model.Komentar;
 import project.model.Korisnik_servisa;
 import project.model.Kvar;
-import project.model.Obavestenje;
-import project.model.Zgrada;
 import project.repository.KorisnikServisaRepository;
 import project.service.KomentarService;
-import project.service.Korisnik_servisaService;
 import project.service.KvarService;
-import project.service.ZgradaService;
 
 @RestController
 @RequestMapping(value = "/api/komentar")
@@ -106,20 +96,16 @@ public class KomentarController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building on
-		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(komentarDto.getKreator().getKoris_ime());
-		Kvar kvar = kvarService.findOneById(komentarDto.getKvar().getId_kvar());
 		
 		komentar.setDat_kreiranja(komentarDto.getDat_kreiranja());
 		komentar.setText(komentarDto.getText());
-		komentar.setKreator(kreator);
-		komentar.setKvar(kvar);
 		
 		komentar = komentarService.save(komentar);
 		return new ResponseEntity<>(new KomentarDto(komentar), HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id_komentar}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteComment(@PathVariable Long id_komentar) {
 		Komentar komentar = komentarService.findOneById(id_komentar);
 		if (komentar != null) {

@@ -23,7 +23,7 @@ import project.service.StanService;
 import project.service.ZgradaService;
 
 @RestController
-@RequestMapping(value = "api/zgrada")
+@RequestMapping(value = "api/stan")
 public class StanController {
 	@Autowired
 	StanService stanService;
@@ -81,6 +81,7 @@ public class StanController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByUsername(stanDto.getVlasnik().getKoris_ime());
+		
 		Stan stan = new Stan();
 		stan.setAdresa(stanDto.getAdresa());
 		stan.setIme(stanDto.getIme());
@@ -100,12 +101,11 @@ public class StanController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByUsername(stanDto.getVlasnik().getIme());
 		
 		stan.setBr_stanovnika(stanDto.getBr_stanovnika());
 		stan.setIme(stanDto.getIme());
-		stan.setVlasnik(vlasnik);
 		stan.setAdresa(stanDto.getAdresa());
+		
 		stan = stanService.save(stan);
 		return new ResponseEntity<>(new StanDto(stan), HttpStatus.OK);
 	}

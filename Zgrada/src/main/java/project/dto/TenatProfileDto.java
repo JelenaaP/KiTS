@@ -7,8 +7,6 @@ import project.model.Stan;
 
 import java.util.List;
 
-import project.model.Firma;
-
 /*klasa sadrzi korisnika, stan u kom zivi i zgradu gde se stan nalazi
  */
 

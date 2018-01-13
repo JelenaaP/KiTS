@@ -22,4 +22,6 @@ public interface KvarRepository extends JpaRepository<Kvar,Long>{
 	List<Kvar> findAllByBuilding(String zgrada);
 
 	Kvar findOneById(Long id_kvar);
+	
+	List<Kvar> findAllByOwner(String vlasnik);
 }

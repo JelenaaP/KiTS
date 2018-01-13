@@ -3,26 +3,28 @@ package project.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Zapisnik {
 
 	@Id
 	@GeneratedValue
-	
 	private Long id_zapisnik;
+	
 	private String opis;
 	private Date dat_kreiranja;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;//kreator koji je kreirao zapisnik
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	private Sednica sednica;//sednica na kojoj je kreiran zapisnik
+	@OneToOne(mappedBy = "zapisnik")
+	private Sednica sednica;//zgrada u kojoj je kreiran zapisnik
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;//zgrada u kojoj je kreiran zapisnik
@@ -63,10 +65,11 @@ public class Zapisnik {
 	public void setZgrada(Zgrada zgrada) {
 		this.zgrada = zgrada;
 	}
+	
 	@Override
 	public String toString() {
-		return "Zapisnik [id_zapisnik=" + id_zapisnik + ",, opis=" + opis + ", dat_kreiranja=" + dat_kreiranja + " kreator="+kreator+", zgrada=" + zgrada + "]";
+		return "Zapisnik [id_zapisnik=" + id_zapisnik + ",, opis=" + opis + ","
+				+ "dat_kreiranja=" + dat_kreiranja + " kreator="+kreator+","
+						+ "zgrada=" + zgrada + "]";
 	}
-
-
 }

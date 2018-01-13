@@ -28,39 +28,30 @@ public class Komentar {
 	public Kvar getKvar() {
 		return kvar;
 	}
-
 	public void setKvar(Kvar kvar) {
 		this.kvar = kvar;
 	}
-
 	public Long getId_komentar() {
 		return id_komentar;
 	}
-
 	public void setId_komentar(Long id_komentar) {
 		this.id_komentar = id_komentar;
 	}
-
 	public String getText() {
 		return text;
 	}
-
 	public void setText(String text) {
 		this.text = text;
 	}
-
 	public Date getDat_kreiranja() {
 		return dat_kreiranja;
 	}
-
 	public void setDat_kreiranja(Date dat_kreiranja) {
 		this.dat_kreiranja = dat_kreiranja;
 	}
-
 	public Korisnik_servisa getKreator() {
 		return kreator;
 	}
-
 	public void setKreator(Korisnik_servisa kreator) {
 		this.kreator = kreator;
 	}
@@ -70,7 +61,5 @@ public class Komentar {
 		return "Komentar [id_komentar=" + id_komentar + ", text=" + text
 				+ ", kreator=" + kreator + ","
 						+ " dat_kreiranja=" + dat_kreiranja +"]";
-	}
-
-	
+	}	
 }

@@ -18,24 +18,19 @@ import project.dto.ZapisnikDto;
 import project.model.Korisnik_servisa;
 import project.model.Sednica;
 import project.model.Zapisnik;
-import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 import project.service.SednicaService;
 import project.service.ZapisnikService;
-import project.service.ZgradaService;
 
 @RestController
-@RequestMapping(value = "api/zgrada")
+@RequestMapping(value = "api/zapisnik")
 public class ZapisnikController {
 	@Autowired
 	SednicaService sednicaService;
 	
 	@Autowired
 	Korisnik_servisaService korisnik_servisaService;
-	
-	@Autowired
-	ZgradaService zgradaService;
-	
+		
 	@Autowired
 	ZapisnikService zapisnikService;
 	
@@ -61,36 +56,26 @@ public class ZapisnikController {
 		return new ResponseEntity<>(zapisniciDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
-	public ResponseEntity<List<ZapisnikDto>> zapisnikByZgrada(@RequestParam String zgrada) {
-		List<Zapisnik> zapisnici = zapisnikService.findAllByBuilding(zgrada);
-		List<ZapisnikDto> zapisniciDto = new ArrayList<>();
-		for (Zapisnik z : zapisnici) {
-			zapisniciDto.add(new ZapisnikDto(z));
-		}
-		return new ResponseEntity<>(zapisniciDto, HttpStatus.OK);
-		}
 	@PreAuthorize("hasRole('ZAPISNICAR')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<ZapisnikDto> createZapisnik(@RequestBody ZapisnikDto zapisnikDto) {
-		if(zapisnikDto.getZgrada()==null||zapisnikDto.getSednica()==null)
+		if(zapisnikDto.getSednica()==null)
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Sednica sednica = sednicaService.findOneById(zapisnikDto.getId_zapisnik());
-		Zgrada zgrada = zgradaService.findOneById(zapisnikDto.getZgrada().getId_zgrada());
 		
-		
-		if (sednica == null || zgrada == null) {
+		if (sednica == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(zapisnikDto.getKreator().getKoris_ime());
+		
 		Zapisnik zapisnik = new Zapisnik();
 		zapisnik.setKreator(kreator);
 		zapisnik.setOpis(zapisnikDto.getOpis());
-		zapisnik.setZgrada(zgrada);
 		zapisnik.setDat_kreiranja(zapisnikDto.getDat_kreiranja());
 		zapisnik.setSednica(sednica);
+		
 		zapisnik = zapisnikService.save(zapisnik);
 		return new ResponseEntity<>(new ZapisnikDto(zapisnik), HttpStatus.CREATED);
 	}
@@ -103,6 +88,7 @@ public class ZapisnikController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		zapisnik.setOpis(zapisnikDto.getOpis());
+		
 		zapisnik = zapisnikService.save(zapisnik);
 		return new ResponseEntity<>(new ZapisnikDto(zapisnik),HttpStatus.OK);
 	}

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import project.model.Komentar;
 import project.model.Korisnik_servisa;
 import project.model.Kvar;
-import project.model.Obavestenje;
 import project.repository.KomentarRepository;
 
 

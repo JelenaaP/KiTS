@@ -11,8 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-
+import javax.persistence.OneToOne;
 
 @Entity
 public class Zgrada {
@@ -25,7 +24,6 @@ public class Zgrada {
 	private String  adresa;
 	private int br_stanova;
 	private int br_naseljenih;
-	private boolean predsednik;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa vlasnik;
@@ -39,86 +37,70 @@ public class Zgrada {
 	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Kvar> kvar = new HashSet<Kvar>();
 	
+	@OneToOne(mappedBy = "predsednik_skupstine")
+	private Korisnik_servisa predsednik;
+	
 	public Long getId_zgrada() {
 		return id_zgrada;
 	}
-
 	public void setId_zgrada(Long id_zgrada) {
 		this.id_zgrada = id_zgrada;
 	}
-
 	public String getIme() {
 		return ime;
 	}
-
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-
 	public String getAdresa() {
 		return adresa;
 	}
-
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-
 	public Korisnik_servisa getVlasnik() {
 		return vlasnik;
 	}
-
 	public void setVlasnik(Korisnik_servisa vlasnik) {
 		this.vlasnik = vlasnik;
 	}
-
 	public int getBr_stanova() {
 		return br_stanova;
 	}
-
 	public void setBr_stanova(int br_stanova) {
 		this.br_stanova = br_stanova;
 	}
-
 	public int getBr_naseljenih() {
 		return br_naseljenih;
 	}
-
 	public void setBr_naseljenih(int br_naseljenih) {
 		this.br_naseljenih = br_naseljenih;
 	}
-
-	public boolean isPredsednik() {
-		return predsednik;
-	}
-
-	public void setPredsednik(boolean predsednik) {
-		this.predsednik = predsednik;
-	}
-
 	public Set<Obavestenje> getObavestenje() {
 		return obavestenje;
 	}
-
 	public void setObavestenje(Set<Obavestenje> obavestenje) {
 		this.obavestenje = obavestenje;
 	}
-
 	public Set<Stan> getStan() {
 		return stan;
 	}
-
 	public void setStan(Set<Stan> stan) {
 		this.stan = stan;
 	}
-	
 	public Set<Kvar> getKvar() {
 		return kvar;
 	}
-
 	public void setKvar(Set<Kvar> kvar) {
 		this.kvar = kvar;
+	}	
+	public Korisnik_servisa getPredsednik() {
+		return predsednik;
 	}
-
+	public void setPredsednik(Korisnik_servisa predsednik) {
+		this.predsednik = predsednik;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -147,5 +129,4 @@ public class Zgrada {
 								+ " predsednik="+ predsednik + ", obavestenje="+ obavestenje + ","
 										+ " stan="+stan+"]";
 	}
-
 }

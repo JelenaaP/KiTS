@@ -1,10 +1,16 @@
 package project.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -12,27 +18,80 @@ public class Korisnik_servisa {
 	
 	@Id
 	@GeneratedValue
-	private long id_korisnik_servisa;
+	private Long id_korisnik_servisa;
+	
 	private String ime;
 	private String koris_ime;
 	private String lozinka;
 	private String uloga;
-	private boolean vlasnik_firme;
-	private boolean vlasnik_zgrade;
-	private boolean vlasnik_stana;
-	private boolean predsednik_skupstine;
-	private List<Komentar> komentari;
 	
-	public List<Komentar> getKomentari() {
-		return komentari;
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Stavka> stavka = new HashSet<Stavka>();
+
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Obavestenje> obavestenje = new HashSet<Obavestenje>();
+
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Komentar> komentar = new HashSet<Komentar>();
+ 
+	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Firma> firma = new HashSet<Firma>();
+
+	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Stan> stan = new HashSet<Stan>();
+
+	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Zgrada> zgrada = new HashSet<Zgrada>();
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Stan stanovnik;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Zgrada radnik;
+	
+	@OneToOne
+	private Zgrada predsednik_skupstine;	
+	
+	public Set<Komentar> getKomentar() {
+		return komentar;
 	}
-	public void setKomentari(List<Komentar> komentari) {
-		this.komentari = komentari;
+	public void setKomentar(Set<Komentar> komentar) {
+		this.komentar = komentar;
 	}
-	public long getId_korisnik_servisa() {
+	public Set<Firma> getFirma() {
+		return firma;
+	}
+	public void setFirma(Set<Firma> firma) {
+		this.firma = firma;
+	}
+	public Set<Stan> getStan() {
+		return stan;
+	}
+	public void setStan(Set<Stan> stan) {
+		this.stan = stan;
+	}
+	public Stan getStanovnik() {
+		return stanovnik;
+	}
+	public void setStanovnik(Stan stanovnik) {
+		this.stanovnik = stanovnik;
+	}
+	public Zgrada getPredsednik_skupstine() {
+		return predsednik_skupstine;
+	}
+	public void setPredsednik_skupstine(Zgrada predsednik_skupstine) {
+		this.predsednik_skupstine = predsednik_skupstine;
+	}
+	public Set<Zgrada> getZgrada() {
+		return zgrada;
+	}
+	public void setZgrada(Set<Zgrada> zgrada) {
+		this.zgrada = zgrada;
+	}
+	public Long getId_korisnik_servisa() {
 		return id_korisnik_servisa;
 	}
-	public void setId_korisnik_servisa(long id_korisnik_servisa) {
+	public void setId_korisnik_servisa(Long id_korisnik_servisa) {
 		this.id_korisnik_servisa = id_korisnik_servisa;
 	}
 	public String getIme() {
@@ -59,29 +118,16 @@ public class Korisnik_servisa {
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
 	}
-	public boolean isVlasnik_firme() {
-		return vlasnik_firme;
+	public Set<Stavka> getStavka() {
+		return stavka;
 	}
-	public void setVlasnik_firme(boolean vlasnik_firme) {
-		this.vlasnik_firme = vlasnik_firme;
+	public void setStavka(Set<Stavka> stavka) {
+		this.stavka = stavka;
 	}
-	public boolean isVlasnik_zgrade() {
-		return vlasnik_zgrade;
+	public Set<Obavestenje> getObavestenje() {
+		return obavestenje;
 	}
-	public void setVlasnik_zgrade(boolean vlasnik_zgrade) {
-		this.vlasnik_zgrade = vlasnik_zgrade;
+	public void setObavestenje(Set<Obavestenje> obavestenje) {
+		this.obavestenje = obavestenje;
 	}
-	public boolean isVlasnik_stana() {
-		return vlasnik_stana;
-	}
-	public void setVlasnik_stana(boolean vlasnik_stana) {
-		this.vlasnik_stana = vlasnik_stana;
-	}
-	public boolean isPredsednik_skupstine() {
-		return predsednik_skupstine;
-	}
-	public void setPredsednik_skupstine(boolean predsednik_skupstine) {
-		this.predsednik_skupstine = predsednik_skupstine;
-	}
-
 }

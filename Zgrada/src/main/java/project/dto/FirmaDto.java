@@ -1,29 +1,22 @@
 package project.dto;
 
-import java.util.List;
-
 import project.model.Firma;
-import project.model.Korisnik_servisa;
-import project.model.Kvar;
-import project.model.Zgrada;
-
 
 public class FirmaDto {
 
 	private Long id_firme;
 	private String ime;
 	private String adresa;
-	private Long telefon;
+	private int telefon;
 	private String email;
 	private String web_site;
-	private Kvar kvar;
-	private Korisnik_servisa radnik;
-	private List<Firma> firma;
+	private Korisnik_servisaDto radnik;
+	private Korisnik_servisaDto vlasnik;
 	
 	public FirmaDto(){}
 	
-	public FirmaDto(Long id_firme, String ime, String adresa, Long telefon, String email, String web_site, Kvar kvar,
-			Korisnik_servisa radnik) {
+	public FirmaDto(Long id_firme, String ime, String adresa, int telefon, String email, String web_site,
+			Korisnik_servisaDto radnik, Korisnik_servisaDto vlasnik) {
 		super();
 		this.id_firme = id_firme;
 		this.ime = ime;
@@ -31,11 +24,19 @@ public class FirmaDto {
 		this.telefon = telefon;
 		this.email = email;
 		this.web_site = web_site;
-		this.kvar = kvar;
 		this.radnik = radnik;
+		this.vlasnik = vlasnik;
 	}
 	
-	
+	public FirmaDto(Firma firma) {
+		id_firme = firma.getId_firme();
+		ime = firma.getIme();
+		adresa = firma.getAdresa();
+		telefon = firma.getTelefon();
+		email = firma.getEmail();
+		web_site = firma.getWeb_site();
+	}
+
 	public Long getId_firme() {
 		return id_firme;
 	}
@@ -54,10 +55,10 @@ public class FirmaDto {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public Long getTelefon() {
+	public int getTelefon() {
 		return telefon;
 	}
-	public void setTelefon(Long telefon) {
+	public void setTelefon(int telefon) {
 		this.telefon = telefon;
 	}
 	public String getEmail() {
@@ -72,36 +73,16 @@ public class FirmaDto {
 	public void setWeb_site(String web_site) {
 		this.web_site = web_site;
 	}
-	public Kvar getKvar() {
-		return kvar;
-	}
-	public void setKvar(Kvar kvar) {
-		this.kvar = kvar;
-	}
-	public Korisnik_servisa getRadnik() {
+	public Korisnik_servisaDto getRadnik() {
 		return radnik;
 	}
-	public void setRadnik(Korisnik_servisa radnik) {
+	public void setRadnik(Korisnik_servisaDto radnik) {
 		this.radnik = radnik;
 	}
-	
-	public List<Firma> getFirma() {
-		return firma;
+	public Korisnik_servisaDto getVlasnik() {
+		return vlasnik;
 	}
-
-
-	public void setFirma(List<Firma> firma) {
-		this.firma = firma;
-	}
-
-	
-	public FirmaDto(Firma firma) {
-		id_firme = firma.getId_firme();
-		ime = firma.getIme();
-		adresa = firma.getAdresa();
-		telefon = firma.getTelefon();
-		email = firma.getEmail();
-		web_site = firma.getWeb_site();
-	}
-	
+	public void setVlasnik(Korisnik_servisaDto vlasnik) {
+		this.vlasnik = vlasnik;
+	}	
 }

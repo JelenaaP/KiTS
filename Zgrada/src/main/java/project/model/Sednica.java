@@ -1,22 +1,30 @@
 package project.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Sednica {
 	@Id
-	@GeneratedValue
-	
+	@GeneratedValue	
 	private Long id_sednice;
+	
 	private Date dat_kreiranja;
 	private Date dat_zakazivanja;
 	private boolean aktivna;
+	
+	@ManyToMany(mappedBy = "sednica")
+	private Set<Stavka> stavka = new HashSet<Stavka>();
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;//kreator koji je kreirao sednicu
@@ -24,9 +32,15 @@ public class Sednica {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada; //zgrada kojoj pripadaju sednice
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Zapisnik zapisnik;
+	@OneToOne
+	private Zapisnik zapisnik;	
 	
+	public Set<Stavka> getStavka() {
+		return stavka;
+	}
+	public void setStavka(Set<Stavka> stavka) {
+		this.stavka = stavka;
+	}
 	public Long getId_sednice() {
 		return id_sednice;
 	}
@@ -57,7 +71,6 @@ public class Sednica {
 	public void setKreator(Korisnik_servisa kreator) {
 		this.kreator = kreator;
 	}
-	
 	public Zgrada getZgrada() {
 		return zgrada;
 	}
@@ -70,10 +83,9 @@ public class Sednica {
 	public void setZapisnik(Zapisnik zapisnik) {
 		this.zapisnik = zapisnik;
 	}
+	
 	@Override
 	public String toString() {
 		return "Sednica [id_sednice=" + id_sednice + ", dat_kreiranja=" + dat_kreiranja + ", dat_zakazivanja=" + dat_zakazivanja + ", kreator="+kreator+"]";
 	}
-	
-	
 }

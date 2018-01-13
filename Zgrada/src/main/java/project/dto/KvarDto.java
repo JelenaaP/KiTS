@@ -86,7 +86,6 @@ public class KvarDto {
 		dat_zakazivanja = kvar.getDat_zakazivanja();
 		dat_popravke = kvar.getDat_popravke();
 		popravljen = kvar.isPopravljen();
-		zgrada = new ZgradaDto(kvar.getZgrada());
-		
+		zgrada = new ZgradaDto(kvar.getZgrada());	
 	}
 }

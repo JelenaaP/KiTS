@@ -48,7 +48,7 @@ public class ZgradaController {
 		return new ResponseEntity<>(zgradeDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/findAdress", method = RequestMethod.GET)
+	@RequestMapping(value="/findAdresa", method = RequestMethod.GET)
 	public ResponseEntity<List<ZgradaDto>> getAllBuildingsByAddress(@RequestParam String adresa) {
 		List<Zgrada> zgrade = zgradaService.findAllByAddress(adresa);
 		//convert buildings to DTOs
@@ -59,7 +59,7 @@ public class ZgradaController {
 		return new ResponseEntity<>(zgradeDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/findOwner", method = RequestMethod.GET)
+	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
 	public ResponseEntity<List<ZgradaDto>> buildingsByOwner(@RequestParam String vlasnik) {
 		List<Zgrada> zgrade = zgradaService.findAllByOwner(vlasnik);
 		List<ZgradaDto> zgradeDto = new ArrayList<>();
@@ -89,7 +89,6 @@ public class ZgradaController {
 		zgrada.setVlasnik(vlasnik);
 		zgrada.setBr_stanova(zgradaDto.getBr_stanova());
 		zgrada.setBr_naseljenih(zgradaDto.getBr_naseljenih());
-		zgrada.setPredsednik(zgradaDto.isPredsednik());
 		
 		zgrada = zgradaService.save(zgrada);
 		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.CREATED);
@@ -104,13 +103,10 @@ public class ZgradaController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByUsername(zgradaDto.getVlasnik().getIme());
 		
 		zgrada.setBr_naseljenih(zgradaDto.getBr_naseljenih());
 		zgrada.setBr_stanova(zgradaDto.getBr_stanova());
 		zgrada.setIme(zgradaDto.getIme());
-		zgrada.setPredsednik(zgradaDto.isPredsednik());
-		zgrada.setVlasnik(vlasnik);
 		
 		zgrada = zgradaService.save(zgrada);
 		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.OK);

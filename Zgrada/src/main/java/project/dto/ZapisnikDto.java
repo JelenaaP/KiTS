@@ -32,52 +32,41 @@ public class ZapisnikDto {
 		sednica = new SednicaDto(zapisnik.getSednica());
 		zgrada = new ZgradaDto(zapisnik.getZgrada());
 		kreator = new Korisnik_servisaDto(zapisnik.getKreator());
-	
 	}
 
 	public Long getId_zapisnik() {
 		return id_zapisnik;
 	}
-
 	public void setId_zapisnik(Long id_zapisnik) {
 		this.id_zapisnik = id_zapisnik;
 	}
-
 	public String getOpis() {
 		return opis;
 	}
-
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
 	public Date getDat_kreiranja() {
 		return dat_kreiranja;
 	}
-
 	public void setDat_kreiranja(Date dat_kreiranja) {
 		this.dat_kreiranja = dat_kreiranja;
 	}
-
 	public Korisnik_servisaDto getKreator() {
 		return kreator;
 	}
-
 	public void setKreator(Korisnik_servisaDto kreator) {
 		this.kreator = kreator;
 	}
-
 	public SednicaDto getSednica() {
 		return sednica;
 	}
-
 	public void setSednica(SednicaDto sednica) {
 		this.sednica = sednica;
 	}
-
 	public ZgradaDto getZgrada() {
 		return zgrada;
 	}
-
 	public void setZgrada(ZgradaDto zgrada) {
 		this.zgrada = zgrada;
 	}

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.model.Firma;
-import project.model.Stan;
 import project.repository.FirmaRepository;
 
 @Service
@@ -39,7 +38,5 @@ public class FirmaService {
 	
 	public void delete(Firma firma){
 		 firmaRepository.delete(firma);
-	}
-
-	
+	}	
 }

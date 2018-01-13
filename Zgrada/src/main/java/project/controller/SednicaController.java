@@ -19,6 +19,7 @@ import project.model.Sednica;
 import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 import project.service.SednicaService;
+import project.service.StavkaService;
 import project.service.ZgradaService;
 
 @RestController
@@ -32,6 +33,9 @@ public class SednicaController {
 	
 	@Autowired
 	ZgradaService zgradaService;
+	
+	@Autowired
+	StavkaService stavkaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<SednicaDto>> getAllSednica() {
@@ -72,7 +76,6 @@ public class SednicaController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Zgrada zgrada = zgradaService.findOneById(sednicaDto.getZgrada().getId_zgrada());
-		
 		
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

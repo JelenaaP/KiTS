@@ -23,7 +23,7 @@ import project.service.ObavestenjeService;
 import project.service.ZgradaService;
 
 @RestController
-@RequestMapping(value = "api/zgrada")
+@RequestMapping(value = "api/obavestenje")
 public class ObavestenjeController {
 	
 	@Autowired
@@ -99,14 +99,10 @@ public class ObavestenjeController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
-		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(obavestenjeDto.getKreator().getKoris_ime());
-		Zgrada zgrada = zgradaService.findOneById(obavestenjeDto.getZgrada().getId_zgrada());
 		
 		obavestenje.setDat_kreiranja(obavestenjeDto.getDat_kreiranja());
 		obavestenje.setIme(obavestenjeDto.getIme());
 		obavestenje.setOpis(obavestenjeDto.getOpis());
-		obavestenje.setKreator(kreator);
-		obavestenje.setZgrada(zgrada);
 		
 		obavestenje = obavestenjeService.save(obavestenje);
 		return new ResponseEntity<>(new ObavestenjeDto(obavestenje), HttpStatus.OK);
