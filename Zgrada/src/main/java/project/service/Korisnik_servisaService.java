@@ -15,11 +15,11 @@ public class Korisnik_servisaService {
 	@Autowired
 	private KorisnikServisaRepository korisnik_servisaRepository;
 	
-	public Korisnik_servisa findOneByUsername(String koris_ime) {
-		return korisnik_servisaRepository.findOneByUsername(koris_ime);
+	public Korisnik_servisa findOneByKoris_ime(String koris_ime) {
+		return korisnik_servisaRepository.findOneByKoris_ime(koris_ime);
 	}
-	public Korisnik_servisa findAllByName(String ime){
-		return korisnik_servisaRepository.findAllByName(ime);
+	public List<Korisnik_servisa> findAllByIme(String ime){
+		return korisnik_servisaRepository.findAllByIme(ime);
 	}
 	
 	public  List<Korisnik_servisa> findAll(){

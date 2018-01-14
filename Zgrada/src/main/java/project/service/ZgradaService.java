@@ -17,19 +17,19 @@ public class ZgradaService {
 		return zgradaRepository.findAll();
 	}
 		
-	public Zgrada findOneById(Long id_zgrada) {
-		return zgradaRepository.findOne(id_zgrada);
+	public Zgrada findOneById_zgrada(Long id_zgrada) {
+		return zgradaRepository.findOneById_zgrada(id_zgrada);
 	}
 
-	public List<Zgrada> findAllByOwner(String vlasnik) {
-		return zgradaRepository.findAllByOwner(vlasnik);
+	public List<Zgrada> findAllByVlasnik(String vlasnik) {
+		return zgradaRepository.findAllByVlasnik(vlasnik);
 	}
 
-	public List<Zgrada> findAllByAddress(String adresa) {
-		return zgradaRepository.findAllByAddress(adresa);
+	public List<Zgrada> findAllByAdresa(String adresa) {
+		return zgradaRepository.findAllByAdresa(adresa);
 	}
-	public Zgrada findOneByAddress(String adresa) {
-		return zgradaRepository.findOneByAddress(adresa);
+	public Zgrada findOneByAdresa(String adresa) {
+		return zgradaRepository.findOneByAdresa(adresa);
 	}
 	public void delete(Zgrada zgrada) {
 		zgradaRepository.delete(zgrada);

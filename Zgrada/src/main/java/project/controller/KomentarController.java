@@ -45,9 +45,9 @@ public class KomentarController {
 		return new ResponseEntity<>(komentarDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> notificatiosByOwner(@RequestParam Korisnik_servisa kreator) {
-		List<Komentar> komentar = komentarService.findByOwner(kreator);
+	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
+	public ResponseEntity<List<KomentarDto>> notificatiosByOwner(@RequestParam String kreator) {
+		List<Komentar> komentar = komentarService.findByKreator(kreator);
 		List<KomentarDto> komentarDto = new ArrayList<>();
 		for (Komentar k : komentar) {
 			komentarDto.add(new KomentarDto(k));
@@ -56,7 +56,7 @@ public class KomentarController {
 		}
 	
 	@RequestMapping(value = "/findKvar", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> notificatiosByFailure(@RequestParam Kvar kvar) {
+	public ResponseEntity<List<KomentarDto>> notificatiosByFailure(@RequestParam String kvar) {
 		List<Komentar> komentar = komentarService.findByKvar(kvar);
 		List<KomentarDto> komentarDto = new ArrayList<>();
 		for (Komentar k : komentar) {
@@ -72,11 +72,11 @@ public class KomentarController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Kvar kvar = kvarService.findOneById(komentarDto.getKvar().getId_kvar());
+		Kvar kvar = kvarService.findOneById_kvar(komentarDto.getKvar().getId_kvar());
 		if (kvar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(komentarDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findOneByKoris_ime(komentarDto.getKreator().getKoris_ime());
 		
 		Komentar komentar = new Komentar();
 		komentar.setText(komentarDto.getText());
@@ -91,7 +91,7 @@ public class KomentarController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<KomentarDto> updateComment(@RequestBody KomentarDto komentarDto) {
-		Komentar komentar = komentarService.findOneById(komentarDto.getId_komentar());
+		Komentar komentar = komentarService.findOneById_komentar(komentarDto.getId_komentar());
 		if (komentar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -107,7 +107,7 @@ public class KomentarController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_komentar}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteComment(@PathVariable Long id_komentar) {
-		Komentar komentar = komentarService.findOneById(id_komentar);
+		Komentar komentar = komentarService.findOneById_komentar(id_komentar);
 		if (komentar != null) {
 			komentarService.delete(komentar);
 			return new ResponseEntity<>(HttpStatus.OK);

@@ -53,7 +53,7 @@ public class FirmaController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByUsername(firmaDto.getVlasnik().getKoris_ime());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByKoris_ime(firmaDto.getVlasnik().getKoris_ime());
 		
 		if (vlasnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -73,22 +73,21 @@ public class FirmaController {
 		return new ResponseEntity<>(new FirmaDto(firma), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/findRadnik", method = RequestMethod.GET)
-	public ResponseEntity<List<FirmaDto>> findByWorker(@RequestParam String radnik) {
-		List<Firma> firma = firmaService.findAllByName(radnik);
+	/*@RequestMapping(value = "/findRadnik", method = RequestMethod.GET)
+	public ResponseEntity<List<FirmaDto>> findByRadnik(@RequestParam String radnik) {
+		List<Firma> firma = firmaService.findAllByIme(radnik);
 		List<FirmaDto> firmaDto = new ArrayList<>();
 		for (Firma f : firma) {
 			firmaDto.add(new FirmaDto(f));
 		}
 		return new ResponseEntity<>(firmaDto, HttpStatus.OK);
 		}
-
-	
+*/
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<FirmaDto> update(@RequestBody FirmaDto firmaDto) {
 		// a building must exist
-		Firma firma = firmaService.findOneById(firmaDto.getId_firme());
+		Firma firma = firmaService.findOneById_firme(firmaDto.getId_firme());
 		if (firma == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -103,8 +102,8 @@ public class FirmaController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_firme}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteExam(@PathVariable Long id_firme) {
-		Firma firma = firmaService.findOneById(id_firme);
+	public ResponseEntity<Void> delete(@PathVariable Long id_firme) {
+		Firma firma = firmaService.findOneById_firme(id_firme);
 		if (firma != null) {
 			firmaService.delete(firma);
 			return new ResponseEntity<>(HttpStatus.OK);

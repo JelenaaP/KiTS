@@ -47,7 +47,7 @@ public class StanController {
 	
 	@RequestMapping(value="/findAdresa", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> getAllApartmentsByAddress(@RequestParam String adresa) {
-		List<Stan> stanovi = stanService.findAllByAddress(adresa);
+		List<Stan> stanovi = stanService.findAllByAddresa(adresa);
 		//convert buildings to DTOs
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s : stanovi) {
@@ -58,7 +58,7 @@ public class StanController {
 	
 	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> apartmentsByOwner(@RequestParam String vlasnik) {
-		List<Stan> stanovi = stanService.findAllByOwner(vlasnik);
+		List<Stan> stanovi = stanService.findAllByVlasnik(vlasnik);
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s : stanovi) {
 			stanoviDto.add(new StanDto(s));
@@ -73,14 +73,14 @@ public class StanController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Stan adresa = stanService.findOneByAddress(stanDto.getAdresa());
-		Zgrada zgrada = zgradaService.findOneById(stanDto.getZgrada().getId_zgrada());
+		Stan adresa = stanService.findOneByAddresa(stanDto.getAdresa());
+		Zgrada zgrada = zgradaService.findOneById_zgrada(stanDto.getZgrada().getId_zgrada());
 		
 		
 		if (adresa == null || zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByUsername(stanDto.getVlasnik().getKoris_ime());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByKoris_ime(stanDto.getVlasnik().getKoris_ime());
 		
 		Stan stan = new Stan();
 		stan.setAdresa(stanDto.getAdresa());
@@ -96,7 +96,7 @@ public class StanController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<StanDto> updateApartments(@RequestBody StanDto stanDto) {
 		// a building must exist
-		Stan stan = stanService.findOneById(stanDto.getId_stanovi());
+		Stan stan = stanService.findOneById_stanovi(stanDto.getId_stanovi());
 		if (stan == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -113,7 +113,7 @@ public class StanController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_stanovi}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteApartments(@PathVariable Long id_stanovi) {
-		Stan stan = stanService.findOneById(id_stanovi);
+		Stan stan = stanService.findOneById_stanovi(id_stanovi);
 		if (stan != null) {
 			stanService.delete(stan);
 			return new ResponseEntity<>(HttpStatus.OK);

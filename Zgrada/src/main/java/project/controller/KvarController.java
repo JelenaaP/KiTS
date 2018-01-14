@@ -51,7 +51,7 @@ public class KvarController {
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
 	public ResponseEntity<List<KvarDto>> failuresByBulding(@RequestParam String zgrada) {
-		List<Kvar> kvarovi = kvarService.findAllByBuilding(zgrada);
+		List<Kvar> kvarovi = kvarService.findAllByZgrada(zgrada);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar k : kvarovi) {
 			kvaroviDto.add(new KvarDto(k));
@@ -59,9 +59,9 @@ public class KvarController {
 		return new ResponseEntity<>(kvaroviDto, HttpStatus.OK);
 		}
 	
-	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> buildingsByOwner(@RequestParam String vlasnik) {
-		List<Kvar> kvarovi = kvarService.findAllByOwner(vlasnik);
+	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
+	public ResponseEntity<List<KvarDto>> buildingsByOwner(@RequestParam String kreator) {
+		List<Kvar> kvarovi = kvarService.findAllByKreator(kreator);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar z : kvarovi) {
 			kvaroviDto.add(new KvarDto(z));
@@ -76,7 +76,7 @@ public class KvarController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOneById(kvarDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOneById_zgrada(kvarDto.getZgrada().getId_zgrada());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -98,7 +98,7 @@ public class KvarController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<KvarDto> updateFailures(@RequestBody KvarDto kvarDto) {
 		// a building must exist
-		Kvar kvar = kvarService.findOneById(kvarDto.getId_kvar());
+		Kvar kvar = kvarService.findOneById_kvar(kvarDto.getId_kvar());
 		if (kvar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -117,7 +117,7 @@ public class KvarController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_kvar}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteFailures(@PathVariable Long id_kvar) {
-		Kvar kvar = kvarService.findOneById(id_kvar);
+		Kvar kvar = kvarService.findOneById_kvar(id_kvar);
 		if (kvar != null) {
 			kvarService.delete(kvar);
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -129,7 +129,7 @@ public class KvarController {
 	@RequestMapping(value = "/{kvarId_kvar}/komentar", method = RequestMethod.GET)
 	public ResponseEntity<List<KomentarDto>> getKvarKomentar(
 			@PathVariable Long kvarId_kvar) {
-		Kvar kvar = kvarService.findOneById(kvarId_kvar);
+		Kvar kvar = kvarService.findOneById_kvar(kvarId_kvar);
 		Set<Komentar> komentari = kvar.getKomentar();
 		List<KomentarDto> komentariDto = new ArrayList<>();
 		for (Komentar k : komentari) {

@@ -16,16 +16,16 @@ public class FirmaService {
 	@Autowired
 	private FirmaRepository firmaRepository;
 	
-	public List<Firma> findAllByName(String ime){
-		return firmaRepository.findOneById(ime);
+	public Firma findAllByIme(String ime){
+		return firmaRepository.findOneByIme(ime);
 	}
 	
-	public Firma findOneById(Long id_firme){
+	public Firma findOneById_firme(Long id_firme){
 		return firmaRepository.findOne(id_firme);
 	}
 	
 	public Firma findOneByAdress(String adresa) {
-		return firmaRepository.findOneByAdress(adresa);
+		return firmaRepository.findOneByAdresa(adresa);
 	}
 	
 	public List<Firma> findAll(){

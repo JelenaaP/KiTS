@@ -50,7 +50,7 @@ public class ZgradaController {
 	
 	@RequestMapping(value="/findAdresa", method = RequestMethod.GET)
 	public ResponseEntity<List<ZgradaDto>> getAllBuildingsByAddress(@RequestParam String adresa) {
-		List<Zgrada> zgrade = zgradaService.findAllByAddress(adresa);
+		List<Zgrada> zgrade = zgradaService.findAllByAdresa(adresa);
 		//convert buildings to DTOs
 		List<ZgradaDto> zgradeDto = new ArrayList<>();
 		for (Zgrada z : zgrade) {
@@ -61,7 +61,7 @@ public class ZgradaController {
 	
 	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
 	public ResponseEntity<List<ZgradaDto>> buildingsByOwner(@RequestParam String vlasnik) {
-		List<Zgrada> zgrade = zgradaService.findAllByOwner(vlasnik);
+		List<Zgrada> zgrade = zgradaService.findAllByVlasnik(vlasnik);
 		List<ZgradaDto> zgradeDto = new ArrayList<>();
 		for (Zgrada z : zgrade) {
 			zgradeDto.add(new ZgradaDto(z));
@@ -76,8 +76,8 @@ public class ZgradaController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada adresa = zgradaService.findOneByAddress(zgradaDto.getAdresa());
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByUsername(zgradaDto.getVlasnik().getIme());
+		Zgrada adresa = zgradaService.findOneByAdresa(zgradaDto.getAdresa());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByKoris_ime(zgradaDto.getVlasnik().getIme());
 		
 		if (adresa == null || vlasnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -98,7 +98,7 @@ public class ZgradaController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ZgradaDto> updateBuilding(@RequestBody ZgradaDto zgradaDto) {
 		// a building must exist
-		Zgrada zgrada = zgradaService.findOneById(zgradaDto.getId_zgrada());
+		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaDto.getId_zgrada());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -115,7 +115,7 @@ public class ZgradaController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_zgrada}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteBuilding(@PathVariable Long id_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById(id_zgrada);
+		Zgrada zgrada = zgradaService.findOneById_zgrada(id_zgrada);
 		if (zgrada != null) {
 			zgradaService.delete(zgrada);
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -127,7 +127,7 @@ public class ZgradaController {
 	@RequestMapping(value = "/{zgradaId_zgrada}/stanovi", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> getZgradaStanovi(
 			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById(zgradaId_zgrada);
+		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaId_zgrada);
 		Set<Stan> stanovi = zgrada.getStan();
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s: stanovi) {
@@ -146,7 +146,7 @@ public class ZgradaController {
 	@RequestMapping(value = "/{zgradaId_zgrada}/kvar", method = RequestMethod.GET)
 	public ResponseEntity<List<KvarDto>> getZgradaKvar(
 			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById(zgradaId_zgrada);
+		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaId_zgrada);
 		Set<Kvar> kvarovi = zgrada.getKvar();
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar o : kvarovi) {
@@ -169,7 +169,7 @@ public class ZgradaController {
 	@RequestMapping(value = "/{zgradaId_zgrada}/obavestenje", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> getZgradaObavestenje(
 			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById(zgradaId_zgrada);
+		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaId_zgrada);
 		Set<Obavestenje> obavestenja = zgrada.getObavestenje();
 		List<ObavestenjeDto> obavestenjaDto = new ArrayList<>();
 		for (Obavestenje o : obavestenja) {

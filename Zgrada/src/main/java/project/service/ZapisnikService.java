@@ -6,10 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import project.model.Korisnik_servisa;
-import project.model.Sednica;
 import project.model.Zapisnik;
-import project.model.Zgrada;
 import project.repository.ZapisnikRepository;
 
 @Service
@@ -18,7 +15,7 @@ public class ZapisnikService {
 	@Autowired
 	private ZapisnikRepository zapisnikRepository;
 	
-	public List<Zapisnik> findBySednica(Sednica sednica){
+	public List<Zapisnik> findBySednica(String sednica){
 		return zapisnikRepository.findBySednica(sednica);
 	}
 	
@@ -26,12 +23,12 @@ public class ZapisnikService {
 		return zapisnikRepository.findOneByDat_kreiranja(dat_kreiranja);
 	}
 	
-	public List<Zapisnik> findByOwner(Korisnik_servisa kreator){
-		return zapisnikRepository.findByOwner(kreator);
+	public List<Zapisnik> findAllByKreator(String kreator){
+		return zapisnikRepository.findAllByKreator(kreator);
 	}
 	
-	public List<Zapisnik> findByBuilding(Zgrada zgrada){
-		return zapisnikRepository.findByBuilding(zgrada);
+	public List<Zapisnik> findAllByZgrada(String zgrada){
+		return zapisnikRepository.findAllByZgrada(zgrada);
 	}
 	
 	public Zapisnik save(Zapisnik zapisnik){
@@ -46,14 +43,7 @@ public class ZapisnikService {
 		return zapisnikRepository.findAll();
 	}
 
-	public List<Zapisnik> findAllByCreator(String kreator) {
-		return zapisnikRepository.findAllByCreator(kreator);
+	public Zapisnik findOneById_zapisnik(Long id_zapisnik) {
+		return zapisnikRepository.findOneById_zapisnik(id_zapisnik);
 	}
-
-	public List<Zapisnik> findAllByBuilding(String zgrada) {
-		// TODO Auto-generated method stub
-		return zapisnikRepository.finAllByBuilding(zgrada);}
-
-	public Zapisnik findOneById(Long id_zapisnik) {
-		// TODO Auto-generated method stub
-		return zapisnikRepository.findOneById(id_zapisnik);}}
+}

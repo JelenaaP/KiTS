@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.model.Obavestenje;
-import project.model.Zgrada;
 import project.repository.ObavestenjeRepository;
 
 @Service
@@ -15,8 +14,8 @@ public class ObavestenjeService {
 	@Autowired
 	private ObavestenjeRepository obavestenjeRepository;
 	
-	public List<Obavestenje> findByZgrada(Zgrada zgrada){
-		return obavestenjeRepository.findByZgrada(zgrada);
+	public List<Obavestenje> findAllByZgrada(String zgrada){
+		return obavestenjeRepository.findAllByZgrada(zgrada);
 	}
 	public List<Obavestenje> findAll(){
 		return obavestenjeRepository.findAll();
@@ -26,8 +25,8 @@ public class ObavestenjeService {
 		return obavestenjeRepository.findOneByDat_kreiranja(dat_kreiranja);
 	}
 	
-	public List<Obavestenje> findAllByOwner(String kreator) {
-		return obavestenjeRepository.findAllByOwner(kreator);
+	public List<Obavestenje> findAllByKreator(String kreator) {
+		return obavestenjeRepository.findAllByKreator(kreator);
 	}
 	public void delete(Obavestenje obavestenje) {
 		obavestenjeRepository.delete(obavestenje);
@@ -36,10 +35,7 @@ public class ObavestenjeService {
 	public Obavestenje save(Obavestenje obavestenje) {
 		return obavestenjeRepository.save(obavestenje);
 	}
-	public Obavestenje findOneById(Long id_obavestenje) {
-		return obavestenjeRepository.findOneById(id_obavestenje);
+	public Obavestenje findOneById_obavestenje(Long id_obavestenje) {
+		return obavestenjeRepository.findOneById_obavestenje(id_obavestenje);
 	}
-	public List<Obavestenje> findAllByBuilding(String zgrada) {
-		return obavestenjeRepository.findOneById(zgrada);	}
 }
-

@@ -8,9 +8,11 @@ import project.model.Zgrada;
 
 public interface ZgradaRepository extends JpaRepository<Zgrada, Long>{
 
-	List<Zgrada> findAllByAddress(String adresa);
+	List<Zgrada> findAllByAdresa(String adresa);
 
-	List<Zgrada> findAllByOwner(String vlasnik);
+	List<Zgrada> findAllByVlasnik(String vlasnik);
 
-	Zgrada findOneByAddress(String adresa);
+	Zgrada findOneByAdresa(String adresa);
+
+	Zgrada findOneById_zgrada(Long id_zgrada);
 }

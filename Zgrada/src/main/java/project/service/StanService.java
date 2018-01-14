@@ -14,24 +14,24 @@ public class StanService {
 	@Autowired
 	private StanRepository stanRepository;
 		
-	public Stan findOneByName(String ime) {
-		return stanRepository.findOneByName(ime);
+	public Stan findOneByIme(String ime) {
+		return stanRepository.findOneByIme(ime);
 	}
 	
-	public Stan findOneByOwner(String vlasnik) {
-		return stanRepository.findOneByOwner(vlasnik);
+	public Stan findOneByVlasnik(String vlasnik) {
+		return stanRepository.findOneByVlasnik(vlasnik);
 	}
 	
-	public Stan findOneByAdress(String adresa) {
-		return stanRepository.findOneByAdress(adresa);
+	public Stan findOneByAdresa(String adresa) {
+		return stanRepository.findOneByAdresa(adresa);
 	}
 	
 	public List<Stan> findAll(){
 		return stanRepository.findAll();
 	}
 		
-	public Stan findOneById(Long id_stanovi) {
-		return stanRepository.findOne(id_stanovi);
+	public Stan findOneById_stanovi(Long id_stanovi) {
+		return stanRepository.findOneById_stanovi(id_stanovi);
 	}
 	
 	public Stan  save(Stan stan){
@@ -42,15 +42,15 @@ public class StanService {
 		 stanRepository.delete(stan);
 	}
 
-	public List<Stan> findAllByAddress(String adresa) {
-		return stanRepository.findAllByAddress(adresa);
+	public List<Stan> findAllByAddresa(String adresa) {
+		return stanRepository.findAllByAddresa(adresa);
 	}
 
-	public List<Stan> findAllByOwner(String vlasnik) {
-		return stanRepository.findAllByOwner(vlasnik);
+	public List<Stan> findAllByVlasnik(String vlasnik) {
+		return stanRepository.findAllByVlasnik(vlasnik);
 	}
 
-	public Stan findOneByAddress(String adresa) {
-		return stanRepository.findOneByAddress (adresa);
-}
+	public Stan findOneByAddresa(String adresa) {
+		return stanRepository.findOneByAddresa (adresa);
+	}
 }

@@ -63,7 +63,7 @@ public class Korisnik_servisaController {
 	}
 	
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	/*@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Korisnik_servisaDto> getStudent(@PathVariable Long id_korisnika_servisa){
 		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(id_korisnika_servisa);
 		if(korisnik_servisa == null){
@@ -71,6 +71,6 @@ public class Korisnik_servisaController {
 		}
 		
 		return new ResponseEntity<>(new Korisnik_servisaDto(korisnik_servisa), HttpStatus.OK);
-	}
+	}*/
 	
 }

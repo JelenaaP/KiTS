@@ -46,9 +46,9 @@ public class ObavestenjeController {
 		return new ResponseEntity<>(obavestenjaDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
+	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> notificatiosByOwner(@RequestParam String kreator) {
-		List<Obavestenje> obavestenja = obavestenjeService.findAllByOwner(kreator);
+		List<Obavestenje> obavestenja = obavestenjeService.findAllByKreator(kreator);
 		List<ObavestenjeDto> obavestenjaDto = new ArrayList<>();
 		for (Obavestenje o : obavestenja) {
 			obavestenjaDto.add(new ObavestenjeDto(o));
@@ -58,7 +58,7 @@ public class ObavestenjeController {
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> notificatiosByBuilding(@RequestParam String zgrada) {
-		List<Obavestenje> obavestenja = obavestenjeService.findAllByBuilding(zgrada);
+		List<Obavestenje> obavestenja = obavestenjeService.findAllByZgrada(zgrada);
 		List<ObavestenjeDto> obavestenjaDto = new ArrayList<>();
 		for (Obavestenje o : obavestenja) {
 			obavestenjaDto.add(new ObavestenjeDto(o));
@@ -73,11 +73,11 @@ public class ObavestenjeController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOneById(obavestenjeDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOneById_zgrada(obavestenjeDto.getZgrada().getId_zgrada());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(obavestenjeDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findOneByKoris_ime(obavestenjeDto.getKreator().getKoris_ime());
 		
 		Obavestenje obavestenje = new Obavestenje();
 		obavestenje.setIme(obavestenjeDto.getIme());
@@ -94,7 +94,7 @@ public class ObavestenjeController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ObavestenjeDto> updateNotification(@RequestBody ObavestenjeDto obavestenjeDto) {
 		// a building must exist
-		Obavestenje obavestenje = obavestenjeService.findOneById(obavestenjeDto.getId_obavestenje());
+		Obavestenje obavestenje = obavestenjeService.findOneById_obavestenje(obavestenjeDto.getId_obavestenje());
 		if (obavestenje == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -111,7 +111,7 @@ public class ObavestenjeController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_obavestenje}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteNotification(@PathVariable Long id_obavestenje) {
-		Obavestenje obavestenje = obavestenjeService.findOneById(id_obavestenje);
+		Obavestenje obavestenje = obavestenjeService.findOneById_obavestenje(id_obavestenje);
 		if (obavestenje != null) {
 			obavestenjeService.delete(obavestenje);
 			return new ResponseEntity<>(HttpStatus.OK);

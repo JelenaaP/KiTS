@@ -28,15 +28,11 @@ public class Korisnik_servisaDto {
 		this.predsednik_skupstine = predsednik_skupstine;
 	}
 
-	public Korisnik_servisaDto(Korisnik_servisa korisnik) {
-		id_korisnik_servisa = korisnik.getId_korisnik_servisa();
-		ime = korisnik.getKoris_ime();
+	public Korisnik_servisaDto(Korisnik_servisa korisnik_servisa) {
+		id_korisnik_servisa = korisnik_servisa.getId_korisnik_servisa();
+		ime = korisnik_servisa.getKoris_ime();
 	}
 	
-	public Korisnik_servisaDto(Korisnik_servisaDto radnik) {
-		// TODO Auto-generated constructor stub
-	}
-
 	public long getId_korisnik_servisa() {
 		return id_korisnik_servisa;
 	}

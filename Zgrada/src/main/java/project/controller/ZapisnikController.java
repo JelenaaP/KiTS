@@ -47,7 +47,7 @@ public class ZapisnikController {
 	
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<ZapisnikDto>> getAllZapisnikByCreator(@RequestParam String kreator) {
-		List<Zapisnik> zapisnici = zapisnikService.findAllByCreator(kreator);
+		List<Zapisnik> zapisnici = zapisnikService.findAllByKreator(kreator);
 		//convert buildings to DTOs
 		List<ZapisnikDto> zapisniciDto = new ArrayList<>();
 		for (Zapisnik z : zapisnici) {
@@ -63,12 +63,12 @@ public class ZapisnikController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Sednica sednica = sednicaService.findOneById(zapisnikDto.getId_zapisnik());
+		Sednica sednica = sednicaService.findOneById_sednice(zapisnikDto.getId_zapisnik());
 		
 		if (sednica == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(zapisnikDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findOneByKoris_ime(zapisnikDto.getKreator().getKoris_ime());
 		
 		Zapisnik zapisnik = new Zapisnik();
 		zapisnik.setKreator(kreator);
@@ -83,7 +83,7 @@ public class ZapisnikController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ZapisnikDto> updateZapisnik(@RequestBody ZapisnikDto zapisnikDto) {
 		// a building must exist
-		Zapisnik zapisnik = zapisnikService.findOneById(zapisnikDto.getId_zapisnik());
+		Zapisnik zapisnik = zapisnikService.findOneById_zapisnik(zapisnikDto.getId_zapisnik());
 		if (zapisnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -96,7 +96,7 @@ public class ZapisnikController {
 	@PreAuthorize("hasRole('ZAPISNICAR')")
 	@RequestMapping(value = "/{id_zapisnik}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteZapisnik(@PathVariable Long id_zapisnik) {
-		Zapisnik zapisnik = zapisnikService.findOneById(id_zapisnik);
+		Zapisnik zapisnik = zapisnikService.findOneById_zapisnik(id_zapisnik);
 		if (zapisnik != null) {
 			zapisnikService.delete(zapisnik);
 			return new ResponseEntity<>(HttpStatus.OK);

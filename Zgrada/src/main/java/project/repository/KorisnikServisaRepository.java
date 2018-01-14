@@ -8,9 +8,9 @@ import project.model.Korisnik_servisa;
 
 public interface KorisnikServisaRepository extends JpaRepository<Korisnik_servisa,Long> {
 	
-	public Korisnik_servisa findOneByUsername(String koris_ime);
+	public Korisnik_servisa findOneByKoris_ime(String koris_ime);
 
-	public Korisnik_servisa findAllByName(String ime);
+	public List<Korisnik_servisa> findAllByIme(String ime);
 	
 	public List <Korisnik_servisa> findAll();
 	

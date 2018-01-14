@@ -27,8 +27,8 @@ public class SednicaService {
 		sednicaRepository.delete(sednica);
 	}
 	
-	public Sednica findById(Long id_sednice){
-		return sednicaRepository.findOne(id_sednice);
+	public Sednica findOneById_sednice(Long id_sednice){
+		return sednicaRepository.findOneById_sednice(id_sednice);
 	}
 	
 	public Sednica findAllByDat_kreiranja(Date dat_kreiranja) {
@@ -43,16 +43,16 @@ public class SednicaService {
 		return sednicaRepository.findByAktivna(aktivna);
 	}
 
-	public Sednica findOneById(Long id_zapisnik) {
+	public Sednica findOneById_zapisnik(Long id_zapisnik) {
 		// TODO Auto-generated method stub
-		return sednicaRepository.findOneById(id_zapisnik);
+		return sednicaRepository.findOneById_zapisnik(id_zapisnik);
 	}
 
-	public List<Sednica> findAllByCreator(String kreator) {
-		return sednicaRepository.findByCreator(kreator);
+	public List<Sednica> findAllByKreator(String kreator) {
+		return sednicaRepository.findByKreator(kreator);
 	}
 
-	public List<Sednica> findAllByBuilding(String zgrada) {
-		return sednicaRepository.findByBuilding(zgrada);
+	public List<Sednica> findAllByZgrada(String zgrada) {
+		return sednicaRepository.findByZgrada(zgrada);
 	}
 }

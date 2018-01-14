@@ -50,7 +50,7 @@ public class SednicaController {
 	
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<SednicaDto>> getAllSednicaByCreator(@RequestParam String kreator) {
-		List<Sednica> sednice = sednicaService.findAllByCreator(kreator);
+		List<Sednica> sednice = sednicaService.findAllByKreator(kreator);
 		//convert buildings to DTOs
 		List<SednicaDto> sedniceDto = new ArrayList<>();
 		for (Sednica s : sednice) {
@@ -61,7 +61,7 @@ public class SednicaController {
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
 	public ResponseEntity<List<SednicaDto>> sednicaByZgrada(@RequestParam String zgrada) {
-		List<Sednica> sednice = sednicaService.findAllByBuilding(zgrada);
+		List<Sednica> sednice = sednicaService.findAllByZgrada(zgrada);
 		List<SednicaDto> sedniceDto = new ArrayList<>();
 		for (Sednica s : sednice) {
 			sedniceDto.add(new SednicaDto(s));
@@ -75,12 +75,12 @@ public class SednicaController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOneById(sednicaDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOneById_zgrada(sednicaDto.getZgrada().getId_zgrada());
 		
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findOneByUsername(sednicaDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findOneByKoris_ime(sednicaDto.getKreator().getKoris_ime());
 		
 		Sednica sednica = new Sednica();
 		sednica.setKreator(kreator);
@@ -96,7 +96,7 @@ public class SednicaController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<SednicaDto> updateSednica(@RequestBody SednicaDto sednicaDto) {
 		
-		Sednica sednica = sednicaService.findOneById(sednicaDto.getId_sednice());
+		Sednica sednica = sednicaService.findOneById_sednice(sednicaDto.getId_sednice());
 		if (sednica == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -106,9 +106,9 @@ public class SednicaController {
 		return new ResponseEntity<>(new SednicaDto(sednica),HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{id_zapisik}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id_sednice}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteSednica(@PathVariable Long id_sednice) {
-		Sednica sednica = sednicaService.findOneById(id_sednice);
+		Sednica sednica = sednicaService.findOneById_sednice(id_sednice);
 		if (sednica != null) {
 			sednicaService.delete(sednica);
 			return new ResponseEntity<>(HttpStatus.OK);
