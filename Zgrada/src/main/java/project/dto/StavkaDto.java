@@ -2,6 +2,9 @@ package project.dto;
 
 import java.sql.Date;
 
+import project.model.Sednica;
+import project.model.Stavka;
+
 public class StavkaDto {
 
 	private Long id_stavke;
@@ -22,6 +25,14 @@ public class StavkaDto {
 		this.dat_kreiranja = dat_kreiranja;
 		this.setKreator(kreator);
 		this.setSednica(sednica);
+	}
+	
+	public StavkaDto(Stavka stavka) {
+		id_stavke = stavka.getId_stavke();
+		ime = stavka.getIme();
+		dat_kreiranja = stavka.getDat_kreiranja();
+		kreator = new Korisnik_servisaDto(stavka.getKreator());
+		//sednica = new SednicaDto(sednica.getSednica());
 	}
 
 	public Long getId_stavke() {

@@ -19,6 +19,18 @@ public class StavkaService {
 		return stavkaRepository.findAllBySednica(sednica);
 	}
 	
+	public List<Stavka> findByKreator(String kreator){
+		return stavkaRepository.findByKreator(kreator);
+	}
+	
+	public Stavka findById_stavke(Long id_stavke){
+		return stavkaRepository.findById_stavke(id_stavke);
+	}
+	
+	public List<Stavka> findAll(){
+		return stavkaRepository.findAll();
+	}
+	
 	public Stavka save(Stavka stavka){
 		return stavkaRepository.save(stavka);
 	}
