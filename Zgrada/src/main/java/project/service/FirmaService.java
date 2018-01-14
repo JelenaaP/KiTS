@@ -16,8 +16,8 @@ public class FirmaService {
 	@Autowired
 	private FirmaRepository firmaRepository;
 	
-	public Firma findOneByName(String ime){
-		return firmaRepository.findOneByName(ime);
+	public List<Firma> findAllByName(String ime){
+		return firmaRepository.findOneById(ime);
 	}
 	
 	public Firma findOneById(Long id_firme){
