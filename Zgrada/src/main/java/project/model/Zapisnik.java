@@ -24,7 +24,7 @@ public class Zapisnik {
 	private Korisnik_servisa kreator;//kreator koji je kreirao zapisnik
 	
 	@OneToOne(mappedBy = "zapisnik")
-	private Sednica sednica;//zgrada u kojoj je kreiran zapisnik
+	private Sednica sednica;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;//zgrada u kojoj je kreiran zapisnik

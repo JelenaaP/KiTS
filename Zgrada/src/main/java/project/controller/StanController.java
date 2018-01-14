@@ -2,6 +2,7 @@ package project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.dto.StanDto;
+import project.dto.StavkaDto;
 import project.model.Korisnik_servisa;
+import project.model.Sednica;
 import project.model.Stan;
+import project.model.Stavka;
 import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 import project.service.StanService;
@@ -121,4 +125,5 @@ public class StanController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
 }

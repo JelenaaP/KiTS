@@ -2,6 +2,7 @@ package project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.dto.SednicaDto;
+import project.dto.StavkaDto;
+import project.dto.ZapisnikDto;
 import project.model.Korisnik_servisa;
 import project.model.Sednica;
+import project.model.Stavka;
+import project.model.Zapisnik;
 import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 import project.service.SednicaService;
@@ -36,7 +41,7 @@ public class SednicaController {
 	
 	@Autowired
 	StavkaService stavkaService;
-	
+	//dobavljanje svih sednica
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<SednicaDto>> getAllSednica() {
 		List<Sednica> sednice = sednicaService.findAll();
@@ -47,18 +52,17 @@ public class SednicaController {
 		}
 		return new ResponseEntity<>(sednicaDto, HttpStatus.OK);
 	}
-	
+	//pretrazivanje po kreatoru sednice
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<SednicaDto>> getAllSednicaByCreator(@RequestParam String kreator) {
 		List<Sednica> sednice = sednicaService.findAllByKreator(kreator);
-		//convert buildings to DTOs
 		List<SednicaDto> sedniceDto = new ArrayList<>();
 		for (Sednica s : sednice) {
 			sedniceDto.add(new SednicaDto(s));
 		}
 		return new ResponseEntity<>(sedniceDto, HttpStatus.OK);
 	}
-	
+	//pretrazivanje po zgradi u kojoj se odrzava sednica
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
 	public ResponseEntity<List<SednicaDto>> sednicaByZgrada(@RequestParam String zgrada) {
 		List<Sednica> sednice = sednicaService.findAllByZgrada(zgrada);
@@ -68,7 +72,7 @@ public class SednicaController {
 		}
 		return new ResponseEntity<>(sedniceDto, HttpStatus.OK);
 		}
-	
+	//kreiranje sednice
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<SednicaDto> createSednica(@RequestBody SednicaDto sednicaDto) {
 		if(sednicaDto.getZgrada()==null)
@@ -92,7 +96,7 @@ public class SednicaController {
 		sednica = sednicaService.save(sednica);
 		return new ResponseEntity<>(new SednicaDto(sednica), HttpStatus.CREATED);
 	}
-	
+	//izmena sednice
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<SednicaDto> updateSednica(@RequestBody SednicaDto sednicaDto) {
 		
@@ -105,7 +109,7 @@ public class SednicaController {
 		
 		return new ResponseEntity<>(new SednicaDto(sednica),HttpStatus.OK);
 	}
-	
+	//brisanje sednice
 	@RequestMapping(value = "/{id_sednice}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteSednica(@PathVariable Long id_sednice) {
 		Sednica sednica = sednicaService.findOneById_sednice(id_sednice);
@@ -116,4 +120,38 @@ public class SednicaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	//izlistavanje stavki sa sednice
+	@RequestMapping(value = "/{sednicaId_sednice}/stavka", method = RequestMethod.GET)
+	public ResponseEntity<List<StavkaDto>> getSednicaStavke(
+			@PathVariable Long sednicaId_sednice) {
+		Sednica sednica = sednicaService.findOneById_sednice(sednicaId_sednice);
+		Set<Stavka> stavke = sednica.getStavka();
+		List<StavkaDto> stavkeDto = new ArrayList<>();
+		for (Stavka s: stavke) {
+			StavkaDto stavkaDto = new StavkaDto();
+			stavkaDto.setId_stavke(s.getId_stavke());
+			stavkaDto.setIme(s.getIme());
+			stavkaDto.setOpis(s.getOpis());
+			stavkaDto.setDat_kreiranja(s.getDat_kreiranja());
+			stavkeDto.add(stavkaDto);
+		}
+		return new ResponseEntity<>(stavkeDto, HttpStatus.OK);
+	}
+	//izlistavanje zapisnika sa sednice
+		@RequestMapping(value = "/{sednicaId_sednice}/zapisnik", method = RequestMethod.GET)
+		public ResponseEntity<ZapisnikDto> getSednicaZapisnik(
+				@PathVariable Long sednicaId_sednice) {
+			Sednica sednica = sednicaService.findOneById_sednice(sednicaId_sednice);
+			Zapisnik zapisnik = sednica.getZapisnik();
+			ZapisnikDto zapisnikDto = new ZapisnikDto();
+			zapisnikDto.getId_zapisnik();
+			zapisnikDto.getOpis();
+			zapisnikDto.getDat_kreiranja();
+			zapisnikDto.getKreator();
+			zapisnikDto.getSednica();
+			zapisnikDto.getZgrada();
+		
+			return new ResponseEntity<>(zapisnikDto, HttpStatus.OK);
+	
+		}
 }
