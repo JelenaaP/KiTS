@@ -14,4 +14,6 @@ public interface KorisnikServisaRepository extends JpaRepository<Korisnik_servis
 	
 	public List <Korisnik_servisa> findAll();
 	
+	//public Korisnik_servisa findOneById(Long id_korisnik_servisa);
+	
 }

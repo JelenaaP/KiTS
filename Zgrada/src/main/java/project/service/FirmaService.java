@@ -28,6 +28,10 @@ public class FirmaService {
 		return firmaRepository.findOneByAdresa(adresa);
 	}
 	
+	public Firma findByRadnik(String radnik){
+		return firmaRepository.findByRadnik(radnik);
+	}
+	
 	public List<Firma> findAll(){
 		return firmaRepository.findAll();
 	}

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import project.model.Korisnik_servisa;
 import project.repository.KorisnikServisaRepository;
 
+
 @Service
 public class Korisnik_servisaService {
 	@Autowired
@@ -22,6 +23,10 @@ public class Korisnik_servisaService {
 		return korisnik_servisaRepository.findAllByIme(ime);
 	}
 	
+	public Korisnik_servisa findOne(Long id_korisnik_servisa){
+		return korisnik_servisaRepository.findOne(id_korisnik_servisa);
+	}
+	
 	public  List<Korisnik_servisa> findAll(){
 		return korisnik_servisaRepository.findAll();
 	}
@@ -31,10 +36,15 @@ public class Korisnik_servisaService {
 	}
 	
 	public Korisnik_servisa  save(Korisnik_servisa  korisnik_servisa ){
-		return korisnik_servisaRepository.save(korisnik_servisa );
+		return korisnik_servisaRepository.save(korisnik_servisa);
 	}
 	
 	public void delete(Korisnik_servisa korisnik_servisa){
 		 korisnik_servisaRepository.delete(korisnik_servisa);
 	}
+	
+	public void remove(Long id_korisnik_servisa) {
+		korisnik_servisaRepository.delete(id_korisnik_servisa);
+	}
+	
 }

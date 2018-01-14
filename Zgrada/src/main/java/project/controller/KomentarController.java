@@ -19,6 +19,7 @@ import project.model.Korisnik_servisa;
 import project.model.Kvar;
 import project.repository.KorisnikServisaRepository;
 import project.service.KomentarService;
+import project.service.Korisnik_servisaService;
 import project.service.KvarService;
 
 @RestController
@@ -32,7 +33,7 @@ public class KomentarController {
 	KvarService kvarService;
 	
 	@Autowired
-	KorisnikServisaRepository korisnik_servisaService;
+	Korisnik_servisaService korisnik_servisaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<KomentarDto>> getAllNotifications() {
