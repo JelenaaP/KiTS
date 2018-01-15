@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import project.dto.Korisnik_servisaDto;
 import project.dto.SednicaDto;
 import project.dto.StavkaDto;
 import project.dto.ZapisnikDto;
@@ -144,13 +145,13 @@ public class SednicaController {
 			Zapisnik zapisnik = sednica.getZapisnik();
 			
 			ZapisnikDto zapisnikDto = new ZapisnikDto();
-			zapisnikDto.getId_zapisnik();
-			zapisnikDto.getOpis();
-			zapisnikDto.getDat_kreiranja();
-			zapisnikDto.getKreator();
-			zapisnikDto.getSednica();
-			zapisnikDto.getZgrada();
-		
+			
+			zapisnikDto.setId_zapisnik(zapisnik.getId_zapisnik());
+			zapisnikDto.setOpis(zapisnik.getOpis());
+			zapisnikDto.setDat_kreiranja(zapisnik.getDat_kreiranja());
+			zapisnikDto.setKreator(new Korisnik_servisaDto(zapisnik.getKreator()));
+			zapisnikDto.setSednica(new SednicaDto(zapisnik.getSednica()));
+			
 			return new ResponseEntity<>(zapisnikDto, HttpStatus.OK);
 	
 		}
