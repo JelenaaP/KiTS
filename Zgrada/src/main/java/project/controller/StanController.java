@@ -2,7 +2,6 @@ package project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.dto.StanDto;
-import project.dto.StavkaDto;
 import project.model.Korisnik_servisa;
-import project.model.Sednica;
 import project.model.Stan;
-import project.model.Stavka;
 import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 import project.service.StanService;
@@ -39,7 +35,7 @@ public class StanController {
 	ZgradaService zgradaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
-	public ResponseEntity<List<StanDto>> getAllApartments() {
+	public ResponseEntity<List<StanDto>> getAllStanovi() {
 		List<Stan> stanovi = stanService.findAll();
 		//konvertuje u DTO
 		List<StanDto> stanDto = new ArrayList<>();
@@ -50,8 +46,8 @@ public class StanController {
 	}
 	
 	@RequestMapping(value="/findAdresa", method = RequestMethod.GET)
-	public ResponseEntity<List<StanDto>> getAllApartmentsByAddress(@RequestParam String adresa) {
-		List<Stan> stanovi = stanService.findAllByAddresa(adresa);
+	public ResponseEntity<List<StanDto>> getStanoviByAdresa(@RequestParam String adresa) {
+		List<Stan> stanovi = stanService.findAllByAdresa(adresa);
 		//convert buildings to DTOs
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s : stanovi) {
@@ -61,7 +57,7 @@ public class StanController {
 	}
 	
 	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
-	public ResponseEntity<List<StanDto>> apartmentsByOwner(@RequestParam String vlasnik) {
+	public ResponseEntity<List<StanDto>> getStanoviByVlasnik(@RequestParam String vlasnik) {
 		List<Stan> stanovi = stanService.findAllByVlasnik(vlasnik);
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s : stanovi) {
@@ -72,19 +68,19 @@ public class StanController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<StanDto> createApartment(@RequestBody StanDto stanDto) {
+	public ResponseEntity<StanDto> createStanovi(@RequestBody StanDto stanDto) {
 		if(stanDto.getAdresa()==null||stanDto.getZgrada()==null)
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Stan adresa = stanService.findOneByAddresa(stanDto.getAdresa());
-		Zgrada zgrada = zgradaService.findOneById_zgrada(stanDto.getZgrada().getId_zgrada());
+		Stan adresa = stanService.findByAdresa(stanDto.getAdresa());
+		Zgrada zgrada = zgradaService.findOne(stanDto.getZgrada().getId_zgrada());
 		
 		
 		if (adresa == null || zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByKoris_ime(stanDto.getVlasnik().getKoris_ime());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKoris_ime(stanDto.getVlasnik().getKoris_ime());
 		
 		Stan stan = new Stan();
 		stan.setAdresa(stanDto.getAdresa());
@@ -98,9 +94,9 @@ public class StanController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
-	public ResponseEntity<StanDto> updateApartments(@RequestBody StanDto stanDto) {
+	public ResponseEntity<StanDto> updateStanovi(@RequestBody StanDto stanDto) {
 		// a building must exist
-		Stan stan = stanService.findOneById_stanovi(stanDto.getId_stanovi());
+		Stan stan = stanService.findOne(stanDto.getId_stanovi());
 		if (stan == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -116,14 +112,13 @@ public class StanController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_stanovi}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteApartments(@PathVariable Long id_stanovi) {
-		Stan stan = stanService.findOneById_stanovi(id_stanovi);
+	public ResponseEntity<Void> deleteStanovi(@PathVariable Long id_stanovi) {
+		Stan stan = stanService.findOne(id_stanovi);
 		if (stan != null) {
-			stanService.delete(stan);
+			stanService.delete(id_stanovi);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
 }

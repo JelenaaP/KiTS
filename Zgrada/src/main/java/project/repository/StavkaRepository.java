@@ -8,8 +8,6 @@ import project.model.Stavka;
 
 public interface StavkaRepository extends JpaRepository<Stavka, Long> {
 
-	public List<Stavka> findAllBySednica(String sednica);
+	public List<Stavka> findBySednica(String sednica);
 	public List<Stavka> findByKreator(String kreator);
-	public Stavka findById_stavke(Long id_stavke);
-	
 }

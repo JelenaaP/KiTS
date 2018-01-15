@@ -19,31 +19,31 @@ public class ZapisnikService {
 		return zapisnikRepository.findBySednica(sednica);
 	}
 	
-	public Zapisnik findAllByDat_kreiranja(Date dat_kreiranja) {
-		return zapisnikRepository.findOneByDat_kreiranja(dat_kreiranja);
+	public Zapisnik findByDat_kreiranja(Date dat_kreiranja) {
+		return zapisnikRepository.findByDat_kreiranja(dat_kreiranja);
 	}
 	
-	public List<Zapisnik> findAllByKreator(String kreator){
-		return zapisnikRepository.findAllByKreator(kreator);
+	public List<Zapisnik> findByKreator(String kreator){
+		return zapisnikRepository.findByKreator(kreator);
 	}
 	
-	public List<Zapisnik> findAllByZgrada(String zgrada){
-		return zapisnikRepository.findAllByZgrada(zgrada);
+	public List<Zapisnik> findByZgrada(String zgrada){
+		return zapisnikRepository.findByZgrada(zgrada);
 	}
 	
 	public Zapisnik save(Zapisnik zapisnik){
 		return zapisnikRepository.save(zapisnik);
 	}
 	
-	public void delete(Zapisnik zapisnik){
-		zapisnikRepository.delete(zapisnik);
+	public void delete(Long id_zapisnik){
+		zapisnikRepository.delete(id_zapisnik);
 	}
 
 	public List<Zapisnik> findAll() {
 		return zapisnikRepository.findAll();
 	}
 
-	public Zapisnik findOneById_zapisnik(Long id_zapisnik) {
-		return zapisnikRepository.findOneById_zapisnik(id_zapisnik);
+	public Zapisnik findOne(Long id_zapisnik) {
+		return zapisnikRepository.findOne(id_zapisnik);
 	}
 }

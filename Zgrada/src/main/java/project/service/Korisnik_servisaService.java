@@ -8,19 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import project.model.Korisnik_servisa;
-import project.repository.KorisnikServisaRepository;
-
+import project.repository.Korisnik_servisaRepository;
 
 @Service
 public class Korisnik_servisaService {
 	@Autowired
-	private KorisnikServisaRepository korisnik_servisaRepository;
+	private Korisnik_servisaRepository korisnik_servisaRepository;
 	
-	public Korisnik_servisa findOneByKoris_ime(String koris_ime) {
-		return korisnik_servisaRepository.findOneByKoris_ime(koris_ime);
+	public Korisnik_servisa findByKoris_ime(String koris_ime) {
+		return korisnik_servisaRepository.findByKoris_ime(koris_ime);
 	}
-	public List<Korisnik_servisa> findAllByIme(String ime){
-		return korisnik_servisaRepository.findAllByIme(ime);
+	public List<Korisnik_servisa> findByIme(String ime){
+		return korisnik_servisaRepository.findByIme(ime);
 	}
 	
 	public Korisnik_servisa findOne(Long id_korisnik_servisa){
@@ -39,12 +38,7 @@ public class Korisnik_servisaService {
 		return korisnik_servisaRepository.save(korisnik_servisa);
 	}
 	
-	public void delete(Korisnik_servisa korisnik_servisa){
-		 korisnik_servisaRepository.delete(korisnik_servisa);
-	}
-	
-	public void remove(Long id_korisnik_servisa) {
+	public void delete(Long id_korisnik_servisa) {
 		korisnik_servisaRepository.delete(id_korisnik_servisa);
-	}
-	
+	}	
 }

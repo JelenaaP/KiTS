@@ -39,7 +39,7 @@ public class KvarController {
 	Korisnik_servisaService korisnik_servisaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> getAllFailures() {
+	public ResponseEntity<List<KvarDto>> getAllKvar() {
 		List<Kvar> kvar = kvarService.findAll();
 		//convert failures to DTOs
 		List<KvarDto> kvarDto = new ArrayList<>();
@@ -50,8 +50,8 @@ public class KvarController {
 	}
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> failuresByBulding(@RequestParam String zgrada) {
-		List<Kvar> kvarovi = kvarService.findAllByZgrada(zgrada);
+	public ResponseEntity<List<KvarDto>> getKvarByZgrada(@RequestParam String zgrada) {
+		List<Kvar> kvarovi = kvarService.findByZgrada(zgrada);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar k : kvarovi) {
 			kvaroviDto.add(new KvarDto(k));
@@ -60,8 +60,8 @@ public class KvarController {
 		}
 	
 	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> buildingsByOwner(@RequestParam String kreator) {
-		List<Kvar> kvarovi = kvarService.findAllByKreator(kreator);
+	public ResponseEntity<List<KvarDto>> getKvarByKreator(@RequestParam String kreator) {
+		List<Kvar> kvarovi = kvarService.findByKreator(kreator);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar z : kvarovi) {
 			kvaroviDto.add(new KvarDto(z));
@@ -71,12 +71,12 @@ public class KvarController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<KvarDto> createFailure(@RequestBody KvarDto kvarDto) {
+	public ResponseEntity<KvarDto> createKvar(@RequestBody KvarDto kvarDto) {
 		if(kvarDto.getZgrada()==null)
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOneById_zgrada(kvarDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(kvarDto.getZgrada().getId_zgrada());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -96,9 +96,9 @@ public class KvarController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
-	public ResponseEntity<KvarDto> updateFailures(@RequestBody KvarDto kvarDto) {
+	public ResponseEntity<KvarDto> updateKvar(@RequestBody KvarDto kvarDto) {
 		// a building must exist
-		Kvar kvar = kvarService.findOneById_kvar(kvarDto.getId_kvar());
+		Kvar kvar = kvarService.findOne(kvarDto.getId_kvar());
 		if (kvar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -116,10 +116,10 @@ public class KvarController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_kvar}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteFailures(@PathVariable Long id_kvar) {
-		Kvar kvar = kvarService.findOneById_kvar(id_kvar);
+	public ResponseEntity<Void> deleteKvar(@PathVariable Long id_kvar) {
+		Kvar kvar = kvarService.findOne(id_kvar);
 		if (kvar != null) {
-			kvarService.delete(kvar);
+			kvarService.delete(id_kvar);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -127,9 +127,8 @@ public class KvarController {
 	}
 	
 	@RequestMapping(value = "/{kvarId_kvar}/komentar", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> getKvarKomentar(
-			@PathVariable Long kvarId_kvar) {
-		Kvar kvar = kvarService.findOneById_kvar(kvarId_kvar);
+	public ResponseEntity<List<KomentarDto>> getKvarKomentar(@PathVariable Long kvarId_kvar) {
+		Kvar kvar = kvarService.findOne(kvarId_kvar);
 		Set<Komentar> komentari = kvar.getKomentar();
 		List<KomentarDto> komentariDto = new ArrayList<>();
 		for (Komentar k : komentari) {

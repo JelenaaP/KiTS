@@ -17,22 +17,22 @@ public class ZgradaService {
 		return zgradaRepository.findAll();
 	}
 		
-	public Zgrada findOneById_zgrada(Long id_zgrada) {
-		return zgradaRepository.findOneById_zgrada(id_zgrada);
+	public Zgrada findOne(Long id_zgrada) {
+		return zgradaRepository.findOne(id_zgrada);
 	}
 
-	public List<Zgrada> findAllByVlasnik(String vlasnik) {
-		return zgradaRepository.findAllByVlasnik(vlasnik);
+	public List<Zgrada> findByVlasnik(String vlasnik) {
+		return zgradaRepository.findByVlasnik(vlasnik);
 	}
 
-	public List<Zgrada> findAllByAdresa(String adresa) {
-		return zgradaRepository.findAllByAdresa(adresa);
+	public List<Zgrada> findByAdresa(String adresa) {
+		return zgradaRepository.findByAdresa(adresa);
 	}
 	public Zgrada findOneByAdresa(String adresa) {
 		return zgradaRepository.findOneByAdresa(adresa);
 	}
-	public void delete(Zgrada zgrada) {
-		zgradaRepository.delete(zgrada);
+	public void delete(Long id_zgrada) {
+		zgradaRepository.delete(id_zgrada);
 	}
 		
 	public Zgrada save(Zgrada zgrada) {

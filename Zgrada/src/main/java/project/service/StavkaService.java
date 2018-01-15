@@ -15,16 +15,16 @@ public class StavkaService {
 	@Autowired
 	private StavkaRepository stavkaRepository;
 	
-	public List<Stavka> findAllBySednica(String sednica){
-		return stavkaRepository.findAllBySednica(sednica);
+	public List<Stavka> findBySednica(String sednica){
+		return stavkaRepository.findBySednica(sednica);
 	}
 	
 	public List<Stavka> findByKreator(String kreator){
 		return stavkaRepository.findByKreator(kreator);
 	}
 	
-	public Stavka findById_stavke(Long id_stavke){
-		return stavkaRepository.findById_stavke(id_stavke);
+	public Stavka findOne(Long id_stavke){
+		return stavkaRepository.findOne(id_stavke);
 	}
 	
 	public List<Stavka> findAll(){
@@ -35,7 +35,7 @@ public class StavkaService {
 		return stavkaRepository.save(stavka);
 	}
 	
-	public void delete(Stavka stavka){
-		stavkaRepository.delete(stavka);
+	public void delete(Long id_stavke){
+		stavkaRepository.delete(id_stavke);
 	}
 }

@@ -10,7 +10,4 @@ public interface KomentarRepository extends JpaRepository<Komentar, Long> {
 
 	public List<Komentar> findByKvar(String kvar);
 	public List<Komentar> findByKreator(String kreator);
-	public Komentar findOneById_komentar(Long id_komentar);
-
-	
 }

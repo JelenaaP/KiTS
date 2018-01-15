@@ -6,7 +6,7 @@ import project.model.Firma;
 
 public interface FirmaRepository extends JpaRepository<Firma,Long> {
 	
-	public Firma findOneByIme(String ime);
-	public Firma findOneByAdresa(String adresa);
+	public Firma findByIme(String ime);
+	public Firma findByAdresa(String adresa);
 	public Firma findByRadnik(String radnik);
 }

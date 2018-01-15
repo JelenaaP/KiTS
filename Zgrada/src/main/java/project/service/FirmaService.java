@@ -16,16 +16,16 @@ public class FirmaService {
 	@Autowired
 	private FirmaRepository firmaRepository;
 	
-	public Firma findAllByIme(String ime){
-		return firmaRepository.findOneByIme(ime);
+	public Firma findByIme(String ime){
+		return firmaRepository.findByIme(ime);
 	}
 	
-	public Firma findOneById_firme(Long id_firme){
+	public Firma findOne(Long id_firme){
 		return firmaRepository.findOne(id_firme);
 	}
 	
-	public Firma findOneByAdress(String adresa) {
-		return firmaRepository.findOneByAdresa(adresa);
+	public Firma findByAdresa(String adresa) {
+		return firmaRepository.findByAdresa(adresa);
 	}
 	
 	public Firma findByRadnik(String radnik){
@@ -40,7 +40,7 @@ public class FirmaService {
 		return firmaRepository.save(firma);
 	}
 	
-	public void delete(Firma firma){
-		 firmaRepository.delete(firma);
+	public void delete(Long id_firme){
+		 firmaRepository.delete(id_firme);
 	}	
 }

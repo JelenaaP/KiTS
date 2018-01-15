@@ -2,7 +2,6 @@ package project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import project.dto.SednicaDto;
 import project.dto.StavkaDto;
-import project.dto.ZapisnikDto;
 import project.model.Korisnik_servisa;
 import project.model.Sednica;
 import project.model.Stavka;
-import project.model.Zapisnik;
-import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 import project.service.SednicaService;
 import project.service.StavkaService;
@@ -57,7 +52,7 @@ public class StavkaController {
 		
 		//pretrazivanje po kreatoru stavke
 		@RequestMapping(value="/findKreator", method = RequestMethod.GET)
-		public ResponseEntity<List<StavkaDto>> getAllByKreator(@RequestParam String kreator) {
+		public ResponseEntity<List<StavkaDto>> getStavkaByKreator(@RequestParam String kreator) {
 			List<Stavka> stavka = stavkaService.findByKreator(kreator);
 			List<StavkaDto> stavkaDto = new ArrayList<>();
 			for (Stavka s : stavka) {
@@ -68,8 +63,8 @@ public class StavkaController {
 		
 		//pretrazivanje po sednici na kojoj je napravljena stavka
 		@RequestMapping(value = "/findSednica", method = RequestMethod.GET)
-		public ResponseEntity<List<StavkaDto>> stavkaBySednica(@RequestParam String sednica) {
-			List<Stavka> stavka = stavkaService.findAllBySednica(sednica);
+		public ResponseEntity<List<StavkaDto>> getStavkaBySednica(@RequestParam String sednica) {
+			List<Stavka> stavka = stavkaService.findBySednica(sednica);
 			List<StavkaDto> stavkaDto = new ArrayList<>();
 			for (Stavka s : stavka) {
 				stavkaDto.add(new StavkaDto(s));
@@ -84,12 +79,12 @@ public class StavkaController {
 			{
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-			Sednica sednica = sednicaService.findOneById_sednice(stavkaDto.getSednica().getId_sednice());
+			Sednica sednica = sednicaService.findOne(stavkaDto.getSednica().getId_sednice());
 			
 			if (sednica == null) {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-			Korisnik_servisa kreator = korisnik_servisaService.findOneByKoris_ime(stavkaDto.getKreator().getKoris_ime());
+			Korisnik_servisa kreator = korisnik_servisaService.findByKoris_ime(stavkaDto.getKreator().getKoris_ime());
 			
 			Stavka stavka = new Stavka();
 			stavka.setKreator(kreator);
@@ -105,7 +100,7 @@ public class StavkaController {
 		@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 		public ResponseEntity<StavkaDto> updateStavka(@RequestBody StavkaDto stavkaDto) {
 			
-			Stavka stavka = stavkaService.findById_stavke(stavkaDto.getId_stavke());
+			Stavka stavka = stavkaService.findOne(stavkaDto.getId_stavke());
 			if (stavka == null) {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -117,9 +112,9 @@ public class StavkaController {
 		//brisanje stavke
 		@RequestMapping(value = "/{id_stavke}", method = RequestMethod.DELETE)
 		public ResponseEntity<Void> deleteStavka(@PathVariable Long id_stavke) {
-			Stavka stavka = stavkaService.findById_stavke(id_stavke);
+			Stavka stavka = stavkaService.findOne(id_stavke);
 			if (stavka != null) {
-				stavkaService.delete(stavka);
+				stavkaService.delete(id_stavke);
 				return new ResponseEntity<>(HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);

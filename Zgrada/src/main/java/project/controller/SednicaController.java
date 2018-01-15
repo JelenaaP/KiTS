@@ -54,8 +54,8 @@ public class SednicaController {
 	}
 	//pretrazivanje po kreatoru sednice
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<SednicaDto>> getAllSednicaByCreator(@RequestParam String kreator) {
-		List<Sednica> sednice = sednicaService.findAllByKreator(kreator);
+	public ResponseEntity<List<SednicaDto>> getSednicaByKreator(@RequestParam String kreator) {
+		List<Sednica> sednice = sednicaService.findByKreator(kreator);
 		List<SednicaDto> sedniceDto = new ArrayList<>();
 		for (Sednica s : sednice) {
 			sedniceDto.add(new SednicaDto(s));
@@ -64,8 +64,8 @@ public class SednicaController {
 	}
 	//pretrazivanje po zgradi u kojoj se odrzava sednica
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
-	public ResponseEntity<List<SednicaDto>> sednicaByZgrada(@RequestParam String zgrada) {
-		List<Sednica> sednice = sednicaService.findAllByZgrada(zgrada);
+	public ResponseEntity<List<SednicaDto>> getSednicaByZgrada(@RequestParam String zgrada) {
+		List<Sednica> sednice = sednicaService.findByZgrada(zgrada);
 		List<SednicaDto> sedniceDto = new ArrayList<>();
 		for (Sednica s : sednice) {
 			sedniceDto.add(new SednicaDto(s));
@@ -79,12 +79,12 @@ public class SednicaController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOneById_zgrada(sednicaDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(sednicaDto.getZgrada().getId_zgrada());
 		
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findOneByKoris_ime(sednicaDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findByKoris_ime(sednicaDto.getKreator().getKoris_ime());
 		
 		Sednica sednica = new Sednica();
 		sednica.setKreator(kreator);
@@ -100,7 +100,7 @@ public class SednicaController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<SednicaDto> updateSednica(@RequestBody SednicaDto sednicaDto) {
 		
-		Sednica sednica = sednicaService.findOneById_sednice(sednicaDto.getId_sednice());
+		Sednica sednica = sednicaService.findOne(sednicaDto.getId_sednice());
 		if (sednica == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -112,9 +112,9 @@ public class SednicaController {
 	//brisanje sednice
 	@RequestMapping(value = "/{id_sednice}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteSednica(@PathVariable Long id_sednice) {
-		Sednica sednica = sednicaService.findOneById_sednice(id_sednice);
+		Sednica sednica = sednicaService.findOne(id_sednice);
 		if (sednica != null) {
-			sednicaService.delete(sednica);
+			sednicaService.delete(id_sednice);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -124,7 +124,7 @@ public class SednicaController {
 	@RequestMapping(value = "/{sednicaId_sednice}/stavka", method = RequestMethod.GET)
 	public ResponseEntity<List<StavkaDto>> getSednicaStavke(
 			@PathVariable Long sednicaId_sednice) {
-		Sednica sednica = sednicaService.findOneById_sednice(sednicaId_sednice);
+		Sednica sednica = sednicaService.findOne(sednicaId_sednice);
 		Set<Stavka> stavke = sednica.getStavka();
 		List<StavkaDto> stavkeDto = new ArrayList<>();
 		for (Stavka s: stavke) {
@@ -139,10 +139,10 @@ public class SednicaController {
 	}
 	//izlistavanje zapisnika sa sednice
 		@RequestMapping(value = "/{sednicaId_sednice}/zapisnik", method = RequestMethod.GET)
-		public ResponseEntity<ZapisnikDto> getSednicaZapisnik(
-				@PathVariable Long sednicaId_sednice) {
-			Sednica sednica = sednicaService.findOneById_sednice(sednicaId_sednice);
+		public ResponseEntity<ZapisnikDto> getSednicaZapisnik(@PathVariable Long sednicaId_sednice) {
+			Sednica sednica = sednicaService.findOne(sednicaId_sednice);
 			Zapisnik zapisnik = sednica.getZapisnik();
+			
 			ZapisnikDto zapisnikDto = new ZapisnikDto();
 			zapisnikDto.getId_zapisnik();
 			zapisnikDto.getOpis();

@@ -40,7 +40,7 @@ public class FirmaController {
 	KvarService kvarService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
-	public ResponseEntity<List<FirmaDto>> getAll() {
+	public ResponseEntity<List<FirmaDto>> getAllFirma() {
 		List<Firma> firme = firmaService.findAll();
 		//convert buildings to DTOs
 		List<FirmaDto> firmeDto = new ArrayList<>();
@@ -52,12 +52,12 @@ public class FirmaController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<FirmaDto> create(@RequestBody FirmaDto firmaDto) {
+	public ResponseEntity<FirmaDto> createFirma(@RequestBody FirmaDto firmaDto) {
 		if(firmaDto.getVlasnik()==null)
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByKoris_ime(firmaDto.getVlasnik().getKoris_ime());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKoris_ime(firmaDto.getVlasnik().getKoris_ime());
 		
 		if (vlasnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class FirmaController {
 	}
 	
 	/*@RequestMapping(value = "/findRadnik", method = RequestMethod.GET)
-	public ResponseEntity<List<FirmaDto>> findByRadnik(@RequestParam String radnik) {
+	public ResponseEntity<List<FirmaDto>> getFirmaByRadnik(@RequestParam String radnik) {
 		List<Firma> firma = firmaService.findAllByIme(radnik);
 		List<FirmaDto> firmaDto = new ArrayList<>();
 		for (Firma f : firma) {
@@ -89,9 +89,9 @@ public class FirmaController {
 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
-	public ResponseEntity<FirmaDto> update(@RequestBody FirmaDto firmaDto) {
+	public ResponseEntity<FirmaDto> updateFirma(@RequestBody FirmaDto firmaDto) {
 		// a building must exist
-		Firma firma = firmaService.findOneById_firme(firmaDto.getId_firme());
+		Firma firma = firmaService.findOne(firmaDto.getId_firme());
 		if (firma == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -106,15 +106,13 @@ public class FirmaController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_firme}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Long id_firme) {
-		Firma firma = firmaService.findOneById_firme(id_firme);
+	public ResponseEntity<Void> deleteFirma(@PathVariable Long id_firme) {
+		Firma firma = firmaService.findOne(id_firme);
 		if (firma != null) {
-			firmaService.delete(firma);
+			firmaService.delete(id_firme);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-
 }

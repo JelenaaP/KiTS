@@ -2,7 +2,6 @@ package project.dto;
 
 import java.sql.Date;
 
-import project.model.Sednica;
 import project.model.Stavka;
 
 public class StavkaDto {

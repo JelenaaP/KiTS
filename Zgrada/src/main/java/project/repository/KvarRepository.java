@@ -9,19 +9,17 @@ import project.model.Kvar;
 
 public interface KvarRepository extends JpaRepository<Kvar,Long>{
 
-	Kvar findOneByIme(String ime);
+	Kvar findByIme(String ime);
 	
-	Kvar findOneByDat_kreiranja(Date dat_kreiranja);
+	Kvar findByDat_kreiranja(Date dat_kreiranja);
 
-	Kvar findOneByDat_zakazivanja(Date dat_zakazivanja);
+	Kvar findByDat_zakazivanja(Date dat_zakazivanja);
 
-	Kvar findOneByDat_popravke(Date dat_popravke);
+	Kvar findByDat_popravke(Date dat_popravke);
 
-	Kvar findAllByRadnik(String radnik);
+	Kvar findByRadnik(String radnik);
 
-	List<Kvar> findAllByZgrada(String zgrada);
-
-	Kvar findOneById_kvar(Long id_kvar);
+	List<Kvar> findByZgrada(String zgrada);
 	
-	List<Kvar> findAllByKreator (String kreator);
+	List<Kvar> findByKreator (String kreator);
 }

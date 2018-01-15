@@ -38,7 +38,7 @@ public class ZgradaController {
 	Korisnik_servisaService korisnik_servisaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
-	public ResponseEntity<List<ZgradaDto>> getAllBuildings() {
+	public ResponseEntity<List<ZgradaDto>> getAll() {
 		List<Zgrada> zgrade = zgradaService.findAll();
 		//convert buildings to DTOs
 		List<ZgradaDto> zgradeDto = new ArrayList<>();
@@ -49,8 +49,8 @@ public class ZgradaController {
 	}
 	
 	@RequestMapping(value="/findAdresa", method = RequestMethod.GET)
-	public ResponseEntity<List<ZgradaDto>> getAllBuildingsByAddress(@RequestParam String adresa) {
-		List<Zgrada> zgrade = zgradaService.findAllByAdresa(adresa);
+	public ResponseEntity<List<ZgradaDto>> getZgradaByAdresa(@RequestParam String adresa) {
+		List<Zgrada> zgrade = zgradaService.findByAdresa(adresa);
 		//convert buildings to DTOs
 		List<ZgradaDto> zgradeDto = new ArrayList<>();
 		for (Zgrada z : zgrade) {
@@ -60,8 +60,8 @@ public class ZgradaController {
 	}
 	
 	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
-	public ResponseEntity<List<ZgradaDto>> buildingsByOwner(@RequestParam String vlasnik) {
-		List<Zgrada> zgrade = zgradaService.findAllByVlasnik(vlasnik);
+	public ResponseEntity<List<ZgradaDto>> getZgradaByVlasnik(@RequestParam String vlasnik) {
+		List<Zgrada> zgrade = zgradaService.findByVlasnik(vlasnik);
 		List<ZgradaDto> zgradeDto = new ArrayList<>();
 		for (Zgrada z : zgrade) {
 			zgradeDto.add(new ZgradaDto(z));
@@ -71,13 +71,13 @@ public class ZgradaController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<ZgradaDto> createBuilding(@RequestBody ZgradaDto zgradaDto) {
+	public ResponseEntity<ZgradaDto> createZgrada(@RequestBody ZgradaDto zgradaDto) {
 		if(zgradaDto.getAdresa()==null||zgradaDto.getVlasnik()==null)
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Zgrada adresa = zgradaService.findOneByAdresa(zgradaDto.getAdresa());
-		Korisnik_servisa vlasnik = korisnik_servisaService.findOneByKoris_ime(zgradaDto.getVlasnik().getIme());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKoris_ime(zgradaDto.getVlasnik().getIme());
 		
 		if (adresa == null || vlasnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -96,9 +96,9 @@ public class ZgradaController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
-	public ResponseEntity<ZgradaDto> updateBuilding(@RequestBody ZgradaDto zgradaDto) {
+	public ResponseEntity<ZgradaDto> updateZgrada(@RequestBody ZgradaDto zgradaDto) {
 		// a building must exist
-		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaDto.getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(zgradaDto.getId_zgrada());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -114,10 +114,10 @@ public class ZgradaController {
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id_zgrada}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteBuilding(@PathVariable Long id_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById_zgrada(id_zgrada);
+	public ResponseEntity<Void> deleteZgrada(@PathVariable Long id_zgrada) {
+		Zgrada zgrada = zgradaService.findOne(id_zgrada);
 		if (zgrada != null) {
-			zgradaService.delete(zgrada);
+			zgradaService.delete(id_zgrada);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -127,7 +127,7 @@ public class ZgradaController {
 	@RequestMapping(value = "/{zgradaId_zgrada}/stanovi", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> getZgradaStanovi(
 			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaId_zgrada);
+		Zgrada zgrada = zgradaService.findOne(zgradaId_zgrada);
 		Set<Stan> stanovi = zgrada.getStan();
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s: stanovi) {
@@ -146,7 +146,7 @@ public class ZgradaController {
 	@RequestMapping(value = "/{zgradaId_zgrada}/kvar", method = RequestMethod.GET)
 	public ResponseEntity<List<KvarDto>> getZgradaKvar(
 			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaId_zgrada);
+		Zgrada zgrada = zgradaService.findOne(zgradaId_zgrada);
 		Set<Kvar> kvarovi = zgrada.getKvar();
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar o : kvarovi) {
@@ -169,7 +169,7 @@ public class ZgradaController {
 	@RequestMapping(value = "/{zgradaId_zgrada}/obavestenje", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> getZgradaObavestenje(
 			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOneById_zgrada(zgradaId_zgrada);
+		Zgrada zgrada = zgradaService.findOne(zgradaId_zgrada);
 		Set<Obavestenje> obavestenja = zgrada.getObavestenje();
 		List<ObavestenjeDto> obavestenjaDto = new ArrayList<>();
 		for (Obavestenje o : obavestenja) {

@@ -20,8 +20,8 @@ public class KomentarService {
 		return komentarRepository.findByKreator(kreator);
 	}
 	
-	public Komentar findOneById_komentar(Long id_komentar){
-		return komentarRepository.findOneById_komentar(id_komentar);
+	public Komentar findOne(Long id_komentar){
+		return komentarRepository.findOne(id_komentar);
 	}
 
 	public List<Komentar> findAll(){
@@ -32,7 +32,7 @@ public class KomentarService {
 		return komentarRepository.save(komentar);
 	}
 	
-	public void delete(Komentar komentar){
-		 komentarRepository.delete(komentar);
+	public void delete(Long id_komentar){
+		 komentarRepository.delete(id_komentar);
 	}
 }
