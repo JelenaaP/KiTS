@@ -1,6 +1,6 @@
 package project.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 import project.model.Stavka;
 
