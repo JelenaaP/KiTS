@@ -6,18 +6,18 @@ import project.model.Obavestenje;
 
 public class ObavestenjeDto {
 	
-	private Long id_obavestenje;
+	private Long id;
 	private String ime;
 	private String opis;
-	private Date dat_kreiranja;
+	private Date datKreiranja;
 	private Korisnik_servisaDto kreator;
 	private ZgradaDto zgrada;
 	
-	public Long getId_obavestenje() {
-		return id_obavestenje;
+	public Long getId() {
+		return id;
 	}
-	public void setId_obavestenje(Long id_obavestenje) {
-		this.id_obavestenje = id_obavestenje;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -31,11 +31,11 @@ public class ObavestenjeDto {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
 	public Korisnik_servisaDto getKreator() {
 		return kreator;
@@ -52,20 +52,20 @@ public class ObavestenjeDto {
 	
 	public ObavestenjeDto(){};
 	
-	public ObavestenjeDto(Long id_obavestenje, String ime, String opis, Date dat_kreiranja,
+	public ObavestenjeDto(Long id, String ime, String opis, Date datKreiranja,
 			Korisnik_servisaDto kreator, ZgradaDto zgrada) {
 		super();
-		this.id_obavestenje = id_obavestenje;
+		this.id = id;
 		this.ime = ime;
 		this.opis = opis;
-		this.dat_kreiranja = dat_kreiranja;
+		this.datKreiranja = datKreiranja;
 		this.kreator = kreator;
 		this.zgrada = zgrada;
 	}
 	public ObavestenjeDto(Obavestenje obavestenje) {
-		id_obavestenje = obavestenje.getId_obavestenje();
+		id = obavestenje.getId();
 		ime = obavestenje.getIme();
-		dat_kreiranja = obavestenje.getDat_kreiranja();
+		datKreiranja = obavestenje.getDatKreiranja();
 		kreator = new Korisnik_servisaDto(obavestenje.getKreator());
 		zgrada = new ZgradaDto(obavestenje.getZgrada());		
 	}

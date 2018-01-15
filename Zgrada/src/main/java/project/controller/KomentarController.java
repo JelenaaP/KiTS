@@ -72,15 +72,15 @@ public class KomentarController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Kvar kvar = kvarService.findOne(komentarDto.getKvar().getId_kvar());
+		Kvar kvar = kvarService.findOne(komentarDto.getKvar().getId());
 		if (kvar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findByKoris_ime(komentarDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findByKorisIme(komentarDto.getKreator().getKorisIme());
 		
 		Komentar komentar = new Komentar();
 		komentar.setText(komentarDto.getText());
-		komentar.setDat_kreiranja(komentarDto.getDat_kreiranja());
+		komentar.setDatKreiranja(komentarDto.getDatKreiranja());
 		komentar.setKreator(kreator);
 		komentar.setKvar(kvar);
 		
@@ -91,13 +91,13 @@ public class KomentarController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<KomentarDto> updateKomentar(@RequestBody KomentarDto komentarDto) {
-		Komentar komentar = komentarService.findOne(komentarDto.getId_komentar());
+		Komentar komentar = komentarService.findOne(komentarDto.getId());
 		if (komentar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building on
 		
-		komentar.setDat_kreiranja(komentarDto.getDat_kreiranja());
+		komentar.setDatKreiranja(komentarDto.getDatKreiranja());
 		komentar.setText(komentarDto.getText());
 		
 		komentar = komentarService.save(komentar);
@@ -105,11 +105,11 @@ public class KomentarController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id_komentar}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteKomentar(@PathVariable Long id_komentar) {
-		Komentar komentar = komentarService.findOne(id_komentar);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteKomentar(@PathVariable Long id) {
+		Komentar komentar = komentarService.findOne(id);
 		if (komentar != null) {
-			komentarService.delete(id_komentar);
+			komentarService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

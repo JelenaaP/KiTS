@@ -11,15 +11,15 @@ public interface KvarRepository extends JpaRepository<Kvar,Long>{
 
 	Kvar findByIme(String ime);
 	
-	Kvar findByDat_kreiranja(Date dat_kreiranja);
+	Kvar findByDatKreiranja(Date datKreiranja);
 
-	Kvar findByDat_zakazivanja(Date dat_zakazivanja);
+	Kvar findByDatZakazivanja(Date datZakazivanja);
 
-	Kvar findByDat_popravke(Date dat_popravke);
+	Kvar findByDatPopravke(Date datPopravke);
 
 	Kvar findByRadnik(String radnik);
 
 	List<Kvar> findByZgrada(String zgrada);
-	
-	List<Kvar> findByKreator (String kreator);
+
+	List<Kvar> findByKreator(String kreator);
 }

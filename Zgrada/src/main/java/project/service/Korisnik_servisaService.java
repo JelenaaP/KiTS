@@ -15,15 +15,15 @@ public class Korisnik_servisaService {
 	@Autowired
 	private Korisnik_servisaRepository korisnik_servisaRepository;
 	
-	public Korisnik_servisa findByKoris_ime(String koris_ime) {
-		return korisnik_servisaRepository.findByKoris_ime(koris_ime);
+	public Korisnik_servisa findByKorisIme(String korisIme) {
+		return korisnik_servisaRepository.findByKorisIme(korisIme);
 	}
 	public List<Korisnik_servisa> findByIme(String ime){
 		return korisnik_servisaRepository.findByIme(ime);
 	}
 	
-	public Korisnik_servisa findOne(Long id_korisnik_servisa){
-		return korisnik_servisaRepository.findOne(id_korisnik_servisa);
+	public Korisnik_servisa findOne(Long id){
+		return korisnik_servisaRepository.findOne(id);
 	}
 	
 	public  List<Korisnik_servisa> findAll(){
@@ -38,7 +38,7 @@ public class Korisnik_servisaService {
 		return korisnik_servisaRepository.save(korisnik_servisa);
 	}
 	
-	public void delete(Long id_korisnik_servisa) {
-		korisnik_servisaRepository.delete(id_korisnik_servisa);
+	public void delete(Long id) {
+		korisnik_servisaRepository.delete(id);
 	}	
 }

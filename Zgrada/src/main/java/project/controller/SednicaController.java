@@ -80,18 +80,18 @@ public class SednicaController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOne(sednicaDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(sednicaDto.getZgrada().getId());
 		
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findByKoris_ime(sednicaDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findByKorisIme(sednicaDto.getKreator().getKorisIme());
 		
 		Sednica sednica = new Sednica();
 		sednica.setKreator(kreator);
 		sednica.setZgrada(zgrada);
-		sednica.setDat_kreiranja(sednicaDto.getDat_kreiranja());
-		sednica.setDat_zakazivanja(sednicaDto.getDat_zakazivanja());
+		sednica.setDatKreiranja(sednicaDto.getDatKreiranja());
+		sednica.setDatZakazivanja(sednicaDto.getDatZakazivanja());
 		sednica.setAktivna(sednicaDto.isAktivna());
 		
 		sednica = sednicaService.save(sednica);
@@ -101,54 +101,54 @@ public class SednicaController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<SednicaDto> updateSednica(@RequestBody SednicaDto sednicaDto) {
 		
-		Sednica sednica = sednicaService.findOne(sednicaDto.getId_sednice());
+		Sednica sednica = sednicaService.findOne(sednicaDto.getId());
 		if (sednica == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		sednica.setDat_zakazivanja(sednicaDto.getDat_zakazivanja());
+		sednica.setDatZakazivanja(sednicaDto.getDatZakazivanja());
 		sednica.setAktivna(sednicaDto.isAktivna());
 		
 		return new ResponseEntity<>(new SednicaDto(sednica),HttpStatus.OK);
 	}
 	//brisanje sednice
-	@RequestMapping(value = "/{id_sednice}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteSednica(@PathVariable Long id_sednice) {
-		Sednica sednica = sednicaService.findOne(id_sednice);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteSednica(@PathVariable Long id) {
+		Sednica sednica = sednicaService.findOne(id);
 		if (sednica != null) {
-			sednicaService.delete(id_sednice);
+			sednicaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	//izlistavanje stavki sa sednice
-	@RequestMapping(value = "/{sednicaId_sednice}/stavka", method = RequestMethod.GET)
+	@RequestMapping(value = "/{sednicaId}/stavka", method = RequestMethod.GET)
 	public ResponseEntity<List<StavkaDto>> getSednicaStavke(
-			@PathVariable Long sednicaId_sednice) {
-		Sednica sednica = sednicaService.findOne(sednicaId_sednice);
+			@PathVariable Long sednicaId) {
+		Sednica sednica = sednicaService.findOne(sednicaId);
 		Set<Stavka> stavke = sednica.getStavka();
 		List<StavkaDto> stavkeDto = new ArrayList<>();
 		for (Stavka s: stavke) {
 			StavkaDto stavkaDto = new StavkaDto();
-			stavkaDto.setId_stavke(s.getId_stavke());
+			stavkaDto.setId(s.getId());
 			stavkaDto.setIme(s.getIme());
 			stavkaDto.setOpis(s.getOpis());
-			stavkaDto.setDat_kreiranja(s.getDat_kreiranja());
+			stavkaDto.setDatKreiranja(s.getDatKreiranja());
 			stavkeDto.add(stavkaDto);
 		}
 		return new ResponseEntity<>(stavkeDto, HttpStatus.OK);
 	}
 	//izlistavanje zapisnika sa sednice
-		@RequestMapping(value = "/{sednicaId_sednice}/zapisnik", method = RequestMethod.GET)
-		public ResponseEntity<ZapisnikDto> getSednicaZapisnik(@PathVariable Long sednicaId_sednice) {
-			Sednica sednica = sednicaService.findOne(sednicaId_sednice);
+		@RequestMapping(value = "/{sednicaId}/zapisnik", method = RequestMethod.GET)
+		public ResponseEntity<ZapisnikDto> getSednicaZapisnik(@PathVariable Long sednicaId) {
+			Sednica sednica = sednicaService.findOne(sednicaId);
 			Zapisnik zapisnik = sednica.getZapisnik();
 			
 			ZapisnikDto zapisnikDto = new ZapisnikDto();
 			
-			zapisnikDto.setId_zapisnik(zapisnik.getId_zapisnik());
+			zapisnikDto.setId(zapisnik.getId());
 			zapisnikDto.setOpis(zapisnik.getOpis());
-			zapisnikDto.setDat_kreiranja(zapisnik.getDat_kreiranja());
+			zapisnikDto.setDatKreiranja(zapisnik.getDatKreiranja());
 			zapisnikDto.setKreator(new Korisnik_servisaDto(zapisnik.getKreator()));
 			zapisnikDto.setSednica(new SednicaDto(zapisnik.getSednica()));
 			

@@ -15,10 +15,10 @@ public class Zapisnik {
 
 	@Id
 	@GeneratedValue
-	private Long id_zapisnik;
+	private Long id;
 	
 	private String opis;
-	private Date dat_kreiranja;
+	private Date datKreiranja;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;//kreator koji je kreirao zapisnik
@@ -29,11 +29,12 @@ public class Zapisnik {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;//zgrada u kojoj je kreiran zapisnik
 	
-	public Long getId_zapisnik() {
-		return id_zapisnik;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setId_zapisnik(Long id_zapisnik) {
-		this.id_zapisnik = id_zapisnik;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getOpis() {
 		return opis;
@@ -41,11 +42,11 @@ public class Zapisnik {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date date) {
-		this.dat_kreiranja = date;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
 	public Korisnik_servisa getKreator() {
 		return kreator;
@@ -68,8 +69,8 @@ public class Zapisnik {
 	
 	@Override
 	public String toString() {
-		return "Zapisnik [id_zapisnik=" + id_zapisnik + ",, opis=" + opis + ","
-				+ "dat_kreiranja=" + dat_kreiranja + " kreator="+kreator+","
+		return "Zapisnik [id_zapisnik=" + id + ",, opis=" + opis + ","
+				+ "dat_kreiranja=" + datKreiranja + " kreator="+kreator+","
 						+ "zgrada=" + zgrada + "]";
 	}
 }

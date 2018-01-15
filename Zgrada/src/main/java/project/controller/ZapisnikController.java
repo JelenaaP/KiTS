@@ -63,17 +63,17 @@ public class ZapisnikController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Sednica sednica = sednicaService.findOne(zapisnikDto.getId_zapisnik());
+		Sednica sednica = sednicaService.findOne(zapisnikDto.getId());
 		
 		if (sednica == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findByKoris_ime(zapisnikDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findByKorisIme(zapisnikDto.getKreator().getKorisIme());
 		
 		Zapisnik zapisnik = new Zapisnik();
 		zapisnik.setKreator(kreator);
 		zapisnik.setOpis(zapisnikDto.getOpis());
-		zapisnik.setDat_kreiranja(zapisnikDto.getDat_kreiranja());
+		zapisnik.setDatKreiranja(zapisnikDto.getDatKreiranja());
 		zapisnik.setSednica(sednica);
 		
 		zapisnik = zapisnikService.save(zapisnik);
@@ -83,7 +83,7 @@ public class ZapisnikController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ZapisnikDto> updateZapisnik(@RequestBody ZapisnikDto zapisnikDto) {
 		// a building must exist
-		Zapisnik zapisnik = zapisnikService.findOne(zapisnikDto.getId_zapisnik());
+		Zapisnik zapisnik = zapisnikService.findOne(zapisnikDto.getId());
 		if (zapisnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -94,11 +94,11 @@ public class ZapisnikController {
 	}
 	
 	@PreAuthorize("hasRole('ZAPISNICAR')")
-	@RequestMapping(value = "/{id_zapisnik}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteZapisnik(@PathVariable Long id_zapisnik) {
-		Zapisnik zapisnik = zapisnikService.findOne(id_zapisnik);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteZapisnik(@PathVariable Long id) {
+		Zapisnik zapisnik = zapisnikService.findOne(id);
 		if (zapisnik != null) {
-			zapisnikService.delete(id_zapisnik);
+			zapisnikService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

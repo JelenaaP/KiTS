@@ -23,28 +23,28 @@ public class SednicaService {
 		return sednicaRepository.save(sednica);
 	}
 	
-	public void delete(Long id_sednice){
-		sednicaRepository.delete(id_sednice);
+	public void delete(Long id){
+		sednicaRepository.delete(id);
 	}
 	
-	public Sednica findOne(Long id_sednice){
-		return sednicaRepository.findOne(id_sednice);
+	public Sednica findOne(Long id){
+		return sednicaRepository.findOne(id);
 	}
 	
-	public Sednica findByDat_kreiranja(Date dat_kreiranja) {
-		return sednicaRepository.findByDat_kreiranja(dat_kreiranja);
+	public Sednica findByDatKreiranja(Date datKreiranja) {
+		return sednicaRepository.findByDatKreiranja(datKreiranja);
 	}
 	
-	public Sednica findByDat_zakazivanja(Date dat_zakazivanja) {
-		return sednicaRepository.findByDat_zakazivanja(dat_zakazivanja);
+	public Sednica findByDatZakazivanja(Date datZakazivanja) {
+		return sednicaRepository.findByDatZakazivanja(datZakazivanja);
 	}
 	
 	public Sednica findByAktivna(boolean aktivna){
 		return sednicaRepository.findByAktivna(aktivna);
 	}
 
-	public Sednica findById_zapisnik(Long id_zapisnik) {
-		return sednicaRepository.findById_zapisnik(id_zapisnik);
+	public Sednica findById(Long id_zapisnik) {
+		return sednicaRepository.findById(id_zapisnik);
 	}
 
 	public List<Sednica> findByKreator(String kreator) {

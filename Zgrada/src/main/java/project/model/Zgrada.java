@@ -18,12 +18,12 @@ public class Zgrada {
 	
 	@Id
 	@GeneratedValue
-	private Long id_zgrada;
+	private Long id;
 
 	private String ime;
 	private String  adresa;
-	private int br_stanova;
-	private int br_naseljenih;
+	private int brStanova;
+	private int brNaseljenih;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa vlasnik;
@@ -40,11 +40,12 @@ public class Zgrada {
 	@OneToOne(mappedBy = "predsednik_skupstine")
 	private Korisnik_servisa predsednik;
 	
-	public Long getId_zgrada() {
-		return id_zgrada;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setId_zgrada(Long id_zgrada) {
-		this.id_zgrada = id_zgrada;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -64,17 +65,17 @@ public class Zgrada {
 	public void setVlasnik(Korisnik_servisa vlasnik) {
 		this.vlasnik = vlasnik;
 	}
-	public int getBr_stanova() {
-		return br_stanova;
+	public int getBrStanova() {
+		return brStanova;
 	}
-	public void setBr_stanova(int br_stanova) {
-		this.br_stanova = br_stanova;
+	public void setBrStanova(int brStanova) {
+		this.brStanova = brStanova;
 	}
-	public int getBr_naseljenih() {
-		return br_naseljenih;
+	public int getBrNaseljenih() {
+		return brNaseljenih;
 	}
-	public void setBr_naseljenih(int br_naseljenih) {
-		this.br_naseljenih = br_naseljenih;
+	public void setBrNaseljenih(int brNaseljenih) {
+		this.brNaseljenih = brNaseljenih;
 	}
 	public Set<Obavestenje> getObavestenje() {
 		return obavestenje;
@@ -110,22 +111,22 @@ public class Zgrada {
 			return false;
 		}
 		Zgrada z = (Zgrada) o;
-		if (z.id_zgrada == null || id_zgrada == null) {
+		if (z.id == null || id == null) {
 			return false;
 		}
-		return Objects.equals(id_zgrada, z.id_zgrada);
+		return Objects.equals(id, z.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(id_zgrada);
+		return Objects.hashCode(id);
 	}
 
 	@Override
 	public String toString() {
-		return "Zgrada [id_zgrada=" + id_zgrada + ", ime=" + ime
+		return "Zgrada [id_zgrada=" + id + ", ime=" + ime
 				+ ", adresa=" + adresa + ", vlasnik=" + vlasnik + ","
-						+ " br_stanova=" + br_stanova + ", br_naseljenih = "+ br_naseljenih + ","
+						+ " br_stanova=" + brStanova + ", br_naseljenih = "+ brNaseljenih + ","
 								+ " predsednik="+ predsednik + ", obavestenje="+ obavestenje + ","
 										+ " stan="+stan+"]";
 	}

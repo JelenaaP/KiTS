@@ -17,10 +17,10 @@ import javax.persistence.OneToOne;
 public class Sednica {
 	@Id
 	@GeneratedValue	
-	private Long id_sednice;
+	private Long id;
 	
-	private Date dat_kreiranja;
-	private Date dat_zakazivanja;
+	private Date datKreiranja;
+	private Date datZakazivanja;
 	private boolean aktivna;
 	
 	@OneToMany(mappedBy = "sednica",fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
@@ -41,23 +41,23 @@ public class Sednica {
 	public void setStavka(Set<Stavka> stavka) {
 		this.stavka = stavka;
 	}
-	public Long getId_sednice() {
-		return id_sednice;
+	public Long getId() {
+		return id;
 	}
-	public void setId_sednice(Long id_sednice) {
-		this.id_sednice = id_sednice;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
-	public Date getDat_zakazivanja() {
-		return dat_zakazivanja;
+	public Date getDatZakazivanja() {
+		return datZakazivanja;
 	}
-	public void setDat_zakazivanja(Date dat_zakazivanja) {
-		this.dat_zakazivanja = dat_zakazivanja;
+	public void setDatZakazivanja(Date datZakazivanja) {
+		this.datZakazivanja = datZakazivanja;
 	}
 	public boolean isAktivna() {
 		return aktivna;
@@ -86,6 +86,6 @@ public class Sednica {
 	
 	@Override
 	public String toString() {
-		return "Sednica [id_sednice=" + id_sednice + ", dat_kreiranja=" + dat_kreiranja + ", dat_zakazivanja=" + dat_zakazivanja + ", kreator="+kreator+"]";
+		return "Sednica [id_sednice=" + id+ ", dat_kreiranja=" + datKreiranja + ", dat_zakazivanja=" + datZakazivanja + ", kreator="+kreator+"]";
 	}
 }

@@ -14,11 +14,11 @@ public class Stavka {
 
 	@Id
 	@GeneratedValue
-	private Long id_stavke;
+	private Long id;
 	
 	private String ime;
 	private String opis;
-	private Date dat_kreiranja;
+	private Date datKreiranja;
 		
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;//kreator koji je kreirao zapisnik
@@ -26,8 +26,11 @@ public class Stavka {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private Sednica sednica;
 	
-	public Long getId_stavke() {
-		return id_stavke;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public Korisnik_servisa getKreator() {
 		return kreator;
@@ -41,9 +44,6 @@ public class Stavka {
 	public void setSednica(Sednica sednica) {
 		this.sednica = sednica;
 	}
-	public void setId_stavke(Long id_stavke) {
-		this.id_stavke = id_stavke;
-	}
 	public String getIme() {
 		return ime;
 	}
@@ -56,10 +56,10 @@ public class Stavka {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
 }

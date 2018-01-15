@@ -14,10 +14,10 @@ public class Komentar {
 	
 	@Id
 	@GeneratedValue
-	private Long id_komentar;
+	private Long id;
 	
 	private String text;
-	private Date dat_kreiranja;
+	private Date datKreiranja;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;
@@ -31,11 +31,11 @@ public class Komentar {
 	public void setKvar(Kvar kvar) {
 		this.kvar = kvar;
 	}
-	public Long getId_komentar() {
-		return id_komentar;
+	public Long getId() {
+		return id;
 	}
-	public void setId_komentar(Long id_komentar) {
-		this.id_komentar = id_komentar;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getText() {
 		return text;
@@ -43,11 +43,11 @@ public class Komentar {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
 	public Korisnik_servisa getKreator() {
 		return kreator;
@@ -58,8 +58,8 @@ public class Komentar {
 	
 	@Override
 	public String toString() {
-		return "Komentar [id_komentar=" + id_komentar + ", text=" + text
+		return "Komentar [id_komentar=" + id + ", text=" + text
 				+ ", kreator=" + kreator + ","
-						+ " dat_kreiranja=" + dat_kreiranja +"]";
+						+ " dat_kreiranja=" + datKreiranja +"]";
 	}	
 }

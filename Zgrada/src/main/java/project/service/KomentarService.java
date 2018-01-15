@@ -3,10 +3,12 @@ package project.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import project.model.Komentar;
 import project.repository.KomentarRepository;
 
+@Service
 public class KomentarService {
 
 	@Autowired
@@ -20,8 +22,8 @@ public class KomentarService {
 		return komentarRepository.findByKreator(kreator);
 	}
 	
-	public Komentar findOne(Long id_komentar){
-		return komentarRepository.findOne(id_komentar);
+	public Komentar findOne(Long id){
+		return komentarRepository.findOne(id);
 	}
 
 	public List<Komentar> findAll(){
@@ -32,7 +34,7 @@ public class KomentarService {
 		return komentarRepository.save(komentar);
 	}
 	
-	public void delete(Long id_komentar){
-		 komentarRepository.delete(id_komentar);
+	public void delete(Long id){
+		 komentarRepository.delete(id);
 	}
 }

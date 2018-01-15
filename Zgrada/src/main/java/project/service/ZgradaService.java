@@ -17,8 +17,8 @@ public class ZgradaService {
 		return zgradaRepository.findAll();
 	}
 		
-	public Zgrada findOne(Long id_zgrada) {
-		return zgradaRepository.findOne(id_zgrada);
+	public Zgrada findOne(Long id) {
+		return zgradaRepository.findOne(id);
 	}
 
 	public List<Zgrada> findByVlasnik(String vlasnik) {
@@ -31,8 +31,8 @@ public class ZgradaService {
 	public Zgrada findOneByAdresa(String adresa) {
 		return zgradaRepository.findOneByAdresa(adresa);
 	}
-	public void delete(Long id_zgrada) {
-		zgradaRepository.delete(id_zgrada);
+	public void delete(Long id) {
+		zgradaRepository.delete(id);
 	}
 		
 	public Zgrada save(Zgrada zgrada) {

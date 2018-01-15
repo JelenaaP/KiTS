@@ -14,11 +14,11 @@ public class Obavestenje {
 	
 	@Id
 	@GeneratedValue
-	private Long id_obavestenje;
+	private Long id;
 
 	private String ime;
 	private String  opis;
-	private Date dat_kreiranja;
+	private Date datKreiranja;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;
@@ -26,11 +26,11 @@ public class Obavestenje {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;
 
-	public Long getId_obavestenje() {
-		return id_obavestenje;
+	public Long getId() {
+		return id;
 	}
-	public void setId_obavestenje(Long id_obavestenje) {
-		this.id_obavestenje = id_obavestenje;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -44,11 +44,11 @@ public class Obavestenje {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
 	public Zgrada getZgrada() {
 		return zgrada;
@@ -65,8 +65,8 @@ public class Obavestenje {
 	
 	@Override
 	public String toString() {
-		return "Zgrada [id_obavestenje=" + id_obavestenje + ", ime=" + ime
+		return "Zgrada [id_obavestenje=" + id + ", ime=" + ime
 				+ ", opis=" + opis + ", kreator=" + kreator + ","
-						+ " dat_kreiranja=" + dat_kreiranja + ", zgrada= "+ zgrada+ "]";
+						+ " dat_kreiranja=" + datKreiranja + ", zgrada= "+ zgrada+ "]";
 	}
 }

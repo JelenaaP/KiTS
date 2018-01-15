@@ -18,38 +18,47 @@ import java.util.Set;
 public class Kvar {
 	@Id
 	@GeneratedValue
-	private long id_kvar;
+	private long id;
 	
 	private String ime;
 	private String opis;
-	private Date dat_kreiranja;
-	private Date dat_zakazivanja;
-	private Date dat_popravke;
+	private Date datKreiranja;
+	private Date datZakazivanja;
+	private Date datPopravke;
 	private boolean popravljen;
 	
 	@ManyToMany
     @JoinTable(name = "popravlja",
-               joinColumns = @JoinColumn(name="id_kvar", referencedColumnName="id_kvar"),
-               inverseJoinColumns = @JoinColumn(name="id_korisnik_servisa", referencedColumnName="id_korisnik_servisa"))
-	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
+               joinColumns = @JoinColumn(name="kvar_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="firma_id", referencedColumnName="id"))
+	private Set<Firma> firma = new HashSet<Firma>();
 	
 	@ManyToMany
     @JoinTable(name = "popravlja",
-               joinColumns = @JoinColumn(name="id_kvar", referencedColumnName="id_kvar"),
-               inverseJoinColumns = @JoinColumn(name="id_firme", referencedColumnName="id_firme"))
-	private Set<Firma> firma = new HashSet<Firma>();
+               joinColumns = @JoinColumn(name="kvar_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="korisnik_servisa_id", referencedColumnName="id"))
+	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;
 
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	private Korisnik_servisa kreator;
+
 	@OneToMany(mappedBy = "kvar", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Set<Komentar> komentar = new HashSet<Komentar>();
 	
-	public long getId_kvar() {
-		return id_kvar;
+	public Korisnik_servisa getKreator() {
+		return kreator;
 	}
-	public void setId_kvar(long id_kvar) {
-		this.id_kvar = id_kvar;
+	public void setKreator(Korisnik_servisa kreator) {
+		this.kreator = kreator;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -57,35 +66,35 @@ public class Kvar {
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
-	public Date getDat_zakazivanja() {
-		return dat_zakazivanja;
+	public Date getDatZakazivanja() {
+		return datZakazivanja;
 	}
-	public void setDat_zakazivanja(Date dat_zakazivanja) {
-		this.dat_zakazivanja = dat_zakazivanja;
+	public void setDatZakazivanja(Date datZakazivanja) {
+		this.datZakazivanja = datZakazivanja;
 	}
-	public Date getDat_popravke() {
-		return dat_popravke;
+	public Date getDatPopravke() {
+		return datPopravke;
 	}
-	public void setDat_popravke(Date dat_popravke) {
-		this.dat_popravke = dat_popravke;
+	public void setDatPopravke(Date datPopravke) {
+		this.datPopravke = datPopravke;
+	}
+	public Set<Firma> getFirma() {
+		return firma;
+	}
+	public void setFirma(Set<Firma> firma) {
+		this.firma = firma;
 	}
 	public boolean isPopravljen() {
 		return popravljen;
 	}
 	public void setPopravljen(boolean popravljen) {
 		this.popravljen = popravljen;
-	}
-	public Set<Korisnik_servisa> getRadnik() {
-		return radnik;
-	}
-	public void setRadnik(Set<Korisnik_servisa> radnik) {
-		this.radnik = radnik;
 	}
 	public String getOpis() {
 		return opis;
@@ -108,9 +117,9 @@ public class Kvar {
 	
 	@Override
 	public String toString(){
-		return "Kvar[id_kvar = "+id_kvar+", ime = "+ime+", opis = "+opis+","
-				+ "dat_kreiranja = "+dat_kreiranja+", dat_zakazivanja = "+dat_zakazivanja+","
-						+ " dat_popravke = "+dat_popravke+", popravljen = "+popravljen+","
-								+ " radnik = "+radnik+", zgrada = "+zgrada+"]";
+		return "Kvar[id_kvar = "+id+", ime = "+ime+", opis = "+opis+","
+				+ "dat_kreiranja = "+datKreiranja+", dat_zakazivanja = "+datZakazivanja+","
+						+ " dat_popravke = "+datPopravke+", popravljen = "+popravljen+","
+								+ "zgrada = "+zgrada+"]";
 	}
 }

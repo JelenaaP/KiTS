@@ -74,13 +74,13 @@ public class StanController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Stan adresa = stanService.findByAdresa(stanDto.getAdresa());
-		Zgrada zgrada = zgradaService.findOne(stanDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(stanDto.getZgrada().getId());
 		
 		
 		if (adresa == null || zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa vlasnik = korisnik_servisaService.findByKoris_ime(stanDto.getVlasnik().getKoris_ime());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(stanDto.getVlasnik().getKorisIme());
 		
 		Stan stan = new Stan();
 		stan.setAdresa(stanDto.getAdresa());
@@ -96,13 +96,13 @@ public class StanController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<StanDto> updateStanovi(@RequestBody StanDto stanDto) {
 		// a building must exist
-		Stan stan = stanService.findOne(stanDto.getId_stanovi());
+		Stan stan = stanService.findOne(stanDto.getId());
 		if (stan == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
 		
-		stan.setBr_stanovnika(stanDto.getBr_stanovnika());
+		stan.setBrStanovnika(stanDto.getBrStanovnika());
 		stan.setIme(stanDto.getIme());
 		stan.setAdresa(stanDto.getAdresa());
 		
@@ -111,11 +111,11 @@ public class StanController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id_stanovi}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteStanovi(@PathVariable Long id_stanovi) {
-		Stan stan = stanService.findOne(id_stanovi);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteStanovi(@PathVariable Long id) {
+		Stan stan = stanService.findOne(id);
 		if (stan != null) {
-			stanService.delete(id_stanovi);
+			stanService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

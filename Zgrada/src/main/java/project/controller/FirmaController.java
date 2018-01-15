@@ -57,7 +57,7 @@ public class FirmaController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa vlasnik = korisnik_servisaService.findByKoris_ime(firmaDto.getVlasnik().getKoris_ime());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(firmaDto.getVlasnik().getKorisIme());
 		
 		if (vlasnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -69,7 +69,7 @@ public class FirmaController {
 		firma.setVlasnik(vlasnik);
 		firma.setTelefon(firmaDto.getTelefon());
 		firma.setEmail(firmaDto.getEmail());
-		firma.setWeb_site(firmaDto.getWeb_site());
+		firma.setWebSite(firmaDto.getWebSite());
 		firma.setVlasnik(vlasnik);
 		
 		firma = firmaService.save(firma);
@@ -91,25 +91,25 @@ public class FirmaController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<FirmaDto> updateFirma(@RequestBody FirmaDto firmaDto) {
 		// a building must exist
-		Firma firma = firmaService.findOne(firmaDto.getId_firme());
+		Firma firma = firmaService.findOne(firmaDto.getId());
 		if (firma == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
 		firma.setTelefon(firmaDto.getTelefon());
 		firma.setEmail(firmaDto.getEmail());
-		firma.setWeb_site(firmaDto.getWeb_site());
+		firma.setWebSite(firmaDto.getWebSite());
 		
 		firma = firmaService.save(firma);
 		return new ResponseEntity<>(new FirmaDto(firma), HttpStatus.OK);
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id_firme}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteFirma(@PathVariable Long id_firme) {
-		Firma firma = firmaService.findOne(id_firme);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteFirma(@PathVariable Long id) {
+		Firma firma = firmaService.findOne(id);
 		if (firma != null) {
-			firmaService.delete(id_firme);
+			firmaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

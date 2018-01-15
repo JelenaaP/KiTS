@@ -73,16 +73,16 @@ public class ObavestenjeController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOne(obavestenjeDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(obavestenjeDto.getZgrada().getId());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Korisnik_servisa kreator = korisnik_servisaService.findByKoris_ime(obavestenjeDto.getKreator().getKoris_ime());
+		Korisnik_servisa kreator = korisnik_servisaService.findByKorisIme(obavestenjeDto.getKreator().getKorisIme());
 		
 		Obavestenje obavestenje = new Obavestenje();
 		obavestenje.setIme(obavestenjeDto.getIme());
 		obavestenje.setOpis(obavestenjeDto.getOpis());
-		obavestenje.setDat_kreiranja(obavestenjeDto.getDat_kreiranja());
+		obavestenje.setDatKreiranja(obavestenjeDto.getDatKreiranja());
 		obavestenje.setKreator(kreator);
 		obavestenje.setZgrada(zgrada);
 		
@@ -94,13 +94,13 @@ public class ObavestenjeController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ObavestenjeDto> updateObavestenje(@RequestBody ObavestenjeDto obavestenjeDto) {
 		// a building must exist
-		Obavestenje obavestenje = obavestenjeService.findOne(obavestenjeDto.getId_obavestenje());
+		Obavestenje obavestenje = obavestenjeService.findOne(obavestenjeDto.getId());
 		if (obavestenje == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
 		
-		obavestenje.setDat_kreiranja(obavestenjeDto.getDat_kreiranja());
+		obavestenje.setDatKreiranja(obavestenjeDto.getDatKreiranja());
 		obavestenje.setIme(obavestenjeDto.getIme());
 		obavestenje.setOpis(obavestenjeDto.getOpis());
 		
@@ -109,11 +109,11 @@ public class ObavestenjeController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id_obavestenje}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteObavestenje(@PathVariable Long id_obavestenje) {
-		Obavestenje obavestenje = obavestenjeService.findOne(id_obavestenje);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteObavestenje(@PathVariable Long id) {
+		Obavestenje obavestenje = obavestenjeService.findOne(id);
 		if (obavestenje != null) {
-			obavestenjeService.delete(id_obavestenje);
+			obavestenjeService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

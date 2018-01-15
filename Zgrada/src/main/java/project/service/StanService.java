@@ -30,16 +30,16 @@ public class StanService {
 		return stanRepository.findAll();
 	}
 		
-	public Stan findOne(Long id_stanovi) {
-		return stanRepository.findOne(id_stanovi);
+	public Stan findOne(Long id) {
+		return stanRepository.findOne(id);
 	}
 	
 	public Stan  save(Stan stan){
 		return stanRepository.save(stan);
 	}
 	
-	public void delete(Long id_stanovi){
-		 stanRepository.delete(id_stanovi);
+	public void delete(Long id){
+		 stanRepository.delete(id);
 	}
 
 	public List<Stan> findAllByAdresa(String adresa) {

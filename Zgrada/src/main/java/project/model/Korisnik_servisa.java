@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -18,10 +19,10 @@ public class Korisnik_servisa {
 	
 	@Id
 	@GeneratedValue
-	private Long id_korisnik_servisa;
+	private Long id;
 	
 	private String ime;
-	private String koris_ime;
+	private String korisIme;
 	private String lozinka;
 	private String uloga;
 	
@@ -33,6 +34,9 @@ public class Korisnik_servisa {
 
 	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Komentar> komentar = new HashSet<Komentar>();
+ 
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<Kvar> kvar = new HashSet<Kvar>();
  
 	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<Firma> firma = new HashSet<Firma>();
@@ -46,9 +50,12 @@ public class Korisnik_servisa {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Stan stanovnik;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	private Zgrada radnik;
-	
+	@ManyToMany(mappedBy = "radnici")
+	private Set<Firma> radnici = new HashSet<Firma>();
+
+	@ManyToMany(mappedBy = "radnik")
+	private Set<Kvar> radnik = new HashSet<Kvar>();
+
 	@OneToOne
 	private Zgrada predsednik_skupstine;	
 	
@@ -88,11 +95,11 @@ public class Korisnik_servisa {
 	public void setZgrada(Set<Zgrada> zgrada) {
 		this.zgrada = zgrada;
 	}
-	public Long getId_korisnik_servisa() {
-		return id_korisnik_servisa;
+	public Long getId() {
+		return id;
 	}
-	public void setId_korisnik_servisa(Long id_korisnik_servisa) {
-		this.id_korisnik_servisa = id_korisnik_servisa;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -100,11 +107,11 @@ public class Korisnik_servisa {
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-	public String getKoris_ime() {
-		return koris_ime;
+	public String getKorisIme() {
+		return korisIme;
 	}
-	public void setKoris_ime(String koris_ime) {
-		this.koris_ime = koris_ime;
+	public void setKorisIme(String korisIme) {
+		this.korisIme = korisIme;
 	}
 	public String getLozinka() {
 		return lozinka;
@@ -129,5 +136,23 @@ public class Korisnik_servisa {
 	}
 	public void setObavestenje(Set<Obavestenje> obavestenje) {
 		this.obavestenje = obavestenje;
+	}
+	public Set<Kvar> getKvar() {
+		return kvar;
+	}
+	public void setKvar(Set<Kvar> kvar) {
+		this.kvar = kvar;
+	}
+	public Set<Firma> getRadnici() {
+		return radnici;
+	}
+	public void setRadnici(Set<Firma> radnici) {
+		this.radnici = radnici;
+	}
+	public Set<Kvar> getRadnik() {
+		return radnik;
+	}
+	public void setRadnik(Set<Kvar> radnik) {
+		this.radnik = radnik;
 	}
 }

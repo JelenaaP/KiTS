@@ -11,7 +11,7 @@ public interface ZapisnikRepository extends JpaRepository<Zapisnik, Long>{
 
 	List<Zapisnik> findBySednica(String sednica);
 
-	Zapisnik findByDat_kreiranja(Date dat_kreiranja);
+	Zapisnik findByDatKreiranja(Date datKreiranja);
 
 	List<Zapisnik> findByZgrada(String zgrada);
 

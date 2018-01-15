@@ -6,36 +6,36 @@ import project.model.Komentar;
 
 public class KomentarDto {
 	
-	private Long id_komentar;
+	private Long id;
 	private String text;
-	private Date dat_kreiranja;
+	private Date datKreiranja;
 	private Korisnik_servisaDto kreator;
 	private KvarDto kvar;
 
 	public KomentarDto(){}
 	
-	public KomentarDto(Long id_komentar, String text, Date dat_kreiranja, Korisnik_servisaDto kreator, KvarDto kvar) {
+	public KomentarDto(Long id, String text, Date datKreiranja, Korisnik_servisaDto kreator, KvarDto kvar) {
 		super();
-		this.id_komentar = id_komentar;
+		this.id = id;
 		this.text = text;
-		this.dat_kreiranja = dat_kreiranja;
+		this.datKreiranja = datKreiranja;
 		this.kreator = kreator;
 		this.kvar = kvar;
 	}
 
 	public KomentarDto(Komentar komentar) {
-		id_komentar = komentar.getId_komentar();
+		id = komentar.getId();
 		text = komentar.getText();
-		dat_kreiranja = komentar.getDat_kreiranja();
+		datKreiranja = komentar.getDatKreiranja();
 		kreator = new Korisnik_servisaDto(komentar.getKreator());
 		kvar = new KvarDto(komentar.getKvar());		
 	}
 
-	public Long getId_komentar() {
-		return id_komentar;
+	public Long getId() {
+		return id;
 	}
-	public void setId_komentar(Long id_komentar) {
-		this.id_komentar = id_komentar;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getText() {
 		return text;
@@ -43,12 +43,14 @@ public class KomentarDto {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
+
 	public Korisnik_servisaDto getKreator() {
 		return kreator;
 	}

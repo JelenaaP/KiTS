@@ -4,44 +4,44 @@ import project.model.Firma;
 
 public class FirmaDto {
 
-	private Long id_firme;
+	private Long id;
 	private String ime;
 	private String adresa;
 	private int telefon;
 	private String email;
-	private String web_site;
+	private String webSite;
 	private Korisnik_servisaDto radnik;
 	private Korisnik_servisaDto vlasnik;
 	
 	public FirmaDto(){}
 	
-	public FirmaDto(Long id_firme, String ime, String adresa, int telefon, String email, String web_site,
+	public FirmaDto(Long id, String ime, String adresa, int telefon, String email, String webSite,
 			Korisnik_servisaDto radnik, Korisnik_servisaDto vlasnik) {
 		super();
-		this.id_firme = id_firme;
+		this.id = id;
 		this.ime = ime;
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.email = email;
-		this.web_site = web_site;
+		this.webSite = webSite;
 		this.radnik = radnik;
 		this.vlasnik = vlasnik;
 	}
 	
 	public FirmaDto(Firma firma) {
-		id_firme = firma.getId_firme();
+		id = firma.getId();
 		ime = firma.getIme();
 		adresa = firma.getAdresa();
 		telefon = firma.getTelefon();
 		email = firma.getEmail();
-		web_site = firma.getWeb_site();
+		webSite = firma.getWebSite();
 	}
 
-	public Long getId_firme() {
-		return id_firme;
+	public Long getId() {
+		return id;
 	}
-	public void setId_firme(Long id_firme) {
-		this.id_firme = id_firme;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -67,12 +67,14 @@ public class FirmaDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getWeb_site() {
-		return web_site;
+	public String getWebSite() {
+		return webSite;
 	}
-	public void setWeb_site(String web_site) {
-		this.web_site = web_site;
+
+	public void setWebSite(String webSite) {
+		this.webSite = webSite;
 	}
+
 	public Korisnik_servisaDto getRadnik() {
 		return radnik;
 	}

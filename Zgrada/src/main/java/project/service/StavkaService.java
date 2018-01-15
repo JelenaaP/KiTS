@@ -23,8 +23,8 @@ public class StavkaService {
 		return stavkaRepository.findByKreator(kreator);
 	}
 	
-	public Stavka findOne(Long id_stavke){
-		return stavkaRepository.findOne(id_stavke);
+	public Stavka findOne(Long id){
+		return stavkaRepository.findOne(id);
 	}
 	
 	public List<Stavka> findAll(){
@@ -35,7 +35,7 @@ public class StavkaService {
 		return stavkaRepository.save(stavka);
 	}
 	
-	public void delete(Long id_stavke){
-		stavkaRepository.delete(id_stavke);
+	public void delete(Long id){
+		stavkaRepository.delete(id);
 	}
 }

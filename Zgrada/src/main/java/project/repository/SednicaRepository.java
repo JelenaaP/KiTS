@@ -9,10 +9,10 @@ import project.model.Sednica;
 
 public interface SednicaRepository extends JpaRepository<Sednica, Long> {
 
-	public Sednica findByDat_kreiranja(Date dat_kreiranja);
-	public Sednica findByDat_zakazivanja(Date dat_zakazivanja);
+	public Sednica findByDatKreiranja(Date datKreiranja);
+	public Sednica findByDatZakazivanja(Date datZakazivanja);
 	public Sednica findByAktivna(boolean aktivna);
-	public Sednica findById_zapisnik(Long id_zapisnik);
+	public Sednica findById(Long id_zapisnik);
 	public List<Sednica> findByKreator(String kreator);
 	public List<Sednica> findByZgrada(String zgrada);
 }

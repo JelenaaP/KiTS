@@ -20,16 +20,16 @@ public class FirmaService {
 		return firmaRepository.findByIme(ime);
 	}
 	
-	public Firma findOne(Long id_firme){
-		return firmaRepository.findOne(id_firme);
+	public Firma findOne(Long id){
+		return firmaRepository.findOne(id);
 	}
 	
 	public Firma findByAdresa(String adresa) {
 		return firmaRepository.findByAdresa(adresa);
 	}
 	
-	public Firma findByRadnik(String radnik){
-		return firmaRepository.findByRadnik(radnik);
+	public Firma findByRadnici(String radnik){
+		return firmaRepository.findByRadnici(radnik);
 	}
 	
 	public List<Firma> findAll(){
@@ -40,7 +40,7 @@ public class FirmaService {
 		return firmaRepository.save(firma);
 	}
 	
-	public void delete(Long id_firme){
-		 firmaRepository.delete(id_firme);
+	public void delete(Long id){
+		 firmaRepository.delete(id);
 	}	
 }

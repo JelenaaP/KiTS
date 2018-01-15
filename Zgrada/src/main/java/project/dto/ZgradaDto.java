@@ -5,43 +5,43 @@ import project.model.Zgrada;
 
 public class ZgradaDto {
 	
-	private Long id_zgrada;
+	private Long id;
 	private String ime;
 	private String adresa;
 	private Korisnik_servisaDto vlasnik;
-	private int br_stanova;
-	private int br_naseljenih;
-	private Korisnik_servisaDto predsednik_skupstine;	
+	private int brStanova;
+	private int brNaseljenih;
+	private Korisnik_servisaDto predsednikSkupstine;	
 	
 	public ZgradaDto(){}
 
 	public ZgradaDto(Zgrada zgrada) {
-		id_zgrada = zgrada.getId_zgrada();
+		id= zgrada.getId();
 		ime = zgrada.getIme();
 		adresa = zgrada.getAdresa();
 		vlasnik = new Korisnik_servisaDto(zgrada.getVlasnik());
-		br_stanova = zgrada.getBr_stanova();
-		br_naseljenih = zgrada.getBr_naseljenih();
-		predsednik_skupstine = new Korisnik_servisaDto(zgrada.getPredsednik());
+		brStanova = zgrada.getBrStanova();
+		brNaseljenih = zgrada.getBrNaseljenih();
+		predsednikSkupstine = new Korisnik_servisaDto(zgrada.getPredsednik());
 		}
 
-	public ZgradaDto(Long id_zgrada, String ime, String adresa, Korisnik_servisaDto vlasnik, int br_stanova,
-			int br_naseljenih, Korisnik_servisaDto predsednik_skupstine) {
+	public ZgradaDto(Long id, String ime, String adresa, Korisnik_servisaDto vlasnik, int brStanova,
+			int brNaseljenih, Korisnik_servisaDto predsednikSkupstine) {
 		super();
-		this.id_zgrada = id_zgrada;
+		this.id= id;
 		this.ime = ime;
 		this.adresa = adresa;
 		this.vlasnik = vlasnik;
-		this.br_stanova = br_stanova;
-		this.br_naseljenih = br_naseljenih;
-		this.predsednik_skupstine = predsednik_skupstine;
+		this.brStanova = brStanova;
+		this.brNaseljenih = brNaseljenih;
+		this.predsednikSkupstine = predsednikSkupstine;
 	}
 
-	public Long getId_zgrada() {
-		return id_zgrada;
+	public Long getId() {
+		return id;
 	}
-	public void setId_zgrada(Long id_zgrada) {
-		this.id_zgrada = id_zgrada;
+	public void set(Long id) {
+		this.id= id;
 	}
 	public String getIme() {
 		return ime;
@@ -55,28 +55,34 @@ public class ZgradaDto {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public int getBr_stanova() {
-		return br_stanova;
-	}
-	public void setBr_stanova(int br_stanova) {
-		this.br_stanova = br_stanova;
-	}
-	public int getBr_naseljenih() {
-		return br_naseljenih;
-	}
-	public void setBr_naseljenih(int br_naseljenih) {
-		this.br_naseljenih = br_naseljenih;
-	}
 	public Korisnik_servisaDto getVlasnik() {
 		return vlasnik;
 	}
 	public void setVlasnik(Korisnik_servisaDto vlasnik) {
 		this.vlasnik = vlasnik;
 	}
-	public Korisnik_servisaDto getPredsednik_skupstine() {
-		return predsednik_skupstine;
+
+	public int getBrStanova() {
+		return brStanova;
 	}
-	public void setPredsednik_skupstine(Korisnik_servisaDto predsednik_skupstine) {
-		this.predsednik_skupstine = predsednik_skupstine;
+
+	public void setBrStanova(int brStanova) {
+		this.brStanova = brStanova;
+	}
+
+	public int getBrNaseljenih() {
+		return brNaseljenih;
+	}
+
+	public void setBrNaseljenih(int brNaseljenih) {
+		this.brNaseljenih = brNaseljenih;
+	}
+
+	public Korisnik_servisaDto getPredsednikSkupstine() {
+		return predsednikSkupstine;
+	}
+
+	public void setPredsednikSkupstine(Korisnik_servisaDto predsednikSkupstine) {
+		this.predsednikSkupstine = predsednikSkupstine;
 	}
 }

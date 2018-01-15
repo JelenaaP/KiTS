@@ -6,39 +6,39 @@ import project.model.Zapisnik;
 
 public class ZapisnikDto {
 
-	private Long id_zapisnik;
+	private Long id;
 	private String opis;
-	private Date dat_kreiranja;
+	private Date datKreiranja;
 	private Korisnik_servisaDto kreator;
 	private SednicaDto sednica;
 	private ZgradaDto zgrada;
 	
 	public ZapisnikDto(){}
 
-	public ZapisnikDto(Long id_zapisnik, String opis, Korisnik_servisaDto kreator, SednicaDto sednica,
-			Date dat_kreiranja,	ZgradaDto zgrada) {
+	public ZapisnikDto(Long id, String opis, Korisnik_servisaDto kreator, SednicaDto sednica,
+			Date datKreiranja,	ZgradaDto zgrada) {
 		super();
-		this.id_zapisnik = id_zapisnik;
+		this.id = id;
 		this.opis = opis;
-		this.dat_kreiranja = dat_kreiranja;
+		this.datKreiranja = datKreiranja;
 		this.setKreator(kreator);
 		this.setSednica(sednica);
 		this.setZgrada(zgrada);
 	}
 	public ZapisnikDto(Zapisnik zapisnik) {
-		id_zapisnik = zapisnik.getId_zapisnik();
+		id = zapisnik.getId();
 		opis = zapisnik.getOpis();
-		dat_kreiranja = zapisnik.getDat_kreiranja();
+		datKreiranja = zapisnik.getDatKreiranja();
 		sednica = new SednicaDto(zapisnik.getSednica());
 		zgrada = new ZgradaDto(zapisnik.getZgrada());
 		kreator = new Korisnik_servisaDto(zapisnik.getKreator());
 	}
 
-	public Long getId_zapisnik() {
-		return id_zapisnik;
+	public Long getId() {
+		return id;
 	}
-	public void setId_zapisnik(Long id_zapisnik) {
-		this.id_zapisnik = id_zapisnik;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getOpis() {
 		return opis;
@@ -46,11 +46,11 @@ public class ZapisnikDto {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
 	public Korisnik_servisaDto getKreator() {
 		return kreator;

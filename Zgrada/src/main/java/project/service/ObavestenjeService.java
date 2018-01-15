@@ -21,21 +21,21 @@ public class ObavestenjeService {
 		return obavestenjeRepository.findAll();
 	}
 	
-	public Obavestenje findByDat_kreiranja(Date dat_kreiranja) {
-		return obavestenjeRepository.findByDat_kreiranja(dat_kreiranja);
+	public Obavestenje findByDatKreiranja(Date datKreiranja) {
+		return obavestenjeRepository.findByDatKreiranja(datKreiranja);
 	}
 	
 	public List<Obavestenje> findByKreator(String kreator) {
 		return obavestenjeRepository.findByKreator(kreator);
 	}
-	public void delete(Long id_obavestenje) {
-		obavestenjeRepository.delete(id_obavestenje);
+	public void delete(Long id) {
+		obavestenjeRepository.delete(id);
 	}
 		
 	public Obavestenje save(Obavestenje obavestenje) {
 		return obavestenjeRepository.save(obavestenje);
 	}
-	public Obavestenje findOne(Long id_obavestenje) {
-		return obavestenjeRepository.findOne(id_obavestenje);
+	public Obavestenje findOne(Long id) {
+		return obavestenjeRepository.findOne(id);
 	}
 }

@@ -58,7 +58,7 @@ public class Korisnik_servisaController {
 	}
 	
 	
-	@RequestMapping(value="/{id_korisnik_servisa}", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Korisnik_servisaDto> getKorisnik_servisa(@PathVariable Long id_korisnika_servisa){
 		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(id_korisnika_servisa);
 		if(korisnik_servisa == null){
@@ -82,7 +82,7 @@ public class Korisnik_servisaController {
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<Korisnik_servisaDto> updateKorisnik_servisa(@RequestBody Korisnik_servisaDto korisnik_servisaDto){
 		//a teacher must exist
-		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(korisnik_servisaDto.getId_korisnik_servisa()); 
+		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(korisnik_servisaDto.getId()); 
 		if (korisnik_servisa == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -94,21 +94,21 @@ public class Korisnik_servisaController {
 		return new ResponseEntity<>(new Korisnik_servisaDto(korisnik_servisa), HttpStatus.OK);	
 	}
 	
-	@RequestMapping(value="/{id_korisnik_servisa}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteKorisnik_servisa(@PathVariable Long id_korisnik_servisa){
-		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(id_korisnik_servisa);
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteKorisnik_servisa(@PathVariable Long id){
+		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(id);
 		if (korisnik_servisa != null){
-			korisnik_servisaService.delete(id_korisnik_servisa);
+			korisnik_servisaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@RequestMapping(value="/findKoris_ime", method=RequestMethod.GET)
-	public ResponseEntity<Korisnik_servisaDto> getKorisnik_servisaBykoris_ime(
-			@RequestParam String koris_ime) {
-		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findByKoris_ime(koris_ime);
+	@RequestMapping(value="/findKorisIme", method=RequestMethod.GET)
+	public ResponseEntity<Korisnik_servisaDto> getKorisnik_servisaBykorisIme(
+			@RequestParam String korisIme) {
+		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findByKorisIme(korisIme);
 		if(korisnik_servisa == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		

@@ -4,48 +4,48 @@ package project.dto;
 import project.model.Stan;
 
 public class StanDto {
-	private Long id_stanovi;
+	private Long id;
 	private String ime;
 	private String adresa;
 	private Korisnik_servisaDto vlasnik;
 	private ZgradaDto zgrada;
-	private int br_stanovnika;
+	private int brStanovnika;
 	
 	
 	public StanDto(){}
 	
 	
-	public StanDto(Long id_stanovi, String ime, String adresa, Korisnik_servisaDto vlasnik,
-			int br_stanovnika, ZgradaDto zgrada) {
+	public StanDto(Long id, String ime, String adresa, Korisnik_servisaDto vlasnik,
+			int brStanovnika, ZgradaDto zgrada) {
 		super();
-		this.id_stanovi = id_stanovi;
+		this.id = id;
 		this.ime = ime;
 		this.adresa = adresa;
 		this.vlasnik = vlasnik;
 		this.zgrada = zgrada;
-		this.br_stanovnika = br_stanovnika;
+		this.brStanovnika = brStanovnika;
 	}
 
 	public StanDto(Stan stan) {
-		id_stanovi = stan.getId_stanovi();
+		id = stan.getId();
 		ime=stan.getIme();
 		adresa =stan.getAdresa();
 		vlasnik = new Korisnik_servisaDto(stan.getVlasnik());
 		zgrada = new ZgradaDto(stan.getZgrada());
-		br_stanovnika =stan.getBr_stanovnika();
+		brStanovnika =stan.getBrStanovnika();
 	}
 
-	public int getBr_stanovnika() {
-		return br_stanovnika;
+	public int getBrStanovnika() {
+		return brStanovnika;
 	}
-	public void setBr_stanovnika(int br_stanovnika) {
-		this.br_stanovnika = br_stanovnika;
+	public void setBrStanovnika(int brStanovnika) {
+		this.brStanovnika = brStanovnika;
 	}
-	public Long getId_stanovi() {
-		return id_stanovi;
+	public Long getId() {
+		return id;
 	}
-	public void setId_stanovi(Long id_stanovi) {
-		this.id_stanovi = id_stanovi;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;

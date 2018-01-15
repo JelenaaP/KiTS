@@ -8,37 +8,43 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 @Entity
 public class Firma {
 	
 	@Id
 	@GeneratedValue
-	private long id_firme;
+	private long id;
 	
 	private String ime;
 	private String adresa;
 	private int telefon;
 	private String email;
-	private String web_site;
+	private String webSite;
 	
-	@ManyToMany(mappedBy = "firma", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@ManyToMany(mappedBy = "firma")
 	private Set<Kvar> kvar = new HashSet<Kvar>();
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa vlasnik;
 	
-	@OneToMany(mappedBy = "radnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
+	@ManyToMany
+	@JoinTable(name = "radi",
+    joinColumns = @JoinColumn(name="firma_id", referencedColumnName="id"),
+    inverseJoinColumns = @JoinColumn(name="korisnik_servisa_id", referencedColumnName="id"))
+	private Set<Korisnik_servisa> radnici = new HashSet<Korisnik_servisa>();
 	
-	public long getId_firme() {
-		return id_firme;
+	
+	public long getId() {
+		return id;
 	}
-	public void setId_firme(long id_firme) {
-		this.id_firme = id_firme;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -58,11 +64,11 @@ public class Firma {
 	public void setVlasnik(Korisnik_servisa vlasnik) {
 		this.vlasnik = vlasnik;
 	}
-	public Set<Korisnik_servisa> getRadnik() {
-		return radnik;
+	public Set<Korisnik_servisa> getRadnici() {
+		return radnici;
 	}
-	public void setRadnik(Set<Korisnik_servisa> radnik) {
-		this.radnik = radnik;
+	public void setRadnici(Set<Korisnik_servisa> radnici) {
+		this.radnici = radnici;
 	}
 	public int getTelefon() {
 		return telefon;
@@ -76,11 +82,11 @@ public class Firma {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getWeb_site() {
-		return web_site;
+	public String getWebSite() {
+		return webSite;
 	}
-	public void setWeb_site(String web_site) {
-		this.web_site = web_site;
+	public void setWebSite(String webSite) {
+		this.webSite = webSite;
 	}
 	public Set<Kvar> getKvar() {
 		return kvar;

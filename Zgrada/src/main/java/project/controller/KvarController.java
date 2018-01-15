@@ -76,7 +76,7 @@ public class KvarController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada zgrada = zgradaService.findOne(kvarDto.getZgrada().getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(kvarDto.getZgrada().getId());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -84,9 +84,9 @@ public class KvarController {
 		Kvar kvar = new Kvar();
 		kvar.setIme(kvarDto.getIme());
 		kvar.setOpis(kvarDto.getOpis());
-		kvar.setDat_kreiranja(kvarDto.getDat_kreiranja());
-		kvar.setDat_zakazivanja(kvar.getDat_zakazivanja());
-		kvar.setDat_popravke(kvar.getDat_popravke());
+		kvar.setDatKreiranja(kvarDto.getDatKreiranja());
+		kvar.setDatZakazivanja(kvar.getDatZakazivanja());
+		kvar.setDatPopravke(kvar.getDatPopravke());
 		kvar.setPopravljen(kvar.isPopravljen());
 		kvar.setZgrada(zgrada);
 		
@@ -98,7 +98,7 @@ public class KvarController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<KvarDto> updateKvar(@RequestBody KvarDto kvarDto) {
 		// a building must exist
-		Kvar kvar = kvarService.findOne(kvarDto.getId_kvar());
+		Kvar kvar = kvarService.findOne(kvarDto.getId());
 		if (kvar == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -106,36 +106,36 @@ public class KvarController {
 		
 		kvar.setIme(kvarDto.getIme());
 		kvar.setOpis(kvarDto.getOpis());
-		kvar.setDat_kreiranja(kvarDto.getDat_kreiranja());
-		kvar.setDat_zakazivanja(kvarDto.getDat_zakazivanja());
-		kvar.setDat_popravke(kvarDto.getDat_popravke());
+		kvar.setDatKreiranja(kvarDto.getDatKreiranja());
+		kvar.setDatZakazivanja(kvarDto.getDatZakazivanja());
+		kvar.setDatPopravke(kvarDto.getDatPopravke());
 		
 		kvar = kvarService.save(kvar);
 		return new ResponseEntity<>(new KvarDto(kvar), HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id_kvar}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteKvar(@PathVariable Long id_kvar) {
-		Kvar kvar = kvarService.findOne(id_kvar);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteKvar(@PathVariable Long id) {
+		Kvar kvar = kvarService.findOne(id);
 		if (kvar != null) {
-			kvarService.delete(id_kvar);
+			kvarService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@RequestMapping(value = "/{kvarId_kvar}/komentar", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> getKvarKomentar(@PathVariable Long kvarId_kvar) {
-		Kvar kvar = kvarService.findOne(kvarId_kvar);
+	@RequestMapping(value = "/{kvarId}/komentar", method = RequestMethod.GET)
+	public ResponseEntity<List<KomentarDto>> getKvarKomentar(@PathVariable Long kvarId) {
+		Kvar kvar = kvarService.findOne(kvarId);
 		Set<Komentar> komentari = kvar.getKomentar();
 		List<KomentarDto> komentariDto = new ArrayList<>();
 		for (Komentar k : komentari) {
 			KomentarDto komentarDto = new KomentarDto();
 			
-			komentarDto.setId_komentar(k.getId_komentar());
-			komentarDto.setDat_kreiranja(k.getDat_kreiranja());
+			komentarDto.setId(k.getId());
+			komentarDto.setDatKreiranja(k.getDatKreiranja());
 			komentarDto.setText(k.getText());
 			komentarDto.setKreator(new Korisnik_servisaDto(k.getKreator()));
 			

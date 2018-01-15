@@ -4,40 +4,40 @@ import project.model.Korisnik_servisa;
 
 public class Korisnik_servisaDto {
 	
-	private Long id_korisnik_servisa;
+	private Long id;
 	private String ime;
-	private String koris_ime;
+	private String korisIme;
 	private String lozinka;
 	private String uloga;
-	private Korisnik_servisaDto predsednik_skupstine;
-	private Korisnik_servisaDto vlasnik_zgrade;
-	private Korisnik_servisaDto vlasnik_firme;
-	private Korisnik_servisaDto vlasnik_stana;
+	private Korisnik_servisaDto predsednikSkupstine;
+	private Korisnik_servisaDto vlasnikZgrade;
+	private Korisnik_servisaDto vlasnikFirme;
+	private Korisnik_servisaDto vlasnikStana;
 	
-	public Korisnik_servisaDto(Long id_korisnik_servisa, String ime, String koris_ime, String lozinka, String uloga,
-			Korisnik_servisaDto vlasnik_firme, Korisnik_servisaDto vlasnik_zgrade, Korisnik_servisaDto vlasnik_stana, Korisnik_servisaDto predsednik_skupstine) {
+	public Korisnik_servisaDto(Long id, String ime, String korisIme, String lozinka, String uloga,
+			Korisnik_servisaDto vlasnikFirme, Korisnik_servisaDto vlasnikZgrade, Korisnik_servisaDto vlasnikStana, Korisnik_servisaDto predsednikSkupstine) {
 		super();
-		this.id_korisnik_servisa = id_korisnik_servisa;
+		this.id = id;
 		this.ime = ime;
-		this.koris_ime = koris_ime;
+		this.korisIme = korisIme;
 		this.lozinka = lozinka;
 		this.uloga = uloga;
-		this.vlasnik_firme = vlasnik_firme;
-		this.vlasnik_zgrade = vlasnik_zgrade;
-		this.vlasnik_stana = vlasnik_stana;
-		this.predsednik_skupstine = predsednik_skupstine;
+		this.vlasnikFirme = vlasnikFirme;
+		this.vlasnikZgrade = vlasnikZgrade;
+		this.vlasnikStana = vlasnikStana;
+		this.predsednikSkupstine = predsednikSkupstine;
 	}
 
 	public Korisnik_servisaDto(Korisnik_servisa korisnik_servisa) {
-		id_korisnik_servisa = korisnik_servisa.getId_korisnik_servisa();
-		ime = korisnik_servisa.getKoris_ime();
+		id = korisnik_servisa.getId();
+		ime = korisnik_servisa.getIme();
 	}
 	
-	public long getId_korisnik_servisa() {
-		return id_korisnik_servisa;
+	public long getId() {
+		return id;
 	}
-	public void setId_korisnika_servisa(long id_korisnik_servisa) {
-		this.id_korisnik_servisa = id_korisnik_servisa;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -45,11 +45,11 @@ public class Korisnik_servisaDto {
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-	public String getKoris_ime() {
-		return koris_ime;
+	public String getKorisIme() {
+		return korisIme;
 	}
-	public void setKoris_ime(String koris_ime) {
-		this.koris_ime = koris_ime;
+	public void setKorisIme(String korisIme) {
+		this.korisIme = korisIme;
 	}
 	public String getLozinka() {
 		return lozinka;
@@ -63,31 +63,40 @@ public class Korisnik_servisaDto {
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
 	}
-	public Korisnik_servisaDto getVlasnik_zgrade() {
-		return vlasnik_zgrade;
+
+	public Korisnik_servisaDto getPredsednikSkupstine() {
+		return predsednikSkupstine;
 	}
-	public void setVlasnik_zgrade(Korisnik_servisaDto vlasnik_zgrade) {
-		this.vlasnik_zgrade = vlasnik_zgrade;
+
+	public void setPredsednikSkupstine(Korisnik_servisaDto predsednikSkupstine) {
+		this.predsednikSkupstine = predsednikSkupstine;
 	}
-	public Korisnik_servisaDto getVlasnik_firme() {
-		return vlasnik_firme;
+
+	public Korisnik_servisaDto getVlasnikZgrade() {
+		return vlasnikZgrade;
 	}
-	public void setVlasnik_firme(Korisnik_servisaDto vlasnik_firme) {
-		this.vlasnik_firme = vlasnik_firme;
+
+	public void setVlasnikZgrade(Korisnik_servisaDto vlasnikZgrade) {
+		this.vlasnikZgrade = vlasnikZgrade;
 	}
-	public Korisnik_servisaDto getVlasnik_stana() {
-		return vlasnik_stana;
+
+	public Korisnik_servisaDto getVlasnikFirme() {
+		return vlasnikFirme;
 	}
-	public void setVlasnik_stana(Korisnik_servisaDto vlasnik_stana) {
-		this.vlasnik_stana = vlasnik_stana;
+
+	public void setVlasnikFirme(Korisnik_servisaDto vlasnikFirme) {
+		this.vlasnikFirme = vlasnikFirme;
 	}
-	public void setId_korisnik_servisa(long id_korisnik_servisa) {
-		this.id_korisnik_servisa = id_korisnik_servisa;
+
+	public Korisnik_servisaDto getVlasnikStana() {
+		return vlasnikStana;
 	}
-	public Korisnik_servisaDto getPredsednik_skupstine() {
-		return predsednik_skupstine;
+
+	public void setVlasnikStana(Korisnik_servisaDto vlasnikStana) {
+		this.vlasnikStana = vlasnikStana;
 	}
-	public void setPredsednik_skupstine(Korisnik_servisaDto predsednik_skupstine) {
-		this.predsednik_skupstine = predsednik_skupstine;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

@@ -16,11 +16,11 @@ import javax.persistence.OneToMany;
 public class Stan {
 	@Id
 	@GeneratedValue
-	private Long id_stanovi;
+	private Long id;
 
 	private String ime;
 	private String  adresa;
-	private int br_stanovnika;
+	private int brStanovnika;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Zgrada zgrada;
@@ -49,11 +49,11 @@ public class Stan {
 	public void setStanovnici(Set<Korisnik_servisa> stanovnici) {
 		this.stanovnici = stanovnici;
 	}
-	public Long getId_stanovi() {
-		return id_stanovi;
+	public Long getId() {
+		return id;
 	}
-	public void setId_stanovi(Long id_stanovi) {
-		this.id_stanovi = id_stanovi;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIme() {
 		return ime;
@@ -67,13 +67,12 @@ public class Stan {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public int getBr_stanovnika() {
-		return br_stanovnika;
+	public int getBrStanovnika() {
+		return brStanovnika;
 	}
-	public void setBr_stanovnika(int br_stanovnika) {
-		this.br_stanovnika = br_stanovnika;
+	public void setBrStanovnika(int brStanovnika) {
+		this.brStanovnika = brStanovnika;
 	}
-	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -83,22 +82,22 @@ public class Stan {
 			return false;
 		}
 		Stan s = (Stan) o;
-		if (s.id_stanovi == null || id_stanovi == null) {
+		if (s.id == null || id == null) {
 			return false;
 		}
-		return Objects.equals(id_stanovi, s.id_stanovi);
+		return Objects.equals(id, s.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(id_stanovi);
+		return Objects.hashCode(id);
 	}
 
 	@Override
 	public String toString() {
-		return "Stan [id_stanovi=" + id_stanovi + ", ime=" + ime
+		return "Stan [id_stanovi=" + id + ", ime=" + ime
 				+ ", adresa=" + adresa + ", vlasnik=" + vlasnik + ","
-						+ " br_stanovnika=" + br_stanovnika + ", stanovnici = "+ stanovnici + ","
+						+ " br_stanovnika=" + brStanovnika + ", stanovnici = "+ stanovnici + ","
 								+ " vlasnik="+ vlasnik +"]";
 	}
 }

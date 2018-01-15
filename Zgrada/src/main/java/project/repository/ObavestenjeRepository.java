@@ -8,7 +8,7 @@ import project.model.Obavestenje;
 
 public interface ObavestenjeRepository extends JpaRepository<Obavestenje,Long> {
 
-	Obavestenje findByDat_kreiranja(Date dat_kreiranja);
+	Obavestenje findByDatKreiranja(Date datKreiranja);
 
 	List<Obavestenje> findByKreator(String kreator);
 

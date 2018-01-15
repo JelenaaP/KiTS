@@ -6,52 +6,52 @@ import project.model.Sednica;
 
 
 public class SednicaDto {
-	private Long id_sednice;
-	private Date dat_kreiranja;
-	private Date dat_zakazivanja;
+	private Long id;
+	private Date datKreiranja;
+	private Date datZakazivanja;
 	private boolean aktivna;
 	private Korisnik_servisaDto kreator;
 	private ZgradaDto zgrada;
 	
 	public SednicaDto(){}
 	
-	public SednicaDto(Long id_sednice, Date dat_kreiranja, Date dat_zakazivanja, boolean aktivna,
+	public SednicaDto(Long id, Date datKreiranja, Date datZakazivanja, boolean aktivna,
 			Korisnik_servisaDto kreator, ZgradaDto zgrada) {
 		super();
-		this.id_sednice = id_sednice;
-		this.dat_kreiranja = dat_kreiranja;
-		this.dat_zakazivanja = dat_zakazivanja;
+		this.id = id;
+		this.datKreiranja = datKreiranja;
+		this.datZakazivanja = datZakazivanja;
 		this.kreator = kreator;
 		this.aktivna = aktivna;
 		this.zgrada = zgrada;
 		}
 
 	public SednicaDto(Sednica sednica) {
-		id_sednice = sednica.getId_sednice();
-		dat_kreiranja = sednica.getDat_kreiranja();
-		dat_zakazivanja = sednica.getDat_zakazivanja();
+		id = sednica.getId();
+		datKreiranja = sednica.getDatKreiranja();
+		datZakazivanja = sednica.getDatZakazivanja();
 		aktivna = sednica.isAktivna();
 		kreator = new Korisnik_servisaDto(sednica.getKreator());
 		zgrada = new ZgradaDto(sednica.getZgrada());
 	}
 
-	public Long getId_sednice() {
-		return id_sednice;
+	public Long getId() {
+		return id;
 	}
-	public void setId_sednice(Long id_sednice) {
-		this.id_sednice = id_sednice;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public Date getDat_kreiranja() {
-		return dat_kreiranja;
+	public Date getDatKreiranja() {
+		return datKreiranja;
 	}
-	public void setDat_kreiranja(Date dat_kreiranja) {
-		this.dat_kreiranja = dat_kreiranja;
+	public void setDatKreiranja(Date datKreiranja) {
+		this.datKreiranja = datKreiranja;
 	}
-	public Date getDat_zakazivanja() {
-		return dat_zakazivanja;
+	public Date getDatZakazivanja() {
+		return datZakazivanja;
 	}
-	public void setDat_zakazivanja(Date dat_zakazivanja) {
-		this.dat_zakazivanja = dat_zakazivanja;
+	public void setDatZakazivanja(Date datZakazivanja) {
+		this.datZakazivanja = datZakazivanja;
 	}
 	public boolean isAktivna() {
 		return aktivna;

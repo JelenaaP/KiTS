@@ -79,17 +79,17 @@ public class StavkaController {
 			{
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-			Sednica sednica = sednicaService.findOne(stavkaDto.getSednica().getId_sednice());
+			Sednica sednica = sednicaService.findOne(stavkaDto.getSednica().getId());
 			
 			if (sednica == null) {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-			Korisnik_servisa kreator = korisnik_servisaService.findByKoris_ime(stavkaDto.getKreator().getKoris_ime());
+			Korisnik_servisa kreator = korisnik_servisaService.findByKorisIme(stavkaDto.getKreator().getKorisIme());
 			
 			Stavka stavka = new Stavka();
 			stavka.setKreator(kreator);
 			stavka.setSednica(sednica);
-			stavka.setDat_kreiranja(stavkaDto.getDat_kreiranja());
+			stavka.setDatKreiranja(stavkaDto.getDatKreiranja());
 	
 			
 			stavka = stavkaService.save(stavka);
@@ -100,21 +100,21 @@ public class StavkaController {
 		@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 		public ResponseEntity<StavkaDto> updateStavka(@RequestBody StavkaDto stavkaDto) {
 			
-			Stavka stavka = stavkaService.findOne(stavkaDto.getId_stavke());
+			Stavka stavka = stavkaService.findOne(stavkaDto.getId());
 			if (stavka == null) {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-			stavka.setDat_kreiranja(stavkaDto.getDat_kreiranja());
+			stavka.setDatKreiranja(stavkaDto.getDatKreiranja());
 			
 			
 			return new ResponseEntity<>(new StavkaDto(stavka),HttpStatus.OK);
 		}
 		//brisanje stavke
-		@RequestMapping(value = "/{id_stavke}", method = RequestMethod.DELETE)
-		public ResponseEntity<Void> deleteStavka(@PathVariable Long id_stavke) {
-			Stavka stavka = stavkaService.findOne(id_stavke);
+		@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<Void> deleteStavka(@PathVariable Long id) {
+			Stavka stavka = stavkaService.findOne(id);
 			if (stavka != null) {
-				stavkaService.delete(id_stavke);
+				stavkaService.delete(id);
 				return new ResponseEntity<>(HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);

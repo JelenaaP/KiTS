@@ -77,7 +77,7 @@ public class ZgradaController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Zgrada adresa = zgradaService.findOneByAdresa(zgradaDto.getAdresa());
-		Korisnik_servisa vlasnik = korisnik_servisaService.findByKoris_ime(zgradaDto.getVlasnik().getIme());
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(zgradaDto.getVlasnik().getKorisIme());
 		
 		if (adresa == null || vlasnik == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -87,8 +87,8 @@ public class ZgradaController {
 		zgrada.setAdresa(zgradaDto.getAdresa());
 		zgrada.setIme(zgradaDto.getIme());
 		zgrada.setVlasnik(vlasnik);
-		zgrada.setBr_stanova(zgradaDto.getBr_stanova());
-		zgrada.setBr_naseljenih(zgradaDto.getBr_naseljenih());
+		zgrada.setBrStanova(zgradaDto.getBrStanova());
+		zgrada.setBrNaseljenih(zgradaDto.getBrNaseljenih());
 		
 		zgrada = zgradaService.save(zgrada);
 		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.CREATED);
@@ -98,14 +98,14 @@ public class ZgradaController {
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ZgradaDto> updateZgrada(@RequestBody ZgradaDto zgradaDto) {
 		// a building must exist
-		Zgrada zgrada = zgradaService.findOne(zgradaDto.getId_zgrada());
+		Zgrada zgrada = zgradaService.findOne(zgradaDto.getId());
 		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
 		
-		zgrada.setBr_naseljenih(zgradaDto.getBr_naseljenih());
-		zgrada.setBr_stanova(zgradaDto.getBr_stanova());
+		zgrada.setBrNaseljenih(zgradaDto.getBrNaseljenih());
+		zgrada.setBrStanova(zgradaDto.getBrStanova());
 		zgrada.setIme(zgradaDto.getIme());
 		
 		zgrada = zgradaService.save(zgrada);
@@ -113,27 +113,27 @@ public class ZgradaController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id_zgrada}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteZgrada(@PathVariable Long id_zgrada) {
-		Zgrada zgrada = zgradaService.findOne(id_zgrada);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteZgrada(@PathVariable Long id) {
+		Zgrada zgrada = zgradaService.findOne(id);
 		if (zgrada != null) {
-			zgradaService.delete(id_zgrada);
+			zgradaService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@RequestMapping(value = "/{zgradaId_zgrada}/stanovi", method = RequestMethod.GET)
+	@RequestMapping(value = "/{zgradaId}/stanovi", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> getZgradaStanovi(
-			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOne(zgradaId_zgrada);
+			@PathVariable Long zgradaId) {
+		Zgrada zgrada = zgradaService.findOne(zgradaId);
 		Set<Stan> stanovi = zgrada.getStan();
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s: stanovi) {
 			StanDto stanDto = new StanDto();
-			stanDto.setId_stanovi(s.getId_stanovi());
-			stanDto.setBr_stanovnika(s.getBr_stanovnika());
+			stanDto.setId(s.getId());
+			stanDto.setBrStanovnika(s.getBrStanovnika());
 			stanDto.setAdresa(s.getAdresa());
 			stanDto.setIme(s.getIme());
 			stanDto.setVlasnik(new Korisnik_servisaDto(s.getVlasnik()));
@@ -143,19 +143,19 @@ public class ZgradaController {
 		return new ResponseEntity<>(stanoviDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{zgradaId_zgrada}/kvar", method = RequestMethod.GET)
+	@RequestMapping(value = "/{zgradaId}/kvar", method = RequestMethod.GET)
 	public ResponseEntity<List<KvarDto>> getZgradaKvar(
-			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOne(zgradaId_zgrada);
+			@PathVariable Long zgradaId) {
+		Zgrada zgrada = zgradaService.findOne(zgradaId);
 		Set<Kvar> kvarovi = zgrada.getKvar();
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar o : kvarovi) {
 			KvarDto kvarDto = new KvarDto();
 			
-			kvarDto.setId_kvar(o.getId_kvar());
-			kvarDto.setDat_kreiranja(o.getDat_kreiranja());
-			kvarDto.setDat_zakazivanja(o.getDat_zakazivanja());
-			kvarDto.setDat_popravke(o.getDat_popravke());
+			kvarDto.setId(o.getId());
+			kvarDto.setDatKreiranja(o.getDatKreiranja());
+			kvarDto.setDatZakazivanja(o.getDatZakazivanja());
+			kvarDto.setDatPopravke(o.getDatPopravke());
 			kvarDto.setIme(o.getIme());
 			kvarDto.setOpis(o.getOpis());
 			kvarDto.setPopravljen(o.isPopravljen());
@@ -166,17 +166,17 @@ public class ZgradaController {
 		return new ResponseEntity<>(kvaroviDto, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{zgradaId_zgrada}/obavestenje", method = RequestMethod.GET)
+	@RequestMapping(value = "/{zgradaId}/obavestenje", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> getZgradaObavestenje(
-			@PathVariable Long zgradaId_zgrada) {
-		Zgrada zgrada = zgradaService.findOne(zgradaId_zgrada);
+			@PathVariable Long zgradaId) {
+		Zgrada zgrada = zgradaService.findOne(zgradaId);
 		Set<Obavestenje> obavestenja = zgrada.getObavestenje();
 		List<ObavestenjeDto> obavestenjaDto = new ArrayList<>();
 		for (Obavestenje o : obavestenja) {
 			ObavestenjeDto obavestenjeDto = new ObavestenjeDto();
 			
-			obavestenjeDto.setId_obavestenje(o.getId_obavestenje());
-			obavestenjeDto.setDat_kreiranja(o.getDat_kreiranja());
+			obavestenjeDto.setId(o.getId());
+			obavestenjeDto.setDatKreiranja(o.getDatKreiranja());
 			obavestenjeDto.setIme(o.getIme());
 			obavestenjeDto.setOpis(o.getOpis());
 			obavestenjeDto.setKreator(new Korisnik_servisaDto(o.getKreator()));
