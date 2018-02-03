@@ -14,7 +14,7 @@ public class ObavestenjeService {
 	@Autowired
 	private ObavestenjeRepository obavestenjeRepository;
 	
-	public List<Obavestenje> findByZgrada(String zgrada){
+	public List<Obavestenje> findByZgrada(Long zgrada){
 		return obavestenjeRepository.findByZgrada(zgrada);
 	}
 	public List<Obavestenje> findAll(){
@@ -25,7 +25,7 @@ public class ObavestenjeService {
 		return obavestenjeRepository.findByDatKreiranja(datKreiranja);
 	}
 	
-	public List<Obavestenje> findByKreator(String kreator) {
+	public List<Obavestenje> findByKreator(Long kreator) {
 		return obavestenjeRepository.findByKreator(kreator);
 	}
 	public void delete(Long id) {

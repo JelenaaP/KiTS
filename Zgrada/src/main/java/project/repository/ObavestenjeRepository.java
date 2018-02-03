@@ -10,7 +10,7 @@ public interface ObavestenjeRepository extends JpaRepository<Obavestenje,Long> {
 
 	Obavestenje findByDatKreiranja(Date datKreiranja);
 
-	List<Obavestenje> findByKreator(String kreator);
+	List<Obavestenje> findByKreator(Long kreator);
 
-	List<Obavestenje> findByZgrada(String zgrada);
+	List<Obavestenje> findByZgrada(Long zgrada);
 }

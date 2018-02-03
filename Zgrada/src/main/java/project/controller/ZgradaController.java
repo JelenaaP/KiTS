@@ -60,7 +60,7 @@ public class ZgradaController {
 	}
 	
 	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
-	public ResponseEntity<List<ZgradaDto>> getZgradaByVlasnik(@RequestParam String vlasnik) {
+	public ResponseEntity<List<ZgradaDto>> getZgradaByVlasnik(@RequestParam Long vlasnik) {
 		List<Zgrada> zgrade = zgradaService.findByVlasnik(vlasnik);
 		List<ZgradaDto> zgradeDto = new ArrayList<>();
 		for (Zgrada z : zgrade) {

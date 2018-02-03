@@ -50,7 +50,7 @@ public class KvarController {
 	}
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> getKvarByZgrada(@RequestParam String zgrada) {
+	public ResponseEntity<List<KvarDto>> getKvarByZgrada(@RequestParam Long zgrada) {
 		List<Kvar> kvarovi = kvarService.findByZgrada(zgrada);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar k : kvarovi) {
@@ -60,7 +60,7 @@ public class KvarController {
 		}
 	
 	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> getKvarByKreator(@RequestParam String kreator) {
+	public ResponseEntity<List<KvarDto>> getKvarByKreator(@RequestParam Long kreator) {
 		List<Kvar> kvarovi = kvarService.findByKreator(kreator);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar z : kvarovi) {

@@ -29,7 +29,7 @@ public class KvarService {
 	public Kvar findByDatPopravke(Date datPopravke) {
 		return kvarRepository.findByDatPopravke(datPopravke);
 	}
-	public Kvar findByRadnik(String radnik) {
+	public List<Kvar> findByRadnik(Long radnik) {
 		return kvarRepository.findByRadnik(radnik);
 	}
 	public void delete(Long id) {
@@ -38,13 +38,13 @@ public class KvarService {
 	public Kvar save(Kvar kvar) {
 		return kvarRepository.save(kvar);
 	}
-	public List<Kvar> findByZgrada(String zgrada) {
-		return kvarRepository.findByZgrada(zgrada);
+	public List<Kvar> findByZgrada(Long Zgrada) {
+		return kvarRepository.findByZgrada(Zgrada);
 	}
 	public Kvar findOne(Long id) {
 		return kvarRepository.findOne(id);
 	}
-	public List<Kvar> findByKreator(String kreator) {
+	public List<Kvar> findByKreator(Long kreator) {
 		return kvarRepository.findByKreator(kreator);
 	}
 }
