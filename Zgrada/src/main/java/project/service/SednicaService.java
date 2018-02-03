@@ -47,11 +47,11 @@ public class SednicaService {
 		return sednicaRepository.findById(id_zapisnik);
 	}
 
-	public List<Sednica> findByKreator(String kreator) {
+	public List<Sednica> findByKreator(Long kreator) {
 		return sednicaRepository.findByKreator(kreator);
 	}
 
-	public List<Sednica> findByZgrada(String zgrada) {
+	public List<Sednica> findByZgrada(Long zgrada) {
 		return sednicaRepository.findByZgrada(zgrada);
 	}
 }

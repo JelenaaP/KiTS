@@ -55,7 +55,7 @@ public class SednicaController {
 	}
 	//pretrazivanje po kreatoru sednice
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<SednicaDto>> getSednicaByKreator(@RequestParam String kreator) {
+	public ResponseEntity<List<SednicaDto>> getSednicaByKreator(@RequestParam Long kreator) {
 		List<Sednica> sednice = sednicaService.findByKreator(kreator);
 		List<SednicaDto> sedniceDto = new ArrayList<>();
 		for (Sednica s : sednice) {
@@ -65,7 +65,7 @@ public class SednicaController {
 	}
 	//pretrazivanje po zgradi u kojoj se odrzava sednica
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
-	public ResponseEntity<List<SednicaDto>> getSednicaByZgrada(@RequestParam String zgrada) {
+	public ResponseEntity<List<SednicaDto>> getSednicaByZgrada(@RequestParam Long zgrada) {
 		List<Sednica> sednice = sednicaService.findByZgrada(zgrada);
 		List<SednicaDto> sedniceDto = new ArrayList<>();
 		for (Sednica s : sednice) {
