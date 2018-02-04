@@ -38,7 +38,6 @@ import org.springframework.web.context.WebApplicationContext;
 import project.MyApplication;
 import project.TestUtil;
 import project.constants.Korisnik_ServisaConstants;
-import project.constants.KvarConstants;
 import project.constants.ZapisnikConstants;
 import project.constants.ZgradaConstants;
 import project.model.Zapisnik;
