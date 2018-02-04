@@ -1,13 +1,13 @@
 package project.service;
 
-import static project.constants.ZapisnikConstans.DB_DAT_KREIRANJA;
-import static project.constants.ZapisnikConstans.DB_COUNT;
-import static project.constants.ZapisnikConstans.DB_ID;
-import static project.constants.ZapisnikConstans.DB_OPIS;
-import static project.constants.ZapisnikConstans.DB_KREATOR_ID;
-import static project.constants.ZapisnikConstans.DB_ZGRADA_ID;
-import static project.constants.ZapisnikConstans.NEW_DAT_KREIRANJA;
-import static project.constants.ZapisnikConstans.NEW_OPIS;
+import static project.constants.ZapisnikConstants.DB_DAT_KREIRANJA;
+import static project.constants.ZapisnikConstants.DB_COUNT;
+import static project.constants.ZapisnikConstants.DB_ID;
+import static project.constants.ZapisnikConstants.DB_OPIS;
+import static project.constants.ZapisnikConstants.DB_KREATOR_ID;
+import static project.constants.ZapisnikConstants.DB_ZGRADA_ID;
+import static project.constants.ZapisnikConstants.NEW_DAT_KREIRANJA;
+import static project.constants.ZapisnikConstants.NEW_OPIS;
 
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,15 +1,15 @@
 package project.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static project.constants.StanConstans.DB_ADRESA;
-import static project.constants.StanConstans.DB_COUNT;
-import static project.constants.StanConstans.DB_COUNT_WITH_ADRESA;
-import static project.constants.StanConstans.DB_COUNT_WITH_VLASNIK;
-import static project.constants.StanConstans.DB_ID;
-import static project.constants.StanConstans.DB_IME;
-import static project.constants.StanConstans.DB_VLASNIK_ID;
-import static project.constants.StanConstans.NEW_ADRESA;
-import static project.constants.StanConstans.NEW_IME;
+import static project.constants.StanConstants.DB_ADRESA;
+import static project.constants.StanConstants.DB_COUNT;
+import static project.constants.StanConstants.DB_COUNT_WITH_ADRESA;
+import static project.constants.StanConstants.DB_COUNT_WITH_VLASNIK;
+import static project.constants.StanConstants.DB_ID;
+import static project.constants.StanConstants.DB_IME;
+import static project.constants.StanConstants.DB_VLASNIK_ID;
+import static project.constants.StanConstants.NEW_ADRESA;
+import static project.constants.StanConstants.NEW_IME;
 
 import java.util.List;
 

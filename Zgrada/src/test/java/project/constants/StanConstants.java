@@ -1,6 +1,6 @@
 package project.constants;
 
-public class StanConstans {
+public class StanConstants {
 	public static final Long DB_ID = 1L;
 	
 	public static final String DB_ADRESA = "adresa 1";

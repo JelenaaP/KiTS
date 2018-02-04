@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class SednicaConstans {
+public class SednicaConstants {
 	private static final Calendar datKreiranja;
 	private static final Calendar datZakazivanja;
 	

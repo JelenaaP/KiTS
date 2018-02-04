@@ -1,18 +1,18 @@
 package project.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static project.constants.SednicaConstans.DB_AKTIVNA;
+import static project.constants.SednicaConstants.DB_AKTIVNA;
 
-import static project.constants.SednicaConstans.DB_COUNT;
-import static project.constants.SednicaConstans.DB_DAT_KREIRANJA;
-import static project.constants.SednicaConstans.DB_ID;
-import static project.constants.SednicaConstans.DB_DAT_ZAKAZIVANJA;
-import static project.constants.SednicaConstans.DB_COUNT_WITH_ZGRADA;
-import static project.constants.SednicaConstans.DB_COUNT_WITH_KREATOR;
-import static project.constants.SednicaConstans.DB_KREATOR_ID;
-import static project.constants.SednicaConstans.DB_ZGRADA_ID;
-import static project.constants.SednicaConstans.NEW_DAT_ZAKAZIVANJA;
-import static project.constants.SednicaConstans.NEW_DAT_KREIRANJA;
+import static project.constants.SednicaConstants.DB_COUNT;
+import static project.constants.SednicaConstants.DB_DAT_KREIRANJA;
+import static project.constants.SednicaConstants.DB_ID;
+import static project.constants.SednicaConstants.DB_DAT_ZAKAZIVANJA;
+import static project.constants.SednicaConstants.DB_COUNT_WITH_ZGRADA;
+import static project.constants.SednicaConstants.DB_COUNT_WITH_KREATOR;
+import static project.constants.SednicaConstants.DB_KREATOR_ID;
+import static project.constants.SednicaConstants.DB_ZGRADA_ID;
+import static project.constants.SednicaConstants.NEW_DAT_ZAKAZIVANJA;
+import static project.constants.SednicaConstants.NEW_DAT_KREIRANJA;
 import java.util.List;
 
 import org.junit.Test;

@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class ZapisnikConstans {
+public class ZapisnikConstants {
 	private static final Calendar datKreiranja;
 	
 	static {

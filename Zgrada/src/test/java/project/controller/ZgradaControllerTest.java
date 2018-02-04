@@ -47,7 +47,7 @@ import project.MyApplication;
 import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
 import project.constants.ObavestenjeConstants;
-import project.constants.StanConstans;
+import project.constants.StanConstants;
 import project.constants.ZgradaConstants;
 import project.model.Zgrada;
 
@@ -153,7 +153,7 @@ public class ZgradaControllerTest {
     @Test
     @Transactional
     @Rollback(true)
-    public void testDeleteStudent() throws Exception { 	
+    public void testDeleteZgrada() throws Exception { 	
         this.mockMvc.perform(delete(URL_PREFIX + "/" + ZgradaConstants.DB_ID))
                 .andExpect(status().isOk());
     }
@@ -166,13 +166,13 @@ public class ZgradaControllerTest {
     		.andExpect(content().contentType(contentType))
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_ZGRADA_STANOVI)))
     		.andExpect(jsonPath("$.[*].adresa").value(
-    				hasItem(StanConstans.DB_ADRESA)))
+    				hasItem(StanConstants.DB_ADRESA)))
     		.andExpect(jsonPath("$.[*].ime").value(
-    				hasItem(StanConstans.DB_IME)))
+    				hasItem(StanConstants.DB_IME)))
     		.andExpect(jsonPath("$.[*].brStanova").value(
-    				hasItem(StanConstans.DB_BR_STANOVNIKA)))
+    				hasItem(StanConstants.DB_BR_STANOVNIKA)))
     		.andExpect(jsonPath("$.[*].vlasnik.id").value(
-    				hasItem(StanConstans.DB_VLASNIK_ID.intValue())));
+    				hasItem(StanConstants.DB_VLASNIK_ID.intValue())));
     }
 
     @Test

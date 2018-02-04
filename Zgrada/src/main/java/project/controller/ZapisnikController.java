@@ -46,7 +46,7 @@ public class ZapisnikController {
 	}
 	
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<ZapisnikDto>> getZapisnikByKreator(@RequestParam String kreator) {
+	public ResponseEntity<List<ZapisnikDto>> getZapisnikByKreator(@RequestParam Long kreator) {
 		List<Zapisnik> zapisnici = zapisnikService.findByKreator(kreator);
 		//convert buildings to DTOs
 		List<ZapisnikDto> zapisniciDto = new ArrayList<>();
