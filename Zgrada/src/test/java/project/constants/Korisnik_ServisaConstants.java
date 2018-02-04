@@ -1,5 +1,6 @@
 package project.constants;
 
+import project.model.Korisnik_servisa;
 
 public class Korisnik_ServisaConstants {
 	
@@ -24,4 +25,5 @@ public class Korisnik_ServisaConstants {
     
     public static final int DB_COUNT = 4;
     public static final int PAGE_SIZE = 5;
+	public static final Korisnik_servisa NEW_VLASNIK_ID = null;
 }

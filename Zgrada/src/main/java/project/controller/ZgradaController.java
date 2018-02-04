@@ -156,6 +156,7 @@ public class ZgradaController {
 			kvarDto.setDatKreiranja(o.getDatKreiranja());
 			kvarDto.setDatZakazivanja(o.getDatZakazivanja());
 			kvarDto.setDatPopravke(o.getDatPopravke());
+			kvarDto.setKreator(new Korisnik_servisaDto(o.getKreator()));
 			kvarDto.setIme(o.getIme());
 			kvarDto.setOpis(o.getOpis());
 			kvarDto.setPopravljen(o.isPopravljen());

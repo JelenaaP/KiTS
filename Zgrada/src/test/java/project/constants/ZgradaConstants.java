@@ -20,4 +20,9 @@ public class ZgradaConstants {
 	
 	public static final int DB_COUNT_WITH_ADRESA = 1;
 	public static final int DB_COUNT_WITH_VLASNIK = 1;
+
+	public static final Long DB_ID_REFERENCED = 1L;
+	public static final int DB_COUNT_ZGRADA_STANOVI = 1;
+	public static final int DB_COUNT_ZGRADA_KVAROVI = 1;
+	public static final int DB_COUNT_ZGRADA_OBAVESTENJA = 1;
 }
