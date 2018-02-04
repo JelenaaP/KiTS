@@ -41,7 +41,7 @@ import project.model.Korisnik_servisa;
 @WebIntegrationTest
 @TestPropertySource(locations="classpath:test.properties")
 
-public class Korisnik_ServisaTest {
+public class Korisnik_ServisaServiceTest {
 	
 	@Autowired
 	Korisnik_servisaService korisnik_servisaService;

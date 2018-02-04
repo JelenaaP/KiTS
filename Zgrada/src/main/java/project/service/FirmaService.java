@@ -24,7 +24,7 @@ public class FirmaService {
 		return firmaRepository.findOne(id);
 	}
 	
-	public Firma findByAdresa(String adresa) {
+	public List<Firma> findByAdresa(String adresa) {
 		return firmaRepository.findByAdresa(adresa);
 	}
 	

@@ -9,7 +9,7 @@ import project.model.Firma;
 public interface FirmaRepository extends JpaRepository<Firma,Long> {
 	
 	public Firma findByIme(String ime);
-	public Firma findByAdresa(String adresa);
+	public List<Firma> findByAdresa(String adresa);
 	public Firma findByRadnici(String radnik);
 	public List<Firma> findByAddress(String adresa);
 }

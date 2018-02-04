@@ -19,7 +19,7 @@ public class FirmaConstants {
 	public static final int DB_TELEFON = 125693;
 	public static final Long DB_VLASNIK_ID = 1L;
 	
-	public static final int DB_COUNT = 1;
+	public static final int DB_COUNT = 2;
 	
 	public static final int DB_COUNT_WITH_ADRESA = 1;
 	public static final int DB_COUNT_WITH_VLASNIK = 1;

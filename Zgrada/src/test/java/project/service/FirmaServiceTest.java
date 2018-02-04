@@ -30,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
 import project.model.Firma;
-import project.model.Zgrada;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -57,6 +57,7 @@ public class FirmaServiceTest {
 		assertThat(dbFirma.getAdresa()).isEqualTo(DB_ADRESA);
 		assertThat(dbFirma.getEmail()).isEqualTo(DB_EMAIL);
 		assertThat(dbFirma.getIme()).isEqualTo(DB_IME);
+		assertThat(dbFirma.getTelefon()).isEqualTo(DB_TELEFON);
 		assertThat(dbFirma.getWebSite()).isEqualTo(DB_WEB_SITE);
 		assertThat(dbFirma.getVlasnik()).isEqualTo(DB_VLASNIK_ID);
 	}
@@ -102,7 +103,7 @@ public class FirmaServiceTest {
 	
 	@Test
 	public void testFindByAdresa() {
-		List<Firma> firme = firmaService.findByAddress(DB_ADRESA);
+		List<Firma> firme = firmaService.findByAdresa(DB_ADRESA);
 		assertThat(firme).hasSize(DB_COUNT_WITH_ADRESA);
 	}
 	
