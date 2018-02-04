@@ -18,7 +18,7 @@ public class KomentarService {
 		return komentarRepository.findByKvar(kvar);
 	}
 	
-	public List<Komentar> findByKreator(String kreator){
+	public List<Komentar> findByKreator(Long kreator){
 		return komentarRepository.findByKreator(kreator);
 	}
 	

@@ -19,7 +19,7 @@ public class StavkaService {
 		return stavkaRepository.findBySednica(sednica);
 	}
 	
-	public List<Stavka> findByKreator(String kreator){
+	public List<Stavka> findByKreator(Long kreator){
 		return stavkaRepository.findByKreator(kreator);
 	}
 	

@@ -9,5 +9,5 @@ import project.model.Komentar;
 public interface KomentarRepository extends JpaRepository<Komentar, Long> {
 
 	public List<Komentar> findByKvar(String kvar);
-	public List<Komentar> findByKreator(String kreator);
+	public List<Komentar> findByKreator(Long kreator);
 }

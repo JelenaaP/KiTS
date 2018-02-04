@@ -28,6 +28,10 @@ public class FirmaService {
 		return firmaRepository.findByAdresa(adresa);
 	}
 	
+	public List<Firma> findByAddress(String adresa){
+		return firmaRepository.findByAddress(adresa);
+	}
+	
 	public Firma findByRadnici(String radnik){
 		return firmaRepository.findByRadnici(radnik);
 	}
