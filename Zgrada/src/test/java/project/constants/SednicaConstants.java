@@ -30,6 +30,9 @@ public class SednicaConstants {
 	
 	public static final Boolean NEW_AKTIVNA = true; 
 	public static final Date NEW_DAT_KREIRANJA = datKreiranja.getTime();   
-	public static final Date NEW_DAT_ZAKAZIVANJA = datZakazivanja.getTime(); 
+	public static final Date NEW_DAT_ZAKAZIVANJA = datZakazivanja.getTime();
+	public static final Long DB_ID_REFERENCED = 1L; 
+	public static final int DB_COUNT_SEDNICA_STAVKA = 1;
+	public static final int DB_COUNT_SEDNICA_ZAPISNIK = 1;
 	
 }

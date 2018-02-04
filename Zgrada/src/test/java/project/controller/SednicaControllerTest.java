@@ -10,20 +10,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static project.constants.KvarConstants.DB_DAT_KREIRANJA;
-import static project.constants.KvarConstants.DB_DAT_ZAKAZIVANJA;
-import static project.constants.KvarConstants.DB_DAT_POPRAVKE;
-import static project.constants.KvarConstants.DB_IME;
-import static project.constants.KvarConstants.DB_OPIS;
-import static project.constants.KvarConstants.DB_KREATOR_ID;
-import static project.constants.KvarConstants.DB_ZGRADA_ID;
-import static project.constants.KvarConstants.DB_COUNT;
-import static project.constants.KvarConstants.NEW_DAT_KREIRANJA;
-import static project.constants.KvarConstants.NEW_IME;
-import static project.constants.KvarConstants.NEW_OPIS;
-import static project.constants.KvarConstants.DB_COUNT_KVAR_KOMENTARI;
-import static project.constants.KvarConstants.DB_POPRAVLJEN;
-
+import static project.constants.SednicaConstants.DB_AKTIVNA;
+import static project.constants.SednicaConstants.DB_COUNT;
+import static project.constants.SednicaConstants.DB_DAT_KREIRANJA;
+import static project.constants.SednicaConstants.DB_DAT_ZAKAZIVANJA;
+import static project.constants.SednicaConstants.DB_KREATOR_ID;
+import static project.constants.SednicaConstants.DB_ZGRADA_ID;
+import static project.constants.SednicaConstants.NEW_AKTIVNA;
+import static project.constants.SednicaConstants.NEW_DAT_KREIRANJA;
+import static project.constants.SednicaConstants.DB_COUNT_SEDNICA_STAVKA;
+import static project.constants.SednicaConstants.DB_COUNT_SEDNICA_ZAPISNIK;
 import java.nio.charset.Charset;
 
 import javax.annotation.PostConstruct;
@@ -42,21 +38,23 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import project.TestUtil;
 import project.MyApplication;
+import project.TestUtil;
 import project.constants.KomentarConstants;
 import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
+import project.constants.SednicaConstants;
+import project.constants.StavkaConstants;
+import project.constants.ZapisnikConstants;
 import project.constants.ZgradaConstants;
-import project.model.Kvar;
+import project.model.Sednica;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
 @WebIntegrationTest
 @TestPropertySource(locations="classpath:test.properties")
-
-public class KvarConrollerTest {
-private static final String URL_PREFIX = "/api/kvar";
+public class SednicaControllerTest {
+private static final String URL_PREFIX = "/api/sednica";
 
 	
 	private MediaType contentType = new MediaType(
@@ -74,108 +72,120 @@ private static final String URL_PREFIX = "/api/kvar";
     	this.mockMvc = MockMvcBuilders.
     			webAppContextSetup(webApplicationContext).build();
     }
-    
     @Test
-    public void testGetAllKvar() throws Exception {
+    public void testGetAllSednica() throws Exception {
     	mockMvc.perform(get(URL_PREFIX + "/all"))
 	        .andExpect(status().isOk())
 	        .andExpect(content().contentType(contentType))
 	        .andExpect(jsonPath("$", hasSize(DB_COUNT)))
-	        .andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))
+	        .andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
             .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
             .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
-            .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE)))
-    		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
-    		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
+    		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
     		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
-    		.andExpect(jsonPath("$.[*].popravljen").value(hasItem(DB_POPRAVLJEN)))
     		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
     }
-    
     @Test
-    public void testGetKvarByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + KvarConstants.DB_ZGRADA_ID))
+    public void testGetSednicaByKreator() throws Exception {
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + ZapisnikConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
         .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
-        .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE)))
-		.andExpect(jsonPath("$.[*].popravljen").value(hasItem(DB_POPRAVLJEN)))
-		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
-		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)));
+		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
+		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
+		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test
-    public void testGetKvarByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + KvarConstants.DB_KREATOR_ID))
+    public void testGetSednicaByZgrada() throws Exception {
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + ZapisnikConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
         .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
-        .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE)))
-		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
-		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
+		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
+		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
 		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test
     @Transactional
     @Rollback(true)
-    public void testSaveKvar() throws Exception {
-    	Kvar kvar = new Kvar();
-		kvar.setIme(NEW_IME);
-		kvar.setDatKreiranja(NEW_DAT_KREIRANJA);
-		kvar.setOpis(NEW_OPIS);
-		kvar.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
-		kvar.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+    public void testSaveSednica() throws Exception {
+    	Sednica sednica = new Sednica();
+    	sednica.setDatKreiranja(NEW_DAT_KREIRANJA);
+		sednica.setDatZakazivanja(NEW_DAT_KREIRANJA);
+		sednica.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
+		sednica.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+		sednica.setAktivna(NEW_AKTIVNA);
 		
-    	String json = TestUtil.json(kvar);
+    	String json = TestUtil.json(sednica);
         this.mockMvc.perform(post(URL_PREFIX)
                 .contentType(contentType)
                 .content(json))
                 .andExpect(status().isCreated());
     }
-    
     @Test
     @Transactional
     @Rollback(true)
-    public void testUpdateKvar() throws Exception {
-    	Kvar kvar = new Kvar();
-    	kvar.setId(KvarConstants.DB_ID);
-    	kvar.setIme(NEW_IME);
-		kvar.setDatKreiranja(NEW_DAT_KREIRANJA);
-		kvar.setOpis(NEW_OPIS);
-	
-    	String json = TestUtil.json(kvar);
+    public void testUpdateSednica() throws Exception {
+    	Sednica sednica = new Sednica();
+    	sednica.setDatKreiranja(NEW_DAT_KREIRANJA);
+		sednica.setDatZakazivanja(NEW_DAT_KREIRANJA);
+		sednica.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
+		sednica.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+		sednica.setAktivna(NEW_AKTIVNA);
+		
+    	String json = TestUtil.json(sednica);
         this.mockMvc.perform(put(URL_PREFIX)
                 .contentType(contentType)
                 .content(json))
                 .andExpect(status().isOk());
     }
-    
     @Test
     @Transactional
     @Rollback(true)
-    public void testDeleteKvar() throws Exception { 	
+    public void testDeleteSednica() throws Exception { 	
         this.mockMvc.perform(delete(URL_PREFIX + "/" + KvarConstants.DB_ID))
                 .andExpect(status().isOk());
     }
-    
     @Test
-    public void testGetKvarKomentar() throws Exception {
+    public void testGetSednicaStavka() throws Exception {
     	mockMvc.perform(get(URL_PREFIX + "/" + 
-    			KvarConstants.DB_ID_REFERENCED + "/komentar"))
+    			SednicaConstants.DB_ID_REFERENCED + "/stavka"))
     		.andExpect(status().isOk())
     		.andExpect(content().contentType(contentType))
-    		.andExpect(jsonPath("$", hasSize(DB_COUNT_KVAR_KOMENTARI)))
+    		.andExpect(jsonPath("$", hasSize(DB_COUNT_SEDNICA_STAVKA)))
     		.andExpect(jsonPath("$.[*].datKreairanja").value(
-    				hasItem(KomentarConstants.DB_DAT_KREIRANJA)))
+    				hasItem(StavkaConstants.DB_DAT_KREIRANJA)))
     		.andExpect(jsonPath("$.[*].text").value(
-    				hasItem(KomentarConstants.DB_TEXT)))
+    				hasItem(StavkaConstants.DB_OPIS)))
+    		.andExpect(jsonPath("$.[*].text").value(
+    				hasItem(StavkaConstants.DB_IME)))
+    		.andExpect(jsonPath("$.[*].text").value(
+    				hasItem(StavkaConstants.DB_SEDNICA_ID)))
     		.andExpect(jsonPath("$.[*].kreator.id").value(
     				hasItem(KomentarConstants.DB_KREATOR_ID.intValue())));
     }
+    
+    @Test
+    public void testGetSednicaZapisnik() throws Exception {
+    	mockMvc.perform(get(URL_PREFIX + "/" + 
+    			SednicaConstants.DB_ID_REFERENCED + "/zapisnik"))
+    		.andExpect(status().isOk())
+    		.andExpect(content().contentType(contentType))
+    		.andExpect(jsonPath("$", hasSize(DB_COUNT_SEDNICA_ZAPISNIK)))
+    		.andExpect(jsonPath("$.[*].datKreairanja").value(
+    				hasItem(ZapisnikConstants.DB_DAT_KREIRANJA)))
+    		.andExpect(jsonPath("$.[*].text").value(
+    				hasItem(ZapisnikConstants.DB_OPIS)))
+    		.andExpect(jsonPath("$.[*].text").value(
+    				hasItem(ZapisnikConstants.DB_ZGRADA_ID)))
+    		.andExpect(jsonPath("$.[*].kreator.id").value(
+    				hasItem(ZapisnikConstants.DB_KREATOR_ID.intValue())));
+    }
+    
 }

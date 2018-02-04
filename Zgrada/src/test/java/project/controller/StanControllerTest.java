@@ -12,15 +12,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static project.constants.StanConstants.DB_ADRESA;
 import static project.constants.StanConstants.DB_BR_STANOVNIKA;
 import static project.constants.StanConstants.DB_COUNT;
-import static project.constants.StanConstants.DB_COUNT_WITH_ADRESA;
-import static project.constants.StanConstants.DB_COUNT_WITH_VLASNIK;
 import static project.constants.StanConstants.DB_IME;
 import static project.constants.StanConstants.DB_VLASNIK_ID;
 import static project.constants.StanConstants.DB_ZGRADA_ID;
 import static project.constants.StanConstants.NEW_ADRESA;
 import static project.constants.StanConstants.NEW_BR_STANOVNIKA;
 import static project.constants.StanConstants.NEW_IME;
-import static project.constants.StanConstants.NEW_VLASNIK_ID;
 
 
 import java.nio.charset.Charset;
@@ -47,7 +44,6 @@ import project.constants.Korisnik_ServisaConstants;
 import project.constants.StanConstants;
 import project.constants.ZgradaConstants;
 import project.model.Stan;
-import project.model.Zgrada;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -55,7 +51,7 @@ import project.model.Zgrada;
 @TestPropertySource(locations="classpath:test.properties")
 public class StanControllerTest {
     
-private static final String URL_PREFIX = "/api/zgrada";
+private static final String URL_PREFIX = "/api/stan";
 
     
     private MediaType contentType = new MediaType(
