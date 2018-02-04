@@ -28,6 +28,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
+import project.constants.Korisnik_ServisaConstants;
 import project.model.Zgrada;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -67,6 +68,7 @@ public class ZgradaServiceTest {
 		zgrada.setBrNaseljenih(NEW_BR_NASELJENIH);
 		zgrada.setBrStanova(NEW_BR_STANOVA);
 		zgrada.setIme(NEW_IME);
+		zgrada.setVlasnik(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
 		
 		int dbSizeBeforeAdd = zgradaService.findAll().size();
 		
@@ -81,6 +83,7 @@ public class ZgradaServiceTest {
         assertThat(dbZgrada.getBrNaseljenih()).isEqualTo(NEW_BR_NASELJENIH);
         assertThat(dbZgrada.getBrStanova()).isEqualTo(NEW_BR_STANOVA);
         assertThat(dbZgrada.getIme()).isEqualTo(NEW_IME);
+        assertThat(dbZgrada.getVlasnik()).isEqualTo(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
 	}
 	
 	@Test

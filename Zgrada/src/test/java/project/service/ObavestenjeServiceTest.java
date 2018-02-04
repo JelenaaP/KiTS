@@ -27,6 +27,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
+import project.constants.Korisnik_ServisaConstants;
+import project.constants.ZgradaConstants;
 import project.model.Obavestenje;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -65,6 +67,8 @@ public class ObavestenjeServiceTest {
 		obavestenje.setDatKreiranja(NEW_DAT_KREIRANJA);
 		obavestenje.setIme(NEW_IME);
 		obavestenje.setOpis(NEW_OPIS);
+		obavestenje.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+		obavestenje.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
 		
 		int dbSizeBeforeAdd = obavestenjeService.findAll().size();
 		
@@ -78,6 +82,8 @@ public class ObavestenjeServiceTest {
         assertThat(dbObavestenje.getDatKreiranja()).isEqualTo(NEW_DAT_KREIRANJA);
         assertThat(dbObavestenje.getIme()).isEqualTo(NEW_IME);
         assertThat(dbObavestenje.getOpis()).isEqualTo(NEW_OPIS);
+        assertThat(dbObavestenje.getKreator()).isEqualTo(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+        assertThat(dbObavestenje.getZgrada()).isEqualTo(ZgradaConstants.NEW_ZGRADA_ID);
 	}
 	
 	@Test

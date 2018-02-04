@@ -30,6 +30,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
+import project.constants.Korisnik_ServisaConstants;
+import project.constants.ZgradaConstants;
 import project.model.Kvar;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -71,6 +73,8 @@ public class KvarServiceTest {
 		kvar.setDatKreiranja(NEW_DAT_KREIRANJA);
 		kvar.setIme(NEW_IME);
 		kvar.setOpis(NEW_OPIS);
+		kvar.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+		kvar.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
 		
 		int dbSizeBeforeAdd = kvarService.findAll().size();
 		
@@ -84,6 +88,8 @@ public class KvarServiceTest {
         assertThat(dbKvar.getDatKreiranja()).isEqualTo(NEW_DAT_KREIRANJA);
         assertThat(dbKvar.getIme()).isEqualTo(NEW_IME);
         assertThat(dbKvar.getOpis()).isEqualTo(NEW_OPIS);
+        assertThat(dbKvar.getKreator()).isEqualTo(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+        assertThat(dbKvar.getZgrada()).isEqualTo(ZgradaConstants.NEW_ZGRADA_ID);
 	}
 	
 	@Test
