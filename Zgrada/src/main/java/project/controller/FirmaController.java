@@ -123,4 +123,14 @@ public class FirmaController {
 		}
 		return new ResponseEntity<>(firmeDto, HttpStatus.OK);
 		}
+	
+	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
+	public ResponseEntity<List<FirmaDto>> getFirmaByVlasnik(@RequestParam Long vlasnik) {
+		List<Firma> firme = firmaService.findByVlasnik(vlasnik);
+		List<FirmaDto> firmeDto = new ArrayList<>();
+		for (Firma f : firme) {
+			firmeDto.add(new FirmaDto(f));
+		}
+		return new ResponseEntity<>(firmeDto, HttpStatus.OK);
+		}
 }
