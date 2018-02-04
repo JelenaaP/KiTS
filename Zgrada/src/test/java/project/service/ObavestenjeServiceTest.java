@@ -14,7 +14,6 @@ import static project.constants.ObavestenjeConstants.NEW_OPIS;
 import static project.constants.ObavestenjeConstants.DB_COUNT_WITH_KREATOR;
 import static project.constants.ObavestenjeConstants.DB_COUNT_WITH_ZGRADA;
 
-
 import java.util.List;
 
 import org.junit.Test;
