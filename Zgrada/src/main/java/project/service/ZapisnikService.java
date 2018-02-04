@@ -23,11 +23,11 @@ public class ZapisnikService {
 		return zapisnikRepository.findByDatKreiranja(datKreiranja);
 	}
 	
-	public List<Zapisnik> findByKreator(String kreator){
+	public List<Zapisnik> findByKreator(Long kreator){
 		return zapisnikRepository.findByKreator(kreator);
 	}
 	
-	public List<Zapisnik> findByZgrada(String zgrada){
+	public List<Zapisnik> findByZgrada(Long zgrada){
 		return zapisnikRepository.findByZgrada(zgrada);
 	}
 	

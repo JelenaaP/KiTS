@@ -13,7 +13,7 @@ public interface ZapisnikRepository extends JpaRepository<Zapisnik, Long>{
 
 	Zapisnik findByDatKreiranja(Date datKreiranja);
 
-	List<Zapisnik> findByZgrada(String zgrada);
+	List<Zapisnik> findByZgrada(Long zgrada);
 
-	List<Zapisnik> findByKreator(String kreator);
+	List<Zapisnik> findByKreator(Long kreator);
 }
