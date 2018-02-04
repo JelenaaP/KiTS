@@ -18,7 +18,7 @@ public class KvarConstants {
 		    datZakazivanja.set(5, 1, 2018);
 		    datPopravke = GregorianCalendar.getInstance();
 		    datPopravke.clear();
-		    datPopravke.set(6, 1, 2018);
+		    datPopravke.set(01, 04, 2018);
 
 		}
 		public static final Long DB_ID = 1L;
@@ -32,7 +32,7 @@ public class KvarConstants {
 		public static final Long DB_KREATOR_ID = 1L;
 		public static final Long DB_ZGRADA_ID = 1L;
 		public static final Long DB_KORISNIK_SERVISA_ID = 1L;
-		public static final int DB_COUNT = 1;
+		public static final int DB_COUNT = 2;
 		public static final int DB_COUNT_WITH_RADNIK = 1;
 		
 		public static final Date NEW_DAT_KREIRANJA = datKreiranja.getTime();

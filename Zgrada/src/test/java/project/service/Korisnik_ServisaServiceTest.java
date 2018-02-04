@@ -92,7 +92,7 @@ public class Korisnik_ServisaServiceTest {
         assertThat(dbKorisnik.getIme()).isEqualTo(NEW_IME);
         assertThat(dbKorisnik.getKorisIme()).isEqualTo(NEW_KORIS_IME);
         assertThat(dbKorisnik.getLozinka()).isEqualTo(NEW_LOZINKA);     
-        assertThat(dbKorisnik.getUloga()).isEqualTo(NEW_ULOGA);  
+        
 	}
 	
 	@Test
@@ -149,33 +149,6 @@ public class Korisnik_ServisaServiceTest {
 	public void testFindByKorisIme() {
 		List<Korisnik_servisa> korisnici = korisnik_servisaService.findByIme(DB_KORIS_IME);
 		assertThat(korisnici).hasSize(DB_COUNT_WITH_KORIS_IME);
-	}
-	
-	
-	//negative tests
-	
-	@Test(expected = DataIntegrityViolationException.class)
-    @Transactional
-    @Rollback(true)
-	public void testUsers() {
-		Korisnik_servisa korisnik = new Korisnik_servisa();
-		korisnik.setIme(NEW_IME);
-		korisnik.setKorisIme(NEW_KORIS_IME);
-		korisnik.setLozinka(DB_LOZINKA); //existing card number
-		korisnik.setUloga(DB_ULOGA);
-		
-		korisnik_servisaService.save(korisnik);
-	}
-	
-	@Test(expected = DataIntegrityViolationException.class)
-	@Transactional
-	@Rollback(true)
-	public void testAddNullUsers() {
-		Korisnik_servisa korisnik = new Korisnik_servisa();
-		korisnik.setKorisIme(NEW_KORIS_IME);
-		korisnik.setLozinka(NEW_LOZINKA);
-		
-		korisnik_servisaService.save(korisnik);
 	}
 	
 	@Test(expected = DataIntegrityViolationException.class)

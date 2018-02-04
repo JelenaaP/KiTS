@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
 import project.constants.Korisnik_ServisaConstants;
+import project.constants.ZgradaConstants;
 import project.model.Zgrada;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -91,13 +92,14 @@ public class ZgradaServiceTest {
 	@Rollback(true)
 	public void testRemove() {
 		int dbSizeBeforeRemove = zgradaService.findAll().size();
-		zgradaService.delete(DB_ID);
+		zgradaService.delete(ZgradaConstants.DB_ID);
 		
 		List<Zgrada> zgrade = zgradaService.findAll();
 		assertThat(zgrade).hasSize(dbSizeBeforeRemove - 1);
 		
-		Zgrada dbZgrada = zgradaService.findOne(DB_ID);
+		Zgrada dbZgrada = zgradaService.findOne(ZgradaConstants.DB_ID);
 		assertThat(dbZgrada).isNull();
+		
 	}
 	
 	@Test

@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import project.controller.FirmaControllerTest;
+import project.controller.KomentarControllerTest;
 import project.controller.Korisnik_servisaControllerTest;
 import project.controller.KvarConrollerTest;
 import project.controller.ObavestenjeConrollerTest;
@@ -12,6 +13,7 @@ import project.controller.StanControllerTest;
 import project.controller.ZapisnikControllerTest;
 import project.controller.ZgradaControllerTest;
 import project.service.FirmaServiceTest;
+import project.service.KomentarServiceTest;
 import project.service.Korisnik_ServisaServiceTest;
 import project.service.KvarServiceTest;
 import project.service.ObavestenjeServiceTest;
@@ -36,6 +38,10 @@ import project.service.ZgradaServiceTest;
   ZapisnikControllerTest.class,
   SednicaServiceTest.class,
   SednicaControllerTest.class,
+  StanServiceTest.class,
+  StanControllerTest.class,
+  KomentarServiceTest.class,
+  KomentarControllerTest.class,
   StanServiceTest.class,
   StanControllerTest.class,
 })

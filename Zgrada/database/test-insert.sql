@@ -11,18 +11,21 @@ insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('ad
 insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('adresa2', 'firma2@gmail.com', 'firma2', 015333555, 'www.firma2.com',2);
 
 insert into zgrada (adresa, br_naseljenih, br_stanova, ime, vlasnik_id) values ('Loznica', 5, 8, 'zgrada 1', 2);
+insert into zgrada (adresa, br_naseljenih, br_stanova, ime, vlasnik_id) values ('Loznica 2', 5, 8, 'zgrada 2', 1);
 
 insert into kvar (dat_kreiranja, dat_popravke, dat_zakazivanja, ime, opis, popravljen, kreator_id,zgrada_id)
-values ('05.01.2018', '06.01.2018', '05.01.2018','kvar1', 'opis kvara1', 1,1,1);
+values ('2018-05-01', '2018-05-02', '2018-05-05','kvar1', 'opis kvara1', 1,1,1);
 
-insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('21.12.2017', 'ovo je tekst komentara',3,1);
-insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('22.12.2017', 'ovo je takodje komentar',4,1);
+insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2018-12-21', 'ovo je tekst komentara',3,1);
+insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2018-12-22', 'ovo je takodje komentar',4,1);
 
 insert into obavestenje (dat_kreiranja, ime, opis, kreator_id, zgrada_id) values ('01.01.2018' , 'obavestenje1' , 'opis obavestenja1',1,1);
+insert into obavestenje (dat_kreiranja, ime, opis, kreator_id, zgrada_id) values ('2018-02-01' , 'obavestenje1' , 'opis obavestenja1',1,1);
 
 insert into sednica (aktivna, dat_kreiranja, dat_zakazivanja, kreator_id, zgrada_id) values (0, '05.01.2018','06.01.2018', 1, 1);
 
 insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('adresa 1', 5, 'stan1', 3, 1);
+insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('adresa 1', 5, 'stan1', 1, 1);
 
 insert into zapisnik (dat_kreiranja, opis, kreator_id, zgrada_id) values ('01.01.2018', 'opis 1', 2, 1);
 

@@ -13,12 +13,12 @@ public class ZgradaConstants {
 	public static final Long NEW_VLASNIK_ID = 1L;
 
 	
-	public static final String DB_ADRESA = "Beogradska 4";
+	public static final String DB_ADRESA = "Loznica";
 	public static final int DB_BR_NASELJENIH = 5;
-	public static final int DB_BR_STANOVA = 100;
-	public static final String DB_IME = "Zgrada 1";
-	public static final Long DB_VLASNIK_ID = 1L;
-	public static final int DB_COUNT = 1;
+	public static final int DB_BR_STANOVA = 8;
+	public static final String DB_IME = "zgrada 1";
+	public static final Long DB_VLASNIK_ID = 2L;
+	public static final int DB_COUNT = 2;
 	
 	public static final int DB_COUNT_WITH_ADRESA = 1;
 	public static final int DB_COUNT_WITH_VLASNIK = 1;
