@@ -47,6 +47,7 @@ import project.MyApplication;
 import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
 import project.constants.ObavestenjeConstants;
+import project.constants.StanConstans;
 import project.constants.ZgradaConstants;
 import project.model.Zgrada;
 
@@ -165,13 +166,13 @@ public class ZgradaControllerTest {
     		.andExpect(content().contentType(contentType))
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_ZGRADA_STANOVI)))
     		.andExpect(jsonPath("$.[*].adresa").value(
-    				hasItem(ZgradaConstants.DB_ADRESA)))
+    				hasItem(StanConstans.DB_ADRESA)))
     		.andExpect(jsonPath("$.[*].ime").value(
-    				hasItem(ZgradaConstants.DB_IME)))
+    				hasItem(StanConstans.DB_IME)))
     		.andExpect(jsonPath("$.[*].brStanova").value(
-    				hasItem(ZgradaConstants.DB_BR_STANOVA)))
+    				hasItem(StanConstans.DB_BR_STANOVNIKA)))
     		.andExpect(jsonPath("$.[*].vlasnik.id").value(
-    				hasItem(ZgradaConstants.DB_VLASNIK_ID.intValue())));
+    				hasItem(StanConstans.DB_VLASNIK_ID.intValue())));
     }
 
     @Test

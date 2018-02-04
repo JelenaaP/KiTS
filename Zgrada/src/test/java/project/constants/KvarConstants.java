@@ -40,4 +40,6 @@ public class KvarConstants {
 		public static final String NEW_OPIS = "opis kvara2";
 		public static final int NEW_ZGRADA_ID = 1;
 		public static final int NEW_KREATOR_ID = 1;
+		public static final Long DB_ID_REFERENCED = 1L;
+		public static final int DB_COUNT_KVAR_KOMENTARI = 1;
 }
