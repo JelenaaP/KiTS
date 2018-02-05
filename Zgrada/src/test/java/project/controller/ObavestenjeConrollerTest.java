@@ -81,34 +81,34 @@ private static final String URL_PREFIX = "/api/obavestenje";
             .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
     		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-    		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
-    		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+    		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)))
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test
     public void testGetObavestenjeByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + ObavestenjeConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada.id=" + ObavestenjeConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))
     	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-        .andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)))
+        .andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)));
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)));
     }
     
     @Test
     public void testGetObavestenjeByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + ObavestenjeConstants.DB_KREATOR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + ObavestenjeConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))
     	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
         .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)))
-		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)))
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)));
     }
     
     @Test
@@ -132,7 +132,7 @@ private static final String URL_PREFIX = "/api/obavestenje";
     @Test
     @Transactional
     @Rollback(true)
-    public void testUpdateKvar() throws Exception {
+    public void testUpdateObavestenje() throws Exception {
     	Obavestenje obavestenje = new Obavestenje();
     	obavestenje.setId(KvarConstants.DB_ID);
     	obavestenje.setIme(NEW_IME);
@@ -149,7 +149,7 @@ private static final String URL_PREFIX = "/api/obavestenje";
     @Test
     @Transactional
     @Rollback(true)
-    public void testDeleteStudent() throws Exception { 	
+    public void testDeleteObavestenje() throws Exception { 	
         this.mockMvc.perform(delete(URL_PREFIX + "/" + ObavestenjeConstants.DB_ID))
                 .andExpect(status().isOk());
     }

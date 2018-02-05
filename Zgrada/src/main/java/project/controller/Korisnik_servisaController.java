@@ -33,7 +33,7 @@ public class Korisnik_servisaController {
 	
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
-	public ResponseEntity<List<Korisnik_servisaDto>> getAllUsers() {
+	public ResponseEntity<List<Korisnik_servisaDto>> getAll() {
 		List<Korisnik_servisa> korisnik_servisa = korisnik_servisaService.findAll();
 		//convert students to DTOs
 		List<Korisnik_servisaDto> korisnik_servisaDto = new ArrayList<>();

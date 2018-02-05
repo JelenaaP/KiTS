@@ -86,15 +86,15 @@ private static final String URL_PREFIX = "/api/stan";
     
     @Test
     public void testGetStanoviByAdresa() throws Exception {
-        mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + StanConstants.DB_ADRESA))
+        mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + DB_ADRESA))
         .andExpect(status().isOk())
         .andExpect(content().contentType(contentType))
         .andExpect(jsonPath("$.id").value(StanConstants.DB_ID.intValue()))
         .andExpect(jsonPath("$.ime").value(DB_IME))
         .andExpect(jsonPath("$.adresa").value(DB_ADRESA))
         .andExpect(jsonPath("$.brStanovnika").value(DB_BR_STANOVNIKA))
-        .andExpect(jsonPath("$.zgrada").value(DB_ZGRADA_ID))
-        .andExpect(jsonPath("$.vlasnik").value(DB_VLASNIK_ID));
+        .andExpect(jsonPath("$.zgrada.id").value(DB_ZGRADA_ID))
+        .andExpect(jsonPath("$.vlasnik.id").value(DB_VLASNIK_ID));
     }
 
     @Test
@@ -106,8 +106,8 @@ private static final String URL_PREFIX = "/api/stan";
         .andExpect(jsonPath("$.ime").value(DB_IME))
         .andExpect(jsonPath("$.adresa").value(DB_ADRESA))
         .andExpect(jsonPath("$.brStanovnika").value(DB_BR_STANOVNIKA))
-        .andExpect(jsonPath("$.zgrada").value(DB_ZGRADA_ID))
-        .andExpect(jsonPath("$.vlasnik").value(DB_VLASNIK_ID));
+        .andExpect(jsonPath("$.zgrada.id").value(DB_ZGRADA_ID))
+        .andExpect(jsonPath("$.vlasnik.id").value(DB_VLASNIK_ID));
     }
     
     @Test

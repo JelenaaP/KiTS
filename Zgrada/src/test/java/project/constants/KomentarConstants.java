@@ -11,9 +11,9 @@ public class KomentarConstants {
 	static {
 	    datKreiranja = GregorianCalendar.getInstance();
 	    datKreiranja.clear();
-	    datKreiranja.set(2018 , 11 , 22);
+	    datKreiranja.set(2018 , 11 , 21);
 	}
-	public static final Long DB_ID = 9L;
+	public static final Long DB_ID = 1L;
 	
 	public static final Date DB_DAT_KREIRANJA = datKreiranja.getTime();
 	public static final String DB_TEXT = "ovo je tekst komentara";
@@ -25,7 +25,7 @@ public class KomentarConstants {
 	public static final Long NEW_KREATOR_ID = 3L;
 	public static final Long NEW_KVAR_ID = 1L;
 	
-	public static final int DB_COUNT = 4;
-	public static final int DB_COUNT_WITH_KREATOR = 2;
+	public static final int DB_COUNT = 2;
+	public static final int DB_COUNT_WITH_KREATOR = 1;
 	public static final int DB_COUNT_WITH_KVAR = 2;
 }

@@ -35,6 +35,7 @@ public class FirmaDto {
 		telefon = firma.getTelefon();
 		email = firma.getEmail();
 		webSite = firma.getWebSite();
+		vlasnik = new Korisnik_servisaDto(firma.getVlasnik());
 	}
 
 	public Long getId() {

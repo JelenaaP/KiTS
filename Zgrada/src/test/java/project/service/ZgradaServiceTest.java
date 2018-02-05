@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -87,11 +88,12 @@ public class ZgradaServiceTest {
         assertThat(dbZgrada.getVlasnik()).isEqualTo(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
 	}
 	
-	@Test
+	@Test(expected = DataIntegrityViolationException.class)
 	@Transactional
 	@Rollback(true)
 	public void testRemove() {
 		int dbSizeBeforeRemove = zgradaService.findAll().size();
+		
 		zgradaService.delete(ZgradaConstants.DB_ID);
 		
 		List<Zgrada> zgrade = zgradaService.findAll();

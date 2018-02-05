@@ -10,6 +10,9 @@ import static project.constants.StanConstants.DB_IME;
 import static project.constants.StanConstants.DB_VLASNIK_ID;
 import static project.constants.StanConstants.NEW_ADRESA;
 import static project.constants.StanConstants.NEW_IME;
+import static project.constants.StanConstants.DB_BR_STANOVNIKA;
+import static project.constants.StanConstants.DB_ZGRADA_ID;
+import static project.constants.StanConstants.NEW_BR_STANOVNIKA;
 
 import java.util.List;
 
@@ -24,7 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
-import project.model.Korisnik_servisa;
+import project.constants.Korisnik_ServisaConstants;
 import project.model.Stan;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,10 +36,6 @@ import project.model.Stan;
 @TestPropertySource(locations="classpath:test.properties")
 
 public class StanServiceTest {
-	private static final int NEW_BR_STANOVNIKA = 0;
-	private static final Object DB_BR_STANOVNIKA = null;
-	private static final Object DB_ZGRADA_ID = null;
-	private static final Korisnik_servisa NEW_VLASNIK = null;
 	@Autowired
 	StanService stanService;
 	
@@ -53,7 +52,7 @@ public class StanServiceTest {
 		assertThat(dbStan).isNotNull();	
 		assertThat(dbStan.getId()).isEqualTo(DB_ID);
 		assertThat(dbStan.getAdresa()).isEqualTo(DB_ADRESA);
-		assertThat(dbStan.getBrStanovnika()).isEqualTo(DB_BR_STANOVNIKA);
+		assertThat(dbStan.getBrStanovnika()).isEqualTo((DB_BR_STANOVNIKA));
 		assertThat(dbStan.getIme()).isEqualTo(DB_IME);
 		assertThat(dbStan.getVlasnik()).isEqualTo(DB_VLASNIK_ID);
 		assertThat(dbStan.getZgrada()).isEqualTo(DB_ZGRADA_ID);
@@ -67,7 +66,7 @@ public class StanServiceTest {
 		stan.setAdresa(NEW_ADRESA);
 		stan.setBrStanovnika(NEW_BR_STANOVNIKA);
 		stan.setIme(NEW_IME);
-		stan.setVlasnik(NEW_VLASNIK);
+		stan.setVlasnik(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
 		
 		int dbSizeBeforeAdd = stanService.findAll().size();
 		
@@ -81,7 +80,7 @@ public class StanServiceTest {
         assertThat(dbStan.getAdresa()).isEqualTo(NEW_ADRESA);
         assertThat(dbStan.getBrStanovnika()).isEqualTo(NEW_BR_STANOVNIKA);
         assertThat(dbStan.getIme()).isEqualTo(NEW_IME);
-        assertThat(dbStan.getVlasnik()).isEqualTo(NEW_VLASNIK);
+        assertThat(dbStan.getVlasnik()).isEqualTo(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
 }
 	@Test
 	@Transactional

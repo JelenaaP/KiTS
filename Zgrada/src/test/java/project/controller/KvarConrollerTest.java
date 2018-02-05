@@ -89,12 +89,12 @@ private static final String URL_PREFIX = "/api/kvar";
     		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
     		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
     		.andExpect(jsonPath("$.[*].popravljen").value(hasItem(DB_POPRAVLJEN)))
-    		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test
     public void testGetKvarByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + KvarConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada.id=" + KvarConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
@@ -104,12 +104,12 @@ private static final String URL_PREFIX = "/api/kvar";
 		.andExpect(jsonPath("$.[*].popravljen").value(hasItem(DB_POPRAVLJEN)))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)));
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)));
     }
     
     @Test
     public void testGetKvarByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + KvarConstants.DB_KREATOR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + KvarConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
@@ -118,7 +118,7 @@ private static final String URL_PREFIX = "/api/kvar";
         .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE)))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test

@@ -80,15 +80,15 @@ private static final String URL_PREFIX = "/api/komentar";
 	        .andExpect(content().contentType(contentType))
 	        .andExpect(jsonPath("$", hasSize(DB_COUNT)))
 	        .andExpect(jsonPath("$.[*].id").value(hasItem(KomentarConstants.DB_ID.intValue())))
-            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+	        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DB_TEXT)))
-            .andExpect(jsonPath("$.[*].kvar").value(hasItem(DB_KVAR_ID)))
-    		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+            .andExpect(jsonPath("$.[*].kvar.id").value(hasItem(DB_KVAR_ID)))
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test
     public void testGetKomentarByKvar() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKvar?kvar=" + KomentarConstants.DB_KVAR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKvar?kvar.id=" + KomentarConstants.DB_KVAR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))
@@ -101,7 +101,7 @@ private static final String URL_PREFIX = "/api/komentar";
     
     @Test
     public void testGetKomentarByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + KomentarConstants.DB_KREATOR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + KomentarConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))

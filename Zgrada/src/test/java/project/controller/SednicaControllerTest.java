@@ -87,28 +87,28 @@ private static final String URL_PREFIX = "/api/sednica";
     }
     @Test
     public void testGetSednicaByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + ZapisnikConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + ZapisnikConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
         .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
         .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
 		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
-		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
-		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)))
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test
     public void testGetSednicaByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + ZapisnikConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada.id=" + ZapisnikConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
         .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
         .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
 		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
-		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
-		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)))
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
     }
     
     @Test
@@ -159,14 +159,12 @@ private static final String URL_PREFIX = "/api/sednica";
     		.andExpect(status().isOk())
     		.andExpect(content().contentType(contentType))
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_SEDNICA_STAVKA)))
-    		.andExpect(jsonPath("$.[*].datKreairanja").value(
-    				hasItem(StavkaConstants.DB_DAT_KREIRANJA)))
-    		.andExpect(jsonPath("$.[*].text").value(
+    		//.andExpect(jsonPath("$.[*].datKreairanja").value(
+    			//	hasItem(StavkaConstants.DB_DAT_KREIRANJA)))
+    		.andExpect(jsonPath("$.[*].opis").value(
     				hasItem(StavkaConstants.DB_OPIS)))
-    		.andExpect(jsonPath("$.[*].text").value(
+    		.andExpect(jsonPath("$.[*].ime").value(
     				hasItem(StavkaConstants.DB_IME)))
-    		.andExpect(jsonPath("$.[*].text").value(
-    				hasItem(StavkaConstants.DB_SEDNICA_ID)))
     		.andExpect(jsonPath("$.[*].kreator.id").value(
     				hasItem(KomentarConstants.DB_KREATOR_ID.intValue())));
     }
@@ -180,9 +178,9 @@ private static final String URL_PREFIX = "/api/sednica";
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_SEDNICA_ZAPISNIK)))
     		.andExpect(jsonPath("$.[*].datKreairanja").value(
     				hasItem(ZapisnikConstants.DB_DAT_KREIRANJA)))
-    		.andExpect(jsonPath("$.[*].text").value(
+    		.andExpect(jsonPath("$.[*].opis").value(
     				hasItem(ZapisnikConstants.DB_OPIS)))
-    		.andExpect(jsonPath("$.[*].text").value(
+    		.andExpect(jsonPath("$.[*].zgrada.id").value(
     				hasItem(ZapisnikConstants.DB_ZGRADA_ID)))
     		.andExpect(jsonPath("$.[*].kreator.id").value(
     				hasItem(ZapisnikConstants.DB_KREATOR_ID.intValue())));

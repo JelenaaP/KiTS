@@ -12,7 +12,7 @@ public class ObavestenjeConstants {
 		    datKreiranja.clear();
 		    datKreiranja.set(2018, 01, 01);
 		}
-		public static final Long DB_ID = 3L;
+		public static final Long DB_ID = 2L;
 		
 		public static final Date DB_DAT_KREIRANJA = datKreiranja.getTime();
 		public static final String DB_IME = "obavestenje1";

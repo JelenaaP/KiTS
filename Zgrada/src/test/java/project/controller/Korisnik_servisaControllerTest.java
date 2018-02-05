@@ -76,7 +76,7 @@ private static final String URL_PREFIX = "/api/korisnik_servisa";
     }
 	
     @Test
-    public void testGetAllStudents() throws Exception {
+    public void testGetAll() throws Exception {
     	mockMvc.perform(get(URL_PREFIX + "/all"))
 	        .andExpect(status().isOk())
 	        .andExpect(content().contentType(contentType))
@@ -159,7 +159,7 @@ private static final String URL_PREFIX = "/api/korisnik_servisa";
     }
     
     @Test
-    public void testGetUsersByUsername() throws Exception {
+    public void testGetUsersByKorisIme() throws Exception {
     	mockMvc.perform(get(URL_PREFIX + "/findKorisIme?korisIme=" + DB_KORIS_IME))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))

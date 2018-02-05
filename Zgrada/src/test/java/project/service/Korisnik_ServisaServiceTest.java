@@ -118,7 +118,7 @@ public class Korisnik_ServisaServiceTest {
 
 	}
 	
-	@Test
+	@Test(expected = DataIntegrityViolationException.class)
 	@Transactional
 	@Rollback(true)
 	public void testRemove() {

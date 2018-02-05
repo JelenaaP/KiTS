@@ -1,12 +1,12 @@
 package project.constants;
 
 public class StanConstants {
-	public static final Long DB_ID = 3L;
+	public static final Long DB_ID = 1L;
 	
 	public static final String DB_ADRESA = "adresa 1";
 	public static final int DB_BR_STANOVNIKA= 5;
 	public static final String DB_IME = "stan1";
-	public static final Long DB_VLASNIK_ID = 1L;
+	public static final Long DB_VLASNIK_ID = 3L;
 	public static final Long DB_ZGRADA_ID = 1L;
 
 	public static final String NEW_ADRESA = "nova adresa";
@@ -17,6 +17,6 @@ public class StanConstants {
 	public static final int DB_COUNT = 2;
 	
 	public static final int DB_COUNT_WITH_ADRESA = 2;
-	public static final int DB_COUNT_WITH_VLASNIK = 2;
+	public static final int DB_COUNT_WITH_VLASNIK = 1;
 
 }

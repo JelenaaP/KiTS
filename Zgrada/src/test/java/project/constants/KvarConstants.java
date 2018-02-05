@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import project.model.Zgrada;
+
 public class KvarConstants {
 	private static final Calendar datKreiranja;
 	private static final Calendar datZakazivanja;
@@ -12,13 +14,13 @@ public class KvarConstants {
 		static {
 		    datKreiranja = GregorianCalendar.getInstance();
 		    datKreiranja.clear();
-		    datKreiranja.set(5 , 1 , 2018);
+		    datKreiranja.set(2018, 04, 01);
 		    datZakazivanja = GregorianCalendar.getInstance();
 		    datZakazivanja.clear();
-		    datZakazivanja.set(5, 1, 2018);
+		    datZakazivanja.set(2018, 04, 05);
 		    datPopravke = GregorianCalendar.getInstance();
 		    datPopravke.clear();
-		    datPopravke.set(01, 04, 2018);
+		    datPopravke.set(2018, 04, 06);
 
 		}
 		public static final Long DB_ID = 1L;
@@ -32,7 +34,7 @@ public class KvarConstants {
 		public static final Long DB_KREATOR_ID = 1L;
 		public static final Long DB_ZGRADA_ID = 1L;
 		public static final Long DB_KORISNIK_SERVISA_ID = 1L;
-		public static final int DB_COUNT = 2;
+		public static final int DB_COUNT = 1;
 		public static final int DB_COUNT_WITH_RADNIK = 1;
 		
 		public static final Date NEW_DAT_KREIRANJA = datKreiranja.getTime();
