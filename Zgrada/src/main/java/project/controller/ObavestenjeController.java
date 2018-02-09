@@ -48,7 +48,7 @@ public class ObavestenjeController {
 	
 	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> getObavestenjeByKreator(@RequestParam Long kreator) {
-		List<Obavestenje> obavestenja = obavestenjeService.findByKreator(kreator);
+		List<Obavestenje> obavestenja = obavestenjeService.findByKreatorId(kreator);
 		List<ObavestenjeDto> obavestenjaDto = new ArrayList<>();
 		for (Obavestenje o : obavestenja) {
 			obavestenjaDto.add(new ObavestenjeDto(o));

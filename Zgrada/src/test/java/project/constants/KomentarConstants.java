@@ -11,7 +11,7 @@ public class KomentarConstants {
 	static {
 	    datKreiranja = GregorianCalendar.getInstance();
 	    datKreiranja.clear();
-	    datKreiranja.set(2015 , 11 , 21);
+	    datKreiranja.set(2015 , 0 , 1);
 	    
 	}
 

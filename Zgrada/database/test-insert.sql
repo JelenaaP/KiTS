@@ -34,8 +34,8 @@ insert into kvar (dat_kreiranja, dat_popravke, dat_zakazivanja, ime, opis, popra
 values ('2018-05-01', '2018-05-06', '2018-05-05','kvar1', 'opis kvara1', 1,1,1);
 
 alter table 'komentar' auto_increment = 1;
-insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2015-12-21', 'ovo je tekst komentara',1,1);
-insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2015-12-21', 'ovo je takodje komentar',2,1);
+insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2015-01-01', 'ovo je tekst komentara',1,1);
+insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2015-12-01', 'ovo je takodje komentar',2,1);
 
 alter table 'obavestenje' auto_increment = 1;
 insert into obavestenje (dat_kreiranja, ime, opis, kreator_id, zgrada_id) values ('2018-01-01' , 'obavestenje1' , 'opis obavestenja1',1,1);

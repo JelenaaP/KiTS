@@ -49,10 +49,10 @@ public class StavkaServiceTest {
 		Stavka dbStavka= stavkaService.findOne(DB_ID);
 		//assertThat(dbStavka).isNotNull();
 		assertThat(dbStavka.getId()).isEqualTo(DB_ID);
-		assertThat(dbStavka.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
+		assertThat(dbStavka.getDatKreiranja()).hasSameTimeAs(DB_DAT_KREIRANJA);
 		assertThat(dbStavka.getIme()).isEqualTo(DB_IME);
 		assertThat(dbStavka.getOpis()).isEqualTo(DB_OPIS);
-		assertThat(dbStavka.getKreator()).isEqualTo(DB_KREATOR_ID);
+		assertThat(dbStavka.getKreator().getId()).isEqualTo(DB_KREATOR_ID);
 	}
 	
 	@Test

@@ -46,11 +46,10 @@ public class KomentarServiceTest {
 		assertThat(dbKomentar).isNotNull();
 		
 		assertThat(dbKomentar.getId()).isEqualTo(DB_ID);
-		assertThat(dbKomentar.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
+		assertThat(dbKomentar.getDatKreiranja()).hasSameTimeAs(DB_DAT_KREIRANJA);
 		assertThat(dbKomentar.getText()).isEqualTo(DB_TEXT);
 		assertThat(dbKomentar.getKreator().getId()).isEqualTo(DB_KREATOR_ID);
 		assertThat(dbKomentar.getKvar().getId()).isEqualTo(DB_KVAR_ID);
-		
 	}
 	@Test
     @Transactional
