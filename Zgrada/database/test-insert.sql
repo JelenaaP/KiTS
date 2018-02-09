@@ -1,18 +1,19 @@
 set foreign_key_checks = 0;
 
 -- delete all rows
-truncate table user_authority;
-truncate table authority;
-truncate table user;
-truncate table enrollment;
-truncate table teaching;
-truncate table exam;
-truncate table student;
-truncate table course;
-truncate table teacher;
-truncate table exam_period;
+truncate table korisnik_servisa;
+truncate table firma;
+truncate table zgrada;
+truncate table kvar;
+truncate table komentar;
+truncate table obavestenje;
+truncate table sednica;
+truncate table stan;
+truncate table zapisnik;
+truncate table stavka;
+truncate table popravlja;
+truncate table radi;
 
-set foreign_key_checks = 1;
 
 alter table 'korsinik_servisa' auto_increment = 1;
 insert into korisnik_servisa (ime, koris_ime, lozinka, uloga) values ('Janko', 'janko', 'admin', 'ADMIN');
@@ -21,7 +22,7 @@ insert into korisnik_servisa (ime, koris_ime, lozinka, uloga) values ('Marija', 
 insert into korisnik_servisa (ime, koris_ime, lozinka, uloga) values ('Mirjana', 'mirjana', 'admin', 'USER');
 
 alter table 'firma' auto_increment = 1;
-insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('adresa1', 'firma1@gmail.com', 'firma1', 15555333, 'www.firma1.com',1);
+insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('adresa1', 'firma1@gmail.com', 'firma1', 55333, 'www.firma1.com',1);
 insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('adresa2', 'firma2@gmail.com', 'firma2', 15333555, 'www.firma2.com',2);
 
 alter table 'zgrada' auto_increment = 1;
@@ -33,8 +34,8 @@ insert into kvar (dat_kreiranja, dat_popravke, dat_zakazivanja, ime, opis, popra
 values ('2018-05-01', '2018-05-06', '2018-05-05','kvar1', 'opis kvara1', 1,1,1);
 
 alter table 'komentar' auto_increment = 1;
-insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2018-12-21', 'ovo je tekst komentara',3,1);
-insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2018-12-22', 'ovo je takodje komentar',4,1);
+insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2015-12-21', 'ovo je tekst komentara',1,1);
+insert into komentar (dat_kreiranja, text, kreator_id, kvar_id) values ('2015-12-21', 'ovo je takodje komentar',2,1);
 
 alter table 'obavestenje' auto_increment = 1;
 insert into obavestenje (dat_kreiranja, ime, opis, kreator_id, zgrada_id) values ('2018-01-01' , 'obavestenje1' , 'opis obavestenja1',1,1);
@@ -58,3 +59,5 @@ insert into popravlja (kvar_id, korisnik_servisa_id, firma_id) values (1, 3, 1);
 
 alter table 'radi' auto_increment = 1;
 insert into radi (firma_id, korisnik_servisa_id) values (1, 3);
+
+set foreign_key_checks = 1;

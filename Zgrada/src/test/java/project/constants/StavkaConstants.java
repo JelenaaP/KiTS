@@ -12,7 +12,7 @@ public class StavkaConstants {
 	    datKreiranja.clear();
 	    datKreiranja.set(2018 , 0 , 1);
 	}
-	public static final Long DB_ID = 4L;
+	public static final Long DB_ID = 1L;
 
 	public static final Date DB_DAT_KREIRANJA = datKreiranja.getTime();   
 	public static final String DB_IME = "stavka1";

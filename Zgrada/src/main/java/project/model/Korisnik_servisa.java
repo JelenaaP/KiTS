@@ -155,4 +155,7 @@ public class Korisnik_servisa {
 	public void setRadnik(Set<Kvar> radnik) {
 		this.radnik = radnik;
 	}
+	
+	
+	
 }

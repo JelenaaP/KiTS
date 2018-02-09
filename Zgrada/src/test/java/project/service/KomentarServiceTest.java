@@ -5,11 +5,8 @@ import static project.constants.KomentarConstants.DB_TEXT;
 import static project.constants.KomentarConstants.DB_KVAR_ID;
 import static project.constants.KomentarConstants.DB_KREATOR_ID;
 import static project.constants.KomentarConstants.NEW_DAT_KREIRANJA;
-import static project.constants.KomentarConstants.NEW_KVAR_ID;
-import static project.constants.KomentarConstants.NEW_KREATOR_ID;
 import static project.constants.KomentarConstants.NEW_TEXT;
 import static project.constants.KomentarConstants.DB_COUNT_WITH_KREATOR;
-import static project.constants.KomentarConstants.DB_COUNT_WITH_KVAR;
 import static project.constants.KomentarConstants.DB_COUNT;
 import static project.constants.KomentarConstants.DB_ID;
 
@@ -27,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
 import project.model.Komentar;
-import project.model.Obavestenje;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -52,8 +48,8 @@ public class KomentarServiceTest {
 		assertThat(dbKomentar.getId()).isEqualTo(DB_ID);
 		assertThat(dbKomentar.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
 		assertThat(dbKomentar.getText()).isEqualTo(DB_TEXT);
-		assertThat(dbKomentar.getKreator()).isEqualTo(DB_KREATOR_ID);
-		assertThat(dbKomentar.getKvar()).isEqualTo(DB_KVAR_ID);
+		assertThat(dbKomentar.getKreator().getId()).isEqualTo(DB_KREATOR_ID);
+		assertThat(dbKomentar.getKvar().getId()).isEqualTo(DB_KVAR_ID);
 		
 	}
 	@Test
@@ -94,8 +90,8 @@ public class KomentarServiceTest {
 	
 	@Test
 	public void testFindByKreator() {
-		List<Komentar> komentari = komentarService.findByKreator(DB_KREATOR_ID);
-		assertThat(komentari).hasSize(DB_COUNT_WITH_KREATOR);
+		List<Komentar> komentar = komentarService.findByKreatorId(DB_KREATOR_ID);
+		assertThat(komentar).hasSize(DB_COUNT_WITH_KREATOR);
 	}
 
 }

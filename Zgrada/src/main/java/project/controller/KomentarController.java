@@ -45,9 +45,9 @@ public class KomentarController {
 		return new ResponseEntity<>(komentarDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/findKreator.id", method = RequestMethod.GET)
+	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<KomentarDto>> getKomentarByKreator(@RequestParam Long kreator) {
-		List<Komentar> komentar = komentarService.findByKreator(kreator);
+		List<Komentar> komentar = komentarService.findByKreatorId(kreator);
 		List<KomentarDto> komentarDto = new ArrayList<>();
 		for (Komentar k : komentar) {
 			komentarDto.add(new KomentarDto(k));

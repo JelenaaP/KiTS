@@ -60,7 +60,7 @@ public class FirmaServiceTest {
 		assertThat(dbFirma.getIme()).isEqualTo(DB_IME);
 		assertThat(dbFirma.getTelefon()).isEqualTo(DB_TELEFON);
 		assertThat(dbFirma.getWebSite()).isEqualTo(DB_WEB_SITE);
-		//assertThat(dbFirma.getVlasnik()).isEqualTo(DB_VLASNIK_ID);
+		assertThat(dbFirma.getVlasnik().getId()).isEqualTo(DB_VLASNIK_ID);
 	}
 	
 	@Test

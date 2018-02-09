@@ -1,12 +1,15 @@
 package project.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -18,6 +21,7 @@ public class Komentar {
 	
 	private String text;
 	private Date datKreiranja;
+	@ManyToMany(mappedBy = "komentar")
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Korisnik_servisa kreator;

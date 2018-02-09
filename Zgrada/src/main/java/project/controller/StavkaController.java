@@ -53,7 +53,7 @@ public class StavkaController {
 		//pretrazivanje po kreatoru stavke
 		@RequestMapping(value="/findKreator", method = RequestMethod.GET)
 		public ResponseEntity<List<StavkaDto>> getStavkaByKreator(@RequestParam Long kreator) {
-			List<Stavka> stavka = stavkaService.findByKreator(kreator);
+			List<Stavka> stavka = stavkaService.findByKreatorId(kreator);
 			List<StavkaDto> stavkaDto = new ArrayList<>();
 			for (Stavka s : stavka) {
 				stavkaDto.add(new StavkaDto(s));

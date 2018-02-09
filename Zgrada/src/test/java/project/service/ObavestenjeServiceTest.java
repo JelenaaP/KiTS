@@ -109,7 +109,7 @@ public class ObavestenjeServiceTest {
 	
 	@Test
 	public void testFindByKreator() {
-		List<Obavestenje> obavestenja = obavestenjeService.findByKreator(DB_KREATOR_ID);
+		List<Obavestenje> obavestenja = obavestenjeService.findByKreatorId(DB_KREATOR_ID);
 		assertThat(obavestenja).hasSize(DB_COUNT_WITH_KREATOR);
 	}
 }

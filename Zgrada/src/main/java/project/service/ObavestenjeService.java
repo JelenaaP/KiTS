@@ -25,8 +25,8 @@ public class ObavestenjeService {
 		return obavestenjeRepository.findByDatKreiranja(datKreiranja);
 	}
 	
-	public List<Obavestenje> findByKreator(Long kreator) {
-		return obavestenjeRepository.findByKreator(kreator);
+	public List<Obavestenje> findByKreatorId(Long kreator) {
+		return obavestenjeRepository.findByKreatorId(kreator);
 	}
 	public void delete(Long id) {
 		obavestenjeRepository.delete(id);

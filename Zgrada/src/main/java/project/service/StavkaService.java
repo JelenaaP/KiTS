@@ -19,8 +19,8 @@ public class StavkaService {
 		return stavkaRepository.findBySednica(sednica);
 	}
 	
-	public List<Stavka> findByKreator(Long kreator){
-		return stavkaRepository.findByKreator(kreator);
+	public List<Stavka> findByKreatorId(Long kreator){
+		return stavkaRepository.findByKreatorId(kreator);
 	}
 	
 	public Stavka findOne(Long id){

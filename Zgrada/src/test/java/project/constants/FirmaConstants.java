@@ -16,7 +16,7 @@ public class FirmaConstants {
 	public static final String DB_IME = "firma1";
 	public static final String DB_EMAIL = "firma1@gmail.com";
 	public static final String DB_WEB_SITE = "www.firma1.com";
-	public static final int DB_TELEFON = 15555333;
+	public static final int DB_TELEFON = 55333;
 	public static final Long DB_VLASNIK_ID = 1L;
 	
 	public static final int DB_COUNT = 2;

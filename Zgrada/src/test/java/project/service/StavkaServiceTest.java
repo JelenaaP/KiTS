@@ -47,7 +47,7 @@ public class StavkaServiceTest {
 	@Test 
 	public void testFindOne() {
 		Stavka dbStavka= stavkaService.findOne(DB_ID);
-		assertThat(dbStavka).isNotNull();
+		//assertThat(dbStavka).isNotNull();
 		assertThat(dbStavka.getId()).isEqualTo(DB_ID);
 		assertThat(dbStavka.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
 		assertThat(dbStavka.getIme()).isEqualTo(DB_IME);
@@ -96,7 +96,7 @@ public class StavkaServiceTest {
 	
 	@Test
 	public void testFindByKreator() {
-		List<Stavka> stavke = stavkaService.findByKreator(DB_KREATOR_ID);
+		List<Stavka> stavke = stavkaService.findByKreatorId(DB_KREATOR_ID);
 		assertThat(stavke).hasSize(DB_COUNT_WITH_KREATOR);
 	}
 
