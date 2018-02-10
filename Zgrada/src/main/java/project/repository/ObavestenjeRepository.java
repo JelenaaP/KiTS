@@ -12,5 +12,5 @@ public interface ObavestenjeRepository extends JpaRepository<Obavestenje,Long> {
 
 	List<Obavestenje> findByKreatorId(Long kreator);
 
-	List<Obavestenje> findByZgrada(Long zgrada);
+	List<Obavestenje> findByZgradaId(Long zgrada);
 }

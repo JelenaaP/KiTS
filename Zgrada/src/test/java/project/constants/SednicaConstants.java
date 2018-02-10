@@ -16,7 +16,7 @@ public class SednicaConstants {
 	    datZakazivanja.clear();
 	    datZakazivanja.set(2018, 0, 05);
 	}
-	public static final Long DB_ID = 3L;
+	public static final Long DB_ID = 1L;
 	
 	public static final Boolean DB_AKTIVNA = false; 
 	public static final Date DB_DAT_KREIRANJA = datKreiranja.getTime();   

@@ -21,7 +21,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -53,11 +52,11 @@ public class ObavestenjeServiceTest {
 		assertThat(dbObavestenje).isNotNull();
 		
 		assertThat(dbObavestenje.getId()).isEqualTo(DB_ID);
-		assertThat(dbObavestenje.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
+		assertThat(dbObavestenje.getDatKreiranja()).hasSameTimeAs(DB_DAT_KREIRANJA);
 		assertThat(dbObavestenje.getIme()).isEqualTo(DB_IME);
-		assertThat(dbObavestenje.getKreator()).isEqualTo(DB_KREATOR_ID);
+		assertThat(dbObavestenje.getKreator().getId()).isEqualTo(DB_KREATOR_ID);
 		assertThat(dbObavestenje.getOpis()).isEqualTo(DB_OPIS);
-		assertThat(dbObavestenje.getZgrada()).isEqualTo(DB_ZGRADA_ID);
+		assertThat(dbObavestenje.getZgrada().getId()).isEqualTo(DB_ZGRADA_ID);
 	}
 	
 	@Test
@@ -87,7 +86,7 @@ public class ObavestenjeServiceTest {
         assertThat(dbObavestenje.getZgrada()).isEqualTo(ZgradaConstants.NEW_ZGRADA_ID);
 	}
 	
-	@Test(expected = DataIntegrityViolationException.class)
+	@Test
 	@Transactional
 	@Rollback(true)
 	public void testDelete() {
@@ -103,7 +102,7 @@ public class ObavestenjeServiceTest {
 	
 	@Test
 	public void testFindByZgrada() {
-		List<Obavestenje> obavestenja = obavestenjeService.findByZgrada(DB_ZGRADA_ID);
+		List<Obavestenje> obavestenja = obavestenjeService.findByZgradaId(DB_ZGRADA_ID);
 		assertThat(obavestenja).hasSize(DB_COUNT_WITH_ZGRADA);
 	}
 	

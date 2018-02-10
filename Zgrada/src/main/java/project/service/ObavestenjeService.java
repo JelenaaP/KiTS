@@ -14,8 +14,8 @@ public class ObavestenjeService {
 	@Autowired
 	private ObavestenjeRepository obavestenjeRepository;
 	
-	public List<Obavestenje> findByZgrada(Long zgrada){
-		return obavestenjeRepository.findByZgrada(zgrada);
+	public List<Obavestenje> findByZgradaId(Long zgrada){
+		return obavestenjeRepository.findByZgradaId(zgrada);
 	}
 	public List<Obavestenje> findAll(){
 		return obavestenjeRepository.findAll();

@@ -46,7 +46,7 @@ public class StanService {
 		return stanRepository.findAllByAdresa(adresa);
 	}
 
-	public List<Stan> findAllByVlasnik(Long vlasnik) {
-		return stanRepository.findAllByVlasnik(vlasnik);
+	public List<Stan> findAllByVlasnikId(Long vlasnik) {
+		return stanRepository.findAllByVlasnikId(vlasnik);
 	}
 }

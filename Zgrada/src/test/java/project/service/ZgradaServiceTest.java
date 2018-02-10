@@ -58,7 +58,7 @@ public class ZgradaServiceTest {
 		assertThat(dbZgrada.getBrNaseljenih()).isEqualTo(DB_BR_NASELJENIH);
 		assertThat(dbZgrada.getBrStanova()).isEqualTo(DB_BR_STANOVA);
 		assertThat(dbZgrada.getIme()).isEqualTo(DB_IME);
-		assertThat(dbZgrada.getVlasnik()).isEqualTo(DB_VLASNIK_ID);
+		assertThat(dbZgrada.getVlasnik().getId()).isEqualTo(DB_VLASNIK_ID);
 	}
 	
 	@Test
@@ -111,7 +111,7 @@ public class ZgradaServiceTest {
 	}
 	@Test
 	public void testFindByVlasnik() {
-		List<Zgrada> zgrade = zgradaService.findByVlasnik(DB_VLASNIK_ID);
+		List<Zgrada> zgrade = zgradaService.findByVlasnikId(DB_VLASNIK_ID);
 		assertThat(zgrade).hasSize(DB_COUNT_WITH_VLASNIK);
 	}
 }

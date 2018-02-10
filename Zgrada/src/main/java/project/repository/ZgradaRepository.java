@@ -10,7 +10,7 @@ public interface ZgradaRepository extends JpaRepository<Zgrada, Long>{
 
 	List<Zgrada> findByAdresa(String adresa);
 
-	List<Zgrada> findByVlasnik(Long vlasnik);
+	List<Zgrada> findByVlasnikId(Long vlasnik);
 
 	Zgrada findOneByAdresa(String adresa);
 }

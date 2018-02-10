@@ -14,7 +14,7 @@ import static project.constants.KvarConstants.DB_ID;
 import static project.constants.KvarConstants.NEW_DAT_KREIRANJA;
 import static project.constants.KvarConstants.NEW_IME;
 import static project.constants.KvarConstants.NEW_OPIS;
-import static project.constants.KvarConstants.DB_COUNT_WITH_RADNIK;
+import static project.constants.KvarConstants.DB_COUNT_WITH_KORISNIK_SERVISA_ID;
 import static project.constants.KvarConstants.DB_KORISNIK_SERVISA_ID;
 
 import java.util.List;
@@ -56,14 +56,14 @@ public class KvarServiceTest {
 		assertThat(dbKvar).isNotNull();
 		
 		assertThat(dbKvar.getId()).isEqualTo(DB_ID);
-		assertThat(dbKvar.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
-		assertThat(dbKvar.getDatZakazivanja()).isEqualTo(DB_DAT_ZAKAZIVANJA);
-		assertThat(dbKvar.getDatPopravke()).isEqualTo(DB_DAT_POPRAVKE);
+		assertThat(dbKvar.getDatKreiranja()).hasSameTimeAs(DB_DAT_KREIRANJA);
+		assertThat(dbKvar.getDatZakazivanja()).hasSameTimeAs(DB_DAT_ZAKAZIVANJA);
+		assertThat(dbKvar.getDatPopravke()).hasSameTimeAs(DB_DAT_POPRAVKE);
 		assertThat(dbKvar.getIme()).isEqualTo(DB_IME);
 		assertThat(dbKvar.getOpis()).isEqualTo(DB_OPIS);
-		assertThat(dbKvar.getKreator()).isEqualTo(DB_KREATOR_ID);
+		assertThat(dbKvar.getKreator().getId()).isEqualTo(DB_KREATOR_ID);
 		assertThat(dbKvar.isPopravljen()).isEqualTo(DB_POPRAVLJEN);
-		assertThat(dbKvar.getZgrada()).isEqualTo(DB_ZGRADA_ID);
+		assertThat(dbKvar.getZgrada().getId()).isEqualTo(DB_ZGRADA_ID);
 	}
 	
 	@Test
@@ -86,7 +86,7 @@ public class KvarServiceTest {
         List<Kvar> kvarovi = kvarService.findAll();
         assertThat(kvarovi).hasSize(dbSizeBeforeAdd + 1);
         dbKvar = kvarovi.get(kvarovi.size() - 1); //get last student
-        assertThat(dbKvar.getDatKreiranja()).isEqualTo(NEW_DAT_KREIRANJA);
+        assertThat(dbKvar.getDatKreiranja()).hasSameTimeAs(NEW_DAT_KREIRANJA);
         assertThat(dbKvar.getIme()).isEqualTo(NEW_IME);
         assertThat(dbKvar.getOpis()).isEqualTo(NEW_OPIS);
         assertThat(dbKvar.getKreator()).isEqualTo(Korisnik_ServisaConstants.NEW_KREATOR_ID);
@@ -109,13 +109,13 @@ public class KvarServiceTest {
 	
 	@Test
 	public void testFindByZgrada() {
-		List<Kvar> kvarovi = kvarService.findByZgrada(DB_ZGRADA_ID);
+		List<Kvar> kvarovi = kvarService.findByZgradaId(DB_ZGRADA_ID);
 		assertThat(kvarovi).hasSize(DB_COUNT);
 	}
 	
 	@Test
 	public void testFindByRadnik() {
-		List<Kvar> kvarovi = kvarService.findByRadnik(DB_KORISNIK_SERVISA_ID);
-		assertThat(kvarovi).hasSize(DB_COUNT_WITH_RADNIK);
+		List<Kvar> kvarovi = kvarService.findByRadnikId(DB_KORISNIK_SERVISA_ID);
+		assertThat(kvarovi).hasSize(DB_COUNT_WITH_KORISNIK_SERVISA_ID);
 	}
 }

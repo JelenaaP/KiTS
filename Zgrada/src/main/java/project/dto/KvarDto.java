@@ -86,7 +86,8 @@ public class KvarDto {
 		datZakazivanja = kvar.getDatZakazivanja();
 		datPopravke = kvar.getDatPopravke();
 		popravljen = kvar.isPopravljen();
-		zgrada = new ZgradaDto(kvar.getZgrada());	
+		zgrada = new ZgradaDto(kvar.getZgrada());
+		kreator = new Korisnik_servisaDto(kvar.getKreator());
 	}
 	public Korisnik_servisaDto getKreator() {
 		return kreator;

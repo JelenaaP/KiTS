@@ -58,7 +58,7 @@ public class StanController {
 	
 	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> getStanoviByVlasnik(@RequestParam Long vlasnik) {
-		List<Stan> stanovi = stanService.findAllByVlasnik(vlasnik);
+		List<Stan> stanovi = stanService.findAllByVlasnikId(vlasnik);
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s : stanovi) {
 			stanoviDto.add(new StanDto(s));

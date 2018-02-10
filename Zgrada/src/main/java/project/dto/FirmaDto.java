@@ -37,7 +37,7 @@ public class FirmaDto {
 		webSite = firma.getWebSite();
 		vlasnik = new Korisnik_servisaDto(firma.getVlasnik());
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

@@ -51,7 +51,7 @@ public class KvarController {
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
 	public ResponseEntity<List<KvarDto>> getKvarByZgrada(@RequestParam Long zgrada) {
-		List<Kvar> kvarovi = kvarService.findByZgrada(zgrada);
+		List<Kvar> kvarovi = kvarService.findByZgradaId(zgrada);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar k : kvarovi) {
 			kvaroviDto.add(new KvarDto(k));
@@ -59,9 +59,9 @@ public class KvarController {
 		return new ResponseEntity<>(kvaroviDto, HttpStatus.OK);
 		}
 	
-	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> getKvarByKreator(@RequestParam Long kreator) {
-		List<Kvar> kvarovi = kvarService.findByKreator(kreator);
+	@RequestMapping(value = "/findKreatorId", method = RequestMethod.GET)
+	public ResponseEntity<List<KvarDto>> getKvarByKreatorId(@RequestParam Long kreatorId) {
+		List<Kvar> kvarovi = kvarService.findByKreatorId(kreatorId);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar z : kvarovi) {
 			kvaroviDto.add(new KvarDto(z));
@@ -85,8 +85,6 @@ public class KvarController {
 		kvar.setIme(kvarDto.getIme());
 		kvar.setOpis(kvarDto.getOpis());
 		kvar.setDatKreiranja(kvarDto.getDatKreiranja());
-		kvar.setDatZakazivanja(kvar.getDatZakazivanja());
-		kvar.setDatPopravke(kvar.getDatPopravke());
 		kvar.setPopravljen(kvar.isPopravljen());
 		kvar.setZgrada(zgrada);
 		

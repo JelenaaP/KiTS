@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import project.dto.FirmaDto;
 
@@ -22,7 +23,7 @@ import project.model.Korisnik_servisa;
 import project.service.FirmaService;
 import project.service.Korisnik_servisaService;
 import project.service.KvarService;
-
+@EnableWebMvc
 @RestController
 @RequestMapping(value = "api/firma")
 
@@ -94,6 +95,8 @@ public class FirmaController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
+		firma.setIme(firmaDto.getIme());
+		firma.setAdresa(firmaDto.getAdresa());
 		firma.setTelefon(firmaDto.getTelefon());
 		firma.setEmail(firmaDto.getEmail());
 		firma.setWebSite(firmaDto.getWebSite());
@@ -124,9 +127,9 @@ public class FirmaController {
 		return new ResponseEntity<>(firmeDto, HttpStatus.OK);
 		}
 	
-	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
-	public ResponseEntity<List<FirmaDto>> getFirmaByVlasnik(@RequestParam Long vlasnik) {
-		List<Firma> firme = firmaService.findByVlasnik(vlasnik);
+	@RequestMapping(value = "/findVlasnikId", method = RequestMethod.GET)
+	public ResponseEntity<List<FirmaDto>> getFirmaByVlasnik(@RequestParam Long vlasnikId) {
+		List<Firma> firme = firmaService.findByVlasnikId(vlasnikId);
 		List<FirmaDto> firmeDto = new ArrayList<>();
 		for (Firma f : firme) {
 			firmeDto.add(new FirmaDto(f));

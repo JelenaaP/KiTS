@@ -35,7 +35,7 @@ public class KvarConstants {
 		public static final Long DB_ZGRADA_ID = 1L;
 		public static final Long DB_KORISNIK_SERVISA_ID = 1L;
 		public static final int DB_COUNT = 1;
-		public static final int DB_COUNT_WITH_RADNIK = 1;
+		public static final int DB_COUNT_WITH_KORISNIK_SERVISA_ID = 1;
 		
 		public static final Date NEW_DAT_KREIRANJA = datKreiranja.getTime();
 		public static final String NEW_IME = "kvar2";

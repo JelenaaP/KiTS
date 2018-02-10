@@ -7,8 +7,7 @@ public class Korisnik_ServisaConstants {
 	public static final String NEW_IME = "John";
     public static final String NEW_KORIS_IME = "Doe";
     public static final String NEW_LOZINKA = "X123";
-    
-    public static final String NEW_ULOGA = " ";
+    public static final String NEW_ULOGA = "STANDARD";
     
     public static final Long DB_ID = 1L;
     public static final String DB_IME = "Janko";

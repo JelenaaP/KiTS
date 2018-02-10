@@ -58,7 +58,7 @@ public class ObavestenjeController {
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> getObavestenjeByZgrada(@RequestParam Long zgrada) {
-		List<Obavestenje> obavestenja = obavestenjeService.findByZgrada(zgrada);
+		List<Obavestenje> obavestenja = obavestenjeService.findByZgradaId(zgrada);
 		List<ObavestenjeDto> obavestenjaDto = new ArrayList<>();
 		for (Obavestenje o : obavestenja) {
 			obavestenjaDto.add(new ObavestenjeDto(o));

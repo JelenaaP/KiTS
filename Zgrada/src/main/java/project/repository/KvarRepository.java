@@ -17,9 +17,9 @@ public interface KvarRepository extends JpaRepository<Kvar,Long>{
 
 	Kvar findByDatPopravke(Date datPopravke);
 
-	List<Kvar> findByRadnik(Long radnik);
+	List<Kvar> findByRadnikId(Long radnik);
 
-	List<Kvar> findByZgrada(Long Zgrada);
+	List<Kvar> findByZgradaId(Long Zgrada);
 
-	List<Kvar> findByKreator(Long kreator);
+	List<Kvar> findByKreatorId(Long kreator);
 }

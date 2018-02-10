@@ -13,6 +13,6 @@ public interface SednicaRepository extends JpaRepository<Sednica, Long> {
 	public Sednica findByDatZakazivanja(Date datZakazivanja);
 	public Sednica findByAktivna(boolean aktivna);
 	public Sednica findById(Long id_zapisnik);
-	public List<Sednica> findByKreator(Long kreator);
-	public List<Sednica> findByZgrada(Long zgrada);
+	public List<Sednica> findByKreatorId(Long kreator);
+	public List<Sednica> findByZgradaId(Long zgrada);
 }

@@ -42,6 +42,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import project.MyApplication;
 import project.TestUtil;
 import project.constants.Korisnik_ServisaConstants;
@@ -104,7 +106,7 @@ private static final String URL_PREFIX = "/api/korisnik_servisa";
     }
     
     @Test
-    public void testGetUser() throws Exception {
+    public void testGetKorisnik_servisa() throws Exception {
     	mockMvc.perform(get(URL_PREFIX + "/" + Korisnik_ServisaConstants.DB_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
@@ -119,25 +121,26 @@ private static final String URL_PREFIX = "/api/korisnik_servisa";
     @Test
     @Transactional
     @Rollback(true)
-    public void testSaveUser() throws Exception {
-    	Korisnik_servisa korisnik = new Korisnik_servisa();
-		korisnik.setIme(NEW_IME);
-		korisnik.setKorisIme(NEW_KORIS_IME);
-		korisnik.setLozinka(NEW_LOZINKA);
-		korisnik.setUloga(NEW_ULOGA);
+    public void testCreateKorisnik_servisa() throws Exception {
+    	Korisnik_servisa korisnik_servisa = new Korisnik_servisa();
+		korisnik_servisa.setIme(NEW_IME);
+		korisnik_servisa.setKorisIme(NEW_KORIS_IME);
+		korisnik_servisa.setLozinka(NEW_LOZINKA);
+		korisnik_servisa.setUloga(NEW_ULOGA);
     	
-    	String json = TestUtil.json(korisnik);
-        this.mockMvc.perform(post(URL_PREFIX)
+    	String json = TestUtil.json(korisnik_servisa);
+    	this.mockMvc.perform(post("/korisnik_servisa")
                 .contentType(contentType)
                 .content(json))
-                .andExpect(status().isCreated());
+    			.andExpect(status().isCreated());
     }
     
     @Test
     @Transactional
     @Rollback(true)
-    public void testUpdateUser() throws Exception {
+    public void testUpdateKorisnik_servisa() throws Exception {
     	Korisnik_servisa korisnik = new Korisnik_servisa();
+    	korisnik.setId(Korisnik_ServisaConstants.DB_ID);
 		korisnik.setIme(NEW_IME);
 		korisnik.setKorisIme(NEW_KORIS_IME);
 		korisnik.setLozinka(NEW_LOZINKA);
@@ -159,10 +162,15 @@ private static final String URL_PREFIX = "/api/korisnik_servisa";
     }
     
     @Test
-    public void testGetUsersByKorisIme() throws Exception {
+    public void testGetKorisnik_servisaByKorisIme() throws Exception {
     	mockMvc.perform(get(URL_PREFIX + "/findKorisIme?korisIme=" + DB_KORIS_IME))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
+    	.andExpect(jsonPath("$.id").value(hasItem(Korisnik_ServisaConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.ime").value(DB_IME))
+    	.andExpect(jsonPath("$.korisIme").value(DB_KORIS_IME))
+    	.andExpect(jsonPath("$.lozinka").value(DB_LOZINKA))
+    	.andExpect(jsonPath("$.uloga").value(DB_ULOGA))
     	.andExpect(jsonPath("$", hasSize(DB_COUNT_WITH_KORIS_IME)));
     }
 }

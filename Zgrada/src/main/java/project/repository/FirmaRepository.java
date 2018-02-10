@@ -11,5 +11,5 @@ public interface FirmaRepository extends JpaRepository<Firma,Long> {
 	public Firma findByIme(String ime);
 	public List<Firma> findByAdresa(String adresa);
 	public Firma findByRadnici(String radnik);
-	public List<Firma> findByVlasnik(Long vlasnik);
+	public List<Firma> findByVlasnikId(Long vlasnik);
 }

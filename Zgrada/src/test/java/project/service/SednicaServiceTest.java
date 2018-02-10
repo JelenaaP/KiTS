@@ -20,14 +20,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
-import project.constants.ZgradaConstants;
 import project.model.Sednica;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,10 +47,10 @@ public class SednicaServiceTest {
 		assertThat(dbSednica).isNotNull();
 		assertThat(dbSednica.isAktivna()).isEqualTo(DB_AKTIVNA);
 		assertThat(dbSednica.getId()).isEqualTo(DB_ID);
-		assertThat(dbSednica.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
-		assertThat(dbSednica.getDatZakazivanja()).isEqualTo(DB_DAT_ZAKAZIVANJA);
-		assertThat(dbSednica.getKreator()).isEqualTo(DB_KREATOR_ID);
-		assertThat(dbSednica.getZgrada()).isEqualTo(DB_ZGRADA_ID);
+		assertThat(dbSednica.getDatKreiranja()).hasSameTimeAs(DB_DAT_KREIRANJA);
+		assertThat(dbSednica.getDatZakazivanja()).hasSameTimeAs(DB_DAT_ZAKAZIVANJA);
+		assertThat(dbSednica.getKreator().getId()).isEqualTo(DB_KREATOR_ID);
+		assertThat(dbSednica.getZgrada().getId()).isEqualTo(DB_ZGRADA_ID);
 	}
 
 	@Test
@@ -80,7 +78,7 @@ public class SednicaServiceTest {
         assertThat(dbSednica.isAktivna()).isEqualTo(DB_AKTIVNA);
 	}
 
-	@Test(expected = DataIntegrityViolationException.class)
+	@Test
 	@Transactional
 	@Rollback(true)
 	public void testRemove() {
@@ -96,13 +94,13 @@ public class SednicaServiceTest {
 	
 	@Test
 	public void testFindByZgrada() {
-		List<Sednica> sednice = sednicaService.findByZgrada(DB_ZGRADA_ID);
+		List<Sednica> sednice = sednicaService.findByZgradaId(DB_ZGRADA_ID);
 		assertThat(sednice).hasSize(DB_COUNT_WITH_ZGRADA);
 	}
 	
 	@Test
 	public void testFindByKreator() {
-		List<Sednica> sednice = sednicaService.findByKreator(DB_KREATOR_ID);
+		List<Sednica> sednice = sednicaService.findByKreatorId(DB_KREATOR_ID);
 		assertThat(sednice).hasSize(DB_COUNT_WITH_KREATOR);
 	}
 }

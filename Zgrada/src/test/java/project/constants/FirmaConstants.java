@@ -9,7 +9,7 @@ public class FirmaConstants {
 	public static final String NEW_IME = "Firma23";
 	public static final String NEW_EMAIL = "firma23@gmail.com";
 	public static final String NEW_WEB_SITE = "www.firma23.com";
-	public static final Long NEW_VLASNIK_ID = 8L;
+	public static final Long NEW_VLASNIK_ID = 2L;
 	public static final int NEW_TELEFON= 112365;
 	
 	public static final String DB_ADRESA = "adresa1";

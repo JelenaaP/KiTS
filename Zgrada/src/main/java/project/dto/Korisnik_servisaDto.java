@@ -9,28 +9,20 @@ public class Korisnik_servisaDto {
 	private String korisIme;
 	private String lozinka;
 	private String uloga;
-	private Korisnik_servisaDto predsednikSkupstine;
-	private Korisnik_servisaDto vlasnikZgrade;
-	private Korisnik_servisaDto vlasnikFirme;
-	private Korisnik_servisaDto vlasnikStana;
 	
-	public Korisnik_servisaDto(Long id, String ime, String korisIme, String lozinka, String uloga,
-			Korisnik_servisaDto vlasnikFirme, Korisnik_servisaDto vlasnikZgrade, Korisnik_servisaDto vlasnikStana, Korisnik_servisaDto predsednikSkupstine) {
+	public Korisnik_servisaDto(Long id, String ime, String korisIme, String lozinka, String uloga) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.korisIme = korisIme;
 		this.lozinka = lozinka;
 		this.uloga = uloga;
-		this.vlasnikFirme = vlasnikFirme;
-		this.vlasnikZgrade = vlasnikZgrade;
-		this.vlasnikStana = vlasnikStana;
-		this.predsednikSkupstine = predsednikSkupstine;
+		
 	}
 
 	public Korisnik_servisaDto(Korisnik_servisa korisnik_servisa) {
-		id = korisnik_servisa.getId();
-		ime = korisnik_servisa.getIme();
+		this(korisnik_servisa.getId(), korisnik_servisa.getIme(), korisnik_servisa.getKorisIme(), korisnik_servisa.getLozinka(),
+				korisnik_servisa.getUloga());
 	}
 	
 	public long getId() {
@@ -64,38 +56,7 @@ public class Korisnik_servisaDto {
 		this.uloga = uloga;
 	}
 
-	public Korisnik_servisaDto getPredsednikSkupstine() {
-		return predsednikSkupstine;
-	}
-
-	public void setPredsednikSkupstine(Korisnik_servisaDto predsednikSkupstine) {
-		this.predsednikSkupstine = predsednikSkupstine;
-	}
-
-	public Korisnik_servisaDto getVlasnikZgrade() {
-		return vlasnikZgrade;
-	}
-
-	public void setVlasnikZgrade(Korisnik_servisaDto vlasnikZgrade) {
-		this.vlasnikZgrade = vlasnikZgrade;
-	}
-
-	public Korisnik_servisaDto getVlasnikFirme() {
-		return vlasnikFirme;
-	}
-
-	public void setVlasnikFirme(Korisnik_servisaDto vlasnikFirme) {
-		this.vlasnikFirme = vlasnikFirme;
-	}
-
-	public Korisnik_servisaDto getVlasnikStana() {
-		return vlasnikStana;
-	}
-
-	public void setVlasnikStana(Korisnik_servisaDto vlasnikStana) {
-		this.vlasnikStana = vlasnikStana;
-	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

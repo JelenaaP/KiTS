@@ -46,10 +46,10 @@ public class ZapisnikServiceTest{
 		assertThat(dbZapisnik).isNotNull();
 		
 		assertThat(dbZapisnik.getId()).isEqualTo(DB_ID);
-		assertThat(dbZapisnik.getDatKreiranja()).isEqualTo(DB_DAT_KREIRANJA);
+		assertThat(dbZapisnik.getDatKreiranja()).hasSameTimeAs(DB_DAT_KREIRANJA);
 		assertThat(dbZapisnik.getOpis()).isEqualTo(DB_OPIS);
-		assertThat(dbZapisnik.getKreator()).isEqualTo(DB_KREATOR_ID);
-		assertThat(dbZapisnik.getZgrada()).isEqualTo(DB_ZGRADA_ID);
+		assertThat(dbZapisnik.getKreator().getId()).isEqualTo(DB_KREATOR_ID);
+		assertThat(dbZapisnik.getZgrada().getId()).isEqualTo(DB_ZGRADA_ID);
 	}
 
 	@Test
@@ -88,12 +88,12 @@ public class ZapisnikServiceTest{
 
 	@Test
 	public void testFindByZgrada() {
-		List<Zapisnik> zapisnici = zapisnikService.findByZgrada(DB_ZGRADA_ID);
+		List<Zapisnik> zapisnici = zapisnikService.findByZgradaId(DB_ZGRADA_ID);
 		assertThat(zapisnici).hasSize(DB_COUNT);
 	}
 	@Test
 	public void testFindByKreator() {
-		List<Zapisnik> zapisnici = zapisnikService.findByKreator(DB_KREATOR_ID);
+		List<Zapisnik> zapisnici = zapisnikService.findByKreatorId(DB_KREATOR_ID);
 		assertThat(zapisnici).hasSize(DB_COUNT);
 	}
 

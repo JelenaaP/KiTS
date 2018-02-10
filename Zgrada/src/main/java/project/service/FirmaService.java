@@ -33,8 +33,8 @@ public class FirmaService {
 		return firmaRepository.findByRadnici(radnik);
 	}
 	
-	public List<Firma> findByVlasnik(Long vlasnik){
-		return firmaRepository.findByVlasnik(vlasnik);
+	public List<Firma> findByVlasnikId(Long vlasnik){
+		return firmaRepository.findByVlasnikId(vlasnik);
 	}
 	
 	public List<Firma> findAll(){

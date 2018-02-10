@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import project.dto.Korisnik_servisaDto;
 import project.model.Korisnik_servisa;
 import project.service.FirmaService;
 import project.service.Korisnik_servisaService;
-
+@EnableWebMvc 
 @RestController
 @RequestMapping(value = "/api/korisnik_servisa")
 
@@ -59,8 +60,8 @@ public class Korisnik_servisaController {
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Korisnik_servisaDto> getKorisnik_servisa(@PathVariable Long id_korisnika_servisa){
-		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(id_korisnika_servisa);
+	public ResponseEntity<Korisnik_servisaDto> getKorisnik_servisa(@PathVariable Long id){
+		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findOne(id);
 		if(korisnik_servisa == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -72,6 +73,8 @@ public class Korisnik_servisaController {
 	public ResponseEntity<Korisnik_servisaDto> createKorisnik_servisa(@RequestBody Korisnik_servisaDto korisnik_servisaDto){
 		Korisnik_servisa korisnik_servisa = new Korisnik_servisa();
 		korisnik_servisa.setIme(korisnik_servisaDto.getIme());
+		korisnik_servisa.setKorisIme(korisnik_servisaDto.getKorisIme());
+		korisnik_servisa.setLozinka(korisnik_servisaDto.getLozinka());
 		korisnik_servisa.setUloga(korisnik_servisaDto.getUloga());
 		
 		korisnik_servisa = korisnik_servisaService.save(korisnik_servisa);
@@ -89,6 +92,8 @@ public class Korisnik_servisaController {
 		
 		korisnik_servisa.setIme(korisnik_servisaDto.getIme());
 		korisnik_servisa.setUloga(korisnik_servisaDto.getUloga());
+		korisnik_servisa.setKorisIme(korisnik_servisaDto.getKorisIme());
+		korisnik_servisa.setLozinka(korisnik_servisaDto.getLozinka());
 		
 		korisnik_servisa = korisnik_servisaService.save(korisnik_servisa);
 		return new ResponseEntity<>(new Korisnik_servisaDto(korisnik_servisa), HttpStatus.OK);	
@@ -106,7 +111,7 @@ public class Korisnik_servisaController {
 	}
 	
 	@RequestMapping(value="/findKorisIme", method=RequestMethod.GET)
-	public ResponseEntity<Korisnik_servisaDto> getKorisnik_servisaBykorisIme(
+	public ResponseEntity<Korisnik_servisaDto> getKorisnik_servisaByKorisIme(
 			@RequestParam String korisIme) {
 		Korisnik_servisa korisnik_servisa = korisnik_servisaService.findByKorisIme(korisIme);
 		if(korisnik_servisa == null){

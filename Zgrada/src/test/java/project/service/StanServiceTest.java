@@ -54,8 +54,8 @@ public class StanServiceTest {
 		assertThat(dbStan.getAdresa()).isEqualTo(DB_ADRESA);
 		assertThat(dbStan.getBrStanovnika()).isEqualTo((DB_BR_STANOVNIKA));
 		assertThat(dbStan.getIme()).isEqualTo(DB_IME);
-		assertThat(dbStan.getVlasnik()).isEqualTo(DB_VLASNIK_ID);
-		assertThat(dbStan.getZgrada()).isEqualTo(DB_ZGRADA_ID);
+		assertThat(dbStan.getVlasnik().getId()).isEqualTo(DB_VLASNIK_ID);
+		assertThat(dbStan.getZgrada().getId()).isEqualTo(DB_ZGRADA_ID);
 	}
 
 	@Test
@@ -102,7 +102,7 @@ public class StanServiceTest {
 	}
 	@Test
 	public void testFindByVlasnik() {
-		List<Stan> stanovi = stanService.findAllByVlasnik(DB_VLASNIK_ID);
+		List<Stan> stanovi = stanService.findAllByVlasnikId(DB_VLASNIK_ID);
 		assertThat(stanovi).hasSize(DB_COUNT_WITH_VLASNIK);
 	}
 }

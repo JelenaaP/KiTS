@@ -21,8 +21,8 @@ public class ZgradaService {
 		return zgradaRepository.findOne(id);
 	}
 
-	public List<Zgrada> findByVlasnik(Long vlasnik) {
-		return zgradaRepository.findByVlasnik(vlasnik);
+	public List<Zgrada> findByVlasnikId(Long vlasnik) {
+		return zgradaRepository.findByVlasnikId(vlasnik);
 	}
 
 	public List<Zgrada> findByAdresa(String adresa) {

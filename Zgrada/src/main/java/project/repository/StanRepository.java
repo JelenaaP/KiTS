@@ -12,5 +12,5 @@ public interface StanRepository extends JpaRepository<Stan, Long>{
 	Stan findByAdresa(String adresa);
 	Stan findByVlasnik(Long vlasnik);
 	List<Stan> findAllByAdresa(String adresa);
-	List<Stan> findAllByVlasnik(Long vlasnik);
+	List<Stan> findAllByVlasnikId(Long vlasnik);
 }

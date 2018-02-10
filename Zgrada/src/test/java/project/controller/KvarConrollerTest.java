@@ -108,8 +108,8 @@ private static final String URL_PREFIX = "/api/kvar";
     }
     
     @Test
-    public void testGetKvarByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + KvarConstants.DB_KREATOR_ID))
+    public void testGetKvarByKreatorId() throws Exception {
+    	mockMvc.perform(get(URL_PREFIX + "/findKreatorId?kreatorId=" + KvarConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
@@ -124,7 +124,7 @@ private static final String URL_PREFIX = "/api/kvar";
     @Test
     @Transactional
     @Rollback(true)
-    public void testSaveKvar() throws Exception {
+    public void testCreateKvar() throws Exception {
     	Kvar kvar = new Kvar();
 		kvar.setIme(NEW_IME);
 		kvar.setDatKreiranja(NEW_DAT_KREIRANJA);
