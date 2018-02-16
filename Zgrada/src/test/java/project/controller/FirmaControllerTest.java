@@ -52,9 +52,12 @@ import project.MyApplication;
 import project.constants.FirmaConstants;
 import project.constants.Korisnik_ServisaConstants;
 import project.constants.ZgradaConstants;
+import project.dto.FirmaDto;
+import project.dto.Korisnik_servisaDto;
 import project.model.Firma;
 import project.model.Korisnik_servisa;
 import project.model.Zgrada;
+import project.service.Korisnik_servisaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -74,6 +77,9 @@ private static final String URL_PREFIX = "/api/firma";
     
     @Autowired
     private WebApplicationContext webApplicationContext;
+    
+    @Autowired
+    private Korisnik_servisaService korisnikServisa;
     
     @PostConstruct
     public void setup() {
@@ -101,14 +107,13 @@ private static final String URL_PREFIX = "/api/firma";
     	mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + DB_ADRESA))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	//.andExpect(jsonPath("$.id").value(FirmaConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.adresa").value(DB_ADRESA))
-        .andExpect(jsonPath("$.ime").value(DB_IME))
-        .andExpect(jsonPath("$.telefon").value(DB_TELEFON))
-        .andExpect(jsonPath("$.webSite").value(DB_WEB_SITE))
-        .andExpect(jsonPath("$.email").value(DB_EMAIL))
-        .andExpect(jsonPath("$.vlasnik").value(DB_VLASNIK_ID));
-    }
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(ZgradaConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
+        .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
+        .andExpect(jsonPath("$.[*].telefon").value(hasItem(DB_TELEFON)))
+		.andExpect(jsonPath("$.[*].webSite").value(hasItem(DB_WEB_SITE)))
+		.andExpect(jsonPath("$.[*].email").value(hasItem(DB_EMAIL)));
+		  }
     
     @Test
     public void testGetFirmaByVlasnik() throws Exception {
@@ -129,16 +134,18 @@ private static final String URL_PREFIX = "/api/firma";
     @Transactional
     @Rollback(true)
     public void testSaveFirma() throws Exception {
-    	Firma firma = new Firma();
+    	FirmaDto firma = new FirmaDto();
     	
-    	firma.setId(FirmaConstants.DB_ID);
+    	//firma.setId(FirmaConstants.DB_ID);
 		firma.setIme(NEW_IME);
 		firma.setAdresa(NEW_ADRESA);
 		firma.setTelefon(NEW_TELEFON);
 		firma.setEmail(NEW_EMAIL);
 		firma.setWebSite(NEW_WEB_SITE);
+		firma.setVlasnik(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 		
     	String json = TestUtil.json(firma);
+    	System.out.println(json);
         this.mockMvc.perform(post(URL_PREFIX)
                 .contentType(contentType)
                 .content(json))
@@ -166,6 +173,10 @@ private static final String URL_PREFIX = "/api/firma";
     @Transactional
     @Rollback(true)
     public void testDeleteFirma() throws Exception { 	
+    	
+    	//prvo save pa potom delete
+    	// save vraca id koji je novi dobio
+    	
         this.mockMvc.perform(delete(URL_PREFIX + "/" + FirmaConstants.DB_ID))
                 .andExpect(status().isOk());
     }

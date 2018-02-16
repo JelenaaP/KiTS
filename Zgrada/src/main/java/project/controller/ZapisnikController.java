@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +55,6 @@ public class ZapisnikController {
 		return new ResponseEntity<>(zapisniciDto, HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ZAPISNICAR')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<ZapisnikDto> createZapisnik(@RequestBody ZapisnikDto zapisnikDto) {
 		if(zapisnikDto.getSednica()==null)
@@ -79,7 +77,6 @@ public class ZapisnikController {
 		zapisnik = zapisnikService.save(zapisnik);
 		return new ResponseEntity<>(new ZapisnikDto(zapisnik), HttpStatus.CREATED);
 	}
-	@PreAuthorize("hasRole('ZAPISNICAR')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ZapisnikDto> updateZapisnik(@RequestBody ZapisnikDto zapisnikDto) {
 		// a building must exist
@@ -93,7 +90,6 @@ public class ZapisnikController {
 		return new ResponseEntity<>(new ZapisnikDto(zapisnik),HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ZAPISNICAR')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteZapisnik(@PathVariable Long id) {
 		Zapisnik zapisnik = zapisnikService.findOne(id);

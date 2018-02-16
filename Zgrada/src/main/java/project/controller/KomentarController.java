@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,7 +64,6 @@ public class KomentarController {
 		return new ResponseEntity<>(komentarDto, HttpStatus.OK);
 		}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<KomentarDto> createKomentar(@RequestBody KomentarDto komentarDto) {
 		if(komentarDto.getKvar()==null)
@@ -88,7 +86,6 @@ public class KomentarController {
 		return new ResponseEntity<>(new KomentarDto(komentar), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<KomentarDto> updateKomentar(@RequestBody KomentarDto komentarDto) {
 		Komentar komentar = komentarService.findOne(komentarDto.getId());
@@ -104,7 +101,6 @@ public class KomentarController {
 		return new ResponseEntity<>(new KomentarDto(komentar), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteKomentar(@PathVariable Long id) {
 		Komentar komentar = komentarService.findOne(id);

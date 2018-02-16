@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,8 +48,8 @@ public class FirmaController {
 		return new ResponseEntity<>(firmeDto, HttpStatus.OK);
 	}	
 	
-	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	//@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
 	public ResponseEntity<FirmaDto> createFirma(@RequestBody FirmaDto firmaDto) {
 		if(firmaDto.getVlasnik()==null)
 		{
@@ -86,7 +85,7 @@ public class FirmaController {
 		return new ResponseEntity<>(firmaDto, HttpStatus.OK);
 		}
 */
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<FirmaDto> updateFirma(@RequestBody FirmaDto firmaDto) {
 		// a building must exist
@@ -105,7 +104,7 @@ public class FirmaController {
 		return new ResponseEntity<>(new FirmaDto(firma), HttpStatus.OK);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteFirma(@PathVariable Long id) {
 		Firma firma = firmaService.findOne(id);

@@ -5,6 +5,7 @@ public class FirmaConstants {
 	
 	public static final Long DB_ID = 1L;
 	
+	
 	public static final String NEW_ADRESA = "Mose Pijade 23";
 	public static final String NEW_IME = "Firma23";
 	public static final String NEW_EMAIL = "firma23@gmail.com";

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +65,6 @@ public class StanController {
 		return new ResponseEntity<>(stanoviDto, HttpStatus.OK);
 		}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<StanDto> createStanovi(@RequestBody StanDto stanDto) {
 		if(stanDto.getAdresa()==null||stanDto.getZgrada()==null)
@@ -92,7 +90,6 @@ public class StanController {
 		return new ResponseEntity<>(new StanDto(stan), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<StanDto> updateStanovi(@RequestBody StanDto stanDto) {
 		// a building must exist
@@ -110,7 +107,6 @@ public class StanController {
 		return new ResponseEntity<>(new StanDto(stan), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteStanovi(@PathVariable Long id) {
 		Stan stan = stanService.findOne(id);

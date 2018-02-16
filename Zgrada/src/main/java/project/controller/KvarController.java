@@ -7,7 +7,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,7 +68,6 @@ public class KvarController {
 		return new ResponseEntity<>(kvaroviDto, HttpStatus.OK);
 		}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<KvarDto> createKvar(@RequestBody KvarDto kvarDto) {
 		if(kvarDto.getZgrada()==null)
@@ -92,7 +90,6 @@ public class KvarController {
 		return new ResponseEntity<>(new KvarDto(kvar), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<KvarDto> updateKvar(@RequestBody KvarDto kvarDto) {
 		// a building must exist
@@ -112,7 +109,6 @@ public class KvarController {
 		return new ResponseEntity<>(new KvarDto(kvar), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteKvar(@PathVariable Long id) {
 		Kvar kvar = kvarService.findOne(id);

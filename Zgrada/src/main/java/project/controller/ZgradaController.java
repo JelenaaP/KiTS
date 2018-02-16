@@ -7,7 +7,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,7 +68,6 @@ public class ZgradaController {
 		return new ResponseEntity<>(zgradeDto, HttpStatus.OK);
 		}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<ZgradaDto> createZgrada(@RequestBody ZgradaDto zgradaDto) {
 		if(zgradaDto.getAdresa()==null||zgradaDto.getVlasnik()==null)
@@ -94,7 +92,6 @@ public class ZgradaController {
 		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<ZgradaDto> updateZgrada(@RequestBody ZgradaDto zgradaDto) {
 		// a building must exist
@@ -112,7 +109,6 @@ public class ZgradaController {
 		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteZgrada(@PathVariable Long id) {
 		Zgrada zgrada = zgradaService.findOne(id);
