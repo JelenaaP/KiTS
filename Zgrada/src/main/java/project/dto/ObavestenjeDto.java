@@ -65,6 +65,7 @@ public class ObavestenjeDto {
 	public ObavestenjeDto(Obavestenje obavestenje) {
 		id = obavestenje.getId();
 		ime = obavestenje.getIme();
+		opis= obavestenje.getOpis();
 		datKreiranja = obavestenje.getDatKreiranja();
 		kreator = new Korisnik_servisaDto(obavestenje.getKreator());
 		zgrada = new ZgradaDto(obavestenje.getZgrada());		

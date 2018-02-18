@@ -40,11 +40,14 @@ import org.springframework.web.context.WebApplicationContext;
 
 import project.TestUtil;
 import project.MyApplication;
-import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
 import project.constants.ObavestenjeConstants;
-import project.constants.ZgradaConstants;
+import project.dto.Korisnik_servisaDto;
+import project.dto.ObavestenjeDto;
+import project.dto.ZgradaDto;
 import project.model.Obavestenje;
+import project.service.Korisnik_servisaService;
+import project.service.ZgradaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -63,6 +66,12 @@ private static final String URL_PREFIX = "/api/obavestenje";
     private MockMvc mockMvc;
     
     @Autowired
+	ZgradaService zgradaService;
+	
+	@Autowired
+	Korisnik_servisaService korisnikServisa;
+	
+    @Autowired
     private WebApplicationContext webApplicationContext;
     
     @PostConstruct
@@ -77,50 +86,50 @@ private static final String URL_PREFIX = "/api/obavestenje";
 	        .andExpect(status().isOk())
 	        .andExpect(content().contentType(contentType))
 	        .andExpect(jsonPath("$", hasSize(DB_COUNT)))
-	        .andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))
-            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+	        .andExpect(jsonPath("$.[*].id").value(hasItem(ObavestenjeConstants.DB_ID.intValue())))
+            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
     		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-    		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)))
-    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
+    		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())))
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test
     public void testGetObavestenjeByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada.id=" + ObavestenjeConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + ObavestenjeConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-        .andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(ObavestenjeConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
+        .andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)));
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())));
     }
     
     @Test
     public void testGetObavestenjeByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + ObavestenjeConstants.DB_KREATOR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + ObavestenjeConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(ObavestenjeConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
         .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)))
-		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())))
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())));
     }
     
     @Test
     @Transactional
     @Rollback(true)
     public void testSaveObavestenje() throws Exception {
-    	Obavestenje obavestenje = new Obavestenje();
+    	ObavestenjeDto obavestenje = new ObavestenjeDto();
     	obavestenje.setIme(NEW_IME);
     	obavestenje.setDatKreiranja(NEW_DAT_KREIRANJA);
     	obavestenje.setOpis(NEW_OPIS);
-    	obavestenje.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
-    	obavestenje.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+    	obavestenje.setZgrada(new ZgradaDto(zgradaService.findOne(1L)));
+    	obavestenje.setKreator(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 		
     	String json = TestUtil.json(obavestenje);
         this.mockMvc.perform(post(URL_PREFIX)

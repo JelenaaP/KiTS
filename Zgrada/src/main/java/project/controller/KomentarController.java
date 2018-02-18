@@ -21,7 +21,7 @@ import project.service.Korisnik_servisaService;
 import project.service.KvarService;
 
 @RestController
-@RequestMapping(value = "/api/komentar")
+@RequestMapping(value = "api/komentar")
 public class KomentarController {
 	
 	@Autowired
@@ -45,8 +45,8 @@ public class KomentarController {
 	}
 	
 	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> getKomentarByKreator(@RequestParam Long kreator) {
-		List<Komentar> komentar = komentarService.findByKreatorId(kreator);
+	public ResponseEntity<List<KomentarDto>> getKomentarByKreator(@RequestParam Long kreatorId) {
+		List<Komentar> komentar = komentarService.findByKreatorId(kreatorId);
 		List<KomentarDto> komentarDto = new ArrayList<>();
 		for (Komentar k : komentar) {
 			komentarDto.add(new KomentarDto(k));
@@ -55,8 +55,8 @@ public class KomentarController {
 		}
 	
 	@RequestMapping(value = "/findKvar", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> getKomentarByKvar(@RequestParam String kvar) {
-		List<Komentar> komentar = komentarService.findByKvar(kvar);
+	public ResponseEntity<List<KomentarDto>> getKomentarByKvar(@RequestParam Long kvarId) {
+		List<Komentar> komentar = komentarService.findByKvarId(kvarId);
 		List<KomentarDto> komentarDto = new ArrayList<>();
 		for (Komentar k : komentar) {
 			komentarDto.add(new KomentarDto(k));

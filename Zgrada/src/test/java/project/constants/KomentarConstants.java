@@ -29,5 +29,5 @@ public class KomentarConstants {
 	
 	public static final int DB_COUNT = 2;
 	public static final int DB_COUNT_WITH_KREATOR = 1;
-	public static final int DB_COUNT_WITH_KVAR = 1;
+	public static final int DB_COUNT_WITH_KVAR = 2;
 }

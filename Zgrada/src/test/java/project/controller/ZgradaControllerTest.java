@@ -16,7 +16,6 @@ import static project.constants.ZgradaConstants.DB_BR_STANOVA;
 import static project.constants.ZgradaConstants.DB_IME;
 import static project.constants.ZgradaConstants.DB_VLASNIK_ID;
 import static project.constants.ZgradaConstants.DB_COUNT;
-import static project.constants.ZgradaConstants.NEW_ADRESA;
 import static project.constants.ZgradaConstants.NEW_BR_NASELJENIH;
 import static project.constants.ZgradaConstants.NEW_BR_STANOVA;
 import static project.constants.ZgradaConstants.NEW_IME;
@@ -44,12 +43,14 @@ import org.springframework.web.context.WebApplicationContext;
 
 import project.TestUtil;
 import project.MyApplication;
-import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
 import project.constants.ObavestenjeConstants;
 import project.constants.StanConstants;
 import project.constants.ZgradaConstants;
-import project.model.Zgrada;
+import project.dto.Korisnik_servisaDto;
+import project.dto.ZgradaDto;
+import project.service.Korisnik_servisaService;
+import project.service.ZgradaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -65,6 +66,12 @@ public class ZgradaControllerTest {
             Charset.forName("utf8"));
 
     private MockMvc mockMvc;
+
+    @Autowired
+    Korisnik_servisaService korisnikService;
+    
+    @Autowired
+    ZgradaService zgradaService;
     
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -86,7 +93,7 @@ public class ZgradaControllerTest {
             .andExpect(jsonPath("$.[*].brNaseljenih").value(hasItem(DB_BR_NASELJENIH)))
             .andExpect(jsonPath("$.[*].brStanova").value(hasItem(DB_BR_STANOVA)))
     		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
-    		.andExpect(jsonPath("$.[*].vlasnik").value(hasItem(DB_VLASNIK_ID)));
+    		.andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
     }
     
     @Test
@@ -94,12 +101,12 @@ public class ZgradaControllerTest {
     	mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + ZgradaConstants.DB_ADRESA))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(ZgradaConstants.DB_ID.intValue()))
-        .andExpect(jsonPath("$.ime").value(DB_IME))
-        .andExpect(jsonPath("$.adresa").value(DB_ADRESA))
-        .andExpect(jsonPath("$.brStanova").value(DB_BR_STANOVA))
-        .andExpect(jsonPath("$.brNaseljenih").value(DB_BR_NASELJENIH))
-        .andExpect(jsonPath("$.vlasnik").value(DB_VLASNIK_ID));
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(ZgradaConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
+        .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
+        .andExpect(jsonPath("$.[*].brStanova").value(hasItem(DB_BR_STANOVA)))
+        .andExpect(jsonPath("$.[*].brNaseljenih").value(hasItem(DB_BR_NASELJENIH)))
+        .andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
     }
     
     @Test
@@ -107,25 +114,26 @@ public class ZgradaControllerTest {
     	mockMvc.perform(get(URL_PREFIX + "/findVlasnik?vlasnik=" + ZgradaConstants.DB_VLASNIK_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(ZgradaConstants.DB_ID.intValue()))
-        .andExpect(jsonPath("$.ime").value(DB_IME))
-        .andExpect(jsonPath("$.adresa").value(DB_ADRESA))
-        .andExpect(jsonPath("$.brStanova").value(DB_BR_STANOVA))
-        .andExpect(jsonPath("$.brNaseljenih").value(DB_BR_NASELJENIH))
-        .andExpect(jsonPath("$.vlasnik").value(DB_VLASNIK_ID));
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(ZgradaConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
+        .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
+        .andExpect(jsonPath("$.[*].brStanova").value(hasItem(DB_BR_STANOVA)))
+        .andExpect(jsonPath("$.[*].brNaseljenih").value(hasItem(DB_BR_NASELJENIH)));
+        
     }
     
     @Test
     @Transactional
     @Rollback(true)
     public void testSaveZgrada() throws Exception {
-    	Zgrada zgrada = new Zgrada();
+    	ZgradaDto zgrada = new ZgradaDto();
+    	
 		zgrada.setIme(NEW_IME);
-		zgrada.setAdresa(NEW_ADRESA);
+		zgrada.setAdresa(DB_ADRESA);
 		zgrada.setBrNaseljenih(NEW_BR_NASELJENIH);
 		zgrada.setBrStanova(NEW_BR_STANOVA);
-		zgrada.setVlasnik(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
-    	
+		zgrada.setVlasnik(new Korisnik_servisaDto(korisnikService.findOne(1L)));
+		
     	String json = TestUtil.json(zgrada);
         this.mockMvc.perform(post(URL_PREFIX)
                 .contentType(contentType)
@@ -137,7 +145,8 @@ public class ZgradaControllerTest {
     @Transactional
     @Rollback(true)
     public void testUpdateZgrada() throws Exception {
-    	Zgrada zgrada = new Zgrada();
+    	ZgradaDto zgrada = new ZgradaDto();
+    	
     	zgrada.setId(ZgradaConstants.DB_ID);
 		zgrada.setIme(NEW_IME);
 		zgrada.setBrStanova(NEW_BR_STANOVA);
@@ -165,11 +174,13 @@ public class ZgradaControllerTest {
     		.andExpect(status().isOk())
     		.andExpect(content().contentType(contentType))
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_ZGRADA_STANOVI)))
+    		.andExpect(jsonPath("$.[*].id").value(
+    				hasItem(StanConstants.DB_ID.intValue())))
     		.andExpect(jsonPath("$.[*].adresa").value(
     				hasItem(StanConstants.DB_ADRESA)))
     		.andExpect(jsonPath("$.[*].ime").value(
     				hasItem(StanConstants.DB_IME)))
-    		.andExpect(jsonPath("$.[*].brStanova").value(
+    		.andExpect(jsonPath("$.[*].brStanovnika").value(
     				hasItem(StanConstants.DB_BR_STANOVNIKA)))
     		.andExpect(jsonPath("$.[*].vlasnik.id").value(
     				hasItem(StanConstants.DB_VLASNIK_ID.intValue())));
@@ -183,11 +194,11 @@ public class ZgradaControllerTest {
     		.andExpect(content().contentType(contentType))
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_ZGRADA_KVAROVI)))
     		.andExpect(jsonPath("$.[*].datZakazivanja").value(
-    				hasItem(KvarConstants.DB_DAT_ZAKAZIVANJA)))
+    				hasItem(KvarConstants.DB_DAT_ZAKAZIVANJA.getTime())))
     		.andExpect(jsonPath("$.[*].datKreiranja").value(
-    				hasItem(KvarConstants.DB_DAT_KREIRANJA)))
+    				hasItem(KvarConstants.DB_DAT_KREIRANJA.getTime())))
     		.andExpect(jsonPath("$.[*].datPopravke").value(
-    				hasItem(KvarConstants.DB_DAT_POPRAVKE)))
+    				hasItem(KvarConstants.DB_DAT_POPRAVKE.getTime())))
     		.andExpect(jsonPath("$.[*].kreator.id").value(
     				hasItem(KvarConstants.DB_KREATOR_ID.intValue())))
     		.andExpect(jsonPath("$.[*].ime").value(

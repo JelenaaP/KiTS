@@ -40,10 +40,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import project.TestUtil;
 import project.MyApplication;
-import project.constants.Korisnik_ServisaConstants;
 import project.constants.StanConstants;
-import project.constants.ZgradaConstants;
-import project.model.Stan;
+import project.dto.Korisnik_servisaDto;
+import project.dto.StanDto;
+import project.dto.ZgradaDto;
+import project.service.Korisnik_servisaService;
+import project.service.ZgradaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -60,6 +62,12 @@ private static final String URL_PREFIX = "/api/stan";
             Charset.forName("utf8"));
 
     private MockMvc mockMvc;
+    
+    @Autowired
+    ZgradaService zgradaService;
+    
+    @Autowired
+    Korisnik_servisaService korisnikServisa;
     
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -80,8 +88,8 @@ private static final String URL_PREFIX = "/api/stan";
             .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
             .andExpect(jsonPath("$.[*].brStanovnika").value(hasItem(DB_BR_STANOVNIKA)))
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
-            .andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
-            .andExpect(jsonPath("$.[*].vlasnik").value(hasItem(DB_VLASNIK_ID)));
+            .andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())))
+            .andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
     }
     
     @Test
@@ -89,12 +97,12 @@ private static final String URL_PREFIX = "/api/stan";
         mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + DB_ADRESA))
         .andExpect(status().isOk())
         .andExpect(content().contentType(contentType))
-        .andExpect(jsonPath("$.id").value(StanConstants.DB_ID.intValue()))
-        .andExpect(jsonPath("$.ime").value(DB_IME))
-        .andExpect(jsonPath("$.adresa").value(DB_ADRESA))
-        .andExpect(jsonPath("$.brStanovnika").value(DB_BR_STANOVNIKA))
-        .andExpect(jsonPath("$.zgrada.id").value(DB_ZGRADA_ID))
-        .andExpect(jsonPath("$.vlasnik.id").value(DB_VLASNIK_ID));
+        .andExpect(jsonPath("$.[*].id").value(hasItem(StanConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
+        .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
+        .andExpect(jsonPath("$.[*].brStanovnika").value(hasItem(DB_BR_STANOVNIKA)))
+        .andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())))
+        .andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
     }
 
     @Test
@@ -102,25 +110,25 @@ private static final String URL_PREFIX = "/api/stan";
     	mockMvc.perform(get(URL_PREFIX + "/findVlasnik?vlasnik=" + StanConstants.DB_VLASNIK_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(StanConstants.DB_ID.intValue()))
-        .andExpect(jsonPath("$.ime").value(DB_IME))
-        .andExpect(jsonPath("$.adresa").value(DB_ADRESA))
-        .andExpect(jsonPath("$.brStanovnika").value(DB_BR_STANOVNIKA))
-        .andExpect(jsonPath("$.zgrada.id").value(DB_ZGRADA_ID))
-        .andExpect(jsonPath("$.vlasnik.id").value(DB_VLASNIK_ID));
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(StanConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
+        .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
+        .andExpect(jsonPath("$.[*].brStanovnika").value(hasItem(DB_BR_STANOVNIKA)))
+        .andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())));
     }
     
     @Test
     @Transactional
     @Rollback(true)
     public void testSaveStan() throws Exception {
-    	Stan stan = new Stan();
-		stan.setIme(NEW_IME);
+    	StanDto stan = new StanDto();
+		
+    	stan.setIme(NEW_IME);
 		stan.setAdresa(NEW_ADRESA);
 		stan.setBrStanovnika(NEW_BR_STANOVNIKA);
-		stan.setVlasnik(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
-		stan.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
-    	
+		stan.setZgrada(new ZgradaDto(zgradaService.findOne(1L)));
+    	stan.setVlasnik(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
+		
     	String json = TestUtil.json(stan);
         this.mockMvc.perform(post(URL_PREFIX)
                 .contentType(contentType)
@@ -131,13 +139,15 @@ private static final String URL_PREFIX = "/api/stan";
     @Transactional
     @Rollback(true)
     public void testUpdateStan() throws Exception {
-    	Stan stan = new Stan();
+    	StanDto stan = new StanDto();
+    	
+    	stan.setId(StanConstants.DB_ID);
 		stan.setIme(NEW_IME);
 		stan.setAdresa(NEW_ADRESA);
 		stan.setBrStanovnika(NEW_BR_STANOVNIKA);
-		stan.setVlasnik(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
-		stan.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
-    	
+		stan.setZgrada(new ZgradaDto(zgradaService.findOne(1L)));
+    	stan.setVlasnik(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
+		
     	String json = TestUtil.json(stan);
         this.mockMvc.perform(put(URL_PREFIX)
                 .contentType(contentType)

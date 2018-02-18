@@ -45,10 +45,13 @@ import org.springframework.web.context.WebApplicationContext;
 import project.TestUtil;
 import project.MyApplication;
 import project.constants.KomentarConstants;
-import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
-import project.constants.ZgradaConstants;
+import project.dto.Korisnik_servisaDto;
+import project.dto.KvarDto;
+import project.dto.ZgradaDto;
 import project.model.Kvar;
+import project.service.Korisnik_servisaService;
+import project.service.ZgradaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -69,6 +72,12 @@ private static final String URL_PREFIX = "/api/kvar";
     @Autowired
     private WebApplicationContext webApplicationContext;
     
+    @Autowired
+    ZgradaService zgradaService;
+    
+    @Autowired
+    Korisnik_servisaService korisnikServisa;
+    
     @PostConstruct
     public void setup() {
     	this.mockMvc = MockMvcBuilders.
@@ -82,57 +91,58 @@ private static final String URL_PREFIX = "/api/kvar";
 	        .andExpect(content().contentType(contentType))
 	        .andExpect(jsonPath("$", hasSize(DB_COUNT)))
 	        .andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))
-            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-            .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
-            .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE)))
+            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
+            .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA.getTime())))
+            .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE.getTime())))
     		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
     		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-    		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
+    		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())))
     		.andExpect(jsonPath("$.[*].popravljen").value(hasItem(DB_POPRAVLJEN)))
-    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test
     public void testGetKvarByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada.id=" + KvarConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + KvarConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
-        .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
+        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA.getTime())))
+        .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE.getTime())))
 		.andExpect(jsonPath("$.[*].popravljen").value(hasItem(DB_POPRAVLJEN)))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
-		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)));
+		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)));
     }
     
     @Test
     public void testGetKvarByKreatorId() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreatorId?kreatorId=" + KvarConstants.DB_KREATOR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreatorId=" + KvarConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
-        .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
+        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA.getTime())))
+        .andExpect(jsonPath("$.[*].datPopravke").value(hasItem(DB_DAT_POPRAVKE.getTime())))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test
     @Transactional
     @Rollback(true)
     public void testCreateKvar() throws Exception {
-    	Kvar kvar = new Kvar();
+    	KvarDto kvar = new KvarDto();
+    	
+    	kvar.setZgrada(new ZgradaDto(zgradaService.findOne(DB_ZGRADA_ID)));
+    	kvar.setKreator(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 		kvar.setIme(NEW_IME);
 		kvar.setDatKreiranja(NEW_DAT_KREIRANJA);
 		kvar.setOpis(NEW_OPIS);
-		kvar.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
-		kvar.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
 		
     	String json = TestUtil.json(kvar);
+    	System.out.println(json);
         this.mockMvc.perform(post(URL_PREFIX)
                 .contentType(contentType)
                 .content(json))
@@ -171,8 +181,8 @@ private static final String URL_PREFIX = "/api/kvar";
     		.andExpect(status().isOk())
     		.andExpect(content().contentType(contentType))
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_KVAR_KOMENTARI)))
-    		.andExpect(jsonPath("$.[*].datKreairanja").value(
-    				hasItem(KomentarConstants.DB_DAT_KREIRANJA)))
+    		.andExpect(jsonPath("$.[*].datKreiranja").value(
+    				hasItem(KomentarConstants.DB_DAT_KREIRANJA.getTime())))
     		.andExpect(jsonPath("$.[*].text").value(
     				hasItem(KomentarConstants.DB_TEXT)))
     		.andExpect(jsonPath("$.[*].kreator.id").value(

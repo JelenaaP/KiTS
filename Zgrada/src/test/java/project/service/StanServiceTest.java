@@ -27,7 +27,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.MyApplication;
-import project.constants.Korisnik_ServisaConstants;
 import project.model.Stan;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -66,7 +65,6 @@ public class StanServiceTest {
 		stan.setAdresa(NEW_ADRESA);
 		stan.setBrStanovnika(NEW_BR_STANOVNIKA);
 		stan.setIme(NEW_IME);
-		stan.setVlasnik(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
 		
 		int dbSizeBeforeAdd = stanService.findAll().size();
 		
@@ -80,7 +78,7 @@ public class StanServiceTest {
         assertThat(dbStan.getAdresa()).isEqualTo(NEW_ADRESA);
         assertThat(dbStan.getBrStanovnika()).isEqualTo(NEW_BR_STANOVNIKA);
         assertThat(dbStan.getIme()).isEqualTo(NEW_IME);
-        assertThat(dbStan.getVlasnik()).isEqualTo(Korisnik_ServisaConstants.NEW_VLASNIK_ID);
+        
 }
 	@Test
 	@Transactional

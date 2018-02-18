@@ -22,6 +22,7 @@ insert into korisnik_servisa (ime, koris_ime, lozinka, uloga) values ('Mirjana',
 
 insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('adresa1', 'firma1@gmail.com', 'firma1', 55333, 'www.firma1.com',1);
 insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('adresa2', 'firma2@gmail.com', 'firma2', 15333555, 'www.firma2.com',2);
+insert into firma (adresa,email, ime, telefon, web_site, vlasnik_id) values ('adresa3', 'firma3@gmail.com', 'firma3', 55333, 'www.firma3.com',1);
 
 insert into zgrada (adresa, br_naseljenih, br_stanova, ime, vlasnik_id) values ('Loznica', 5, 8, 'zgrada 1', 2);
 insert into zgrada (adresa, br_naseljenih, br_stanova, ime, vlasnik_id) values ('Loznica 2', 5, 8, 'zgrada 2', 1);

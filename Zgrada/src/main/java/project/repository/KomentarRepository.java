@@ -8,6 +8,6 @@ import project.model.Komentar;
 
 public interface KomentarRepository extends JpaRepository<Komentar, Long> {
 
-	public List<Komentar> findByKvar(String kvar);
+	public List<Komentar> findByKvarId(Long kvar);
 	public List<Komentar> findByKreatorId(Long kreator);
 }

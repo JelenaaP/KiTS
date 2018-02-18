@@ -21,9 +21,9 @@ public class ZapisnikDto {
 		this.id = id;
 		this.opis = opis;
 		this.datKreiranja = datKreiranja;
-		this.setKreator(kreator);
-		this.setSednica(sednica);
-		this.setZgrada(zgrada);
+		this.sednica = sednica;
+		this.kreator = kreator;
+		this.zgrada = zgrada;
 	}
 	public ZapisnikDto(Zapisnik zapisnik) {
 		id = zapisnik.getId();

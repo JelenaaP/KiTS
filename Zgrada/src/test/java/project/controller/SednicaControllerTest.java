@@ -19,7 +19,7 @@ import static project.constants.SednicaConstants.DB_ZGRADA_ID;
 import static project.constants.SednicaConstants.NEW_AKTIVNA;
 import static project.constants.SednicaConstants.NEW_DAT_KREIRANJA;
 import static project.constants.SednicaConstants.DB_COUNT_SEDNICA_STAVKA;
-import static project.constants.SednicaConstants.DB_COUNT_SEDNICA_ZAPISNIK;
+
 import java.nio.charset.Charset;
 
 import javax.annotation.PostConstruct;
@@ -40,14 +40,15 @@ import org.springframework.web.context.WebApplicationContext;
 
 import project.MyApplication;
 import project.TestUtil;
-import project.constants.KomentarConstants;
-import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
 import project.constants.SednicaConstants;
 import project.constants.StavkaConstants;
 import project.constants.ZapisnikConstants;
-import project.constants.ZgradaConstants;
-import project.model.Sednica;
+import project.dto.Korisnik_servisaDto;
+import project.dto.SednicaDto;
+import project.dto.ZgradaDto;
+import project.service.Korisnik_servisaService;
+import project.service.ZgradaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -65,6 +66,12 @@ private static final String URL_PREFIX = "/api/sednica";
     private MockMvc mockMvc;
     
     @Autowired
+    ZgradaService zgradaService;
+    
+    @Autowired
+    Korisnik_servisaService korisnikServisa;
+
+    @Autowired
     private WebApplicationContext webApplicationContext;
     
     @PostConstruct
@@ -79,47 +86,47 @@ private static final String URL_PREFIX = "/api/sednica";
 	        .andExpect(content().contentType(contentType))
 	        .andExpect(jsonPath("$", hasSize(DB_COUNT)))
 	        .andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
-            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-            .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
+            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
+            .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA.getTime())))
     		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
-    		.andExpect(jsonPath("$.[*].zgrada").value(hasItem(DB_ZGRADA_ID)))
-    		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+    		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())))
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     @Test
     public void testGetSednicaByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + ZapisnikConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + ZapisnikConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
-        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
+        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
+        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA.getTime())))
 		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
-		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)))
-		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())))
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test
     public void testGetSednicaByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada.id=" + ZapisnikConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + ZapisnikConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.[*].id").value(hasItem(SednicaConstants.DB_ID.intValue())))
-        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
-        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA)))
+        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
+        .andExpect(jsonPath("$.[*].datZakazivanja").value(hasItem(DB_DAT_ZAKAZIVANJA.getTime())))
 		.andExpect(jsonPath("$.[*].aktivna").value(hasItem(DB_AKTIVNA)))
-		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID)))
-		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())))
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test
     @Transactional
     @Rollback(true)
     public void testSaveSednica() throws Exception {
-    	Sednica sednica = new Sednica();
+    	SednicaDto sednica = new SednicaDto();
     	sednica.setDatKreiranja(NEW_DAT_KREIRANJA);
 		sednica.setDatZakazivanja(NEW_DAT_KREIRANJA);
-		sednica.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
-		sednica.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+		sednica.setZgrada(new ZgradaDto(zgradaService.findOne(1L)));
+    	sednica.setKreator(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 		sednica.setAktivna(NEW_AKTIVNA);
 		
     	String json = TestUtil.json(sednica);
@@ -132,11 +139,13 @@ private static final String URL_PREFIX = "/api/sednica";
     @Transactional
     @Rollback(true)
     public void testUpdateSednica() throws Exception {
-    	Sednica sednica = new Sednica();
+    	SednicaDto sednica = new SednicaDto();
+    	
+    	sednica.setId(SednicaConstants.DB_ID);
     	sednica.setDatKreiranja(NEW_DAT_KREIRANJA);
 		sednica.setDatZakazivanja(NEW_DAT_KREIRANJA);
-		sednica.setZgrada(ZgradaConstants.NEW_ZGRADA_ID);
-		sednica.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+		sednica.setZgrada(new ZgradaDto(zgradaService.findOne(1L)));
+    	sednica.setKreator(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 		sednica.setAktivna(NEW_AKTIVNA);
 		
     	String json = TestUtil.json(sednica);
@@ -159,14 +168,14 @@ private static final String URL_PREFIX = "/api/sednica";
     		.andExpect(status().isOk())
     		.andExpect(content().contentType(contentType))
     		.andExpect(jsonPath("$", hasSize(DB_COUNT_SEDNICA_STAVKA)))
-    		//.andExpect(jsonPath("$.[*].datKreairanja").value(
-    			//	hasItem(StavkaConstants.DB_DAT_KREIRANJA)))
+    		.andExpect(jsonPath("$.[*].datKreiranja").value(
+    				hasItem(StavkaConstants.DB_DAT_KREIRANJA.getTime())))
     		.andExpect(jsonPath("$.[*].opis").value(
     				hasItem(StavkaConstants.DB_OPIS)))
     		.andExpect(jsonPath("$.[*].ime").value(
     				hasItem(StavkaConstants.DB_IME)))
     		.andExpect(jsonPath("$.[*].kreator.id").value(
-    				hasItem(KomentarConstants.DB_KREATOR_ID.intValue())));
+    				(StavkaConstants.DB_KREATOR_ID.intValue())));
     }
     
     @Test
@@ -175,15 +184,10 @@ private static final String URL_PREFIX = "/api/sednica";
     			SednicaConstants.DB_ID_REFERENCED + "/zapisnik"))
     		.andExpect(status().isOk())
     		.andExpect(content().contentType(contentType))
-    		.andExpect(jsonPath("$", hasSize(DB_COUNT_SEDNICA_ZAPISNIK)))
-    		.andExpect(jsonPath("$.[*].datKreairanja").value(
-    				hasItem(ZapisnikConstants.DB_DAT_KREIRANJA)))
-    		.andExpect(jsonPath("$.[*].opis").value(
-    				hasItem(ZapisnikConstants.DB_OPIS)))
-    		.andExpect(jsonPath("$.[*].zgrada.id").value(
-    				hasItem(ZapisnikConstants.DB_ZGRADA_ID)))
-    		.andExpect(jsonPath("$.[*].kreator.id").value(
-    				hasItem(ZapisnikConstants.DB_KREATOR_ID.intValue())));
+    		.andExpect(jsonPath("$.datKreiranja").value(ZapisnikConstants.DB_DAT_KREIRANJA.getTime()))
+    		.andExpect(jsonPath("$.opis").value(ZapisnikConstants.DB_OPIS))
+    		.andExpect(jsonPath("$.zgrada.id").value(ZapisnikConstants.DB_ZGRADA_ID.intValue()))
+    		.andExpect(jsonPath("$.kreator.id").value(ZapisnikConstants.DB_KREATOR_ID.intValue()));
     }
     
 }

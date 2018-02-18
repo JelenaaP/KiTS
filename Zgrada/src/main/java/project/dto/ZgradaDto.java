@@ -22,7 +22,7 @@ public class ZgradaDto {
 		vlasnik = new Korisnik_servisaDto(zgrada.getVlasnik());
 		brStanova = zgrada.getBrStanova();
 		brNaseljenih = zgrada.getBrNaseljenih();
-		predsednikSkupstine = new Korisnik_servisaDto(zgrada.getPredsednik());
+		//predsednikSkupstine = new Korisnik_servisaDto(zgrada.getPredsednik());
 		}
 
 	public ZgradaDto(Long id, String ime, String adresa, Korisnik_servisaDto vlasnik, int brStanova,
@@ -40,7 +40,7 @@ public class ZgradaDto {
 	public Long getId() {
 		return id;
 	}
-	public void set(Long id) {
+	public void setId(Long id) {
 		this.id= id;
 	}
 	public String getIme() {

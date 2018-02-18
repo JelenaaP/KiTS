@@ -64,10 +64,10 @@ public class KvarDto {
 		this.zgrada = zgrada;
 	}
 	
-	public KvarDto(){};
+	public KvarDto(){}
 	
 	public KvarDto(Long id, String ime, String opis, Date datKreiranja, Date datZakazivanja, Date datPopravke, boolean popravljen,
-			ZgradaDto zgrada) {
+			ZgradaDto zgrada, Korisnik_servisaDto kreator) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -77,6 +77,7 @@ public class KvarDto {
 		this.datZakazivanja = datZakazivanja;
 		this.datPopravke = datPopravke;
 		this.zgrada = zgrada;
+		this.kreator = kreator;
 	}
 	public KvarDto(Kvar kvar) {
 		id = kvar.getId();

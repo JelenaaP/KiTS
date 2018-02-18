@@ -22,16 +22,17 @@ public class StavkaDto {
 		this.ime = ime;
 		this.opis = opis;
 		this.datKreiranja = datKreiranja;
-		this.setKreator(kreator);
-		this.setSednica(sednica);
+		this.kreator = kreator;
+		this.sednica = sednica;
 	}
 	
 	public StavkaDto(Stavka stavka) {
 		id = stavka.getId();
 		ime = stavka.getIme();
+		opis = stavka.getOpis();
 		datKreiranja = stavka.getDatKreiranja();
 		kreator = new Korisnik_servisaDto(stavka.getKreator());
-		//sednica = new SednicaDto(sednica.getSednica());
+		sednica = new SednicaDto(stavka.getSednica());
 	}
 
 	public Long getId() {

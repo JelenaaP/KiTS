@@ -39,10 +39,13 @@ import org.springframework.web.context.WebApplicationContext;
 
 import project.TestUtil;
 import project.MyApplication;
-import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
 import project.constants.StavkaConstants;
-import project.model.Stavka;
+import project.dto.Korisnik_servisaDto;
+import project.dto.SednicaDto;
+import project.dto.StavkaDto;
+import project.service.Korisnik_servisaService;
+import project.service.SednicaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -62,6 +65,12 @@ private static final String URL_PREFIX = "/api/stavka";
     private MockMvc mockMvc;
     
     @Autowired
+    Korisnik_servisaService korisnikServisa;
+    
+    @Autowired
+    SednicaService sednicaService;
+    
+    @Autowired
     private WebApplicationContext webApplicationContext;
     
     @PostConstruct
@@ -76,11 +85,13 @@ private static final String URL_PREFIX = "/api/stavka";
 	        .andExpect(status().isOk())
 	        .andExpect(content().contentType(contentType))
 	        .andExpect(jsonPath("$", hasSize(DB_COUNT)))
-	        .andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))
-            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+	        .andExpect(jsonPath("$.[*].id").value(hasItem(StavkaConstants.DB_ID.intValue())))
+            .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
     		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
     		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-    		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+    		.andExpect(jsonPath("$.[*].sednica.id").value(hasItem(StavkaConstants.DB_SEDNICA_ID.intValue())))
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
+    	
     }
     
     @Test
@@ -88,35 +99,37 @@ private static final String URL_PREFIX = "/api/stavka";
     	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator=" + StavkaConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     
     @Test
     public void testGetStavkaBySednica() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findSednica?sednica=" + StavkaConstants.DB_KREATOR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findSednica?sednica=" + StavkaConstants.DB_SEDNICA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(KvarConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(StavkaConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
 		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
 		.andExpect(jsonPath("$.[*].opis").value(hasItem(DB_OPIS)))
-		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test
     @Transactional
     @Rollback(true)
     public void testSaveStavka() throws Exception {
-    	Stavka stavka = new Stavka();
+    	StavkaDto stavka = new StavkaDto();
+    	
+    	stavka.setSednica(new SednicaDto(sednicaService.findOne(1L)));
     	stavka.setDatKreiranja(NEW_DAT_KREIRANJA);
     	stavka.setIme(NEW_IME);
     	stavka.setOpis(NEW_OPIS);
-    	stavka.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+    	stavka.setKreator(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 		
     	String json = TestUtil.json(stavka);
         this.mockMvc.perform(post(URL_PREFIX)
@@ -129,11 +142,13 @@ private static final String URL_PREFIX = "/api/stavka";
     @Transactional
     @Rollback(true)
     public void testUpdateStavka() throws Exception {
-    	Stavka stavka = new Stavka();
+    	StavkaDto stavka = new StavkaDto();
+    	
+    	stavka.setId(StavkaConstants.DB_ID);
     	stavka.setDatKreiranja(NEW_DAT_KREIRANJA);
     	stavka.setIme(NEW_IME);
     	stavka.setOpis(NEW_OPIS);
-    	stavka.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+    	stavka.setKreator(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 	
     	String json = TestUtil.json(stavka);
         this.mockMvc.perform(put(URL_PREFIX)

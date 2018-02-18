@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import project.dto.FirmaDto;
 
@@ -22,7 +21,6 @@ import project.model.Korisnik_servisa;
 import project.service.FirmaService;
 import project.service.Korisnik_servisaService;
 import project.service.KvarService;
-@EnableWebMvc
 @RestController
 @RequestMapping(value = "api/firma")
 
@@ -86,7 +84,7 @@ public class FirmaController {
 		}
 */
 	//@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+	@RequestMapping(value = "/{id}",method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<FirmaDto> updateFirma(@RequestBody FirmaDto firmaDto) {
 		// a building must exist
 		Firma firma = firmaService.findOne(firmaDto.getId());
@@ -126,7 +124,7 @@ public class FirmaController {
 		return new ResponseEntity<>(firmeDto, HttpStatus.OK);
 		}
 	
-	@RequestMapping(value = "/findVlasnikId", method = RequestMethod.GET)
+	@RequestMapping(value = "/findVlasnik", method = RequestMethod.GET)
 	public ResponseEntity<List<FirmaDto>> getFirmaByVlasnik(@RequestParam Long vlasnikId) {
 		List<Firma> firme = firmaService.findByVlasnikId(vlasnikId);
 		List<FirmaDto> firmeDto = new ArrayList<>();

@@ -12,10 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static project.constants.FirmaConstants.DB_COUNT;
 import static project.constants.FirmaConstants.DB_ADRESA;
-import static project.constants.FirmaConstants.DB_COUNT_WITH_ADRESA;
-import static project.constants.FirmaConstants.DB_COUNT_WITH_VLASNIK;
 import static project.constants.FirmaConstants.DB_EMAIL;
-import static project.constants.FirmaConstants.DB_ID;
 import static project.constants.FirmaConstants.DB_IME;
 import static project.constants.FirmaConstants.DB_TELEFON;
 import static project.constants.FirmaConstants.DB_VLASNIK_ID;
@@ -24,7 +21,6 @@ import static project.constants.FirmaConstants.NEW_ADRESA;
 import static project.constants.FirmaConstants.NEW_EMAIL;
 import static project.constants.FirmaConstants.NEW_IME;
 import static project.constants.FirmaConstants.NEW_TELEFON;
-import static project.constants.FirmaConstants.NEW_VLASNIK_ID;
 import static project.constants.FirmaConstants.NEW_WEB_SITE;
 
 
@@ -32,7 +28,6 @@ import java.nio.charset.Charset;
 
 import javax.annotation.PostConstruct;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,13 +45,9 @@ import org.springframework.web.context.WebApplicationContext;
 import project.TestUtil;
 import project.MyApplication;
 import project.constants.FirmaConstants;
-import project.constants.Korisnik_ServisaConstants;
 import project.constants.ZgradaConstants;
 import project.dto.FirmaDto;
 import project.dto.Korisnik_servisaDto;
-import project.model.Firma;
-import project.model.Korisnik_servisa;
-import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -98,8 +89,8 @@ private static final String URL_PREFIX = "/api/firma";
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
             .andExpect(jsonPath("$.[*].telefon").value(hasItem(DB_TELEFON)))
     		.andExpect(jsonPath("$.[*].webSite").value(hasItem(DB_WEB_SITE)))
-    		.andExpect(jsonPath("$.[*].email").value(hasItem(DB_EMAIL)));
-    		//.andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID)));
+    		.andExpect(jsonPath("$.[*].email").value(hasItem(DB_EMAIL)))
+    		.andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
     }
     
     @Test
@@ -107,8 +98,7 @@ private static final String URL_PREFIX = "/api/firma";
     	mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + DB_ADRESA))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.[*].id").value(hasItem(ZgradaConstants.DB_ID.intValue())))
-        .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(FirmaConstants.DB_ID.intValue())))
         .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
         .andExpect(jsonPath("$.[*].telefon").value(hasItem(DB_TELEFON)))
 		.andExpect(jsonPath("$.[*].webSite").value(hasItem(DB_WEB_SITE)))
@@ -117,16 +107,14 @@ private static final String URL_PREFIX = "/api/firma";
     
     @Test
     public void testGetFirmaByVlasnik() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findVlasnikId?vlasnik=" + FirmaConstants.DB_VLASNIK_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findVlasnik?vlasnikId=" + FirmaConstants.DB_VLASNIK_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(FirmaConstants.DB_VLASNIK_ID))
-        .andExpect(jsonPath("$.adresa").value(DB_ADRESA))
-        .andExpect(jsonPath("$.ime").value(DB_IME))
-        .andExpect(jsonPath("$.telefon").value(DB_TELEFON))
-        .andExpect(jsonPath("$.webSite").value(DB_WEB_SITE))
-        .andExpect(jsonPath("$.vlasnik.id").value(DB_VLASNIK_ID))
-    	;
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(FirmaConstants.DB_ID.intValue())))
+        .andExpect(jsonPath("$.[*].adresa").value(hasItem(DB_ADRESA)))
+        .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
+        .andExpect(jsonPath("$.[*].telefon").value(hasItem(DB_TELEFON)))
+        .andExpect(jsonPath("$.[*].webSite").value(hasItem(DB_WEB_SITE)));
     }
     
     
@@ -136,8 +124,7 @@ private static final String URL_PREFIX = "/api/firma";
     public void testSaveFirma() throws Exception {
     	FirmaDto firma = new FirmaDto();
     	
-    	//firma.setId(FirmaConstants.DB_ID);
-		firma.setIme(NEW_IME);
+    	firma.setIme(NEW_IME);
 		firma.setAdresa(NEW_ADRESA);
 		firma.setTelefon(NEW_TELEFON);
 		firma.setEmail(NEW_EMAIL);
@@ -156,19 +143,19 @@ private static final String URL_PREFIX = "/api/firma";
     @Transactional
     @Rollback(true)
     public void testUpdateFirma() throws Exception {
-    	Firma firma = new Firma();
+    	FirmaDto firma = new FirmaDto();
+    	
     	firma.setId(FirmaConstants.DB_ID);
 		firma.setIme(NEW_IME);
 		firma.setAdresa(NEW_ADRESA);
 		firma.setTelefon(NEW_TELEFON);
     	
     	String json = TestUtil.json(firma);
-        this.mockMvc.perform(put(URL_PREFIX)
+        this.mockMvc.perform(put(URL_PREFIX+ "/" + FirmaConstants.DB_ID)
                 .contentType(contentType)
                 .content(json))
                 .andExpect(status().isOk());
     }
-    
     @Test
     @Transactional
     @Rollback(true)
@@ -180,6 +167,8 @@ private static final String URL_PREFIX = "/api/firma";
         this.mockMvc.perform(delete(URL_PREFIX + "/" + FirmaConstants.DB_ID))
                 .andExpect(status().isOk());
     }
+    
+    //radi,provereno iz postman-a
     
     
 }

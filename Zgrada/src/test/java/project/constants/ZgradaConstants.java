@@ -1,7 +1,5 @@
 package project.constants;
 
-import project.model.Zgrada;
-
 public class ZgradaConstants {
 	
 	public static final Long DB_ID = 1L;
@@ -25,8 +23,7 @@ public class ZgradaConstants {
 
 	public static final Long DB_ID_REFERENCED = 1L;
 	public static final int DB_COUNT_ZGRADA_STANOVI = 2;
-	public static final int DB_COUNT_ZGRADA_KVAROVI = 2;
+	public static final int DB_COUNT_ZGRADA_KVAROVI = 1;
 	public static final int DB_COUNT_ZGRADA_OBAVESTENJA = 2;
 
-	public static final Zgrada NEW_ZGRADA_ID = null;
 }

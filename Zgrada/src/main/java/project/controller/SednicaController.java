@@ -18,6 +18,7 @@ import project.dto.Korisnik_servisaDto;
 import project.dto.SednicaDto;
 import project.dto.StavkaDto;
 import project.dto.ZapisnikDto;
+import project.dto.ZgradaDto;
 import project.model.Korisnik_servisa;
 import project.model.Sednica;
 import project.model.Stavka;
@@ -134,6 +135,8 @@ public class SednicaController {
 			stavkaDto.setIme(s.getIme());
 			stavkaDto.setOpis(s.getOpis());
 			stavkaDto.setDatKreiranja(s.getDatKreiranja());
+			stavkaDto.setKreator(new Korisnik_servisaDto(s.getKreator()));
+			
 			stavkeDto.add(stavkaDto);
 		}
 		return new ResponseEntity<>(stavkeDto, HttpStatus.OK);
@@ -150,6 +153,7 @@ public class SednicaController {
 			zapisnikDto.setOpis(zapisnik.getOpis());
 			zapisnikDto.setDatKreiranja(zapisnik.getDatKreiranja());
 			zapisnikDto.setKreator(new Korisnik_servisaDto(zapisnik.getKreator()));
+			zapisnikDto.setZgrada(new ZgradaDto(zapisnik.getZgrada()));
 			zapisnikDto.setSednica(new SednicaDto(zapisnik.getSednica()));
 			
 			return new ResponseEntity<>(zapisnikDto, HttpStatus.OK);

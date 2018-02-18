@@ -14,8 +14,8 @@ public class KomentarService {
 	@Autowired
 	private KomentarRepository komentarRepository;
 	
-	public List<Komentar> findByKvar(String kvar) {
-		return komentarRepository.findByKvar(kvar);
+	public List<Komentar> findByKvarId(Long kvar) {
+		return komentarRepository.findByKvarId(kvar);
 	}
 	
 	public List<Komentar> findByKreatorId(Long kreator){

@@ -34,6 +34,9 @@ public class KomentarServiceTest {
 	@Autowired
 	KomentarService komentarService;
 	
+	@Autowired
+	Korisnik_servisaService korisnikService;
+	
 	@Test
 	public void testFindAll() {
 		List<Komentar> komentari = komentarService.findAll();

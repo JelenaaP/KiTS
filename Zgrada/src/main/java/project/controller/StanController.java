@@ -67,15 +67,14 @@ public class StanController {
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<StanDto> createStanovi(@RequestBody StanDto stanDto) {
-		if(stanDto.getAdresa()==null||stanDto.getZgrada()==null)
+		if(stanDto.getZgrada()==null)
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Stan adresa = stanService.findByAdresa(stanDto.getAdresa());
 		Zgrada zgrada = zgradaService.findOne(stanDto.getZgrada().getId());
 		
 		
-		if (adresa == null || zgrada == null) {
+		if (zgrada == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(stanDto.getVlasnik().getKorisIme());

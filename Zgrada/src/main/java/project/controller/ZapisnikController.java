@@ -17,9 +17,11 @@ import project.dto.ZapisnikDto;
 import project.model.Korisnik_servisa;
 import project.model.Sednica;
 import project.model.Zapisnik;
+import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
 import project.service.SednicaService;
 import project.service.ZapisnikService;
+import project.service.ZgradaService;
 
 @RestController
 @RequestMapping(value = "api/zapisnik")
@@ -32,6 +34,9 @@ public class ZapisnikController {
 		
 	@Autowired
 	ZapisnikService zapisnikService;
+	
+	@Autowired
+	ZgradaService zgradaService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<ZapisnikDto>> getAllZapisnik() {
@@ -61,15 +66,17 @@ public class ZapisnikController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Sednica sednica = sednicaService.findOne(zapisnikDto.getId());
+		Sednica sednica = sednicaService.findOne(zapisnikDto.getSednica().getId());
 		
 		if (sednica == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Korisnik_servisa kreator = korisnik_servisaService.findByKorisIme(zapisnikDto.getKreator().getKorisIme());
+		Zgrada zgrada = zgradaService.findOne(zapisnikDto.getZgrada().getId());
 		
 		Zapisnik zapisnik = new Zapisnik();
 		zapisnik.setKreator(kreator);
+		zapisnik.setZgrada(zgrada);
 		zapisnik.setOpis(zapisnikDto.getOpis());
 		zapisnik.setDatKreiranja(zapisnikDto.getDatKreiranja());
 		zapisnik.setSednica(sednica);

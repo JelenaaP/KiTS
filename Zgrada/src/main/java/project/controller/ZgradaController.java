@@ -120,7 +120,7 @@ public class ZgradaController {
 		}
 	}
 	
-	@RequestMapping(value = "/{zgradaId}/stanovi", method = RequestMethod.GET)
+	@RequestMapping(value = "/{zgradaId}/stan", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> getZgradaStanovi(
 			@PathVariable Long zgradaId) {
 		Zgrada zgrada = zgradaService.findOne(zgradaId);
@@ -133,6 +133,7 @@ public class ZgradaController {
 			stanDto.setAdresa(s.getAdresa());
 			stanDto.setIme(s.getIme());
 			stanDto.setVlasnik(new Korisnik_servisaDto(s.getVlasnik()));
+			stanDto.setZgrada(new ZgradaDto(s.getZgrada()));
 			
 			stanoviDto.add(stanDto);
 		}

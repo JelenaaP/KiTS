@@ -40,13 +40,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import project.TestUtil;
 import project.constants.KomentarConstants;
-import project.constants.Korisnik_ServisaConstants;
-import project.constants.KvarConstants;
-import project.constants.ObavestenjeConstants;
-import project.constants.ZgradaConstants;
+import project.dto.KomentarDto;
+import project.dto.Korisnik_servisaDto;
+import project.dto.KvarDto;
+import project.service.Korisnik_servisaService;
+import project.service.KvarService;
 import project.MyApplication;
-import project.model.Komentar;
-import project.model.Obavestenje;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MyApplication.class)
@@ -67,6 +66,12 @@ private static final String URL_PREFIX = "/api/komentar";
     @Autowired
     private WebApplicationContext webApplicationContext;
     
+    @Autowired
+    private Korisnik_servisaService korisnikServisa;
+    
+    @Autowired
+    private KvarService kvarService;
+    
     @PostConstruct
     public void setup() {
     	this.mockMvc = MockMvcBuilders.
@@ -74,52 +79,51 @@ private static final String URL_PREFIX = "/api/komentar";
     }
     
     @Test
-    public void testGetAllKomentar() throws Exception {
+    public void testGetAll() throws Exception {
     	mockMvc.perform(get(URL_PREFIX + "/all"))
 	        .andExpect(status().isOk())
 	        .andExpect(content().contentType(contentType))
 	        .andExpect(jsonPath("$", hasSize(DB_COUNT)))
 	        .andExpect(jsonPath("$.[*].id").value(hasItem(KomentarConstants.DB_ID.intValue())))
-	        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+	        .andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DB_TEXT)))
-            .andExpect(jsonPath("$.[*].kvar.id").value(hasItem(DB_KVAR_ID)))
-    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID)));
+            .andExpect(jsonPath("$.[*].kvar.id").value(hasItem(DB_KVAR_ID.intValue())))
+    		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test
     public void testGetKomentarByKvar() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKvar?kvar.id=" + KomentarConstants.DB_KVAR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKvar?kvarId=" + KomentarConstants.DB_KVAR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(KomentarConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
 		.andExpect(jsonPath("$.[*].text").value(hasItem(DB_TEXT)))
-		.andExpect(jsonPath("$.[*].kvar").value(hasItem(DB_KVAR_ID)))
-        .andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
 
     }
     
     @Test
     public void testGetKomentarByKreator() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreator.id=" + KomentarConstants.DB_KREATOR_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findKreator?kreatorId=" + KomentarConstants.DB_KREATOR_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
-    	.andExpect(jsonPath("$.id").value(ObavestenjeConstants.DB_ID.intValue()))
-    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA)))
+    	.andExpect(jsonPath("$.[*].id").value(hasItem(KomentarConstants.DB_ID.intValue())))
+    	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
         .andExpect(jsonPath("$.[*].text").value(hasItem(DB_TEXT)))
-		.andExpect(jsonPath("$.[*].kvar").value(hasItem(DB_KVAR_ID)))
-		.andExpect(jsonPath("$.[*].kreator").value(hasItem(DB_KREATOR_ID)));
-
+		.andExpect(jsonPath("$.[*].kvar.id").value(hasItem(DB_KVAR_ID.intValue())));
     }
     
     @Test
     @Transactional
     @Rollback(true)
     public void testSaveKomentar() throws Exception {
-    	Komentar komentar = new Komentar();
+    	KomentarDto komentar = new KomentarDto();
+    	
+    	komentar.setKvar(new KvarDto(kvarService.findOne(1L)));
     	komentar.setDatKreiranja(NEW_DAT_KREIRANJA);
     	komentar.setText(NEW_TEXT);
-    	komentar.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
+    	komentar.setKreator(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
 		
     	String json = TestUtil.json(komentar);
         this.mockMvc.perform(post(URL_PREFIX)
@@ -132,13 +136,14 @@ private static final String URL_PREFIX = "/api/komentar";
     @Transactional
     @Rollback(true)
     public void testUpdateKomentar() throws Exception {
-    	Komentar komentar = new Komentar();
-    	komentar.setId(KvarConstants.DB_ID);
+    	KomentarDto komentar = new KomentarDto();
+    	komentar.setId(KomentarConstants.DB_ID);
     	komentar.setText(NEW_TEXT);
     	komentar.setDatKreiranja(NEW_DAT_KREIRANJA);
-    	komentar.setKreator(Korisnik_ServisaConstants.NEW_KREATOR_ID);
-	
+    	
     	String json = TestUtil.json(komentar);
+    	System.out.println(json);
+        
         this.mockMvc.perform(put(URL_PREFIX)
                 .contentType(contentType)
                 .content(json))
@@ -150,6 +155,7 @@ private static final String URL_PREFIX = "/api/komentar";
     @Rollback(true)
     public void testDeleteKomentar() throws Exception { 	
         this.mockMvc.perform(delete(URL_PREFIX + "/" + KomentarConstants.DB_ID))
+        
                 .andExpect(status().isOk());
     }
 }

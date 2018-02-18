@@ -15,8 +15,8 @@ public class StavkaService {
 	@Autowired
 	private StavkaRepository stavkaRepository;
 	
-	public List<Stavka> findBySednica(String sednica){
-		return stavkaRepository.findBySednica(sednica);
+	public List<Stavka> findBySednicaId(Long sednica){
+		return stavkaRepository.findBySednicaId(sednica);
 	}
 	
 	public List<Stavka> findByKreatorId(Long kreator){

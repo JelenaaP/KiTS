@@ -18,6 +18,7 @@ public class ZapisnikConstants {
 	public static final String DB_OPIS = "opis 1";
 	public static final Long DB_KREATOR_ID = 2L;
 	public static final Long DB_ZGRADA_ID = 1L;
+	public static final Long DB_SEDNICA_ID = 1L;
 
 	public static final int DB_COUNT = 1;
 	public static final int DB_COUNT_WITH_KREATOR=1;

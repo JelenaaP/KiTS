@@ -18,6 +18,7 @@ import project.dto.KomentarDto;
 import project.dto.Korisnik_servisaDto;
 import project.dto.KvarDto;
 import project.model.Komentar;
+import project.model.Korisnik_servisa;
 import project.model.Kvar;
 import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
@@ -58,7 +59,7 @@ public class KvarController {
 		return new ResponseEntity<>(kvaroviDto, HttpStatus.OK);
 		}
 	
-	@RequestMapping(value = "/findKreatorId", method = RequestMethod.GET)
+	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<KvarDto>> getKvarByKreatorId(@RequestParam Long kreatorId) {
 		List<Kvar> kvarovi = kvarService.findByKreatorId(kreatorId);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
@@ -79,12 +80,14 @@ public class KvarController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
+		Korisnik_servisa kreator = korisnik_servisaService.findByKorisIme(kvarDto.getKreator().getKorisIme());
 		Kvar kvar = new Kvar();
 		kvar.setIme(kvarDto.getIme());
 		kvar.setOpis(kvarDto.getOpis());
 		kvar.setDatKreiranja(kvarDto.getDatKreiranja());
 		kvar.setPopravljen(kvar.isPopravljen());
 		kvar.setZgrada(zgrada);
+		kvar.setKreator(kreator);
 		
 		kvar = kvarService.save(kvar);
 		return new ResponseEntity<>(new KvarDto(kvar), HttpStatus.CREATED);

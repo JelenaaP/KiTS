@@ -63,8 +63,8 @@ public class StavkaController {
 		
 		//pretrazivanje po sednici na kojoj je napravljena stavka
 		@RequestMapping(value = "/findSednica", method = RequestMethod.GET)
-		public ResponseEntity<List<StavkaDto>> getStavkaBySednica(@RequestParam String sednica) {
-			List<Stavka> stavka = stavkaService.findBySednica(sednica);
+		public ResponseEntity<List<StavkaDto>> getStavkaBySednica(@RequestParam Long sednica) {
+			List<Stavka> stavka = stavkaService.findBySednicaId(sednica);
 			List<StavkaDto> stavkaDto = new ArrayList<>();
 			for (Stavka s : stavka) {
 				stavkaDto.add(new StavkaDto(s));
