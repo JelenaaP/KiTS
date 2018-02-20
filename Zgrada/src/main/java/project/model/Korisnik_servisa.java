@@ -3,7 +3,6 @@ package project.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 
 @Entity
@@ -26,28 +28,36 @@ public class Korisnik_servisa {
 	private String lozinka;
 	private String uloga;
 	
-	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY)
 	private Set<Stavka> stavka = new HashSet<Stavka>();
 
-	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY)
 	private Set<Obavestenje> obavestenje = new HashSet<Obavestenje>();
 
-	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY)
 	private Set<Komentar> komentar = new HashSet<Komentar>();
  
-	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "kreator", fetch = FetchType.LAZY)
 	private Set<Kvar> kvar = new HashSet<Kvar>();
  
-	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY)
 	private Set<Firma> firma = new HashSet<Firma>();
 
-	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY)
 	private Set<Stan> stan = new HashSet<Stan>();
 
-	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@OneToMany(mappedBy = "vlasnik", fetch = FetchType.LAZY)
 	private Set<Zgrada> zgrada = new HashSet<Zgrada>();
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Stan stanovnik;
 	
 	@ManyToMany(mappedBy = "radnici")

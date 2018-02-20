@@ -8,8 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,25 +30,30 @@ public class Kvar {
 	private Date datPopravke;
 	private boolean popravljen;
 	
+	@Cascade(CascadeType.REFRESH)
 	@ManyToMany
     @JoinTable(name = "popravlja",
                joinColumns = @JoinColumn(name="kvar_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="firma_id", referencedColumnName="id"))
 	private Set<Firma> firma = new HashSet<Firma>();
 	
+	@Cascade(CascadeType.REFRESH)
 	@ManyToMany
     @JoinTable(name = "popravlja",
                joinColumns = @JoinColumn(name="kvar_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="korisnik_servisa_id", referencedColumnName="id"))
 	private Set<Korisnik_servisa> radnik = new HashSet<Korisnik_servisa>();
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Zgrada zgrada;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Korisnik_servisa kreator;
 
-	@OneToMany(mappedBy = "kvar", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "kvar", fetch = FetchType.EAGER)
 	private Set<Komentar> komentar = new HashSet<Komentar>();
 	
 	public Korisnik_servisa getKreator() {

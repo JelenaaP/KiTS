@@ -3,7 +3,6 @@ package project.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 
 @Entity
@@ -30,9 +32,11 @@ public class Firma {
 	@ManyToMany(mappedBy = "firma")
 	private Set<Kvar> kvar = new HashSet<Kvar>();
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Korisnik_servisa vlasnik;
 	
+	@Cascade(CascadeType.REFRESH)
 	@ManyToMany
 	@JoinTable(name = "radi",
     joinColumns = @JoinColumn(name="firma_id", referencedColumnName="id"),

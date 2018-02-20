@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Sednica {
@@ -23,13 +25,16 @@ public class Sednica {
 	private Date datZakazivanja;
 	private boolean aktivna;
 	
-	@OneToMany(mappedBy = "sednica",fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "sednica",fetch = FetchType.LAZY)
 	private Set<Stavka> stavka = new HashSet<Stavka>();
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Korisnik_servisa kreator;//kreator koji je kreirao sednicu
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Zgrada zgrada; //zgrada kojoj pripadaju sednice
 	
 	@OneToOne

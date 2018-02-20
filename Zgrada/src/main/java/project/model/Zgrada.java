@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Zgrada {
@@ -24,18 +26,30 @@ public class Zgrada {
 	private String  adresa;
 	private int brStanova;
 	private int brNaseljenih;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Korisnik_servisa vlasnik;
 	
-	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY)
 	private Set<Obavestenje> obavestenje = new HashSet<Obavestenje>();
 	
-	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY)
 	private Set<Stan> stan = new HashSet<Stan>();
 	
-	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY)
 	private Set<Kvar> kvar = new HashSet<Kvar>();
+	
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY)
+	private Set<Sednica> sednica = new HashSet<Sednica>();
+	
+	@Cascade(CascadeType.DELETE)
+	@OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY)
+	private Set<Zapisnik> zapisnik = new HashSet<Zapisnik>();
 	
 	@OneToOne(mappedBy = "predsednik_skupstine")
 	private Korisnik_servisa predsednik;

@@ -4,13 +4,15 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Stan {
@@ -22,13 +24,16 @@ public class Stan {
 	private String  adresa;
 	private int brStanovnika;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.DELETE)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Zgrada zgrada;
 	
-	@OneToMany(mappedBy = "stanovnik", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@OneToMany(mappedBy = "stanovnik", fetch = FetchType.LAZY)
 	private Set<Korisnik_servisa> stanovnici = new HashSet<Korisnik_servisa>();
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Korisnik_servisa vlasnik;
 	
 	public Zgrada getZgrada() {

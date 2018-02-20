@@ -199,7 +199,8 @@ var FirmaService = /** @class */ (function () {
         this.RegenerateData.next();
     };
     FirmaService.prototype.getFirme = function () {
-        return this.http.get(this.firmeUrl)
+        var url = 'api/firma/all';
+        return this.http.get(url)
             .toPromise()
             .then(function (response) {
             return response.json();
@@ -272,7 +273,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/firme/firme.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h3>Firme</h3>\r\n  </div>\r\n  <table class=\"table table-bordered\">\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th></th>\r\n    </tr>\r\n    <tr *ngFor=\"let firma of firme\">\r\n      <td>\r\n        {{firma.ime}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <span class=\"fa fa-remove\" aria-hidden=\"true\"></span>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\r\n    </button>\r\n  </div> \r\n  "
+module.exports = "<div>\r\n    <h3>Firme</h3>\r\n  </div>\r\n  <table class=\"table table-bordered\">\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th></th>\r\n    </tr>\r\n    <tr *ngFor=\"let firma of firme\">\r\n      <td>\r\n        {{firma.ime}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\"></span> Izmeni\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <span class=\"fa fa-remove\" aria-hidden=\"true\"></span> Obrisi\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\"></span> Dodaj\r\n    </button>\r\n  </div> \r\n  "
 
 /***/ }),
 
@@ -374,7 +375,8 @@ var StanService = /** @class */ (function () {
         this.RegenerateData.next();
     };
     StanService.prototype.getStanovi = function () {
-        return this.http.get(this.stanoviUrl)
+        var url = 'api/stan/all';
+        return this.http.get(url)
             .toPromise()
             .then(function (response) {
             return response.json();
@@ -447,7 +449,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/stanovi/stanovi.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h3>Stanovi</h3>\r\n  </div>\r\n  <table class=\"table table-bordered\">\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th></th>\r\n    </tr>\r\n    <tr *ngFor=\"let stan of stanovi\">\r\n      <td>\r\n        {{stan.ime}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Edit\" (click)=\"gotoEdit(stan)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteStan(stan.id)\">\r\n          <span class=\"fa fa-remove\" aria-hidden=\"true\"></span>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\r\n    </button>\r\n  </div> \r\n  "
+module.exports = "<div>\r\n    <h3>Stanovi</h3>\r\n  </div>\r\n  <table class=\"table table-bordered\">\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th></th>\r\n    </tr>\r\n    <tr *ngFor=\"let stan of stanovi\">\r\n      <td>\r\n        {{stan.ime}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Edit\" (click)=\"gotoEdit(stan)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\"></span> Izmeni\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteStan(stan.id)\">\r\n          <span class=\"fa fa-remove\" aria-hidden=\"true\"></span> Obrisi\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\"></span> Dodaj\r\n    </button>\r\n  </div> \r\n  "
 
 /***/ }),
 
@@ -549,7 +551,8 @@ var ZgradaService = /** @class */ (function () {
         this.RegenerateData.next();
     };
     ZgradaService.prototype.getZgrade = function () {
-        return this.http.get(this.zgradeUrl)
+        var url = 'api/zgrada/all';
+        return this.http.get(url)
             .toPromise()
             .then(function (response) {
             return response.json();
@@ -557,7 +560,7 @@ var ZgradaService = /** @class */ (function () {
             .catch(this.handleError);
     };
     ZgradaService.prototype.getZgrada = function (id) {
-        var url = this.zgradeUrl + "/" + id;
+        var url = 'api/zgrada/id'; //        const url = `${this.zgradeUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
             .then(function (response) {
@@ -622,7 +625,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/zgrade/zgrade.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h3>Zgrade</h3>\r\n  </div>\r\n  <table class=\"table table-bordered\">\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th></th>\r\n    </tr>\r\n    <tr *ngFor=\"let zgrada of zgrade\">\r\n      <td>\r\n        {{zgrada.ime}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <span class=\"fa fa-remove\" aria-hidden=\"true\"></span>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\r\n    </button>\r\n  </div> \r\n  "
+module.exports = "<div>\r\n    <h3>Zgrade</h3>\r\n  </div>\r\n  <table class=\"table table-bordered\">\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th></th>\r\n    </tr>\r\n    <tr *ngFor=\"let zgrada of zgrade\">\r\n      <td>\r\n        {{zgrada.ime}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\"></span> Izmeni\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <span class=\"fa fa-remove\" aria-hidden=\"true\"></span> Obrisi\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\"></span> Dodaj\r\n    </button>\r\n  </div> \r\n  "
 
 /***/ }),
 

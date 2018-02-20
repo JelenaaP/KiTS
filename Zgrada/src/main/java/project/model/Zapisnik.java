@@ -2,13 +2,15 @@ package project.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Zapisnik {
@@ -20,13 +22,16 @@ public class Zapisnik {
 	private String opis;
 	private Date datKreiranja;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Korisnik_servisa kreator;//kreator koji je kreirao zapisnik
 	
+	@Cascade(CascadeType.REFRESH)
 	@OneToOne(mappedBy = "zapisnik")
 	private Sednica sednica;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@Cascade(CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Zgrada zgrada;//zgrada u kojoj je kreiran zapisnik
 	
 	
