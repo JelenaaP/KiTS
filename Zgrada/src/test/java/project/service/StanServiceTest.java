@@ -85,6 +85,7 @@ public class StanServiceTest {
 	@Rollback(true)
 	public void testRemove() {
 		int dbSizeBeforeRemove = stanService.findAll().size();
+		System.out.println(dbSizeBeforeRemove);
 		stanService.delete(DB_ID);
 		
 		List<Stan> stanovi = stanService.findAll();

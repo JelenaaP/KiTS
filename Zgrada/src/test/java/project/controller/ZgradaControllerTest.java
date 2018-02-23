@@ -43,6 +43,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import project.TestUtil;
 import project.MyApplication;
+import project.constants.Korisnik_ServisaConstants;
 import project.constants.KvarConstants;
 import project.constants.ObavestenjeConstants;
 import project.constants.StanConstants;
@@ -93,7 +94,7 @@ public class ZgradaControllerTest {
             .andExpect(jsonPath("$.[*].brNaseljenih").value(hasItem(DB_BR_NASELJENIH)))
             .andExpect(jsonPath("$.[*].brStanova").value(hasItem(DB_BR_STANOVA)))
     		.andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
-    		.andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
+    		.andExpect(jsonPath("$.[*].vlasnik.korisIme").value(hasItem(Korisnik_ServisaConstants.DB_KORIS_IME)));
     }
     
     @Test

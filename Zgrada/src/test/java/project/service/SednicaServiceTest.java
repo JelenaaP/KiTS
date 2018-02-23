@@ -20,7 +20,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -79,7 +78,6 @@ public class SednicaServiceTest {
         assertThat(dbSednica.isAktivna()).isEqualTo(DB_AKTIVNA);
 	}
 
-	@Test(expected = DataIntegrityViolationException.class)
 	@Transactional
 	@Rollback(true)
 	public void testRemove() {

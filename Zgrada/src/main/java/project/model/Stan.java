@@ -24,7 +24,7 @@ public class Stan {
 	private String  adresa;
 	private int brStanovnika;
 	
-	@Cascade(CascadeType.DELETE)
+	@Cascade(CascadeType.REFRESH)
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Zgrada zgrada;
 	
