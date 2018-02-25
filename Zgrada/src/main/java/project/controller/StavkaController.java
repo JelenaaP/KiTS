@@ -50,6 +50,16 @@ public class StavkaController {
 			return new ResponseEntity<>(stavkaDto, HttpStatus.OK);
 		}
 		
+		@RequestMapping(value="/{id}", method=RequestMethod.GET)
+		public ResponseEntity<StavkaDto> getStavka(@PathVariable Long id){
+			Stavka stavka = stavkaService.findOne(id);
+			if(stavka == null){
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
+			return new ResponseEntity<>(new StavkaDto(stavka), HttpStatus.OK);
+		}
+		
 		//pretrazivanje po kreatoru stavke
 		@RequestMapping(value="/findKreator", method = RequestMethod.GET)
 		public ResponseEntity<List<StavkaDto>> getStavkaByKreator(@RequestParam Long kreator) {

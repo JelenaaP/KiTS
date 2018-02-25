@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.dto.FirmaDto;
-
 import project.model.Firma;
 import project.model.Korisnik_servisa;
 import project.service.FirmaService;
@@ -45,6 +44,16 @@ public class FirmaController {
 		}
 		return new ResponseEntity<>(firmeDto, HttpStatus.OK);
 	}	
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<FirmaDto> getFirma(@PathVariable Long id){
+		Firma f = firmaService.findOne(id);
+		if(f == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new FirmaDto(f), HttpStatus.OK);
+	}
 	
 	//@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json;charset=utf-8")

@@ -44,6 +44,16 @@ public class KomentarController {
 		return new ResponseEntity<>(komentarDto, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<KomentarDto> getkomentar(@PathVariable Long id){
+		Komentar k = komentarService.findOne(id);
+		if(k == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new KomentarDto(k), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<KomentarDto>> getKomentarByKreator(@RequestParam Long kreatorId) {
 		List<Komentar> komentar = komentarService.findByKreatorId(kreatorId);

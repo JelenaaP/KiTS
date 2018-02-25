@@ -45,6 +45,15 @@ public class ObavestenjeController {
 		return new ResponseEntity<>(obavestenjaDto, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<ObavestenjeDto> getObavestenje(@PathVariable Long id){
+		Obavestenje o = obavestenjeService.findOne(id);
+		if(o == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new ObavestenjeDto(o), HttpStatus.OK);
+	}
 	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<ObavestenjeDto>> getObavestenjeByKreator(@RequestParam Long kreator) {
 		List<Obavestenje> obavestenja = obavestenjeService.findByKreatorId(kreator);

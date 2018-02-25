@@ -54,6 +54,17 @@ public class SednicaController {
 		}
 		return new ResponseEntity<>(sednicaDto, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<SednicaDto> getSednica(@PathVariable Long id){
+		Sednica sednica = sednicaService.findOne(id);
+		if(sednica == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new SednicaDto(sednica), HttpStatus.OK);
+	}
+	
 	//pretrazivanje po kreatoru sednice
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<SednicaDto>> getSednicaByKreator(@RequestParam Long kreator) {

@@ -49,6 +49,16 @@ public class KvarController {
 		return new ResponseEntity<>(kvarDto, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<KvarDto> getKvar(@PathVariable Long id){
+		Kvar k = kvarService.findOne(id);
+		if(k == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new KvarDto(k), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
 	public ResponseEntity<List<KvarDto>> getKvarByZgrada(@RequestParam Long zgrada) {
 		List<Kvar> kvarovi = kvarService.findByZgradaId(zgrada);

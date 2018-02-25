@@ -44,6 +44,16 @@ public class StanController {
 		return new ResponseEntity<>(stanDto, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<StanDto> getStan(@PathVariable Long id){
+		Stan stan = stanService.findOne(id);
+		if(stan == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new StanDto(stan), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/findAdresa", method = RequestMethod.GET)
 	public ResponseEntity<List<StanDto>> getStanoviByAdresa(@RequestParam String adresa) {
 		List<Stan> stanovi = stanService.findAllByAdresa(adresa);

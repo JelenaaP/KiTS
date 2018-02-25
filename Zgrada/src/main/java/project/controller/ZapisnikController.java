@@ -48,6 +48,15 @@ public class ZapisnikController {
 		}
 		return new ResponseEntity<>(zapisnikDto, HttpStatus.OK);
 	}
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<ZapisnikDto> getZapisnik(@PathVariable Long id){
+		Zapisnik zapisnik = zapisnikService.findOne(id);
+		if(zapisnik == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new ZapisnikDto(zapisnik), HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/findKreator", method = RequestMethod.GET)
 	public ResponseEntity<List<ZapisnikDto>> getZapisnikByKreator(@RequestParam Long kreator) {

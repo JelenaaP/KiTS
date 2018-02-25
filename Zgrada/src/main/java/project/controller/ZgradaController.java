@@ -47,6 +47,16 @@ public class ZgradaController {
 		return new ResponseEntity<>(zgradeDto, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<ZgradaDto> getZgrada(@PathVariable Long id){
+		Zgrada zgrada = zgradaService.findOne(id);
+		if(zgrada == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/findAdresa", method = RequestMethod.GET)
 	public ResponseEntity<List<ZgradaDto>> getZgradaByAdresa(@RequestParam String adresa) {
 		List<Zgrada> zgrade = zgradaService.findByAdresa(adresa);
