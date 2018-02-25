@@ -26,6 +26,7 @@ public class Korisnik_servisaDto {
 	public Korisnik_servisaDto(Korisnik_servisa korisnik_servisa) {
 		this(korisnik_servisa.getId(), korisnik_servisa.getIme(), korisnik_servisa.getKorisIme(), korisnik_servisa.getLozinka(),
 				korisnik_servisa.getUloga());
+		
 	}
 
 	public Long getId() {

@@ -42,7 +42,7 @@ public class Korisnik_servisaController {
 		return new ResponseEntity<>(korisnik_servisaDto, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	/*@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Korisnik_servisaDto> getKorisnik(@PathVariable Long id){
 		Korisnik_servisa k = korisnik_servisaService.findOne(id);
 		if(k == null){
@@ -50,7 +50,7 @@ public class Korisnik_servisaController {
 		}
 		
 		return new ResponseEntity<>(new Korisnik_servisaDto(k), HttpStatus.OK);
-	}
+	}*/
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Korisnik_servisaDto>> getUsersPage(Pageable page) {
