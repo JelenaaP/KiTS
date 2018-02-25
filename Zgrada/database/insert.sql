@@ -38,8 +38,10 @@ insert into obavestenje (dat_kreiranja, ime, opis, kreator_id, zgrada_id) values
 
 insert into sednica (aktivna, dat_kreiranja, dat_zakazivanja, kreator_id, zapisnik_id, zgrada_id) values (0, '2018-01-05','2018-01-05', 1,1, 1);
 
-insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('adresa 1', 5, 'stan1', 3, 1);
-insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('adresa 1', 5, 'stan1', 1, 1);
+insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('Loznica', 5, 'stan1', 3, 1);
+insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('Loznica 2', 5, 'stan2', 1, 2);
+insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('Loznica', 4, 'stan3', 2, 1);
+insert into stan (adresa, br_stanovnika, ime, vlasnik_id, zgrada_id) values ('Loznica 2', 2, 'stan4', 2, 1);
 
 insert into zapisnik (dat_kreiranja, opis, kreator_id, zgrada_id) values ('2018-01-01', 'opis 1', 2, 1);
 

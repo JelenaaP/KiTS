@@ -94,6 +94,7 @@ public class StanController {
 		stan.setIme(stanDto.getIme());
 		stan.setZgrada(zgrada);
 		stan.setVlasnik(vlasnik);
+		stan.setBrStanovnika(stanDto.getBrStanovnika());
 		
 		stan = stanService.save(stan);
 		return new ResponseEntity<>(new StanDto(stan), HttpStatus.CREATED);

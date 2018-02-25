@@ -601,6 +601,8 @@ var KomentarDetailComponent = /** @class */ (function () {
                 zgrada: new __WEBPACK_IMPORTED_MODULE_7__model_zgrada_model__["a" /* Zgrada */]({
                     ime: '',
                     adresa: '',
+                    brStanova: null,
+                    brNaseljenih: null,
                     vlasnik: new __WEBPACK_IMPORTED_MODULE_5__model_korisnik_model__["a" /* Korisnik */]({
                         ime: '',
                         lozinka: '',
@@ -1040,6 +1042,9 @@ var KvarDetailComponent = /** @class */ (function () {
         this.route = route;
         this.location = location;
         this.router = router;
+        /*komentarService.RegenerateData$.subscribe(() =>
+          this.getEnrollments()
+        );*/
         this.kvar = new __WEBPACK_IMPORTED_MODULE_4__model_kvar_model__["a" /* Kvar */]({
             datKreiranja: null,
             datZakazivanja: null,
@@ -1056,6 +1061,8 @@ var KvarDetailComponent = /** @class */ (function () {
             zgrada: new __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__["a" /* Zgrada */]({
                 ime: '',
                 adresa: '',
+                brStanova: null,
+                brNaseljenih: null,
                 vlasnik: new __WEBPACK_IMPORTED_MODULE_5__model_korisnik_model__["a" /* Korisnik */]({
                     ime: '',
                     lozinka: '',
@@ -1070,11 +1077,7 @@ var KvarDetailComponent = /** @class */ (function () {
                 uloga: '',
             })
         });
-        //komentari: Komentar[];
         this.mode = 'ADD';
-        /*komentarService.RegenerateData$.subscribe(() =>
-          this.getEnrollments()
-        );*/
     }
     KvarDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1155,7 +1158,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/kvarovi/kvarovi.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Kvarovi</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th>Opis</th>\r\n      <th>Datum kreiranja</th>\r\n      <th>Datum zakazivanja</th>\r\n      <th>Datum popravke</th>\r\n      <th>Kreator</th>\r\n      <th>Radnik</th>\r\n    </tr>\r\n    <tr *ngFor=\"let kvar of kvarovi\">\r\n      <td>{{kvar.ime}}</td>\r\n      <td>{{kvar.opis}}</td>\r\n      <td>{{kvar.datKreiranja}}</td>\r\n      <td>{{kvar.datZakazivanja}}</td>\r\n      <td>{{kvar.datPopravke}}</td>\r\n      <td>{{kvar.kreator.ime}}</td>\r\n      <td>{{kvar.radnik.ime}}</td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div>"
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Kvarovi</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>Ime</th>\r\n      <th>Opis</th>\r\n      <th>Datum kreiranja</th>\r\n      <th>Datum zakazivanja</th>\r\n      <th>Datum popravke</th>\r\n      <th>Kreator</th>\r\n      <th>Radnik</th>\r\n    </tr>\r\n    <tr *ngFor=\"let kvar of kvar\">\r\n      <td>{{kvar.id}}</td>\r\n      <td>{{kvar.ime}}</td>\r\n      <td>{{kvar.opis}}</td>\r\n      <td>{{kvar.datKreiranja}}</td>\r\n      <td>{{kvar.datZakazivanja}}</td>\r\n      <td>{{kvar.datPopravke}}</td>\r\n      <td>{{kvar.kreator.ime}}</td>\r\n      <td>{{kvar.radnik.ime}}</td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(kvar)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteKvar(kvar.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div>"
 
 /***/ }),
 
@@ -1262,7 +1265,7 @@ var KvarService = /** @class */ (function () {
         this.RegenerateData.next();
     };
     KvarService.prototype.getKvarovi = function () {
-        return this.http.get(this.kvaroviUrl)
+        return this.http.get("api/kvar/all")
             .toPromise()
             .then(function (response) {
             return response.json();
@@ -1270,7 +1273,7 @@ var KvarService = /** @class */ (function () {
             .catch(this.handleError);
     };
     KvarService.prototype.getKvar = function (id) {
-        var url = this.kvaroviUrl + "/" + id;
+        var url = this.kvaroviUrl + "/all/" + id;
         return this.http.get(url)
             .toPromise()
             .then(function (response) {
@@ -1391,10 +1394,10 @@ var Korisnik = /** @class */ (function () {
 var Kvar = /** @class */ (function () {
     function Kvar(kvarCfg) {
         this.id = kvarCfg.id;
+        this.ime = kvarCfg.ime;
         this.datKreiranja = kvarCfg.datKreiranja;
         this.datZakazivanja = kvarCfg.datZakazivanja;
         this.datPopravke = kvarCfg.datPopravke;
-        this.ime = kvarCfg.ime;
         this.opis = kvarCfg.opis;
         this.popravljen = kvarCfg.popravljen;
         this.kreator = kvarCfg.kreator;
@@ -1439,6 +1442,8 @@ var Zgrada = /** @class */ (function () {
         this.id = zgradaCfg.id;
         this.ime = zgradaCfg.ime;
         this.adresa = zgradaCfg.adresa;
+        this.brStanova = zgradaCfg.brStanova;
+        this.brNaseljenih = zgradaCfg.brNaseljenih;
         this.vlasnik = zgradaCfg.vlasnik;
     }
     return Zgrada;
@@ -1469,7 +1474,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/stan-detail/stan-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h3>Stan</h3>\r\n  </div>\r\n  <div>\r\n  \r\n    <form >\r\n      <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.id\" placeholder=\"id\" \r\n          class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.ime\" placeholder=\"upisite ime\" \r\n          class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n      </div>\r\n  \r\n      <div class=\"form-group\">\r\n        <label for=\"field2c\" class=\"form-control-label\">Adresa</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.adresa\" placeholder=\"upisite adresu\" \r\n          class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n      </div>\r\n         \r\n      <div class=\"form-group\">\r\n        <label for=\"field3c\" class=\"form-control-label\">Broj stanovnika</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.brStanovnika\" placeholder=\"stanovnici\" \r\n          class=\"form-control\" id=\"field4c\" name=\"field4\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field4c\" class=\"form-control-label\">Vlasnik</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.vlasnik.id\" placeholder=\"Vlasnik\" \r\n          class=\"form-control\" id=\"field5c\" name=\"field5\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field5c\" class=\"form-control-label\">Zgrada</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.zgrada.id\" placeholder=\"zgrada\" \r\n          class=\"form-control\" id=\"field6c\" name=\"field6\">\r\n      </div>\r\n     </form>\r\n  <div>\r\n    <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n    <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n  </div> "
+module.exports = "<div>\r\n    <h3>Stan</h3>\r\n  </div>\r\n  <div>\r\n  \r\n    <form >\r\n      <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.id\" placeholder=\"id\" \r\n          class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.ime\" placeholder=\"upisite ime\" \r\n          class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n      </div>\r\n  \r\n      <div class=\"form-group\">\r\n        <label for=\"field2c\" class=\"form-control-label\">Adresa</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.adresa\" placeholder=\"upisite adresu\" \r\n          class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n      </div>\r\n         \r\n      <div class=\"form-group\">\r\n        <label for=\"field3c\" class=\"form-control-label\">Broj stanovnika</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.brStanovnika\" placeholder=\"stanovnici\" \r\n          class=\"form-control\" id=\"field4c\" name=\"field4\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field4c\" class=\"form-control-label\">Vlasnik</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.vlasnik.korisIme\" placeholder=\"Vlasnik\" \r\n          class=\"form-control\" id=\"field5c\" name=\"field5\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field5c\" class=\"form-control-label\">Zgrada</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.zgrada.id\" placeholder=\"zgrada\" \r\n          class=\"form-control\" id=\"field6c\" name=\"field6\">\r\n      </div>\r\n     </form>\r\n  <div>\r\n    <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n    <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n  </div> "
 
 /***/ }),
 
@@ -1514,6 +1519,8 @@ var StanDetailComponent = /** @class */ (function () {
             zgrada: new __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__["a" /* Zgrada */]({
                 ime: '',
                 adresa: '',
+                brStanova: null,
+                brNaseljenih: null,
                 vlasnik: new __WEBPACK_IMPORTED_MODULE_7__model_korisnik_model__["a" /* Korisnik */]({
                     ime: '',
                     lozinka: '',
@@ -1780,7 +1787,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/zgrada-detail/zgrada-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h3>Zgrada</h3>\r\n  </div>\r\n  \r\n  <div>\r\n  \r\n    <form >\r\n          <div class=\"form-group\">\r\n            <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n            <input type=\"text\" [(ngModel)]=\"zgrada.ime\" placeholder=\"Ime\" \r\n               class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n          </div>\r\n  \r\n          <div class=\"form-group\">\r\n            <label for=\"field2c\" class=\"form-control-label\">Adresa</label>\r\n            <input type=\"text\" [(ngModel)]=\"zgrada.adresa\" placeholder=\"Adresa\" \r\n               class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n          </div>\r\n         \r\n          <div class=\"form-group\">\r\n            <label for=\"field3c\" class=\"form-control-label\">Vlasnik</label>\r\n            <input type=\"text\" [(ngModel)]=\"zgrada.vlasnik.korisIme\" placeholder=\"Vlasnik\" \r\n               class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n          </div>\r\n     </form>\r\n    <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>kvarovi</h3>\r\n      <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddKvar()\">\r\n        <span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\r\n      </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr *ngFor=\"let kvar of kvarovi\">\r\n        <td>\r\n        {{kvar.id}} {{kvar.ime}} {{kvar.opis}} {{kvar.kreator.ime}} {{kvar.datKreiranja}} {{kvar.datZakazivanja}} {{kvar.datPopravke}} {{kvar.popravljen}}{{kvar.radnik.ime}}\r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteKvar(kvar.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n</div>\r\n  \r\n  <div>\r\n    <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n    <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n  </div> "
+module.exports = "<div>\r\n    <h3>Zgrada</h3>\r\n  </div>\r\n  \r\n  <div>\r\n  \r\n    <form >\r\n          <div class=\"form-group\">\r\n            <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n            <input type=\"text\" [(ngModel)]=\"zgrada.ime\" placeholder=\"Ime\" \r\n               class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n          </div>\r\n  \r\n          <div class=\"form-group\">\r\n            <label for=\"field2c\" class=\"form-control-label\">Adresa</label>\r\n            <input type=\"text\" [(ngModel)]=\"zgrada.adresa\" placeholder=\"Adresa\" \r\n               class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n          </div>\r\n         \r\n          <div class=\"form-group\">\r\n            <label for=\"field3c\" class=\"form-control-label\">Vlasnik</label>\r\n            <input type=\"text\" [(ngModel)]=\"zgrada.vlasnik.ime\" placeholder=\"Vlasnik\" \r\n               class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n          </div>\r\n     </form>\r\n    <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>kvarovi</h3>\r\n      <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddKvar()\">\r\n        <span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\r\n      </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr *ngFor=\"let kvar of kvarovi\">\r\n        <td>\r\n        {{kvar.id}} {{kvar.ime}} {{kvar.opis}} {{kvar.kreator.ime}} {{kvar.datKreiranja}} {{kvar.datZakazivanja}} {{kvar.datPopravke}} {{kvar.popravljen}}{{kvar.radnik.ime}}\r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteKvar(kvar.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n</div>\r\n  \r\n  <div>\r\n    <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n    <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n  </div> "
 
 /***/ }),
 
@@ -1816,15 +1823,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ZgradaDetailComponent = /** @class */ (function () {
     function ZgradaDetailComponent(zgradaService, kvarService, route, location, router) {
-        var _this = this;
         this.zgradaService = zgradaService;
         this.kvarService = kvarService;
         this.route = route;
         this.location = location;
         this.router = router;
+        /* zgradaService.RegenerateData$.subscribe(() =>
+           this.getKvarovi()
+        );*/
         this.zgrada = new __WEBPACK_IMPORTED_MODULE_4__model_zgrada_model__["a" /* Zgrada */]({
             ime: '',
             adresa: '',
+            brStanova: null,
+            brNaseljenih: null,
             vlasnik: new __WEBPACK_IMPORTED_MODULE_6__model_korisnik_model__["a" /* Korisnik */]({
                 ime: '',
                 lozinka: '',
@@ -1833,9 +1844,6 @@ var ZgradaDetailComponent = /** @class */ (function () {
             })
         });
         this.mode = 'ADD';
-        zgradaService.RegenerateData$.subscribe(function () {
-            return _this.getKvarovi();
-        });
     }
     ZgradaDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1866,7 +1874,7 @@ var ZgradaDetailComponent = /** @class */ (function () {
         this.zgradaService.addZgrada(this.zgrada)
             .then(function (zgrada) {
             _this.zgradaService.announceChange();
-            _this.goBack();
+            _this.zgradaService.getZgrade();
         });
     };
     ZgradaDetailComponent.prototype.edit = function () {
@@ -1947,7 +1955,7 @@ var ZgradaService = /** @class */ (function () {
             .catch(this.handleError);
     };
     ZgradaService.prototype.getZgrada = function (id) {
-        var url = this.zgradeUrl + "/all/" + id;
+        var url = this.zgradeUrl + "/" + id;
         return this.http.get(url)
             .toPromise()
             .then(function (response) {
@@ -1963,7 +1971,7 @@ var ZgradaService = /** @class */ (function () {
             .catch(this.handleError);
     };
     ZgradaService.prototype.editZgrada = function (zgrada) {
-        var url = this.zgradeUrl + "/all/" + zgrada.id;
+        var url = "" + this.zgradeUrl;
         return this.http
             .put(url, JSON.stringify(zgrada), { headers: this.headers })
             .toPromise()
@@ -2022,7 +2030,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/zgrade/zgrade.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Zgrade</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Ime</th>\r\n      <th>Adresa</th>\r\n      <th>Vlasnik</th>\r\n      <th>Broj stanova</th>\r\n      <th>Broj naseljenih</th>\r\n    </tr>\r\n    <tr *ngFor=\"let zgrada of zgrade\">\r\n      <td>\r\n        <a class=\"nav-link\" [routerLink]=\"['/kvarovi']\">{{zgrada.ime}}</a>\r\n      </td>\r\n      <td>\r\n        {{zgrada.adresa}}\r\n      </td>\r\n      <td>\r\n        {{zgrada.vlasnik.ime}}\r\n      </td>\r\n      <td>\r\n        {{zgrada.brStanova}}\r\n      </td>\r\n      <td>\r\n        {{zgrada.brNaseljenih}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div> \r\n  "
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Zgrade</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>Ime</th>\r\n      <th>Adresa</th>\r\n      <th>Broj stanova</th>\r\n      <th>Broj naseljenih</th>\r\n      <th>Vlasnik</th>\r\n    </tr>\r\n    <tr *ngFor=\"let zgrada of zgrade\">\r\n      <td>{{zgrada.id}}</td>\r\n      <td><a class=\"nav-link\" [routerLink]=\"['/kvarovi']\">{{zgrada.ime}}</a></td>\r\n      <td>{{zgrada.adresa}}</td>\r\n      <td>{{zgrada.brStanova}}</td>\r\n      <td>{{zgrada.brNaseljenih}}</td>\r\n      <td>{{zgrada.vlasnik.ime}}</td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div> \r\n  "
 
 /***/ }),
 
