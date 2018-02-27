@@ -108,11 +108,12 @@ public class StanController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(stanDto.getVlasnik().getKorisIme());
 		
 		stan.setBrStanovnika(stanDto.getBrStanovnika());
 		stan.setIme(stanDto.getIme());
 		stan.setAdresa(stanDto.getAdresa());
-		
+		stan.setVlasnik(vlasnik);
 		stan = stanService.save(stan);
 		return new ResponseEntity<>(new StanDto(stan), HttpStatus.OK);
 	}

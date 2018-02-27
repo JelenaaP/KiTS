@@ -7,9 +7,9 @@ public class StanDto {
 	private Long id;
 	private String ime;
 	private String adresa;
+	private int brStanovnika;
 	private Korisnik_servisaDto vlasnik;
 	private ZgradaDto zgrada;
-	private int brStanovnika;
 	
 	
 	public StanDto(){}
@@ -21,18 +21,18 @@ public class StanDto {
 		this.id = id;
 		this.ime = ime;
 		this.adresa = adresa;
+		this.brStanovnika = brStanovnika;
 		this.vlasnik = vlasnik;
 		this.zgrada = zgrada;
-		this.brStanovnika = brStanovnika;
 	}
 
 	public StanDto(Stan stan) {
 		id = stan.getId();
 		ime=stan.getIme();
 		adresa =stan.getAdresa();
+		brStanovnika =stan.getBrStanovnika();
 		vlasnik = new Korisnik_servisaDto(stan.getVlasnik());
 		zgrada = new ZgradaDto(stan.getZgrada());
-		brStanovnika =stan.getBrStanovnika();
 	}
 
 	public int getBrStanovnika() {

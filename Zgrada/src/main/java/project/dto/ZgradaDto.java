@@ -8,9 +8,9 @@ public class ZgradaDto {
 	private Long id;
 	private String ime;
 	private String adresa;
-	private Korisnik_servisaDto vlasnik;
 	private int brStanova;
 	private int brNaseljenih;
+	private Korisnik_servisaDto vlasnik;
 	private Korisnik_servisaDto predsednikSkupstine;	
 	
 	public ZgradaDto(){}
@@ -19,9 +19,9 @@ public class ZgradaDto {
 		id= zgrada.getId();
 		ime = zgrada.getIme();
 		adresa = zgrada.getAdresa();
-		vlasnik = new Korisnik_servisaDto(zgrada.getVlasnik());
 		brStanova = zgrada.getBrStanova();
 		brNaseljenih = zgrada.getBrNaseljenih();
+		vlasnik = new Korisnik_servisaDto(zgrada.getVlasnik());
 		//predsednikSkupstine = new Korisnik_servisaDto(zgrada.getPredsednik());
 		}
 
@@ -31,9 +31,9 @@ public class ZgradaDto {
 		this.id= id;
 		this.ime = ime;
 		this.adresa = adresa;
-		this.vlasnik = vlasnik;
 		this.brStanova = brStanova;
 		this.brNaseljenih = brNaseljenih;
+		this.vlasnik = vlasnik;
 		this.predsednikSkupstine = predsednikSkupstine;
 	}
 

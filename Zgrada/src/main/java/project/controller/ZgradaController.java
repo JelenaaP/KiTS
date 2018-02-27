@@ -84,7 +84,7 @@ public class ZgradaController {
 		{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Zgrada adresa = zgradaService.findOneByAdresa(zgradaDto.getAdresa());
+		String adresa = " ";
 		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(zgradaDto.getVlasnik().getKorisIme());
 		
 		if (adresa == null || vlasnik == null) {
@@ -92,11 +92,11 @@ public class ZgradaController {
 		}
 		
 		Zgrada zgrada = new Zgrada();
-		zgrada.setAdresa(zgradaDto.getAdresa());
 		zgrada.setIme(zgradaDto.getIme());
-		zgrada.setVlasnik(vlasnik);
+		zgrada.setAdresa(zgradaDto.getAdresa());
 		zgrada.setBrStanova(zgradaDto.getBrStanova());
 		zgrada.setBrNaseljenih(zgradaDto.getBrNaseljenih());
+		zgrada.setVlasnik(vlasnik);
 		
 		zgrada = zgradaService.save(zgrada);
 		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.CREATED);
@@ -110,10 +110,12 @@ public class ZgradaController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		// we allow changing date and points for an building only
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(zgradaDto.getVlasnik().getKorisIme());
 		
-		zgrada.setBrNaseljenih(zgradaDto.getBrNaseljenih());
-		zgrada.setBrStanova(zgradaDto.getBrStanova());
 		zgrada.setIme(zgradaDto.getIme());
+		zgrada.setBrStanova(zgradaDto.getBrStanova());
+		zgrada.setBrNaseljenih(zgradaDto.getBrNaseljenih());
+		zgrada.setVlasnik(vlasnik);
 		
 		zgrada = zgradaService.save(zgrada);
 		return new ResponseEntity<>(new ZgradaDto(zgrada), HttpStatus.OK);
@@ -131,17 +133,16 @@ public class ZgradaController {
 	}
 	
 	@RequestMapping(value = "/{zgradaId}/stan", method = RequestMethod.GET)
-	public ResponseEntity<List<StanDto>> getZgradaStanovi(
-			@PathVariable Long zgradaId) {
+	public ResponseEntity<List<StanDto>> getZgradaStanovi(@PathVariable Long zgradaId) {
 		Zgrada zgrada = zgradaService.findOne(zgradaId);
 		Set<Stan> stanovi = zgrada.getStan();
 		List<StanDto> stanoviDto = new ArrayList<>();
 		for (Stan s: stanovi) {
 			StanDto stanDto = new StanDto();
 			stanDto.setId(s.getId());
-			stanDto.setBrStanovnika(s.getBrStanovnika());
-			stanDto.setAdresa(s.getAdresa());
 			stanDto.setIme(s.getIme());
+			stanDto.setAdresa(s.getAdresa());
+			stanDto.setBrStanovnika(s.getBrStanovnika());
 			stanDto.setVlasnik(new Korisnik_servisaDto(s.getVlasnik()));
 			stanDto.setZgrada(new ZgradaDto(s.getZgrada()));
 			
@@ -151,8 +152,7 @@ public class ZgradaController {
 	}
 	
 	@RequestMapping(value = "/{zgradaId}/kvar", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> getZgradaKvar(
-			@PathVariable Long zgradaId) {
+	public ResponseEntity<List<KvarDto>> getZgradaKvar(@PathVariable Long zgradaId) {
 		Zgrada zgrada = zgradaService.findOne(zgradaId);
 		Set<Kvar> kvarovi = zgrada.getKvar();
 		List<KvarDto> kvaroviDto = new ArrayList<>();
@@ -160,13 +160,13 @@ public class ZgradaController {
 			KvarDto kvarDto = new KvarDto();
 			
 			kvarDto.setId(o.getId());
+			kvarDto.setIme(o.getIme());
+			kvarDto.setOpis(o.getOpis());
 			kvarDto.setDatKreiranja(o.getDatKreiranja());
 			kvarDto.setDatZakazivanja(o.getDatZakazivanja());
 			kvarDto.setDatPopravke(o.getDatPopravke());
-			kvarDto.setKreator(new Korisnik_servisaDto(o.getKreator()));
-			kvarDto.setIme(o.getIme());
-			kvarDto.setOpis(o.getOpis());
 			kvarDto.setPopravljen(o.isPopravljen());
+			kvarDto.setKreator(new Korisnik_servisaDto(o.getKreator()));
 			kvarDto.setZgrada(new ZgradaDto(o.getZgrada()));
 			
 			kvaroviDto.add(kvarDto);

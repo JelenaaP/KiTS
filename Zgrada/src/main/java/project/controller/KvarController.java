@@ -60,8 +60,8 @@ public class KvarController {
 	}
 	
 	@RequestMapping(value = "/findZgrada", method = RequestMethod.GET)
-	public ResponseEntity<List<KvarDto>> getKvarByZgrada(@RequestParam Long zgrada) {
-		List<Kvar> kvarovi = kvarService.findByZgradaId(zgrada);
+	public ResponseEntity<List<KvarDto>> getKvarByZgrada(@RequestParam Long zgradaId) {
+		List<Kvar> kvarovi = kvarService.findByZgradaId(zgradaId);
 		List<KvarDto> kvaroviDto = new ArrayList<>();
 		for (Kvar k : kvarovi) {
 			kvaroviDto.add(new KvarDto(k));
