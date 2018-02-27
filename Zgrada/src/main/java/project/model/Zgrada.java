@@ -116,6 +116,13 @@ public class Zgrada {
 		this.predsednik = predsednik;
 	}
 	
+	
+	public Set<Sednica> getSednica() {
+		return sednica;
+	}
+	public void setSednica(Set<Sednica> sednica) {
+		this.sednica = sednica;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

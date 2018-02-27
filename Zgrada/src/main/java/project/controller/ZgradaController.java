@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import project.dto.Korisnik_servisaDto;
 import project.dto.KvarDto;
 import project.dto.ObavestenjeDto;
+import project.dto.SednicaDto;
 import project.dto.StanDto;
 import project.dto.ZgradaDto;
 import project.model.Korisnik_servisa;
 import project.model.Kvar;
 import project.model.Obavestenje;
+import project.model.Sednica;
 import project.model.Stan;
 import project.model.Zgrada;
 import project.service.Korisnik_servisaService;
@@ -193,4 +195,25 @@ public class ZgradaController {
 		}
 		return new ResponseEntity<>(obavestenjaDto, HttpStatus.OK);
 	}
+	@RequestMapping(value = "/{zgradaId}/sednica", method = RequestMethod.GET)
+	public ResponseEntity<List<SednicaDto>> getZgradaSednica(@PathVariable Long zgradaId) {
+		Zgrada zgrada = zgradaService.findOne(zgradaId);
+		Set<Sednica> sednice = zgrada.getSednica();
+		List<SednicaDto> sedniceDto = new ArrayList<>();
+		for (Sednica o : sednice) {
+			SednicaDto sednicaDto = new SednicaDto();
+			
+			sednicaDto.setId(o.getId());
+			sednicaDto.setDatKreiranja(o.getDatKreiranja());
+			sednicaDto.setDatZakazivanja(o.getDatZakazivanja());
+			sednicaDto.setAktivna(o.isAktivna());
+			sednicaDto.setKreator(new Korisnik_servisaDto(o.getKreator()));
+			sednicaDto.setZgrada(new ZgradaDto(o.getZgrada()));
+			
+			
+			sedniceDto.add(sednicaDto);
+		}
+		return new ResponseEntity<>(sedniceDto, HttpStatus.OK);
+	}
+
 }

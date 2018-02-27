@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <h1>\r\n    Sistem za odrzavanje zgrada!\r\n  </h1>\r\n  <nav class=\"navbar navbar-toggleable-md navbar-light bg-faded\">\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n      <ul class=\"navbar-nav mr-auto\">\r\n        <li routerLinkActive=\"active current\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/zgrade']\">Zgrade</a>\r\n          <a class=\"nav-link\" [routerLink]=\"['/stanovi']\">Stanovi</a>\r\n          <a class=\"nav-link\" [routerLink]=\"['/firme']\">Firme</a>\r\n          <a class=\"nav-link\" [routerLink]=\"['/kvarovi']\">Kvarovi</a>\r\n        </li>\r\n       </ul>\r\n    </div>   \r\n  </nav>\r\n</div>\r\n<router-outlet></router-outlet>"
+module.exports = "<div style=\"text-align:center\">\r\n  <h1>\r\n    Sistem za odrzavanje zgrada!\r\n  </h1>\r\n  <nav class=\"navbar navbar-toggleable-md navbar-light bg-faded\">\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n      <ul class=\"navbar-nav mr-auto\">\r\n        <li routerLinkActive=\"active current\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/zgrade']\">Zgrade</a>\r\n          <a class=\"nav-link\" [routerLink]=\"['/stanovi']\">Stanovi</a>\r\n          <a class=\"nav-link\" [routerLink]=\"['/firme']\">Firme</a>\r\n          <a class=\"nav-link\" [routerLink]=\"['/kvarovi']\">Kvarovi</a>\r\n          <a class=\"nav-link\" [routerLink]=\"['/sednice']\">Sednice</a>\r\n        </li>\r\n       </ul>\r\n    </div>   \r\n  </nav>\r\n</div>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -85,7 +85,7 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__zgrade_zgrade_component__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrada_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrada.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stanovi_stanovi_component__ = __webpack_require__("../../../../../src/app/stanovi/stanovi.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__stanovi_stan_service__ = __webpack_require__("../../../../../src/app/stanovi/stan.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__firme_firme_component__ = __webpack_require__("../../../../../src/app/firme/firme.component.ts");
@@ -96,18 +96,30 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__korisnik_detail_korisnik_detail_component__ = __webpack_require__("../../../../../src/app/korisnik-detail/korisnik-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__komentar_detail_komentar_detail_component__ = __webpack_require__("../../../../../src/app/komentar-detail/komentar-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__komentari_komentari_service__ = __webpack_require__("../../../../../src/app/komentari/komentari.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__kvarovi_kvarovi_component__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__kvar_detail_kvar_detail_component__ = __webpack_require__("../../../../../src/app/kvar-detail/kvar-detail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__kvarovi_kvarovi_service__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__korisnici_korisnik_service__ = __webpack_require__("../../../../../src/app/korisnici/korisnik.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__korisnici_korisnici_component__ = __webpack_require__("../../../../../src/app/korisnici/korisnici.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__sednice_sednice_component__ = __webpack_require__("../../../../../src/app/sednice/sednice.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__sednica_detail_sednica_detail_component__ = __webpack_require__("../../../../../src/app/sednica-detail/sednica-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__sednice_sednica_service__ = __webpack_require__("../../../../../src/app/sednice/sednica.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__kvarovi_kvarovi_component__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__kvar_detail_kvar_detail_component__ = __webpack_require__("../../../../../src/app/kvar-detail/kvar-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__kvarovi_kvarovi_service__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__korisnici_korisnik_service__ = __webpack_require__("../../../../../src/app/korisnici/korisnik.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__korisnici_korisnici_component__ = __webpack_require__("../../../../../src/app/korisnici/korisnici.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__obavestenja_obavestenja_component__ = __webpack_require__("../../../../../src/app/obavestenja/obavestenja.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__obavestenje_detail_obavestenje_detail_component__ = __webpack_require__("../../../../../src/app/obavestenje-detail/obavestenje-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__obavestenja_obavestenja_service__ = __webpack_require__("../../../../../src/app/obavestenja/obavestenja.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
+
 
 
 
@@ -147,19 +159,24 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__firma_detail_firma_detail_component__["a" /* FirmaDetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_15__stan_detail_stan_detail_component__["a" /* StanDetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__korisnik_detail_korisnik_detail_component__["a" /* KorisnikDetailComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__kvarovi_kvarovi_component__["a" /* KvaroviComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__kvar_detail_kvar_detail_component__["a" /* KvarDetailComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__kvarovi_kvarovi_component__["a" /* KvaroviComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__kvar_detail_kvar_detail_component__["a" /* KvarDetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__komentar_detail_komentar_detail_component__["a" /* KomentarDetailComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__korisnici_korisnici_component__["a" /* KorisniciComponent */]
+                __WEBPACK_IMPORTED_MODULE_27__korisnici_korisnici_component__["a" /* KorisniciComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__sednice_sednice_component__["a" /* SedniceComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__sednica_detail_sednica_detail_component__["a" /* SednicaDetailComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__obavestenja_obavestenja_component__["a" /* ObavestenjaComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__obavestenje_detail_obavestenje_detail_component__["a" /* ObavestenjeDetailComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_19__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_22__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_4__app_routing__["a" /* routing */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_8__zgrade_zgrada_service__["a" /* ZgradaService */], __WEBPACK_IMPORTED_MODULE_10__stanovi_stan_service__["a" /* StanService */], __WEBPACK_IMPORTED_MODULE_12__firme_firma_service__["a" /* FirmaService */], __WEBPACK_IMPORTED_MODULE_22__kvarovi_kvarovi_service__["a" /* KvarService */], __WEBPACK_IMPORTED_MODULE_18__komentari_komentari_service__["a" /* KomentarService */], __WEBPACK_IMPORTED_MODULE_23__korisnici_korisnik_service__["a" /* KorisnikService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__["a" /* ZgradaService */], __WEBPACK_IMPORTED_MODULE_10__stanovi_stan_service__["a" /* StanService */], __WEBPACK_IMPORTED_MODULE_12__firme_firma_service__["a" /* FirmaService */], __WEBPACK_IMPORTED_MODULE_25__kvarovi_kvarovi_service__["a" /* KvarService */], __WEBPACK_IMPORTED_MODULE_18__komentari_komentari_service__["a" /* KomentarService */],
+                __WEBPACK_IMPORTED_MODULE_30__obavestenja_obavestenja_service__["a" /* ObavestenjeService */], __WEBPACK_IMPORTED_MODULE_26__korisnici_korisnik_service__["a" /* KorisnikService */], __WEBPACK_IMPORTED_MODULE_21__sednice_sednica_service__["a" /* SednicaService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]],
         })
     ], AppModule);
@@ -186,6 +203,14 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__kvar_detail_kvar_detail_component__ = __webpack_require__("../../../../../src/app/kvar-detail/kvar-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__komentar_detail_komentar_detail_component__ = __webpack_require__("../../../../../src/app/komentar-detail/komentar-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__kvarovi_kvarovi_component__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__sednica_detail_sednica_detail_component__ = __webpack_require__("../../../../../src/app/sednica-detail/sednica-detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__sednice_sednice_component__ = __webpack_require__("../../../../../src/app/sednice/sednice.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__obavestenja_obavestenja_component__ = __webpack_require__("../../../../../src/app/obavestenja/obavestenja.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__obavestenje_detail_obavestenje_detail_component__ = __webpack_require__("../../../../../src/app/obavestenje-detail/obavestenje-detail.component.ts");
+
+
+
+
 
 
 
@@ -202,6 +227,7 @@ var routes = [
     { path: 'stanovi', component: __WEBPACK_IMPORTED_MODULE_2__stanovi_stanovi_component__["a" /* StanoviComponent */] },
     { path: 'firme', component: __WEBPACK_IMPORTED_MODULE_3__firme_firme_component__["a" /* FirmeComponent */] },
     { path: 'kvarovi', component: __WEBPACK_IMPORTED_MODULE_10__kvarovi_kvarovi_component__["a" /* KvaroviComponent */] },
+    { path: 'sednice', component: __WEBPACK_IMPORTED_MODULE_12__sednice_sednice_component__["a" /* SedniceComponent */] },
     { path: 'addZgrada', component: __WEBPACK_IMPORTED_MODULE_4__zgrada_detail_zgrada_detail_component__["a" /* ZgradaDetailComponent */] },
     { path: 'editZgrada/:id', component: __WEBPACK_IMPORTED_MODULE_4__zgrada_detail_zgrada_detail_component__["a" /* ZgradaDetailComponent */] },
     { path: 'firme', component: __WEBPACK_IMPORTED_MODULE_3__firme_firme_component__["a" /* FirmeComponent */] },
@@ -214,6 +240,11 @@ var routes = [
     { path: 'editKvar/:id', component: __WEBPACK_IMPORTED_MODULE_8__kvar_detail_kvar_detail_component__["a" /* KvarDetailComponent */] },
     { path: 'addKomentar', component: __WEBPACK_IMPORTED_MODULE_9__komentar_detail_komentar_detail_component__["a" /* KomentarDetailComponent */] },
     { path: 'editKomentar/:id', component: __WEBPACK_IMPORTED_MODULE_9__komentar_detail_komentar_detail_component__["a" /* KomentarDetailComponent */] },
+    { path: 'addSednica', component: __WEBPACK_IMPORTED_MODULE_11__sednica_detail_sednica_detail_component__["a" /* SednicaDetailComponent */] },
+    { path: 'editSednica/:id', component: __WEBPACK_IMPORTED_MODULE_11__sednica_detail_sednica_detail_component__["a" /* SednicaDetailComponent */] },
+    { path: 'obavestenja', component: __WEBPACK_IMPORTED_MODULE_13__obavestenja_obavestenja_component__["a" /* ObavestenjaComponent */] },
+    { path: 'addObavestenje', component: __WEBPACK_IMPORTED_MODULE_14__obavestenje_detail_obavestenje_detail_component__["a" /* ObavestenjeDetailComponent */] },
+    { path: 'editObavestenje/:id', component: __WEBPACK_IMPORTED_MODULE_14__obavestenje_detail_obavestenje_detail_component__["a" /* ObavestenjeDetailComponent */] },
     { path: '**', redirectTo: '' }
 ];
 var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModule */].forRoot(routes);
@@ -1108,7 +1139,7 @@ module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/a
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_korisnik_model__ = __webpack_require__("../../../../../src/app/model/korisnik.model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__ = __webpack_require__("../../../../../src/app/model/zgrada.model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrada_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrada.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__korisnici_korisnik_service__ = __webpack_require__("../../../../../src/app/korisnici/korisnik.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__komentari_komentari_service__ = __webpack_require__("../../../../../src/app/komentari/komentari.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1243,7 +1274,7 @@ var KvarDetailComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/kvar-detail/kvar-detail.component.html"),
             styles: [__webpack_require__("../../../../../src/app/kvar-detail/kvar-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__kvarovi_kvarovi_service__["a" /* KvarService */], __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrada_service__["a" /* ZgradaService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__kvarovi_kvarovi_service__["a" /* KvarService */], __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__["a" /* ZgradaService */],
             __WEBPACK_IMPORTED_MODULE_9__korisnici_korisnik_service__["a" /* KorisnikService */], __WEBPACK_IMPORTED_MODULE_10__komentari_komentari_service__["a" /* KomentarService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
     ], KvarDetailComponent);
@@ -1533,6 +1564,48 @@ var Kvar = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/model/obavestenje.model.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Obavestenje; });
+var Obavestenje = /** @class */ (function () {
+    function Obavestenje(obavestenjeCfg) {
+        this.id = obavestenjeCfg.id;
+        this.datKreiranja = obavestenjeCfg.datKreiranja;
+        this.ime = obavestenjeCfg.ime;
+        this.opis = obavestenjeCfg.opis;
+        this.kreator = obavestenjeCfg.kreator;
+        this.zgrada = obavestenjeCfg.zgrada;
+    }
+    return Obavestenje;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/model/sednica.model.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Sednica; });
+var Sednica = /** @class */ (function () {
+    function Sednica(sednicaCfg) {
+        this.id = sednicaCfg.id;
+        this.datKreiranja = sednicaCfg.datKreiranja;
+        this.datZakazivanja = sednicaCfg.datZakazivanja;
+        this.aktivna = sednicaCfg.aktivna;
+        this.zgrada = sednicaCfg.zgrada;
+        this.kreator = sednicaCfg.kreator;
+    }
+    return Sednica;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/model/stan.model.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1562,13 +1635,662 @@ var Stan = /** @class */ (function () {
 var Zgrada = /** @class */ (function () {
     function Zgrada(zgradaCfg) {
         this.id = zgradaCfg.id;
-        this.ime = zgradaCfg.ime;
         this.adresa = zgradaCfg.adresa;
-        this.brStanova = zgradaCfg.brStanova;
         this.brNaseljenih = zgradaCfg.brNaseljenih;
+        this.brStanova = zgradaCfg.brStanova;
+        this.ime = zgradaCfg.ime;
         this.vlasnik = zgradaCfg.vlasnik;
     }
     return Zgrada;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/obavestenja/obavestenja.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/obavestenja/obavestenja.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Obavestenja</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>Ime</th>\r\n      <th>Opis</th>\r\n      <th>Datum kreiranja</th>\r\n      <th>Kreator</th>\r\n      <th>Zgrada</th>\r\n      \r\n    </tr>\r\n    <tr *ngFor=\"let obavestenje of obavestenja\">\r\n      <td>{{obavestenje.id}}</td>\r\n      <td>{{obavestenje.ime}}</td>\r\n      <td>{{obavestenje.opis}}</td>\r\n      <td>{{obavestenje.DatKreiranja}}</td>\r\n      <td>{{obavestenje.kreator.korisIme}}</td>\r\n      <td>{{obavestenje.zgrada.ime}}</td>\r\n      \r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(obavestenje)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteObavestenje(obavestenje.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/obavestenja/obavestenja.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObavestenjaComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__obavestenja_service__ = __webpack_require__("../../../../../src/app/obavestenja/obavestenja.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ObavestenjaComponent = /** @class */ (function () {
+    function ObavestenjaComponent(obavestenjeService, router) {
+        var _this = this;
+        this.obavestenjeService = obavestenjeService;
+        this.router = router;
+        this.subscription = obavestenjeService.RegenerateData$.subscribe(function () {
+            return _this.getObavestenja();
+        });
+    }
+    ObavestenjaComponent.prototype.ngOnInit = function () {
+        this.getObavestenja();
+    };
+    ObavestenjaComponent.prototype.getObavestenja = function () {
+        var _this = this;
+        this.obavestenjeService.getObavestenja().then(function (obavestenja) {
+            return _this.obavestenja = obavestenja;
+        });
+    };
+    ObavestenjaComponent.prototype.gotoAdd = function () {
+        this.router.navigate(['/addobavestenje']);
+    };
+    ObavestenjaComponent.prototype.gotoEdit = function (obavestenje) {
+        this.router.navigate(['/editObavestenje', obavestenje.id]);
+    };
+    ObavestenjaComponent.prototype.deleteObavestenje = function (obavestenjaId) {
+        var _this = this;
+        this, this.obavestenjeService.deleteObavestenje(obavestenjaId).then(function () { return _this.getObavestenja(); });
+    };
+    ObavestenjaComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'obavestenja-list',
+            template: __webpack_require__("../../../../../src/app/obavestenja/obavestenja.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/obavestenja/obavestenja.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__obavestenja_service__["a" /* ObavestenjeService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    ], ObavestenjaComponent);
+    return ObavestenjaComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/obavestenja/obavestenja.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObavestenjeService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ObavestenjeService = /** @class */ (function () {
+    function ObavestenjeService(http) {
+        this.http = http;
+        this.obavestenjaUrl = 'api/obavestenje';
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.RegenerateData = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Subject */]();
+        this.RegenerateData$ = this.RegenerateData.asObservable();
+    }
+    ObavestenjeService.prototype.announceChange = function () {
+        this.RegenerateData.next();
+    };
+    ObavestenjeService.prototype.getObavestenja = function () {
+        return this.http.get("api/obavestenje/all")
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    ObavestenjeService.prototype.getObavestenje = function (id) {
+        var url = this.obavestenjaUrl + "/" + id;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    ObavestenjeService.prototype.addObavestenje = function (obavestenje) {
+        return this.http
+            .post(this.obavestenjaUrl, JSON.stringify(obavestenje), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    ObavestenjeService.prototype.editObavestenje = function (obavestenje) {
+        return this.http
+            .put(this.obavestenjaUrl, JSON.stringify(obavestenje), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    ObavestenjeService.prototype.deleteObavestenje = function (obavestenjeId) {
+        var url = this.obavestenjaUrl + "/" + this.obavestenjaUrl;
+        return this.http
+            .delete(url)
+            .toPromise()
+            .catch(this.handleError);
+    };
+    ObavestenjeService.prototype.handleError = function (error) {
+        console.error("Error... ", error);
+        return Promise.reject(error.message || error);
+    };
+    ObavestenjeService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+    ], ObavestenjeService);
+    return ObavestenjeService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/obavestenje-detail/obavestenje-detail.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/obavestenje-detail/obavestenje-detail.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n  <h3>Obavestenje</h3>\r\n</div>\r\n\r\n<div>\r\n  <form>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n        <input type=\"text\" [(ngModel)]=\"obavestenje.id\" placeholder=id \r\n        class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n          <input type=\"text\" [(ngModel)]=\"obavestenje.ime\" placeholder=\"Name\" \r\n          class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Opis</label>\r\n          <input type=\"text\" [(ngModel)]=\"obavestenje.opis\" placeholder=\"Opis\" \r\n          class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n          <div class=\"input-group\">\r\n              <label for=\"field1c\" class=\"form-control-label\">Datum kreiranja</label>\r\n            <input class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp1\" [(ngModel)]=\"ngbDatKreiranja\" \r\n              ngbDatepicker #d1=\"ngbDatepicker\">\r\n            <button class=\"input-group-addon\" (click)=\"d1.toggle()\" type=\"button\">\r\n            <i class=\"fa fa-calendar\" style=\"width: 1.2rem; height: 1rem; cursor: pointer;\"> </i> \r\n          </button>\r\n          </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"field1c\" class=\"form-control-label\">Kreator</label>\r\n              <input type=\"text\" [(ngModel)]=\"obavestenje.kreator.korisIme\" placeholder=\"kreator\" \r\n              class=\"form-control\" id=\"field7c\" name=\"field7\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n              <label for=\"field1c\" class=\"form-control-label\">Zgrada</label>\r\n                <input type=\"text\" [(ngModel)]=\"obavestenje.zgrada.ime\" placeholder=\"zgrada\" \r\n                class=\"form-control\" id=\"field8c\" name=\"field8\">\r\n            </div>\r\n      \r\n    \r\n</form>\r\n<div>\r\n  <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n  <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/obavestenje-detail/obavestenje-detail.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObavestenjeDetailComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__obavestenja_obavestenja_service__ = __webpack_require__("../../../../../src/app/obavestenja/obavestenja.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_obavestenje_model__ = __webpack_require__("../../../../../src/app/model/obavestenje.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_korisnik_model__ = __webpack_require__("../../../../../src/app/model/korisnik.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__ = __webpack_require__("../../../../../src/app/model/zgrada.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__korisnici_korisnik_service__ = __webpack_require__("../../../../../src/app/korisnici/korisnik.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+var ObavestenjeDetailComponent = /** @class */ (function () {
+    function ObavestenjeDetailComponent(obavestenjeService, zgradaService, korisnikService, route, location, router) {
+        this.obavestenjeService = obavestenjeService;
+        this.zgradaService = zgradaService;
+        this.korisnikService = korisnikService;
+        this.route = route;
+        this.location = location;
+        this.router = router;
+        this.obavestenje = new __WEBPACK_IMPORTED_MODULE_4__model_obavestenje_model__["a" /* Obavestenje */]({
+            datKreiranja: null,
+            ime: '',
+            opis: '',
+            kreator: new __WEBPACK_IMPORTED_MODULE_5__model_korisnik_model__["a" /* Korisnik */]({
+                ime: '',
+                lozinka: '',
+                korisIme: '',
+                uloga: '',
+            }),
+            zgrada: new __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__["a" /* Zgrada */]({
+                ime: '',
+                adresa: '',
+                brStanova: null,
+                brNaseljenih: null,
+                vlasnik: new __WEBPACK_IMPORTED_MODULE_5__model_korisnik_model__["a" /* Korisnik */]({
+                    ime: '',
+                    lozinka: '',
+                    korisIme: '',
+                    uloga: '',
+                })
+            })
+        });
+        this.mode = 'ADD';
+    }
+    ObavestenjeDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.route.snapshot.params['id']) {
+            this.mode = 'EDIT';
+            // fetch course if we edit the existing course
+            this.route.params
+                .switchMap(function (params) {
+                return _this.obavestenjeService.getObavestenje(+params['id']);
+            })
+                .subscribe(function (obavestenje) {
+                _this.obavestenje = obavestenje;
+            });
+            this.route.queryParams.subscribe(function (params) {
+                return _this.zgradaService.getZgrada(params['zgradaId'])
+                    .then(function (zgrada) {
+                    return _this.obavestenje.zgrada = zgrada;
+                });
+            });
+        }
+    };
+    ObavestenjeDetailComponent.prototype.save = function () {
+        this.mode == 'ADD' ? this.add() : this.edit();
+    };
+    ObavestenjeDetailComponent.prototype.add = function () {
+        var _this = this;
+        this.obavestenje.datKreiranja = new Date(this.ngbDatKreiranja.year, this.ngbDatKreiranja.month - 1, this.ngbDatKreiranja.day);
+        this.obavestenjeService.addObavestenje(this.obavestenje)
+            .then(function (obavestenje) {
+            _this.obavestenjeService.announceChange();
+            _this.goBack();
+        });
+    };
+    ObavestenjeDetailComponent.prototype.edit = function () {
+        var _this = this;
+        this.obavestenjeService.editObavestenje(this.obavestenje)
+            .then(function (obavestenje) {
+            _this.obavestenjeService.announceChange();
+            _this.goBack();
+        });
+    };
+    ObavestenjeDetailComponent.prototype.goBack = function () {
+        this.location.back();
+    };
+    ObavestenjeDetailComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-obavetsenje-detail',
+            template: __webpack_require__("../../../../../src/app/obavestenje-detail/obavestenje-detail.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/obavestenje-detail/obavestenje-detail.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__obavestenja_obavestenja_service__["a" /* ObavestenjeService */], __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__["a" /* ZgradaService */],
+            __WEBPACK_IMPORTED_MODULE_9__korisnici_korisnik_service__["a" /* KorisnikService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    ], ObavestenjeDetailComponent);
+    return ObavestenjeDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/sednica-detail/sednica-detail.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/sednica-detail/sednica-detail.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n<div>\r\n    <h3>Sednica</h3>\r\n</div>\r\n      \r\n <div>\r\n      \r\n    <form >\r\n        <div class=\"form-group\">\r\n            <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n            <input type=\"text\" [(ngModel)]=\"sednica.id\" placeholder=\"Id\" \r\n                class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n        </div>\r\n      \r\n        <div class=\"form-group\">\r\n            <div class=\"input-group\">\r\n                <label for=\"field1c\" class=\"form-control-label\">Datum kreiranja</label>\r\n                <input class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp1\" [(ngModel)]=\"ngbdatKreiranja\" \r\n                    ngbDatepicker #d1=\"ngbDatepicker\">\r\n                <button class=\"input-group-addon\" (click)=\"d1.toggle()\" type=\"button\">\r\n                <i class=\"fa fa-calendar\" style=\"width: 1.2rem; height: 1rem; cursor: pointer;\"> </i> \r\n                </button>\r\n            </div>\r\n        </div>\r\n        <div class = \"form-group\">\r\n            <div class = \"input-group\">\r\n            <label for=\"field1c\" class=\"form-control-label\">Datum zakazivanja</label>\r\n            <input class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp2\" [(ngModel)]=\"ngbdatZakazivanja\" \r\n              ngbDatepicker #d2=\"ngbDatepicker\">\r\n            <button class=\"input-group-addon\" (click)=\"d2.toggle()\" type=\"button\">\r\n            <i class=\"fa fa-calendar\" style=\"width: 1.2rem; height: 1rem; cursor: pointer;\"> </i> \r\n          </button>\r\n          </div>\r\n        </div>\r\n             \r\n        <div class=\"form-group\">\r\n            <label for=\"field3c\" class=\"form-control-label\">Aktivna</label>\r\n            <input type=\"text\" [(ngModel)]=\"sednica.aktivna\" placeholder=\"Aktivna\" \r\n                class=\"form-control\" id=\"field4c\" name=\"field4\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"field3c\" class=\"form-control-label\">Zgrada</label>\r\n            <input type=\"text\" [(ngModel)]=\"sednica.zgrada.id\" placeholder=\"zgrada\" \r\n                class=\"form-control\" id=\"field5c\" name=\"field5\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n                <label for=\"field3c\" class=\"form-control-label\">Kreator</label>\r\n                <input type=\"text\" [(ngModel)]=\"sednica.kreator.korisIme\" placeholder=\"kreator\" \r\n                    class=\"form-control\" id=\"field6c\" name=\"field6\">\r\n            </div>      \r\n    </form>\r\n    <div>\r\n        <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n        <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n      </div> \r\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/sednica-detail/sednica-detail.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SednicaDetailComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sednice_sednica_service__ = __webpack_require__("../../../../../src/app/sednice/sednica.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_sednica_model__ = __webpack_require__("../../../../../src/app/model/sednica.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__ = __webpack_require__("../../../../../src/app/model/zgrada.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_korisnik_model__ = __webpack_require__("../../../../../src/app/model/korisnik.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var SednicaDetailComponent = /** @class */ (function () {
+    function SednicaDetailComponent(zgradaService, sednicaService, route, location) {
+        this.zgradaService = zgradaService;
+        this.sednicaService = sednicaService;
+        this.route = route;
+        this.location = location;
+        this.sednica = new __WEBPACK_IMPORTED_MODULE_4__model_sednica_model__["a" /* Sednica */]({
+            datKreiranja: null,
+            datZakazivanja: null,
+            aktivna: false,
+            zgrada: new __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__["a" /* Zgrada */]({
+                ime: '',
+                adresa: '',
+                brStanova: null,
+                brNaseljenih: null,
+                vlasnik: new __WEBPACK_IMPORTED_MODULE_7__model_korisnik_model__["a" /* Korisnik */]({
+                    ime: '',
+                    lozinka: '',
+                    korisIme: '',
+                    uloga: '',
+                })
+            }),
+            kreator: new __WEBPACK_IMPORTED_MODULE_7__model_korisnik_model__["a" /* Korisnik */]({
+                ime: '',
+                lozinka: '',
+                korisIme: '',
+                uloga: '',
+            })
+        });
+        this.mode = 'ADD';
+    }
+    SednicaDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.route.snapshot.params['id']) {
+            this.mode = 'EDIT';
+            // fetch student if we edit the existing student
+            this.route.params
+                .switchMap(function (params) {
+                return _this.sednicaService.getSednica(+params['id']);
+            }) // convert to number
+                .subscribe(function (sednica) {
+                _this.sednica = sednica;
+            });
+            this.route.queryParams.subscribe(function (params) {
+                return _this.zgradaService.getZgrada(params['zgradaId'])
+                    .then(function (zgrada) {
+                    return _this.sednica.zgrada = zgrada;
+                });
+            });
+        }
+    };
+    SednicaDetailComponent.prototype.save = function () {
+        this.mode == 'ADD' ? this.add() : this.edit();
+    };
+    SednicaDetailComponent.prototype.add = function () {
+        var _this = this;
+        this.sednicaService.addSednica(this.sednica)
+            .then(function (sednica) {
+            _this.sednicaService.announceChange();
+            _this.goBack();
+        });
+    };
+    SednicaDetailComponent.prototype.edit = function () {
+        var _this = this;
+        this.sednicaService.editSednica(this.sednica)
+            .then(function (sednica) {
+            _this.sednicaService.announceChange();
+            _this.goBack();
+        });
+    };
+    SednicaDetailComponent.prototype.goBack = function () {
+        this.location.back();
+    };
+    SednicaDetailComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-sednica-detail',
+            template: __webpack_require__("../../../../../src/app/sednica-detail/sednica-detail.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/sednica-detail/sednica-detail.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__["a" /* ZgradaService */], __WEBPACK_IMPORTED_MODULE_3__sednice_sednica_service__["a" /* SednicaService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */]])
+    ], SednicaDetailComponent);
+    return SednicaDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/sednice/sednica.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SednicaService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SednicaService = /** @class */ (function () {
+    function SednicaService(http) {
+        this.http = http;
+        this.sedniceUrl = 'api/sednica';
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.RegenerateData = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Subject */]();
+        this.RegenerateData$ = this.RegenerateData.asObservable();
+    }
+    SednicaService.prototype.announceChange = function () {
+        this.RegenerateData.next();
+    };
+    SednicaService.prototype.getSednice = function () {
+        var url = 'api/sednica/all';
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    SednicaService.prototype.getSednica = function (id) {
+        var url = this.sedniceUrl + "/all/" + id;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    SednicaService.prototype.addSednica = function (sednica) {
+        return this.http
+            .post(this.sedniceUrl, JSON.stringify(sednica), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    SednicaService.prototype.editSednica = function (sednica) {
+        return this.http
+            .put(this.sedniceUrl, JSON.stringify(sednica), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    SednicaService.prototype.deleteSednica = function (sednicaId) {
+        var url = this.sedniceUrl + "/" + sednicaId;
+        return this.http
+            .delete(url)
+            .toPromise()
+            .catch(this.handleError);
+    };
+    SednicaService.prototype.handleError = function (error) {
+        console.error("Greska...", error);
+        return Promise.reject(error.message || error);
+    };
+    SednicaService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+    ], SednicaService);
+    return SednicaService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/sednice/sednice.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/sednice/sednice.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Sednice</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>Datum kreiranja</th>\r\n      <th>Datum zakazivanja</th>\r\n      <th>Aktivna</th>\r\n      <th>Zgrada</th>\r\n      <th>Kreator</th>\r\n    </tr>\r\n    <tr *ngFor=\"let sednica of sednice\">\r\n      <td>\r\n        {{sednica.id}}\r\n      </td>\r\n      <td>\r\n        {{sednica.datKreiranja}}\r\n      </td>\r\n      <td>\r\n        {{sednica.datZakazivanja}}\r\n      </td>\r\n      <td>\r\n        {{sednica.aktivna}}\r\n      </td>\r\n      <td>\r\n        {{sednica.zgrada.ime}}\r\n      </td>\r\n      <td>\r\n        {{sednica.kreator.korisIme}}\r\n      </td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(sednica)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteSednica(sednica.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div> \r\n  "
+
+/***/ }),
+
+/***/ "../../../../../src/app/sednice/sednice.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SedniceComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sednica_service__ = __webpack_require__("../../../../../src/app/sednice/sednica.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SedniceComponent = /** @class */ (function () {
+    function SedniceComponent(sednicaService, router) {
+        var _this = this;
+        this.sednicaService = sednicaService;
+        this.router = router;
+        this.subscription = sednicaService.RegenerateData$.subscribe(function () {
+            return _this.getSednice();
+        });
+    }
+    SedniceComponent.prototype.ngOnInit = function () {
+        this.getSednice();
+    };
+    SedniceComponent.prototype.getSednice = function () {
+        var _this = this;
+        this.sednicaService.getSednice().then(function (sednice) {
+            return _this.sednice = sednice;
+        });
+    };
+    SedniceComponent.prototype.gotoAdd = function () {
+        this.router.navigate(['/addSednica']);
+    };
+    SedniceComponent.prototype.gotoEdit = function (sednica) {
+        this.router.navigate(['/editSednica', sednica.id]);
+    };
+    SedniceComponent.prototype.deleteSednica = function (sednicaId) {
+        var _this = this;
+        this.sednicaService.deleteSednica(sednicaId).then(function () { return _this.getSednice(); });
+    };
+    SedniceComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'sednica-list',
+            template: __webpack_require__("../../../../../src/app/sednice/sednice.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/sednice/sednice.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__sednica_service__["a" /* SednicaService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    ], SedniceComponent);
+    return SedniceComponent;
 }());
 
 
@@ -1613,7 +2335,7 @@ module.exports = "<div>\r\n    <h3>Stan</h3>\r\n  </div>\r\n  <div>\r\n  \r\n   
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__ = __webpack_require__("../../../../../src/app/model/zgrada.model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_korisnik_model__ = __webpack_require__("../../../../../src/app/model/korisnik.model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrada_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrada.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1711,7 +2433,7 @@ var StanDetailComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/stan-detail/stan-detail.component.html"),
             styles: [__webpack_require__("../../../../../src/app/stan-detail/stan-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__stanovi_stan_service__["a" /* StanService */], __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrada_service__["a" /* ZgradaService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__stanovi_stan_service__["a" /* StanService */], __WEBPACK_IMPORTED_MODULE_8__zgrade_zgrade_service__["a" /* ZgradaService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */]])
     ], StanDetailComponent);
     return StanDetailComponent;
@@ -1765,7 +2487,7 @@ var StanService = /** @class */ (function () {
             .catch(this.handleError);
     };
     StanService.prototype.getStan = function (id) {
-        var url = this.stanoviUrl + "/all/" + id;
+        var url = this.stanoviUrl + "/" + id;
         return this.http.get(url)
             .toPromise()
             .then(function (response) {
@@ -1919,7 +2641,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/zgrada-detail/zgrada-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n  <h3>Zgrada</h3>\r\n</div>\r\n  \r\n<div>  \r\n  <form >\r\n    <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n        <input type=\"text\" [(ngModel)]=\"zgrada.id\" placeholder=id \r\n          class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.ime\" placeholder=ime\r\n          class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Adresa</label>\r\n        <input type=\"text\" [(ngModel)]=\"zgrada.adresa\" placeholder=adresa \r\n          class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Broj stanova</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.brStanova\" placeholder=brStanova \r\n          class=\"form-control\" id=\"field4c\" name=\"field4\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Broj naseljenih</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.brNaseljenih\" placeholder=\"Broj naseljenih\" \r\n          class=\"form-control\" id=\"field5c\" name=\"field5\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Vlasnik</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.vlasnik.korisIme\" placeholder=\"Vlasnik\" \r\n                  class=\"form-control\" id=\"field6c\" name=\"field6\">\r\n    </div>\r\n  </form>\r\n  \r\n  <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>kvarovi</h3>\r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddKvar()\">\r\n          <span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\r\n        </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr *ngFor=\"let kvar of kvar\">\r\n        <th>Kvar id</th>\r\n        <td>\r\n        {{kvar.id}} {{kvar.ime}} {{kvar.opis}} {{kvar.kreator.ime}} {{kvar.datKreiranja}} {{kvar.datZakazivanja}} {{kvar.datPopravke}} {{kvar.popravljen}}\r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(kvar)\">\r\n            <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteKvar(kvar.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n\r\n  <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>Stanovi u zgradi {{zgrada.id}}  {{zgrada.ime}}</h3>\r\n      <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddStan()\">\r\n        <span class=\"fa fa-plus\" aria-hidden=\"true\"></span>\r\n      </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr *ngFor=\"let stan of stanovi\">\r\n        <td>\r\n        {{stan.id}} {{stan.ime}} {{stan.adresa}} {{stan.brStanovnika}} {{stan.vlasnik.ime}}{{stan.zgrada.ime}}\r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteStan(stan.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n</div>\r\n\r\n \r\n  \r\n  <div>\r\n    <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n    <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n  </div> "
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n  <h3>Zgrada {{zgrada.ime}}</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n</head>\r\n\r\n<div>\r\n  <form>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.id\" placeholder=id \r\n        class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field2c\" class=\"form-control-label\">Ime</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.ime\" placeholder=\"Name\" \r\n        class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field3c\" class=\"form-control-label\">Adresa</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.adresa\" placeholder=\"Opis\" \r\n        class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field4c\" class=\"form-control-label\">Broj stanova</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.brStanova\" placeholder=\"broj stanova\" \r\n        class=\"form-control\" id=\"field4c\" name=\"field4\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field5c\" class=\"form-control-label\">Broj naseljenih</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.brNaseljenih\" placeholder=\"broj naseljenih\" \r\n        class=\"form-control\" id=\"field5c\" name=\"field5\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field6c\" class=\"form-control-label\">Vlasnik</label>\r\n      <input type=\"text\" [(ngModel)]=\"zgrada.vlasnik.korisIme\" placeholder=\"vlasnik\" \r\n        class=\"form-control\" id=\"field6c\" name=\"field6\">\r\n    </div>\r\n  </form>\r\n  <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>Kvarovi</h3>\r\n      <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddKvar()\">\r\n        <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n      </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr>\r\n        <th>Broj kvara</th>\r\n        <th>Ime</th>\r\n        <th>Datum kreiranja</th>\r\n        <th>Datum zakazivanja</th>\r\n        <th>Datum popravke</th>\r\n        <th>Kreator</th>\r\n      </tr>\r\n      <tr *ngFor=\"let kvar of kvar\">\r\n        <td>{{kvar.id}}</td>\r\n        <td>{{kvar.ime}}</td>\r\n        <td>{{kvar.opis}}</td>\r\n        <td>{{kvar.datKreiranja}}</td>\r\n        <td>{{kvar.datZakazivanja}}</td>\r\n        <td>{{kvar.datPopravke}}</td>\r\n        <td>{{kvar.kreator.korisIme}}</td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEditKvar(kvar)\">\r\n            <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>  \r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteKvar(kvar.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n  <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>Stanovi</h3>\r\n      <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddStan()\">\r\n        <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n      </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr>\r\n        <th>Broj stana</th>\r\n        <th>Ime</th>\r\n        <th>Adresa</th>\r\n        <th>Broj stanovnika</th>\r\n        <th>Vlasnik</th>\r\n      </tr>\r\n      <tr *ngFor=\"let stan of stanovi\">\r\n        <td>{{stan.id}}</td>\r\n        <td>{{stan.ime}}</td>\r\n        <td>{{stan.adresa}}</td>\r\n        <td>{{stan.brStanovnika}}</td>\r\n        <td>{{stan.vlasnik.korisIme}}</td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEditStan(stan)\">\r\n            <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>  \r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteStan(stan.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n  <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>Obavestenja</h3>\r\n      <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddObavestenje()\">\r\n        <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n      </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr>\r\n        <th>Broj obavestenja</th>\r\n        <th>Ime</th>\r\n        <th>Opis</th>\r\n        <th>Datum kreiranja</th>\r\n        <th>Kreator</th>\r\n      </tr>\r\n      <tr *ngFor=\"let obavestenje of obavestenja\">\r\n        <td>{{obavestenje.id}}</td>\r\n        <td>{{obavestenje.ime}}</td>\r\n        <td>{{obavestenje.opis}}</td>\r\n        <td>{{obavestenje.datKreiranja}}</td>\r\n        <td>{{obavestenje.kreator.korisIme}}</td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEditObavestenje(obavestenje)\">\r\n            <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>  \r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteObavestenje(obavestenje.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n  <div *ngIf=\"zgrada.id\">\r\n    <div>\r\n      <h3>Sednice</h3>\r\n      <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAddSednica()\">\r\n        <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n      </button>\r\n    </div>\r\n    <table class=\"table table-bordered\">\r\n      <tr>\r\n        <th>Broj sednice</th>\r\n        <th>Aktivna</th>\r\n        <th>Datum kreiranja</th>\r\n        <th>Datum zakazivanja</th>\r\n        <th>Kreator</th>\r\n      </tr>\r\n      <tr *ngFor=\"let sednica of sednice\">\r\n        <td>{{sednica.id}}</td>\r\n        <td>{{sednica.aktivna}}</td>\r\n        <td>{{sednica.datKreiranja}}</td>\r\n        <td>{{sednica.datZakazivanja}}</td>\r\n        <td>{{sednica.kreator.korisIme}}</td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEditSednica(sednica)\">\r\n            <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>  \r\n        </td>\r\n        <td>\r\n          <button type=\"button\" class=\"btn btn-primary right\" aria-label=\"Delete\" (click)=\"deleteSednica(sednica.id)\">\r\n            <span class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n    </table>   \r\n  </div>\r\n\r\n</div>\r\n<div>\r\n  <button class=\"btn btn-primary\" (click)=\"save()\" style=\"font-size:18px;color:darkgreen\">OK</button>\r\n  <button class=\"btn btn-primary\" (click)=\"goBack()\" style=\"font-size:18px;color:darkgreen\">Cancel</button>\r\n</div>"
 
 /***/ }),
 
@@ -1931,12 +2653,15 @@ module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/a
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__zgrade_zgrada_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrada.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_zgrada_model__ = __webpack_require__("../../../../../src/app/model/zgrada.model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_korisnik_model__ = __webpack_require__("../../../../../src/app/model/korisnik.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__zgrade_zgrade_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_korisnik_model__ = __webpack_require__("../../../../../src/app/model/korisnik.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_zgrada_model__ = __webpack_require__("../../../../../src/app/model/zgrada.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__kvarovi_kvarovi_service__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stanovi_stan_service__ = __webpack_require__("../../../../../src/app/stanovi/stan.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__korisnici_korisnik_service__ = __webpack_require__("../../../../../src/app/korisnici/korisnik.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stanovi_stan_service__ = __webpack_require__("../../../../../src/app/stanovi/stan.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__obavestenja_obavestenja_service__ = __webpack_require__("../../../../../src/app/obavestenja/obavestenja.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__sednice_sednica_service__ = __webpack_require__("../../../../../src/app/sednice/sednica.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1955,48 +2680,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ZgradaDetailComponent = /** @class */ (function () {
-    function ZgradaDetailComponent(zgradaService, kvarService, stanService, route, location, router) {
+    function ZgradaDetailComponent(kvarService, zgradaService, sednicaService, korisnikService, stanService, obavestenjeService, route, location, router) {
         var _this = this;
-        this.zgradaService = zgradaService;
         this.kvarService = kvarService;
+        this.zgradaService = zgradaService;
+        this.sednicaService = sednicaService;
+        this.korisnikService = korisnikService;
         this.stanService = stanService;
+        this.obavestenjeService = obavestenjeService;
         this.route = route;
         this.location = location;
         this.router = router;
+        kvarService.RegenerateData$.subscribe(function () {
+            return _this.getKvarovi();
+        });
+        sednicaService.RegenerateData$.subscribe(function () {
+            return _this.getSednice();
+        });
         stanService.RegenerateData$.subscribe(function () {
             return _this.getStanovi();
-        }),
-            kvarService.RegenerateData$.subscribe(function () {
-                return _this.getKvarovi();
-            }),
-            this.zgrada = new __WEBPACK_IMPORTED_MODULE_4__model_zgrada_model__["a" /* Zgrada */]({
+        });
+        obavestenjeService.RegenerateData$.subscribe(function () {
+            return _this.getObavestenja();
+        });
+        this.zgrada = new __WEBPACK_IMPORTED_MODULE_5__model_zgrada_model__["a" /* Zgrada */]({
+            adresa: '',
+            brNaseljenih: null,
+            brStanova: null,
+            ime: '',
+            vlasnik: new __WEBPACK_IMPORTED_MODULE_4__model_korisnik_model__["a" /* Korisnik */]({
                 ime: '',
-                adresa: '',
-                brStanova: null,
-                brNaseljenih: null,
-                vlasnik: new __WEBPACK_IMPORTED_MODULE_6__model_korisnik_model__["a" /* Korisnik */]({
-                    ime: '',
-                    lozinka: '',
-                    korisIme: '',
-                    uloga: '',
-                })
-            });
+                lozinka: '',
+                korisIme: '',
+                uloga: '',
+            })
+        });
         this.mode = 'ADD';
     }
     ZgradaDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.route.snapshot.params['id']) {
             this.mode = 'EDIT';
-            // fetch student if we edit the existing student
+            // fetch course if we edit the existing course
             this.route.params
                 .switchMap(function (params) {
                 return _this.zgradaService.getZgrada(+params['id']);
-            }) // convert to number
+            })
                 .subscribe(function (zgrada) {
-                _this.zgrada = _this.zgrada;
+                _this.zgrada = zgrada;
                 _this.getKvarovi();
                 _this.getStanovi();
+                _this.getObavestenja();
+                _this.getSednice();
             });
         }
     };
@@ -2006,10 +2745,22 @@ var ZgradaDetailComponent = /** @class */ (function () {
             return _this.kvarovi = kvarovi;
         });
     };
+    ZgradaDetailComponent.prototype.getSednice = function () {
+        var _this = this;
+        this.zgradaService.getZgradaSednica(this.zgrada.id).then(function (sednice) {
+            return _this.sednice = sednice;
+        });
+    };
     ZgradaDetailComponent.prototype.getStanovi = function () {
         var _this = this;
         this.zgradaService.getZgradaStan(this.zgrada.id).then(function (stanovi) {
             return _this.stanovi = stanovi;
+        });
+    };
+    ZgradaDetailComponent.prototype.getObavestenja = function () {
+        var _this = this;
+        this.zgradaService.getZgradaObavestenje(this.zgrada.id).then(function (obavestenja) {
+            return _this.obavestenja = obavestenja;
         });
     };
     ZgradaDetailComponent.prototype.save = function () {
@@ -2037,16 +2788,42 @@ var ZgradaDetailComponent = /** @class */ (function () {
     ZgradaDetailComponent.prototype.gotoAddKvar = function () {
         this.router.navigate(['/addKvar'], { queryParams: { zgradaId: this.zgrada.id } });
     };
+    ZgradaDetailComponent.prototype.gotoEditkvar = function (kvar) {
+        this.router.navigate(['/editKvar', kvar.id], { queryParams: { zgradaId: this.zgrada.id } });
+    };
     ZgradaDetailComponent.prototype.deleteKvar = function (kvarId) {
         var _this = this;
         this.kvarService.deleteKvar(kvarId).then(function () { return _this.getKvarovi(); });
     };
+    ZgradaDetailComponent.prototype.gotoAddSednica = function () {
+        this.router.navigate(['/addSednica'], { queryParams: { zgradaId: this.zgrada.id } });
+    };
+    ZgradaDetailComponent.prototype.gotoEditSednica = function (sednica) {
+        this.router.navigate(['/editSednica', sednica.id], { queryParams: { zgradaId: this.zgrada.id } });
+    };
+    ZgradaDetailComponent.prototype.deleteSednica = function (sednicaId) {
+        var _this = this;
+        this.sednicaService.deleteSednica(sednicaId).then(function () { return _this.getSednice(); });
+    };
     ZgradaDetailComponent.prototype.gotoAddStan = function () {
         this.router.navigate(['/addStan'], { queryParams: { zgradaId: this.zgrada.id } });
+    };
+    ZgradaDetailComponent.prototype.gotoEditStan = function (stan) {
+        this.router.navigate(['/editStan', stan.id], { queryParams: { zgradaId: this.zgrada.id } });
     };
     ZgradaDetailComponent.prototype.deleteStan = function (stanId) {
         var _this = this;
         this.stanService.deleteStan(stanId).then(function () { return _this.getStanovi(); });
+    };
+    ZgradaDetailComponent.prototype.gotoAddObavestenje = function () {
+        this.router.navigate(['/addObavestenje'], { queryParams: { zgradaId: this.zgrada.id } });
+    };
+    ZgradaDetailComponent.prototype.gotoEditObavestenje = function (obavestenje) {
+        this.router.navigate(['/editObavestenje', obavestenje.id], { queryParams: { zgradaId: this.zgrada.id } });
+    };
+    ZgradaDetailComponent.prototype.deleteObavestenje = function (obavestenjeId) {
+        var _this = this;
+        this.obavestenjeService.deleteObavestenje(obavestenjeId).then(function () { return _this.getObavestenja(); });
     };
     ZgradaDetailComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -2054,8 +2831,8 @@ var ZgradaDetailComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/zgrada-detail/zgrada-detail.component.html"),
             styles: [__webpack_require__("../../../../../src/app/zgrada-detail/zgrada-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__zgrade_zgrada_service__["a" /* ZgradaService */], __WEBPACK_IMPORTED_MODULE_7__kvarovi_kvarovi_service__["a" /* KvarService */],
-            __WEBPACK_IMPORTED_MODULE_8__stanovi_stan_service__["a" /* StanService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_7__kvarovi_kvarovi_service__["a" /* KvarService */], __WEBPACK_IMPORTED_MODULE_3__zgrade_zgrade_service__["a" /* ZgradaService */], __WEBPACK_IMPORTED_MODULE_11__sednice_sednica_service__["a" /* SednicaService */],
+            __WEBPACK_IMPORTED_MODULE_8__korisnici_korisnik_service__["a" /* KorisnikService */], __WEBPACK_IMPORTED_MODULE_9__stanovi_stan_service__["a" /* StanService */], __WEBPACK_IMPORTED_MODULE_10__obavestenja_obavestenja_service__["a" /* ObavestenjeService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["f" /* Location */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
     ], ZgradaDetailComponent);
     return ZgradaDetailComponent;
@@ -2065,7 +2842,105 @@ var ZgradaDetailComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/zgrade/zgrada.service.ts":
+/***/ "../../../../../src/app/zgrade/zgrade.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/zgrade/zgrade.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Zgrade</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>Ime</th>\r\n      <th>Adresa</th>\r\n      <th>Broj stanova</th>\r\n      <th>Broj naseljenih</th>\r\n      <th>Vlasnik</th>\r\n      \r\n    </tr>\r\n    <tr *ngFor=\"let zgrada of zgrade\">\r\n      <td>{{zgrada.id}}</td>\r\n      <td>{{zgrada.ime}}</td>\r\n      <td>{{zgrada.adresa}}</td>\r\n      <td>{{zgrada.brStanova}}</td>\r\n      <td>{{zgrada.brNaseljenih}}</td>\r\n      <td>{{zgrada.vlasnik.korisIme}}</td>\r\n      \r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/zgrade/zgrade.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ZgradeComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__zgrade_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrade.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__kvarovi_kvarovi_service__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stanovi_stan_service__ = __webpack_require__("../../../../../src/app/stanovi/stan.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__obavestenja_obavestenja_service__ = __webpack_require__("../../../../../src/app/obavestenja/obavestenja.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ZgradeComponent = /** @class */ (function () {
+    function ZgradeComponent(zgradaService, kvarService, StanService, obavestenjeService, router) {
+        var _this = this;
+        this.zgradaService = zgradaService;
+        this.kvarService = kvarService;
+        this.StanService = StanService;
+        this.obavestenjeService = obavestenjeService;
+        this.router = router;
+        this.subscription = kvarService.RegenerateData$.subscribe(function () {
+            return _this.getZgrade();
+        });
+    }
+    ZgradeComponent.prototype.ngOnInit = function () {
+        this.getZgrade();
+    };
+    ZgradeComponent.prototype.getZgrade = function () {
+        var _this = this;
+        this.zgradaService.getZgrade().then(function (zgrade) {
+            return _this.zgrade = zgrade;
+        });
+    };
+    ZgradeComponent.prototype.gotoAdd = function () {
+        this.router.navigate(['/addZgrada']);
+    };
+    ZgradeComponent.prototype.gotoEdit = function (zgrada) {
+        this.router.navigate(['/editZgrada', zgrada.id]);
+    };
+    ZgradeComponent.prototype.deleteKvar = function (zgradeId) {
+        var _this = this;
+        this.zgradaService.deleteZgrada(zgradeId).then(function () { return _this.getZgrade(); });
+    };
+    ZgradeComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'zgrade-list',
+            template: __webpack_require__("../../../../../src/app/zgrade/zgrade.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/zgrade/zgrade.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__zgrade_service__["a" /* ZgradaService */], __WEBPACK_IMPORTED_MODULE_3__kvarovi_kvarovi_service__["a" /* KvarService */],
+            __WEBPACK_IMPORTED_MODULE_4__stanovi_stan_service__["a" /* StanService */], __WEBPACK_IMPORTED_MODULE_5__obavestenja_obavestenja_service__["a" /* ObavestenjeService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    ], ZgradeComponent);
+    return ZgradeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/zgrade/zgrade.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2146,8 +3021,26 @@ var ZgradaService = /** @class */ (function () {
         })
             .catch(this.handleError);
     };
+    ZgradaService.prototype.getZgradaSednica = function (zgradaId) {
+        var url = this.zgradeUrl + "/" + zgradaId + "/sednica";
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
     ZgradaService.prototype.getZgradaStan = function (zgradaId) {
         var url = this.zgradeUrl + "/" + zgradaId + "/stan";
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    ZgradaService.prototype.getZgradaObavestenje = function (zgradaId) {
+        var url = this.zgradeUrl + "/" + zgradaId + "/obavestenje";
         return this.http.get(url)
             .toPromise()
             .then(function (response) {
@@ -2164,101 +3057,6 @@ var ZgradaService = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], ZgradaService);
     return ZgradaService;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/zgrade/zgrade.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/zgrade/zgrade.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n\r\n<div>\r\n   <h3>Zgrade</h3>\r\n</div>\r\n<head>\r\n  <style>\r\n  table, th, td {\r\n    border-right: 2px solid rgb(208, 236, 197);\r\n  }\r\n  </style>\r\n  </head>\r\n  <table>\r\n    <tr>\r\n      <th>Id</th>\r\n      <th>Ime</th>\r\n      <th>Adresa</th>\r\n      <th>Broj stanova</th>\r\n      <th>Broj naseljenih</th>\r\n      <th>Vlasnik</th>\r\n    </tr>\r\n    <tr *ngFor=\"let zgrada of zgrada\">\r\n      <td>{{zgrada.id}}</td>\r\n      <td>{{zgrada.ime}}</td>\r\n      <td>{{zgrada.adresa}}</td>\r\n      <td>{{zgrada.brStanova}}</td>\r\n      <td>{{zgrada.brNaseljenih}}</td>\r\n      <td>{{zgrada.vlasnik.ime}}</td>\r\n      <td>\r\n        <button type=\"button\" class=\"btn btn-primary\"  aria-label=\"Edit\" (click)=\"gotoEdit(zgrada)\">\r\n          <span class=\"fa fa-edit\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n        </button>\r\n  \r\n        <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Delete\" (click)=\"deleteZgrada(zgrada.id)\">\r\n          <i class=\"fa fa-remove\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></i>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n  <div class=\"right\">\r\n    <button type=\"button\" class=\"btn btn-primary\" aria-label=\"Add\" (click)=\"gotoAdd()\">\r\n      <span class=\"fa fa-plus\" aria-hidden=\"true\" style=\"font-size:18px;color:darkgreen\"></span>\r\n    </button>\r\n  </div> \r\n  "
-
-/***/ }),
-
-/***/ "../../../../../src/app/zgrade/zgrade.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ZgradeComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__zgrada_service__ = __webpack_require__("../../../../../src/app/zgrade/zgrada.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__kvarovi_kvarovi_service__ = __webpack_require__("../../../../../src/app/kvarovi/kvarovi.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stanovi_stan_service__ = __webpack_require__("../../../../../src/app/stanovi/stan.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var ZgradeComponent = /** @class */ (function () {
-    function ZgradeComponent(kvarService, zgradaService, stanService, router) {
-        var _this = this;
-        this.kvarService = kvarService;
-        this.zgradaService = zgradaService;
-        this.stanService = stanService;
-        this.router = router;
-        this.subscription = zgradaService.RegenerateData$.subscribe(function () {
-            return _this.getZgrade();
-        });
-    }
-    ZgradeComponent.prototype.ngOnInit = function () {
-        this.getZgrade();
-    };
-    ZgradeComponent.prototype.getZgrade = function () {
-        var _this = this;
-        this.zgradaService.getZgrade().then(function (zgrade) {
-            return _this.zgrada = zgrade;
-        });
-    };
-    ZgradeComponent.prototype.gotoAdd = function () {
-        this.router.navigate(['/addZgrada']);
-    };
-    ZgradeComponent.prototype.gotoEdit = function (zgrada) {
-        this.router.navigate(['/editZgrada', zgrada.id]);
-    };
-    ZgradeComponent.prototype.deleteZgrada = function (zgradeId) {
-        var _this = this;
-        this.zgradaService.deleteZgrada(zgradeId).then(function () { return _this.getZgrade(); });
-    };
-    ZgradeComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'zgrade-list',
-            template: __webpack_require__("../../../../../src/app/zgrade/zgrade.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/zgrade/zgrade.component.css")]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__kvarovi_kvarovi_service__["a" /* KvarService */], __WEBPACK_IMPORTED_MODULE_2__zgrada_service__["a" /* ZgradaService */],
-            __WEBPACK_IMPORTED_MODULE_4__stanovi_stan_service__["a" /* StanService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
-    ], ZgradeComponent);
-    return ZgradeComponent;
 }());
 
 
