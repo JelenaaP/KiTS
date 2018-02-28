@@ -111,7 +111,7 @@ private static final String URL_PREFIX = "/api/komentar";
     	.andExpect(jsonPath("$.[*].id").value(hasItem(KomentarConstants.DB_ID.intValue())))
     	.andExpect(jsonPath("$.[*].datKreiranja").value(hasItem(DB_DAT_KREIRANJA.getTime())))
         .andExpect(jsonPath("$.[*].text").value(hasItem(DB_TEXT)))
-		.andExpect(jsonPath("$.[*].kvar.id").value(hasItem(DB_KVAR_ID.intValue())));
+		.andExpect(jsonPath("$.[*].kreator.id").value(hasItem(DB_KREATOR_ID.intValue())));
     }
     
     @Test

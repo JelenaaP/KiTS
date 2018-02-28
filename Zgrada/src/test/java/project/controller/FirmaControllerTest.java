@@ -23,7 +23,6 @@ import static project.constants.FirmaConstants.NEW_IME;
 import static project.constants.FirmaConstants.NEW_TELEFON;
 import static project.constants.FirmaConstants.NEW_WEB_SITE;
 
-
 import java.nio.charset.Charset;
 
 import javax.annotation.PostConstruct;
@@ -45,6 +44,7 @@ import org.springframework.web.context.WebApplicationContext;
 import project.TestUtil;
 import project.MyApplication;
 import project.constants.FirmaConstants;
+import project.constants.Korisnik_ServisaConstants;
 import project.constants.ZgradaConstants;
 import project.dto.FirmaDto;
 import project.dto.Korisnik_servisaDto;
@@ -90,19 +90,20 @@ private static final String URL_PREFIX = "/api/firma";
             .andExpect(jsonPath("$.[*].telefon").value(hasItem(DB_TELEFON)))
     		.andExpect(jsonPath("$.[*].webSite").value(hasItem(DB_WEB_SITE)))
     		.andExpect(jsonPath("$.[*].email").value(hasItem(DB_EMAIL)))
-    		.andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
+    		.andExpect(jsonPath("$.[*].vlasnik.korisIme").value(hasItem(Korisnik_ServisaConstants.DB_KORIS_IME)));
     }
     
     @Test
     public void testGetFirmaByAdresa() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + DB_ADRESA))
+    	mockMvc.perform(get(URL_PREFIX + "/findAdresa?adresa=" + FirmaConstants.DB_ADRESA))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.[*].id").value(hasItem(FirmaConstants.DB_ID.intValue())))
         .andExpect(jsonPath("$.[*].ime").value(hasItem(DB_IME)))
         .andExpect(jsonPath("$.[*].telefon").value(hasItem(DB_TELEFON)))
 		.andExpect(jsonPath("$.[*].webSite").value(hasItem(DB_WEB_SITE)))
-		.andExpect(jsonPath("$.[*].email").value(hasItem(DB_EMAIL)));
+		.andExpect(jsonPath("$.[*].email").value(hasItem(DB_EMAIL)))
+		.andExpect(jsonPath("$.[*].vlasnik.id").value(hasItem(DB_VLASNIK_ID.intValue())));
 		  }
     
     @Test

@@ -93,19 +93,21 @@ public class FirmaController {
 		}
 */
 	//@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/{id}",method = RequestMethod.PUT, consumes = "application/json")
+	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public ResponseEntity<FirmaDto> updateFirma(@RequestBody FirmaDto firmaDto) {
 		// a building must exist
 		Firma firma = firmaService.findOne(firmaDto.getId());
 		if (firma == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+		Korisnik_servisa vlasnik = korisnik_servisaService.findByKorisIme(firmaDto.getVlasnik().getKorisIme());
 		// we allow changing date and points for an building only
 		firma.setIme(firmaDto.getIme());
 		firma.setAdresa(firmaDto.getAdresa());
 		firma.setTelefon(firmaDto.getTelefon());
 		firma.setEmail(firmaDto.getEmail());
 		firma.setWebSite(firmaDto.getWebSite());
+		firma.setVlasnik(vlasnik);
 		
 		firma = firmaService.save(firma);
 		return new ResponseEntity<>(new FirmaDto(firma), HttpStatus.OK);

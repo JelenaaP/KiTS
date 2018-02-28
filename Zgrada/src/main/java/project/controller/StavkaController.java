@@ -115,7 +115,8 @@ public class StavkaController {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 			stavka.setDatKreiranja(stavkaDto.getDatKreiranja());
-			
+			stavka.setIme(stavkaDto.getIme());
+			stavka.setOpis((stavkaDto.getOpis()));
 			
 			return new ResponseEntity<>(new StavkaDto(stavka),HttpStatus.OK);
 		}
