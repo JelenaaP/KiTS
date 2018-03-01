@@ -103,7 +103,7 @@ private static final String URL_PREFIX = "/api/kvar";
     
     @Test
     public void testGetKvarByZgrada() throws Exception {
-    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgrada=" + KvarConstants.DB_ZGRADA_ID))
+    	mockMvc.perform(get(URL_PREFIX + "/findZgrada?zgradaId=" + KvarConstants.DB_ZGRADA_ID))
     	.andExpect(status().isOk())
     	.andExpect(content().contentType(contentType))
     	.andExpect(jsonPath("$.[*].id").value(hasItem(KvarConstants.DB_ID.intValue())))

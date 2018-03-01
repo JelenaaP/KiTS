@@ -1363,8 +1363,6 @@ var KvarDetailComponent = /** @class */ (function () {
     KvarDetailComponent.prototype.add = function () {
         var _this = this;
         this.kvar.datKreiranja = new Date(this.ngbDatKreiranja.year, this.ngbDatKreiranja.month - 1, this.ngbDatKreiranja.day);
-        this.kvar.datZakazivanja = new Date(this.ngbDatZakazivanja.year, this.ngbDatZakazivanja.month - 1, this.ngbDatPopravke.day);
-        this.kvar.datPopravke = new Date(this.ngbDatPopravke.year, this.ngbDatPopravke.month - 1, this.ngbDatPopravke.day);
         this.kvarService.addKvar(this.kvar)
             .then(function (kvar) {
             _this.kvarService.announceChange();
@@ -1373,6 +1371,8 @@ var KvarDetailComponent = /** @class */ (function () {
     };
     KvarDetailComponent.prototype.edit = function () {
         var _this = this;
+        this.kvar.datZakazivanja = new Date(this.ngbDatZakazivanja.year, this.ngbDatZakazivanja.month - 1, this.ngbDatPopravke.day);
+        this.kvar.datPopravke = new Date(this.ngbDatPopravke.year, this.ngbDatPopravke.month - 1, this.ngbDatPopravke.day);
         this.kvarService.editKvar(this.kvar)
             .then(function (kvar) {
             _this.kvarService.announceChange();
@@ -1736,9 +1736,9 @@ var Sednica = /** @class */ (function () {
 var Stan = /** @class */ (function () {
     function Stan(stanCfg) {
         this.id = stanCfg.id;
-        this.ime = stanCfg.ime;
         this.adresa = stanCfg.adresa;
         this.brStanovnika = stanCfg.brStanovnika;
+        this.ime = stanCfg.ime;
         this.vlasnik = stanCfg.vlasnik;
         this.zgrada = stanCfg.zgrada;
     }
@@ -2461,7 +2461,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/stan-detail/stan-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h3>Stan</h3>\r\n  </div>\r\n  <div>\r\n  \r\n    <form >\r\n      <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.id\" placeholder=\"id\" \r\n          class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.ime\" placeholder=\"upisite ime\" \r\n          class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n      </div>\r\n  \r\n      <div class=\"form-group\">\r\n        <label for=\"field2c\" class=\"form-control-label\">Adresa</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.adresa\" placeholder=\"upisite adresu\" \r\n          class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n      </div>\r\n         \r\n      <div class=\"form-group\">\r\n        <label for=\"field3c\" class=\"form-control-label\">Broj stanovnika</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.brStanovnika\" placeholder=\"stanovnici\" \r\n          class=\"form-control\" id=\"field4c\" name=\"field4\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field4c\" class=\"form-control-label\">Vlasnik</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.vlasnik.korisIme\" placeholder=\"Vlasnik\" \r\n          class=\"form-control\" id=\"field5c\" name=\"field5\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"field5c\" class=\"form-control-label\">Zgrada</label>\r\n        <input type=\"text\" [(ngModel)]=\"stan.zgrada.id\" placeholder=\"zgrada\" \r\n          class=\"form-control\" id=\"field6c\" name=\"field6\">\r\n      </div>\r\n     </form>\r\n  <div>\r\n    <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n    <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n  </div> "
+module.exports = "<div>\r\n  <h3>Stan</h3>\r\n</div>\r\n<div>\r\n\r\n  <form >\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Id</label>\r\n      <input type=\"text\" [(ngModel)]=\"stan.id\" placeholder=\"id\" \r\n        class=\"form-control\" id=\"field1c\" name=\"field1\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field1c\" class=\"form-control-label\">Ime</label>\r\n      <input type=\"text\" [(ngModel)]=\"stan.ime\" placeholder=\"upisite ime\" \r\n        class=\"form-control\" id=\"field2c\" name=\"field2\">\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n      <label for=\"field2c\" class=\"form-control-label\">Adresa</label>\r\n      <input type=\"text\" [(ngModel)]=\"stan.adresa\" placeholder=\"upisite adresu\" \r\n        class=\"form-control\" id=\"field3c\" name=\"field3\">\r\n    </div>\r\n       \r\n    <div class=\"form-group\">\r\n      <label for=\"field3c\" class=\"form-control-label\">Broj stanovnika</label>\r\n      <input type=\"text\" [(ngModel)]=\"stan.brStanovnika\" placeholder=\"stanovnici\" \r\n        class=\"form-control\" id=\"field4c\" name=\"field4\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field4c\" class=\"form-control-label\">Vlasnik</label>\r\n      <input type=\"text\" [(ngModel)]=\"stan.vlasnik.korisIme\" placeholder=\"Vlasnik\" \r\n        class=\"form-control\" id=\"field5c\" name=\"field5\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"field5c\" class=\"form-control-label\">Zgrada</label>\r\n      <input type=\"text\" [(ngModel)]=\"stan.zgrada.id\" placeholder=\"zgrada\" \r\n        class=\"form-control\" id=\"field6c\" name=\"field6\">\r\n    </div>\r\n   </form>\r\n<div>\r\n  <button class=\"btn btn-primary\" (click)=\"goBack()\">Cancel</button>\r\n  <button class=\"btn btn-primary\" (click)=\"save()\">OK</button>\r\n</div> "
 
 /***/ }),
 
@@ -2504,8 +2504,15 @@ var StanDetailComponent = /** @class */ (function () {
         this.route = route;
         this.location = location;
         this.stan = new __WEBPACK_IMPORTED_MODULE_4__model_stan_model__["a" /* Stan */]({
-            ime: '',
             adresa: '',
+            brStanovnika: '',
+            ime: '',
+            vlasnik: new __WEBPACK_IMPORTED_MODULE_7__model_korisnik_model__["a" /* Korisnik */]({
+                ime: '',
+                lozinka: '',
+                korisIme: '',
+                uloga: '',
+            }),
             zgrada: new __WEBPACK_IMPORTED_MODULE_6__model_zgrada_model__["a" /* Zgrada */]({
                 ime: '',
                 adresa: '',
@@ -2517,13 +2524,6 @@ var StanDetailComponent = /** @class */ (function () {
                     korisIme: '',
                     uloga: '',
                 })
-            }),
-            brStanovnika: '',
-            vlasnik: new __WEBPACK_IMPORTED_MODULE_7__model_korisnik_model__["a" /* Korisnik */]({
-                ime: '',
-                lozinka: '',
-                korisIme: '',
-                uloga: '',
             })
         });
         this.mode = 'ADD';

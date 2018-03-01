@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import project.dto.Korisnik_servisaDto;
 import project.dto.ZapisnikDto;
 import project.model.Korisnik_servisa;
 import project.model.Sednica;
@@ -68,7 +69,19 @@ public class ZapisnikController {
 		}
 		return new ResponseEntity<>(zapisniciDto, HttpStatus.OK);
 	}
-	
+	@RequestMapping(value="/findSednica", method = RequestMethod.GET)
+	public ResponseEntity<ZapisnikDto> getZapisnikBySednica(@RequestParam Long sednicaId) {
+		Zapisnik zapisnik = zapisnikService.findBySednicaId(sednicaId);
+		//convert buildings to DTOs
+		ZapisnikDto zapisnikDto = new ZapisnikDto();
+		
+		zapisnikDto.setId(zapisnik.getId());
+		zapisnikDto.setDatKreiranja(zapisnik.getDatKreiranja());
+		zapisnikDto.setOpis(zapisnik.getOpis());
+		zapisnikDto.setKreator(new Korisnik_servisaDto(zapisnik.getKreator()));
+		
+		return new ResponseEntity<>(zapisnikDto, HttpStatus.OK);
+	}
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<ZapisnikDto> createZapisnik(@RequestBody ZapisnikDto zapisnikDto) {
 		if(zapisnikDto.getSednica()==null)

@@ -103,6 +103,16 @@ private static final String URL_PREFIX = "/api/zapisnik";
  		.andExpect(jsonPath("$.[*].zgrada.id").value(hasItem(DB_ZGRADA_ID.intValue())));
     }
     @Test
+    public void testGetZapisnikBySednica() throws Exception {
+    	mockMvc.perform(get(URL_PREFIX + "/findSednica?sednicaId=" + ZapisnikConstants.DB_SEDNICA_ID))
+    	.andExpect(status().isOk())
+    	.andExpect(content().contentType(contentType))
+    	.andExpect(jsonPath("$.id").value(ZapisnikConstants.DB_ID.intValue()))
+    	 .andExpect(jsonPath("$.datKreiranja").value(DB_DAT_KREIRANJA.getTime()))
+ 		.andExpect(jsonPath("$.opis").value(DB_OPIS))
+ 		.andExpect(jsonPath("$.kreator.id").value(ZapisnikConstants.DB_KREATOR_ID.intValue()));
+    }
+    @Test
     @Transactional
     @Rollback(true)
     public void testSaveZapisnik() throws Exception {

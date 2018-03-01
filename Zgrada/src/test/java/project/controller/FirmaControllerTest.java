@@ -67,10 +67,10 @@ private static final String URL_PREFIX = "/api/firma";
     private MockMvc mockMvc;
     
     @Autowired
+    Korisnik_servisaService korisnikService;
+    @Autowired
     private WebApplicationContext webApplicationContext;
     
-    @Autowired
-    private Korisnik_servisaService korisnikServisa;
     
     @PostConstruct
     public void setup() {
@@ -130,7 +130,7 @@ private static final String URL_PREFIX = "/api/firma";
 		firma.setTelefon(NEW_TELEFON);
 		firma.setEmail(NEW_EMAIL);
 		firma.setWebSite(NEW_WEB_SITE);
-		firma.setVlasnik(new Korisnik_servisaDto(korisnikServisa.findOne(1L)));
+		firma.setVlasnik(new Korisnik_servisaDto(korisnikService.findOne(1L)));
 		
     	String json = TestUtil.json(firma);
     	System.out.println(json);
@@ -150,9 +150,12 @@ private static final String URL_PREFIX = "/api/firma";
 		firma.setIme(NEW_IME);
 		firma.setAdresa(NEW_ADRESA);
 		firma.setTelefon(NEW_TELEFON);
+		firma.setEmail(DB_EMAIL);
+		firma.setWebSite(DB_WEB_SITE);
+		firma.setVlasnik(new Korisnik_servisaDto(korisnikService.findOne(1L)));
     	
     	String json = TestUtil.json(firma);
-        this.mockMvc.perform(put(URL_PREFIX+ "/" + FirmaConstants.DB_ID)
+        this.mockMvc.perform(put(URL_PREFIX)
                 .contentType(contentType)
                 .content(json))
                 .andExpect(status().isOk());

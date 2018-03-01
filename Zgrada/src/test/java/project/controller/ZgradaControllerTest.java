@@ -152,7 +152,8 @@ public class ZgradaControllerTest {
 		zgrada.setIme(NEW_IME);
 		zgrada.setBrStanova(NEW_BR_STANOVA);
 		zgrada.setBrNaseljenih(NEW_BR_NASELJENIH);
-    	
+		zgrada.setVlasnik(new Korisnik_servisaDto(korisnikService.findOne(1L)));
+		
     	String json = TestUtil.json(zgrada);
         this.mockMvc.perform(put(URL_PREFIX)
         	    .contentType(contentType)

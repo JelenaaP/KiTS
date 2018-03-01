@@ -9,7 +9,7 @@ import project.model.Zapisnik;
 
 public interface ZapisnikRepository extends JpaRepository<Zapisnik, Long>{
 
-	List<Zapisnik> findBySednicaId(String sednica);
+	Zapisnik findBySednicaId(Long sednicaId);
 
 	Zapisnik findByDatKreiranja(Date datKreiranja);
 

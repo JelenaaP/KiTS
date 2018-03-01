@@ -15,16 +15,16 @@ public class ZapisnikService {
 	@Autowired
 	private ZapisnikRepository zapisnikRepository;
 	
-	public List<Zapisnik> findBySednicaId(String sednica){
-		return zapisnikRepository.findBySednicaId(sednica);
-	}
-	
 	public Zapisnik findByDatKreiranja(Date datKreiranja) {
 		return zapisnikRepository.findByDatKreiranja(datKreiranja);
 	}
 	
 	public List<Zapisnik> findByKreatorId(Long kreator){
 		return zapisnikRepository.findByKreatorId(kreator);
+	}
+	
+	public Zapisnik findBySednicaId(Long sednicaId){
+		return zapisnikRepository.findBySednicaId(sednicaId);
 	}
 	
 	public List<Zapisnik> findByZgradaId(Long zgrada){
