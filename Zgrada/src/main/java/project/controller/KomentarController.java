@@ -45,7 +45,7 @@ public class KomentarController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<KomentarDto> getkomentar(@PathVariable Long id){
+	public ResponseEntity<KomentarDto> getKomentar(@PathVariable Long id){
 		Komentar k = komentarService.findOne(id);
 		if(k == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -55,8 +55,8 @@ public class KomentarController {
 	}
 	
 	@RequestMapping(value = "/findKreator", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> getKomentarByKreator(@RequestParam Long kreatorId) {
-		List<Komentar> komentar = komentarService.findByKreatorId(kreatorId);
+	public ResponseEntity<List<KomentarDto>> getKomentarByKreator(@RequestParam Long kreator) {
+		List<Komentar> komentar = komentarService.findByKreatorId(kreator);
 		List<KomentarDto> komentarDto = new ArrayList<>();
 		for (Komentar k : komentar) {
 			komentarDto.add(new KomentarDto(k));
@@ -65,8 +65,8 @@ public class KomentarController {
 		}
 	
 	@RequestMapping(value = "/findKvar", method = RequestMethod.GET)
-	public ResponseEntity<List<KomentarDto>> getKomentarByKvar(@RequestParam Long kvarId) {
-		List<Komentar> komentar = komentarService.findByKvarId(kvarId);
+	public ResponseEntity<List<KomentarDto>> getKomentarByKvar(@RequestParam Long kvar) {
+		List<Komentar> komentar = komentarService.findByKvarId(kvar);
 		List<KomentarDto> komentarDto = new ArrayList<>();
 		for (Komentar k : komentar) {
 			komentarDto.add(new KomentarDto(k));
@@ -104,8 +104,9 @@ public class KomentarController {
 		}
 		// we allow changing date and points for an building on
 		
-		komentar.setDatKreiranja(komentarDto.getDatKreiranja());
 		komentar.setText(komentarDto.getText());
+		komentar.setDatKreiranja(komentarDto.getDatKreiranja());
+		
 		
 		komentar = komentarService.save(komentar);
 		return new ResponseEntity<>(new KomentarDto(komentar), HttpStatus.OK);
